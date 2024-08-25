@@ -1,0 +1,3 @@
+多仓版配置接口（首页点多仓/配置按钮后输入）
+
+https://ghproxy.com/https://raw.githubusercontent.com/ApolloRioo/TVAbc/main/TVAbc.json

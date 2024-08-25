@@ -1,0 +1,12 @@
+{
+    "storeHouse": [
+        {
+            "sourceName": "Apollo0o",
+            "sourceUrl": "https://ghproxy.com/https://raw.githubusercontent.com/ApolloRioo/TVAbc/main/Apollo.json"
+        },
+        {
+            "sourceName": "Apollo8o",
+            "sourceUrl": "https://ghproxy.com/https://raw.githubusercontent.com/ApolloRioo/TVAbc/main/99.json"
+        }
+    ]
+}
