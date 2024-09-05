@@ -1,0 +1,30 @@
+{
+    "name":"UI Task脚本合集",
+    "description":"收集脚本出处作者已标注",
+    "task":[
+        "event-network https://raw.githubusercontent.com/xream/scripts/main/surge/modules/network-info/net-lsp-x.js, tag=网络信息变化 𝕏, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png",
+        "event-interaction https://raw.githubusercontent.com/xream/scripts/main/surge/modules/network-info/net-lsp-x.js, tag=网络信息 𝕏, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png",
+        "event-interaction https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/CloudflareSpeedtest.js, tag=Speed测速, img-url=bolt.square.fill.system",
+        "event-interaction https://raw.githubusercontent.com/xiaomaoJT/QxScript/main/rewrite/script/txt/ipinfo.txt, tag=节点位置查询, img-url=https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/3icon.png",
+        "event-interaction https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/scripts/server_info.js, tag=节点家宽查询, img-url=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Back.png",
+        "*/1 * * * * * https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/testflight/Auto_join_TF.js, tag=tf自动加入, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/testflight.png",
+        "0 9 * * * https://raw.githubusercontent.com/Toperlock/Quantumult/main/task/exchange.js, tag=汇率监控, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/exchangerate.png",
+        "0 8 * * * https://raw.githubusercontent.com/Toperlock/Quantumult/main/task/oil_price.js, tag=今日油价, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/oil.png",
+        "0 9 * * * https://raw.githubusercontent.com/Toperlock/Quantumult/main/task/One.js, tag=每日一言, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/one.png",
+        "30 7 * * * https://raw.githubusercontent.com/Toperlock/Quantumult/main/task/wnCalendar.js, tag=今日黄历, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/YellowCalendar_2.png",
+        "0 8 * * * https://raw.githubusercontent.com/Toperlock/Quantumult/main/task/TimeCard.js, tag=节假提醒, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/date.png",
+        "30 6-23 * * * https://raw.githubusercontent.com/Toperlock/Quantumult/main/task/hotoday.js, tag=热搜榜单, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/hot.png",
+        "0 9 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/moyu.js, tag=摸鱼摸鱼, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/moyu.png",
+        "55 7,17 * * 1-6 https://raw.githubusercontent.com/Toperlock/Quantumult/main/task/dd_daily.js, tag=钉钉打卡, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/dingtalk.png",
+        "30 9 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/douban.js, tag=豆瓣每日推荐, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/douban.png",
+        "0 8 * * * https://raw.githubusercontent.com/Toperlock/Quantumult/main/task/jhsh_bf.js, tag=建行生活, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/jhsh.png",
+        "0 12 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/meituan/meituan.js, tag=美团签到, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/meituan.png",
+        "0-59/3 30-32 9 * * * https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/Bing/bingSearch/bingSearch.js, tag=Bing签到, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png",
+        "0 9,15 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/hlbdy.js, tag=黑料不打烊, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/heiliao.png",
+        "30 21 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/mnck.js, tag=猛男仓库最新猛料, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/NSFW.png",
+        "30 8 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/60s.js, tag=每天60s读懂世界, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/60s.png",
+        "5 0 * * * https://raw.githubusercontent.com/unknowntokyo/surge-list/master/X/dns-clear-cache.js, tag=𝑫𝒏𝒔 𝑪𝒍𝒆𝒂𝒓 𝑪𝒂𝒄𝒉𝒆, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lab.png",
+        "5 0 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/box/scripts/boxjs.revert.usercfgs.httpbackend.js, tag=𝑩𝒐𝒙𝑱𝒔 𝑪𝒍𝒆𝒂𝒓 𝑪𝒂𝒄𝒉𝒆, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lab.png",
+        "5 0 * * * https://raw.githubusercontent.com/sub-store-org/Sub-Store/master/scripts/revert.js, tag=𝑺𝒖𝒃-𝑺𝒕𝒐𝒓𝒆 𝑪𝒍𝒆𝒂𝒓 𝑪𝒂𝒄𝒉𝒆, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lab.png"
+    ]
+}
