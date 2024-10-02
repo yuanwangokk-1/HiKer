@@ -1,5 +1,8 @@
 payload:
   - DOMAIN-SUFFIX,res.res
+  - IP-CIDR,172.67.148.25/32
+  - IP-CIDR,104.21.55.122/32
+  - DOMAIN-SUFFIX,ghp.ci
   - DOMAIN-SUFFIX,y78k.com
   - DOMAIN-SUFFIX,userpicimage.com
   - DOMAIN-KEYWORD,avtb
@@ -38,7 +41,6 @@ payload:
   - DOMAIN-SUFFIX,tools.fun
   - DOMAIN-SUFFIX,javtiktoker.com
   - DOMAIN,fanyi.900cha.com
-  - DOMAIN,mirror.ghproxy.com
   - DOMAIN,translate.homegu.com
   - DOMAIN,api.piliapp.com
   - DOMAIN,jiami.guimei.work
