@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "202409241",
+    version: "20241031",
     empty: "hiker://empty",
     url: "https://cn.pornhub.com",
     d: [],
@@ -13,37 +13,69 @@ const Apollo = {
             .substr(-6);
     }, //随机颜色
     addPage: function(url, currentPage, lastPage) {
+        if (url == "https://cn.pornhub.com/") {
+            url = "https://cn.pornhub.com/video"
+        }
+        var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+            if (match.startsWith('?page=') || match.startsWith('&page=')) {
+                return match.charAt(0) + 'page=' + "@@";
+            } else {
+                return (url.includes('?') ? '&page=' : '?page=') + "@@";
+            }
+        });
+        //log(jumpu)
         var longClick = [{
-            title: '【跳页】【当前>' + currentPage + '<页】【尾页=>' + lastPage + '】',
-            js: $.toString((lastPage, url) => {
-                    return $('', '正确的页码：1=>' + lastPage)
-                        .input((url, lastPage) => {
-                                if (input > 0 && input % 1 == 0) {
-                                    if (url == "https://cn.pornhub.com/") {
-                                        url = "https://cn.pornhub.com/video"
-                                    }
-                                    var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
-                                        if (match.startsWith('?page=') || match.startsWith('&page=')) {
-                                            return match.charAt(0) + 'page=' + input;
-                                        } else {
-                                            return (url.includes('?') ? '&page=' : '?page=') + input;
-                                        }
-                                    });
-                                    putMyVar("url", jumpu);
-                                    putMyVar("yurl", jumpu);
-                                    refreshPage();
-                                    return 'toast://你已经穿越到了' + input + '页'
-                                } else {
-                                    return "toast://请输入正确的页码"
-                                }
-                            },
-                            url, lastPage)
-                },
-                lastPage, url)
+            title: "首页",
+            js: $.toString((jumpu) => {
+                putMyVar("url", jumpu.replace("@@", 1))
+                putMyVar("yurl", jumpu.replace("@@", 1))
+                refreshPage();
+                return "hiker://empty";
+            }, jumpu),
+        }, {
+            title: "上页",
+            js: $.toString((jumpu, currentPage) => {
+                if (currentPage > 1) {
+                    putMyVar("url", jumpu.replace("@@", currentPage - 1));
+                    putMyVar("yurl", jumpu.replace("@@", currentPage - 1));
+                    refreshPage();
+                    return "hiker://empty";
+                }
+            }, jumpu, currentPage)
+        }, {
+            title: "第" + currentPage + "页",
+            js: ""
+        }, {
+            title: "跳转",
+            js: $.toString((jumpu) => {
+                return $("").input((jumpu) => {
+                    putMyVar("url", jumpu.replace("@@", input))
+                    putMyVar("yurl", jumpu.replace("@@", input))
+                    refreshPage();
+                }, jumpu);
+            }, jumpu),
         }];
+        if (typeof(lastPage) != "undefined") {
+            var extra1 = {
+                title: "尾页" + lastPage,
+                js: $.toString((jumpu, lastPage) => {
+                    putMyVar("url", jumpu.replace("@@", lastPage))
+                    putMyVar("yurl", jumpu.replace("@@", lastPage))
+                    refreshPage();
+                    return "hiker://empty";
+                }, jumpu, lastPage),
+            };
+            longClick.push(extra1)
+        }
         return longClick
-    },
+    }, //长按跳页
     baseParse: () => {
+        putMyVar("MY_TYPE", "主页");
+        if (getVar("user")) {
+            var userName = getVar("user")
+            setItem("user", userName)
+            //clearItem("user")
+        }
         let categoryList = [{
             "title": "首页",
             "path": "/",
@@ -99,10 +131,13 @@ const Apollo = {
                 "path": "/likedvideos"
             }, {
                 "title": "💞最爱",
-                "path": "/users/" + getVar("user", "") + "/videos/favorites"
+                "path": "/users/" + getItem("user", "") + "/videos/favorites"
             }, {
                 "title": "💽片单",
-                "path": "/users/" + getVar("user", "") + "/playlists"
+                "path": "/users/" + getItem("user", "") + "/playlists"
+            }, {
+                "title": "👤订阅",
+                "path": "/users/" + getItem("user", "") + "/subscriptions"
             }, {
                 "title": "😈登录",
                 "path": "/login"
@@ -324,6 +359,12 @@ const Apollo = {
                     Apollo.playlistType(url, html)
                 } else if (url.includes("login")) {
                     Apollo.loginType(html)
+                } else if (url.includes("pornstar_subscriptions")) {
+                    Apollo.pornstarType(url, html)
+                } else if (url.includes("channel_subscriptions")) {
+                    Apollo.channelType(url, html);
+                } else if (url.includes("subscriptions")) {
+                    Apollo.pornstarType(url, html);
                 } else {
                     Apollo.videoType(url, html)
                 }
@@ -374,7 +415,7 @@ const Apollo = {
                                     let nodes = document.querySelectorAll('.videoList', 'li[data-video-id]');
                                     let userNameElement = document.querySelector('.js_userName');
                                     let userNameText = userNameElement ? userNameElement.textContent.trim() : null;
-                                    fba.putVar("user", userNameText)
+                                    //fba.putVar("user", userNameText)
                                     //fba.log(userNameText)
                                     // var ua = fba.getUa()
                                     //  fba.log('co::::::' + ua);
@@ -384,11 +425,12 @@ const Apollo = {
                                     var co = fba.getCookie(u);
                                     fba.log('co::::::' + co);
                                     if (nodes && nodes.length > 0 && co && userNameText) {
-                                        fba.parseLazyRule($$$().lazyRule((co) => {
+                                        fba.parseLazyRule($$$().lazyRule((co, userNameText) => {
                                             writeFile('hiker://files/rules/Apollo/Cookie/pornhub_cookie.txt', co);
+                                            putVar("user", userNameText)
                                             toast('账号已登录');
                                             back(true);
-                                        }, co));
+                                        }, co, userNameText));
                                     } else {
                                         setTimeout(check, 500);
                                     }
@@ -421,7 +463,7 @@ const Apollo = {
                         title: title,
                         url: urll + $('#noLoading#')
                             .lazyRule((index) => {
-                                if (MY_URL.includes("hiker://empty")) {
+                                if (getMyVar("MY_TYPE") == "主页") {
                                     putMyVar('sort', index);
                                     putMyVar("url", input);
                                 } else {
@@ -433,7 +475,7 @@ const Apollo = {
                             }, index),
                         col_type: 'scroll_button',
                         extra: {
-                            'backgroundColor': (MY_URL.includes("hiker://empty") ? getMyVar('sort', '0') == index : getMyVar('ysort', '0') == index) ? Apollo.getRangeColors() : ''
+                            'backgroundColor': (getMyVar("MY_TYPE") == "主页" ? getMyVar('sort', '0') == index : getMyVar('ysort', '0') == index) ? Apollo.getRangeColors() : ''
                         }
                     })
                 })
@@ -484,7 +526,7 @@ const Apollo = {
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
                             params.cate_temp[params.index] = params.key.toString()
-                            if (MY_URL.includes("hiker://empty")) {
+                            if (getMyVar("MY_TYPE") == "主页") {
                                 putMyVar('sort', JSON.stringify(params.cate_temp));
                                 putMyVar("url", input);
                             } else {
@@ -519,11 +561,6 @@ const Apollo = {
         } catch {
             var currentPage = "1"
         }
-        try {
-            lastPage = "未知"
-        } catch {
-            var lastPage = currentPage
-        }
         var list = pdfa(html, "body&&li[data-video-id]");
         list.forEach(item => {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
@@ -543,7 +580,7 @@ const Apollo = {
                 col_type: "movie_2",
                 extra: {
                     pageTitle: title,
-                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage, lastPage) : ""
+                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage) : ""
                 }
             })
         })
@@ -591,14 +628,9 @@ const Apollo = {
         } catch {
             var currentPage = "1"
         }
-        try {
-            lastPage = "未知"
-        } catch {
-            var lastPage = currentPage
-        }
-        var list = pdfa(html, "body&&.pornstarList:not(.topPornstars)&&li");
+        var list = pdfa(html, "body&&.pornstarList:not(.topPornstars)||.bigThumbList&&li");
         list.forEach(item => {
-            var title = pdfh(item, ".performerCardName&&Text") +
+            var title = pdfh(item, ".performerCardName||.usernameLink&&Text") +
                 "\n🖥" + pdfh(item, ".videos&&Text");
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
@@ -614,7 +646,7 @@ const Apollo = {
                 col_type: "card_pic_3",
                 extra: {
                     pageTitle: title,
-                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage, lastPage) : ""
+                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage) : ""
                 }
             })
         })
@@ -651,14 +683,9 @@ const Apollo = {
         } catch {
             var currentPage = "1"
         }
-        try {
-            lastPage = "未知"
-        } catch {
-            var lastPage = currentPage
-        }
-        var list = pdfa(html, "body&&.channelsList&&.positionRelative");
+        var list = pdfa(html, "body&&.positionRelative||.channelSubChannelWig");
         list.forEach(item => {
-            var title = pdfh(item, ".channelNameWrapper&&Text").slice(0, 16) + "\n🖥" + pdfh(item, ".info:matches(视频)&&Text");
+            var title = pdfh(item, ".channelNameWrapper||.wtitle&&Text").slice(0, 12) + "\n🖥" + pdfh(item, ".info:matches(视频)&&Text");
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
             Apollo.d.push({
@@ -673,7 +700,7 @@ const Apollo = {
                 col_type: "card_pic_3",
                 extra: {
                     pageTitle: title,
-                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage, lastPage) : ""
+                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage) : ""
                 }
             })
         })
@@ -684,11 +711,6 @@ const Apollo = {
             var currentPage = pdfh(html, "body&&.pagination&&.page_current&&Text").match(/\d+/)[0]
         } catch {
             var currentPage = "1"
-        }
-        try {
-            lastPage = "未知"
-        } catch {
-            var lastPage = currentPage
         }
         var list = pdfa(html, "body&&.playlistWrapper");
         list.forEach(item => {
@@ -708,7 +730,7 @@ const Apollo = {
                 col_type: "movie_2",
                 extra: {
                     pageTitle: title,
-                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage, lastPage) : ""
+                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage) : ""
                 }
             })
         })
@@ -716,6 +738,7 @@ const Apollo = {
 
     //一级.简
     yijiParse: (url) => {
+        putMyVar("MY_TYPE", "一级")
         addListener("onClose", $.toString(() => {
             clearMyVar("yurl");
             clearMyVar("ysort");
