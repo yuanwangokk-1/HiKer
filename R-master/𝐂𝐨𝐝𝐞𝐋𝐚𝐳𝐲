@@ -115,6 +115,18 @@ js: //所在行   ThissAV①16
                         }
                         return "hiker://empty"
                     })
+                }, {
+                    title: '更新远程依赖',
+                    js: $.toString(() => {
+                        try {
+                            var js = fetch("https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
+                            writeFile('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js', js);
+                            refreshPage();
+                            return "toast://远程依赖已更新"
+                        } catch {
+                            return "toast://请挂梯子"
+                        }
+                    })
                 }]
             }
         });
@@ -134,7 +146,7 @@ js: //所在行   ThissAV①16
                             return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                         } else {
                             var id = pdfh(html, "#page-video&&v-scope")
-                                .match(/\'(.*)\'/)[1]
+                                .match(/id:.(\d+)/)[1]
                             var video = "https://njav.tv/zh/ajax/v/" + id + "/videos"
                             var data = JSON.parse(fetch(video, {
                                 headers: {
@@ -621,7 +633,7 @@ js: //所在行   ThissAV①16
                                 return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                             } else {
                                 var id = pdfh(html, "#page-video&&v-scope")
-                                    .match(/\'(.*)\'/)[1]
+                                    .match(/id:.(\d+)/)[1]
                                 var video = "https://njav.tv/zh/ajax/v/" + id + "/videos"
                                 var data = JSON.parse(fetch(video, {
                                     headers: {
