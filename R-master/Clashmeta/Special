@@ -1,6 +1,4 @@
 payload:
-  - DOMAIN-REGEX,javdb(\d+)?\.com
-  - DOMAIN-SUFFIX,jdbstatic.com
   - DOMAIN-SUFFIX,supjav.com
   - DOMAIN-SUFFIX,catbox.moe
   - DOMAIN-KEYWORD,javmenu
@@ -8,8 +6,6 @@ payload:
   - DOMAIN-KEYWORD,dood
   - DOMAIN-KEYWORD,ds2play
   - DOMAIN-KEYWORD,dooood
-  - DOMAIN-KEYWORD,fc2stream
   - DOMAIN-KEYWORD,cindyeyefinal
   - DOMAIN-KEYWORD,michaelapplysome
-  - DOMAIN-SUFFIX,emturbovid.com
   - DOMAIN-SUFFIX,javlibrary.com
