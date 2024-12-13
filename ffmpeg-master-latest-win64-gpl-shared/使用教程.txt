@@ -1,9 +1,0 @@
-1. 首先找到真始皇，把他高清头像另存为本地
-2. 名字改成 XXX.JPG
-3. 然后下载Windows的ffmpeg工具 (https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl-shared.zip)
-4. 把图片放在ffmpeg目录
-5. 打开cmd执行下面命令你就可以获得一个跟我一样的旋转头像了
-
-```
-ffmpeg.exe -loop 1 -t 3 -i XXX.JPG -filter_complex "[0]rotate='PI*2*t/3',split[base][rot];[base]palettegen[p];[rot][p]paletteuse[v]" -map "[v]" -y -f gif -r 30 output.gif
-```
