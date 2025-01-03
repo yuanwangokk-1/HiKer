@@ -1,6 +1,6 @@
 const javguru = {
     empty: "hiker://empty",
-    version: "20241206",
+    version: "20241230",
     url: "https://jav.guru/",
     d: [],
     data: {
@@ -457,7 +457,7 @@ const javguru = {
                     var desc = findItem('transdesc')
                         .desc
                     if (!desc) {
-                        const Apollo = $.require('hiker://page/javguru')
+                        const Apollo = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
                         var translates = Apollo.translate(desct)
                         updateItem("transdesc", {
                             desc: '““””' + translates.fontcolor("red"),
@@ -594,6 +594,17 @@ const javguru = {
                     //log(jwplayer)  
                     return jwplayer + ";{Referer@" + location + "}"
 
+                } else if (/streamhihi/.test(location)) {
+                    //LU线路
+                    var Playhtml = fetch(location, {
+                        headers: {
+                            'Referer': "https://jav.guru/"
+                        }
+                    })
+                    var sources = Playhtml.match(/sources:.([^\,]+)/)[1]
+                    var jwplayer = sources.split("\"")[1]
+                    return jwplayer + ";{Referer@" + location + "}"
+
                 } else if (/vtbe\.to|maxstream/.test(location)) {
                     //JK线路//VTU线路
                     function evaldecode(text) {
@@ -634,7 +645,7 @@ const javguru = {
                     }
 
                     let m3u8 = /file:"(.*?)"/g.exec(evaldecode(script))[1];
-                    return m3u8;
+                    return m3u8 + `;{Accept-Language@zh-CN,zh；；q=0.9,en-US；；q=0.8,en；；q=0.7}`
 
                 } else {
                     log("革命尚未成功,同志仍需努力=>" + location)
@@ -642,7 +653,7 @@ const javguru = {
                 }
             }, url)
 
-        var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM JK", "Streamtape", "VTU"]
+        var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM LU", "STREAM JK", "Streamtape", "VTU"]
         var list = pdfa(html, ".ssmenu&&a[id]")
         var code = html.match(/iframe_url":"[^"]+/g)
             .map(m => m.match(/iframe_url":"(.*)/)[1])
