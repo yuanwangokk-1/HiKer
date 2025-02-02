@@ -3,8 +3,8 @@ js: //所在行   ThissAV①16
     //             haokan③147
     //             missav④194
     //             Tktube⑤266
-    //             supjav⑥347
-    //             javguru⑦434
+    //             supjav⑥385
+    //             javguru⑦471
     //             7mmtv⑧514
     //             more⑨589
     //             cilijun⑩801
@@ -19,7 +19,7 @@ js: //所在行   ThissAV①16
             pic_url: 'https://img.vinua.cn/images/IQlH7.png',
             url: $('')
                 .lazyRule((识别码) => {
-                    var search = "https://missav.com/cn/search/" + 识别码;
+                    var search = "https://missav.ws/cn/search/" + 识别码;
                     var html = fetch(search, {
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
@@ -65,7 +65,7 @@ js: //所在行   ThissAV①16
                                         // 获取画质列表，并取最高画质
                                         let group_quality = fetch(source, {
                                             headers: {
-                                                "origin": "https://missav.com"
+                                                "origin": "https://missav.ws"
                                             }
                                         })
                                         hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm)
@@ -79,7 +79,7 @@ js: //所在行   ThissAV①16
                                             names: name_quality,
                                             headers: new Array(hghest_quality.length)
                                                 .fill({
-                                                    origin: "https://missav.com/cn/"
+                                                    origin: "https://missav.ws/cn/"
                                                 })
                                         };
                                         if (getVar("复制视频", "0") == "1") {
@@ -101,7 +101,7 @@ js: //所在行   ThissAV①16
                 longClick: [{
                     title: '查看搜索',
                     js: $.toString((识别码) => {
-                        return "https://missav.com/cn/search/" + 识别码
+                        return "https://missav.ws/cn/search/" + 识别码
                     }, 识别码)
                 }, {
                     title: getVar("复制视频", "0") == "0" ? '播放视频⭕️' : "复制视频‼️",
@@ -119,7 +119,7 @@ js: //所在行   ThissAV①16
                     title: '更新远程依赖',
                     js: $.toString(() => {
                         try {
-                            var js = fetch("https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
+                            var js = fetch(base64Decode("aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0Fwb2xsb1Jpb28vUi9tYXN0ZXIv8J2QgvCdkKjwnZCd8J2QnvCdkIvwnZCa8J2Qs/CdkLI="));
                             writeFile('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js', js);
                             refreshPage();
                             return "toast://远程依赖已更新"
@@ -144,13 +144,19 @@ js: //所在行   ThissAV①16
                     if (html) {
                         if (html.includes("请检查地址栏中的URL并重试")) {
                             var av = "https://123av.com/zh/v/" + 识别码;
-                            var html = fetch(av, {
+                            html = fetch(av, {
                                 timeout: 4923
                             })
                         }
                         if (html.includes("请检查地址栏中的URL并重试")) {
                             return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                         } else {
+                            if (html.includes("Click here to continue")) {
+                                hr = pdfh(html, "#body&&a&&href")
+                                html = fetch(hr, {
+                                    timeout: 4923
+                                })
+                            }
                             var id = pdfh(html, "#page-video&&v-scope")
                                 .match(/id:.(\d+)/)[1]
                             var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
@@ -159,7 +165,7 @@ js: //所在行   ThissAV①16
                                     "Referer": av
                                 }
                             }))
-                            var javplayer = data.data.watch[0].url
+                            var javplayer = data.result.watch[0].url
                             var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
                                 .match(/https?.*?\.m3u8/)[0]
                             return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
@@ -392,7 +398,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝐒𝐮𝐩𝐣𝐚𝐯小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云6oooole/xxxxxx/tbt0ezaif1tvprn2");
+                                return parsePaste("云6oooole/xxxxxx/dmwehmfyfgln8xle");
                             }
                         })
                         return "hiker://empty"
@@ -479,7 +485,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝐉𝐚𝐯𝐆𝐮𝐫𝐮小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云6oooole/xxxxxx/nucw5annyukxpgti");
+                                return parsePaste("云6oooole/xxxxxx/t3stfr7cniupyiqv");
                             }
                         })
                         return "hiker://empty"
@@ -837,9 +843,9 @@ js: //所在行   ThissAV①16
                         return "https://yandex.com/search/touch/?text=" + 识别码;
                     }, 识别码)
                 }, {
-                    title: '聚搜R',
+                    title: '聚搜',
                     js: $.toString((识别码) => {
-                        return "hiker://search?s=" + 识别码 + "&group=①R&simple=false"
+                        return "hiker://search?s=" + 识别码 + "&group=②生&simple=false"
                     }, 识别码)
                 }]
             }
