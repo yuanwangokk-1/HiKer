@@ -139,7 +139,8 @@ const Apollo = {
                     col_type: "icon_4_card",
                 })
             })
-        } catch {}
+        } catch {
+        }
     },
 
     //首页
@@ -289,7 +290,8 @@ const Apollo = {
                                 col_type: "avatar",
                             })
                         })
-                    } catch {}
+                    } catch {
+                    }
                     setResult(d)
                 }, code),
                 col_type: "flex_button",
@@ -298,7 +300,8 @@ const Apollo = {
                     pageTitle: '旧版本'
                 }
             })
-        } catch {}
+        } catch {
+        }
         Apollo.d.push({
             title: pdfh(html, "body&&article&&Html").replace(/<div[\s\S]+?(<div class=\"text-description[\s\S]+)/, "$1").replace(/<div class=\"ad text[\s\S]+?<h2/g, "<h2"),
             url: "hiker://empty",
