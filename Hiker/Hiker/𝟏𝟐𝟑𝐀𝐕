@@ -1,20 +1,20 @@
 const Apollo = {
-    version: "20250105",
+    version: "20250202",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
-    getRangeColors: function() {
+    getRangeColors: function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+            .toString(16))
             .substr(-6);
     }, //随机颜色
-    pageAdd: function(page) {
+    pageAdd: function (page) {
         if (getMyVar("page")) {
             putMyVar("page", (parseInt(page) + 1) + '');
         }
         return;
     }, //翻页
-    pageMoveto: function(page, pages) {
+    pageMoveto: function (page, pages) {
         var longClick = [{
             title: "首页",
             js: $.toString(() => {
@@ -43,7 +43,7 @@ const Apollo = {
                 });
             }),
         }];
-        if (typeof(pages) != 'undefined') {
+        if (typeof (pages) != 'undefined') {
             var extra1 = {
                 title: "尾页" + pages,
                 js: $.toString((pages) => {
@@ -167,25 +167,25 @@ const Apollo = {
                 "path": "dm1/tags/fc2"
             }, {
                 "title": "HEYZO",
-                "path": "dm2/tags/heyzo"
+                "path": "dm10/tags/heyzo"
             }, {
                 "title": "Tokyo-Hot",
                 "path": "dm1/tags/tokyo-hot"
             }, {
                 "title": "1pondo",
-                "path": "dm14/tags/1pondo"
+                "path": "dm21/tags/1pondo"
             }, {
                 "title": "Caribbeancom",
-                "path": "dm17/tags/caribbeancom"
+                "path": "dm22/tags/caribbeancom"
             }, {
                 "title": "Caribbeancompr",
-                "path": "dm4/tags/caribbeancompr"
+                "path": "dm7/tags/caribbeancompr"
             }, {
                 "title": "10musume",
-                "path": "dm18/tags/10musume"
+                "path": "dm24/tags/10musume"
             }, {
                 "title": "pacopacomama",
-                "path": "dm1/tags/pacopacomama"
+                "path": "dm9/tags/pacopacomama"
             }, {
                 "title": "Gachinco",
                 "path": "dm1/tags/gachig"
@@ -208,7 +208,7 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "MissAV",
-                "path": "missav"
+                "path": "dm2/missav"
             }, {
                 "title": "SupJav",
                 "path": "supjav"
@@ -319,7 +319,8 @@ const Apollo = {
                 if (MY_PAGE == 1 && !/search/.test(url)) {
                     try {
                         Apollo.lunboType(html)
-                    } catch {}
+                    } catch {
+                    }
                     Apollo.homeType(html)
                 }
                 break
@@ -363,7 +364,7 @@ const Apollo = {
             col_type: "blank_block"
         });
         try {
-            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+            if (typeof (拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
             } else {
                 var categories = pdfa(html, 大类定位)
@@ -387,9 +388,10 @@ const Apollo = {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
-                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                    if (typeof (排除) != 'undefined' && 排除 != '') {
                         title = title.replace(new RegExp(排除, "g"), "")
-                    };
+                    }
+                    ;
                     Apollo.d.push({
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
@@ -434,7 +436,7 @@ const Apollo = {
             col_type: "blank_block"
         });
         try {
-            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+            if (typeof (拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
             } else {
                 var categories = pdfa(html, 大类定位)
@@ -454,9 +456,10 @@ const Apollo = {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
-                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                    if (typeof (排除) != 'undefined' && 排除 != '') {
                         title = title.replace(new RegExp(排除, "g"), "")
-                    };
+                    }
+                    ;
                     Apollo.d.push({
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((url, params) => {
@@ -553,11 +556,10 @@ const Apollo = {
                 lineVisiable: false
             }
         })
+        var id = pdfh(html, "#page-video&&v-scope").match(/id:.(\d+)/)[1]
         Apollo.d.push({
             pic_url: pdfh(html, '#player&&data-poster') + '@Referer=' + Apollo.url,
-            url: $(url + '#noHistory#').lazyRule((html) => {
-                var id = pdfh(html, "#page-video&&v-scope")
-                    .match(/id:.(\d+)/)[1]
+            url: $(url + '#noHistory#').lazyRule((id) => {
                 var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
                 var data = JSON.parse(fetch(video, {
                     headers: {
@@ -568,7 +570,7 @@ const Apollo = {
                 var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
                     .match(/https?.*?\.m3u8/)[0]
                 return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
-            }, html),
+            }, id),
             col_type: 'pic_1_full',
         })
 
@@ -831,7 +833,8 @@ const Apollo = {
                 url: "hiker://empty",
                 col_type: "movie_1_vertical_pic"
             })
-        } catch {}
+        } catch {
+        }
         Apollo.DynamicSort(html)
         Apollo.videoType(html, page)
     },
@@ -1010,6 +1013,7 @@ const Apollo = {
 
             }, obj, id))
         }
+
         banner(MY_RULE.title, true, Apollo.d, lundata, {
             time: 3333,
             col_type: "card_pic_1",
@@ -1075,7 +1079,7 @@ const Apollo = {
             }
 
             const mark = 'desc';
-            num = typeof(num) == 'undefined' ? 100 : num
+            num = typeof (num) == 'undefined' ? 100 : num
             desc = desc.startsWith('　　') ? desc : '　　' + desc;
             desc = desc.replace(/'/g, "&#39;");
             desc = desc.replace(/\r\n/g, "<br>");
@@ -1088,7 +1092,7 @@ const Apollo = {
                 hide: "#8A2BE2"
             }
 
-            var lazy = $(`#noLoading#`).lazyRule((dc, sdc, m, cs) => {
+            var lazy = $(`#noLoading #`).lazyRule((dc, sdc, m, cs) => {
                 var show = storage0.getItem(m, '0');
                 var title = findItem('desc').title;
                 var re = /(<\/big><br>.*?>).+/g;

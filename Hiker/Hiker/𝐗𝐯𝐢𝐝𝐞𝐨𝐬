@@ -3,18 +3,18 @@ const Apollo = {
     empty: 'hiker://empty',
     url: "https://www.xvideos.com",
     d: [],
-    getRangeColors: function() {
+    getRangeColors: function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+            .toString(16))
             .substr(-6);
     }, //随机颜色
-    pageAdd: function(page) {
+    pageAdd: function (page) {
         if (getMyVar("page")) {
             putMyVar("page", (parseInt(page) + 1) + '');
         }
         return;
     }, //翻页
-    pageMoveto: function(page, pages) {
+    pageMoveto: function (page, pages) {
         var longClick = [{
             title: "首页",
             js: $.toString(() => {
@@ -43,7 +43,7 @@ const Apollo = {
                 });
             }),
         }];
-        if (typeof(pages) != 'undefined') {
+        if (typeof (pages) != 'undefined') {
             var extra1 = {
                 title: "尾页" + pages,
                 js: $.toString((pages) => {
@@ -579,7 +579,8 @@ const Apollo = {
                         }
                     })
                 })
-            } catch {}
+            } catch {
+            }
         }
     },
     //动态分类
@@ -591,7 +592,7 @@ const Apollo = {
         const 分类标题 = "Text"
         const 分类链接 = "a&&href"
         try {
-            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+            if (typeof (拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
             } else {
                 var categories = pdfa(html, 大类定位)
@@ -618,9 +619,10 @@ const Apollo = {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
-                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                    if (typeof (排除) != 'undefined' && 排除 != '') {
                         title = title.replace(new RegExp(排除, "g"), "")
-                    };
+                    }
+                    ;
                     Apollo.d.push({
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: Apollo.url + $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
@@ -761,10 +763,10 @@ const Apollo = {
             pic_url: pdfh(html, 'meta[property=og:image]&&content'),
             url: $(Apollo.empty + '#noHistory#').lazyRule((play) => {
                 var hls = request(play).match(/hls-.*?m3u8/g);
-                JSON.stringify(hls.sort(function(a, b) {
+                JSON.stringify(hls.sort(function (a, b) {
                     return b.match(/\d+/) - a.match(/\d+/)
                 }));
-                hghest_quality = hls.map(v => play.split('hls.')[0] + v, )
+                hghest_quality = hls.map(v => play.split('hls.')[0] + v,)
                 name_quality = hls.map(v => v.split('-')[1].replace('.m3u8', ''))
                 let playlist = {
                     urls: hghest_quality,
@@ -803,7 +805,8 @@ const Apollo = {
                     }
                 })
             })
-        } catch {}
+        } catch {
+        }
         //相关
         Apollo.d.push({
             title: "相关视频".fontcolor("#D2691E").bold(),
@@ -815,7 +818,8 @@ const Apollo = {
             var title = json[j].tf;
             try {
                 title = title.replace(/https?.*?\s/, "")
-            } catch {}
+            } catch {
+            }
             Apollo.d.push({
                 title: title,
                 desc: json[j].d,
@@ -917,7 +921,8 @@ const Apollo = {
                         col_type: "movie_2"
                     })
                 }
-            } catch {}
+            } catch {
+            }
         }
     },
     //频道，明星
@@ -1007,7 +1012,7 @@ const Apollo = {
             }
 
             const mark = 'desc';
-            num = typeof(num) == 'undefined' ? 100 : num
+            num = typeof (num) == 'undefined' ? 100 : num
             desc = desc.startsWith('　　') ? desc : '　　' + desc;
             desc = desc.replace(/'/g, "&#39;");
             desc = desc.replace(/\r\n/g, "<br>");
@@ -1020,7 +1025,7 @@ const Apollo = {
                 hide: "#8A2BE2"
             }
 
-            var lazy = $(`#noLoading#`).lazyRule((dc, sdc, m, cs) => {
+            var lazy = $(`#noLoading #`).lazyRule((dc, sdc, m, cs) => {
                 var show = storage0.getItem(m, '0');
                 var title = findItem('desc').title;
                 var re = /(<\/big><br>.*?>).+/g;
@@ -1060,6 +1065,7 @@ const Apollo = {
                 }
             })
         }
+
         setDesc(Apollo.d, desc, 90);
     },
 
@@ -1089,6 +1095,7 @@ const Apollo = {
                     const rand = Math.floor(Math.random() * 99999) + 100000
                     return rand * 1000
                 }
+
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -1116,8 +1123,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                                timeout: 1000
-                            }))
+                            timeout: 1000
+                        }))
                             .language;
                         var result = post(url, {
                             body: {
