@@ -1,13 +1,12 @@
 {
-    "urls": [
-        {
-            "url": "clan://localhost/TVAbc/Apollo/Api.json",
-            "name": "ApolloRi"
-        },
-        {
-            "url": "clan://localhost/TVAbc/FM_TT/FM.json",
-            "name": "蜂蜜阿里原画"
-            
-        }
-    ]
+  "urls": [
+    {
+      "url": "clan://localhost/TVAbc/Apollo/Api.json",
+      "name": "ApolloRi"
+    },
+    {
+      "url": "clan://localhost/TVAbc/FM_TT/FM.json",
+      "name": "蜂蜜阿里原画"
+    }
+  ]
 }

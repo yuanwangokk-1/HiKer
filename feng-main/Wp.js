@@ -19,7 +19,8 @@ for (let x in zlei) {
             return "hiker://empty";
         }, x)
     })
-};
+}
+;
 d.push({
     col_type: "big_blank_block"
 }, {
@@ -42,7 +43,8 @@ function Week(url, d) {
     let num = 0;
     for (let i = 0; i < string.length; i++) {
         num += chineseNums.indexOf(string[i]) * Math.pow(10, i);
-    };
+    }
+    ;
 
     function week1(d, lists, num) {
         let ll = getMyVar("s", JSON.stringify(parseInt(num) + (num == 0 ? +6 : -1)));
@@ -78,7 +80,8 @@ function Week(url, d) {
                     }]
                 }
             });
-        };
+        }
+        ;
     };
 
     let zhli = ["动漫", "剧集"];
@@ -108,7 +111,8 @@ function Week(url, d) {
                     updateItem("id_周历" + j, {
                         title: Day == getMyVar("li") && Day == lik ? "‘‘’’<b>" + ("周" + lik).fontcolor("#FA7298") + "</b>" : getMyVar("li") == lik ? "‘‘’’<b>周" + lik + "</b>" : lik,
                     });
-                };
+                }
+                ;
 
                 let lists = storage0.getMyVar("周list");
                 let ld = [];
@@ -122,7 +126,8 @@ function Week(url, d) {
                 id: "id_周历" + i
             }
         });
-    };
+    }
+    ;
 
     let zurl = getItem("zlkey", "动漫") == "动漫" ? url : url + "?type=tv";
     let html = fetchPC(zurl, {
@@ -178,8 +183,10 @@ function zuijin(url, d) {
                         }]
                     }
                 })
-            };
-        };
+            }
+            ;
+        }
+        ;
     };
     d.push({
         col_type: "big_blank_block"
@@ -200,7 +207,8 @@ function zuijin(url, d) {
                     updateItem("id_zj更" + i, {
                         title: getMyVar("zlie", "0") == i ? "‘‘’’<b>" + (li + "</b>").fontcolor("#FA7298") : li,
                     });
-                };
+                }
+                ;
 
                 let html = storage0.getMyVar("zjhtml") || [];
                 let ld = [];
@@ -215,7 +223,8 @@ function zuijin(url, d) {
                 id: "id_zj更" + u
             }
         })
-    };
+    }
+    ;
     let html = fetchPC(url, {
         headers: {
             'content-type': 'application/json; charset=GBK'
@@ -229,5 +238,6 @@ if (getMyVar("leixin", "0") == 0) {
     Week(zurl, d);
 } else {
     zuijin(gurl, d);
-};
+}
+;
 setResult(d);
