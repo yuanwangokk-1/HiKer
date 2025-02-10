@@ -1,1 +1,219 @@
-evalPrivateJS("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");
+js:
+    let d = [];
+addListener("onClose", $.toString(() => {
+    clearVar("fenyinrule");
+    clearVar("fy手动fy");
+}));
+
+try {
+    let rules = JSON.parse(base64Decode(getVar("fenyinrule")));
+    if (rules.length > 1 && getParam("rule") == "风影") {
+        putVar("fy手动fy", "1");
+        require(getItem("git", "https://raw.gitcode.com/Suifen/feng/raw/master/ycl.js"));
+        gx();
+    }
+    ;let list;
+    let file = "hiker://files/rules/FYJK/ys.json";
+    try {
+        list = JSON.parse(readFile(file));
+    } catch (e) {
+        list = [];
+        saveFile(file, JSON.stringify(list));
+        console.error('解析文件内容出错:', e);
+    }
+    ;
+
+    function Name(name) {
+        return name.replace(/&&.*/g, "");
+    };
+
+    function times(time) {
+        return new Date(time.replace(/\s+/g, "T"));
+    };
+
+    function adds(list, rules, Name) {
+        let add = [];
+        for (let rule of rules) {
+            if (!list.some(item => Name(item.name) === Name(rule.name))) {
+                add.push(rule);
+            }
+        }
+        ;
+        return add;
+    };
+
+    function ups(list, rules, Name, times) {
+        let up = [];
+        for (let rule of rules) {
+            let match = list.find(item => Name(item.name) === Name(rule.name));
+            if (match && times(rule.time) > times(match.time)) {
+                up.push(rule);
+            }
+        }
+        ;
+        return up;
+    };
+
+    function lis(list, rules, Name, times) {
+        let lis = [];
+        for (let item of list) {
+            if (!rules.some(rule => Name(rule.name) === Name(item.name) && times(rule.time) > times(item.time))) {
+                lis.push(item);
+            }
+        }
+        ;
+        return lis;
+    };
+
+    function los(list, rules, Name) {
+        let liss = [];
+        for (let item of list) {
+            if (!rules.some(rule => Name(rule.name) === Name(item.name))) {
+                liss.push(item);
+            }
+        }
+        ;
+        return liss;
+    };
+
+    function lio(rules, list, Name, times) {
+        let lio = [];
+        for (let item of rules) {
+            if (!list.some(lis => Name(lis.name) === Name(item.name) && times(lis.time) < times(item.time)) && list.some(lis => Name(lis.name) == Name(item.name))) {
+                lio.push(item);
+            }
+        }
+        ;
+        return lio;
+    };
+
+    let addlist = adds(list, rules, Name);
+    let uplist = ups(list, rules, Name, times)
+    let lists = lis(list, rules, Name, times);
+    let lios = lio(rules, list, Name, times);
+    let loss = los(list, rules, Name);
+
+    d.push({
+        col_type: "big_blank_block"
+    }, {
+        title: "‘‘’’" + ("<b><big>风 影 源 导 入</big></b>").fontcolor("#6EB897"),
+        url: "hiker://empty",
+        col_type: "text_center_1"
+    }, {
+        col_type: "big_blank_block"
+    });
+
+    let tit = ["覆盖全部", "覆盖更新", "导入新增"];
+    let pic_ = ["hiker://images/home_icon_bookmark_group", "hiker://images/home_icon_fold", "hiker://images/home_icon_add"]
+    for (let i in tit) {
+        let li = tit[i];
+        d.push({
+            title: "<b>" + li + "</b>", img: pic_[i], url: $("#noLoading#").lazyRule((li, add, up, lis, lio, los) => {
+                function Snackbar() {
+                    const hikerPop = $.require(getItem("git", "https://raw.gitcode.com/Suifen/feng/raw/master/ycl.js").replace("ycl.js", "hikerPop.js"));
+                    hikerPop.chefSnackbarMake({
+                        content: "确认跳转风影？", duration: 5000, //显示时长
+                        confirm() {
+                            return "hiker://home@风影";
+                        }
+                    });
+                };let file = "hiker://files/rules/FYJK/ys.json";
+                let list = JSON.parse(readFile(file)) || [];
+                let ad = add.length;
+                let Up = up.length;
+                let Lo = lio.length;
+                if (li == "导入新增") {
+                    if (ad == 0) {
+                        return "toast://没有新增源！"
+                    } else {
+                        let addList = [];
+                        addList = add.concat(list);
+                        saveFile(file, JSON.stringify(addList));
+                        back(true);
+                        Snackbar();
+                        toast("风影源 - 新增 " + ad + " 条，跳过" + (Up + Lo) + "条");
+                        return "hiker://empty";
+                    }
+                    ;
+                } else if (li == "覆盖更新") {
+                    if (ad == 0 && Up == 0) {
+                        return "toast://没有新增、更新的源！"
+                    } else {
+                        let resultList = [];
+                        resultList = add.concat(up).concat(lis);
+                        saveFile(file, JSON.stringify(resultList));
+                        back(true);
+                        Snackbar();
+                        toast("风影源 - 新增 " + ad + " 条，更新 " + Up + " 条，跳过" + Lo + "条");
+                        Snackbar();
+                        return "hiker://empty";
+                    }
+                    ;
+                } else if (li == "覆盖全部") {
+                    let lioList = [];
+                    lioList = add.concat(up).concat(lio).concat(los);
+                    saveFile(file, JSON.stringify(lioList));
+                    back(true);
+                    Snackbar();
+                    toast("风影源 - 新增 " + ad + " 条，更新 " + Up + " 条，覆盖" + Lo + "条");
+                    return "hiker://empty";
+                }
+                ;
+            }, li, addlist, uplist, lists, lios, loss), col_type: "icon_small_3"
+        });
+    }
+    ;
+
+    function leng(adtxt, uptxt, lotxt, adlen, uplen, lolen) {
+        d.push({
+            title: "‘‘’’<small>" + (adtxt + ": " + adlen + " 条").fontcolor("#FA7298") + " / " + (uptxt + ": " + uplen + " 条").fontcolor("#6EB897") + " / " + (lotxt + ": " + lolen + " 条").fontcolor("#999999") + "</small>",
+            url: "hiker://empty",
+            col_type: "text_center_1"
+        })
+    };
+
+    function List(list, deco) {
+        let syd = new Set();
+        let sod = new Set();
+        for (let j in list) {
+            let li = list[j];
+            let name = li.name.replace(/&&.*/g, "");
+            if ((li.fl !== "" || li.sy !== "") && li.gs !== "HOST" || (li.gs === "HOST" && li.host !== "")) {
+                syd.add(name);
+            }
+            if ((li.so !== "" && li.gs !== "HOST") || (li.gs === "HOST" && li.sourl !== "")) {
+                sod.add(name);
+            }
+            let y = syd.has(name) ? "首" : "";
+            let s = sod.has(name) ? "搜" : "";
+            let ttl = (typeof (li.ttl) === 'string' && li.ttl == "ttl") ? "<small>" + "失效".fontcolor("#ff1100") + "</small>" : "";
+            d.push({
+                title: name + ("「 " + y + " " + s + " " + li.gs + " 」") + "   " + deco + "   " + ttl,
+                desc: "<small>" + (!/&&/.test(li.name) ? "By - 未知" : li.name.replace(/.*&&/g, "By - ")) + "</small>",
+                img: "",
+                url: $("确认导入  " + name + " ？").confirm((li) => {
+                    let file = "hiker://files/rules/FYJK/ys.json";
+                    let list = JSON.parse(readFile(file));
+                    list = list.filter(item => !(item.name.replace(/&&.*/, "") === li.name.replace(/&&.*/, "")));
+                    list.unshift(li);
+                    saveFile(file, JSON.stringify(list));
+                    return "toast://导入成功！";
+                }, li),
+                col_type: "avatar"
+            })
+        }
+        ;
+    };
+
+    leng("新增", "更新", "较旧", addlist.length, uplist.length, lios.length);
+    let new_ = "<small><small>" + ("NEW").fontcolor("#ff6600") + "</small></small>";
+    let up_ = "<small><small>" + ("UP").fontcolor("#00cc99") + "</small></small>";
+    let nu_ = "<small><small>" + ("NU").fontcolor("#999999") + "</small></small>";
+    List(addlist, new_);
+    List(uplist, up_);
+    List(lios, nu_);
+} catch (e) {
+    log(e.toString());
+    toast("导入失败");
+}
+setResult(d);

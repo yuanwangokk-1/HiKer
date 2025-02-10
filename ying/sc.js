@@ -1,1 +1,383 @@
-evalPrivateJS("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")
+(function () {
+    const File = java.io.File;
+    const {
+        Files,
+        Paths,
+        StandardCopyOption,
+        StandardOpenOption
+    } = java.nio.file;
+    const javaString = java.lang.String;
+    let javaScope = new JavaImporter(java.io, java.lang, java.lang.reflect, java.util.Vector);
+
+    function deleteFiles(fileName) {
+        let file = new File(fileName);
+        if (!file.exists()) {
+            //log("删除文件失败：" + fileName + "文件不存在");
+            return false;
+        } else {
+            if (file.isFile()) {
+                return deleteFile(fileName);
+            } else {
+                return deleteDirectory(fileName);
+            }
+
+        }
+
+    }
+
+    /**
+     * 删除单个文件
+     *
+     * @param fileName
+     *            被删除文件的文件名
+     * @return 单个文件删除成功返回true,否则返回false
+     */
+    function deleteFile(fileName) {
+        let file = new File(fileName);
+        if (file.isFile() && file.exists()) {
+            file.delete();
+            //log("删除单个文件" + fileName + "成功！");
+            return true;
+        } else {
+            //log("删除单个文件" + fileName + "失败！");
+            return false;
+        }
+
+    }
+
+    /**
+     * 删除目录（文件夹）以及目录下的文件
+     *
+     * @param dir
+     *            被删除目录的文件路径
+     * @return 目录删除成功返回true,否则返回false
+     */
+    function deleteDirectory(dir) {
+        // 如果dir不以文件分隔符结尾，自动添加文件分隔符
+        if (!dir.endsWith(File.separator)) {
+            dir = dir + File.separator;
+        }
+        let dirFile = new File(dir);
+        // 如果dir对应的文件不存在，或者不是一个目录，则退出
+        if (!dirFile.exists() || !dirFile.isDirectory()) {
+            //log("删除目录失败" + dir + "目录不存在！");
+            return false;
+        }
+        let flag = true;
+        // 删除文件夹下的所有文件(包括子目录)
+        let files = dirFile.listFiles();
+        for (let i = 0; i < files.length; i++) {
+            // 删除子文件
+            if (files[i].isFile()) {
+                flag = deleteFile(files[i].getAbsolutePath());
+                if (!flag) {
+                    break;
+                }
+            } else { // 删除子目录
+                flag = deleteDirectory(files[i].getAbsolutePath());
+                if (!flag) {
+                    break;
+                }
+            }
+        }
+        if (!flag) {
+            //log("删除目录失败");
+            return false;
+        }
+        // 删除当前目录
+        if (dirFile.delete()) {
+            //log("删除目录" + dir + "成功！");
+            return true;
+        } else {
+            //log("删除目录" + dir + "失败！");
+            return false;
+        }
+    }
+
+    //copy单个文件
+    function copyFile(source, target, isCover) {
+        let sourcePath = Paths.get(source);
+        let targetPath = Paths.get(target);
+        let isExist = Files.exists(targetPath);
+        if (Files.isDirectory(sourcePath) || (isExist && !isCover) || (isExist && Files.isDirectory(targetPath))) {
+            return false;
+        }
+        try {
+            if (!isExist) {
+                Files.createDirectories(targetPath.getParent());
+            }
+            if (isCover === true) {
+                Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
+                return true;
+            } else {
+                Files.copy(sourcePath, targetPath, StandardCopyOption.COPY_ATTRIBUTES);
+                return true;
+            }
+        } catch (e) {
+            return false;
+        }
+    }
+
+    /**
+     *
+     * @param source 源文件夹
+     * @param target 目标文件夹
+     * @param pattern 0：格式化目标文件夹在复制  1：不格式化但覆盖目标文件夹里重复的文件 2：跳过已经有的文件
+     * @returns {boolean|*|boolean}
+     */
+    function copyDirs(source, target, pattern) {
+        pattern = pattern || 0;
+        let sourceDir = new File(source);
+        let targetDir = new File(target);
+        if (pattern === 0 && targetDir.exists() && targetDir.isDirectory()) {
+            if (!deleteFiles(target)) return false;
+        }
+        if (targetDir.isFile() && targetDir.exists()) {
+            if (pattern === 0) {
+                if (!deleteFiles(target)) return false;
+            } else {
+                return false;
+            }
+        }
+        let copy;
+        if (pattern === 0 || pattern === 1) {
+            copy = (source, target) => copyFile(source, target, true);
+        } else if (pattern === 2) {
+            copy = (source, target) => copyFile(source, target, false);
+        } else {
+            return false;
+        }
+        return copyDir(sourceDir, targetDir, copy);
+    }
+
+    function copyDir(sourceDir, targetDir, copy) {
+        let files = sourceDir.listFiles();
+        if (files == null) return false;
+        for (let file of files) {
+            let file1 = new File(targetDir, file.getName());
+            if (file.isFile()) {
+                return copy(file.toString(), file1.toString());
+            } else {
+                file1.mkdir();
+                return copyDir(file, file1, copy);
+            }
+        }
+    }
+
+    function forEachs(options) {
+        let v = Object.assign({
+            baseDir: "",
+            targetDepth: 5,
+            isIgnoreDir: true,
+            callback: null
+        }, options);
+        if (!v.baseDir || typeof v.callback != "function") {
+            throw new Error("参数错误");
+        }
+        v.baseDir = new File(v.baseDir);
+        forEach(v.baseDir, v.targetDepth, v.isIgnoreDir, v.callback);
+    }
+
+    function forEach(baseDir, targetDepth, isIgnoreDir, callback, depth) {
+        depth = depth || 0;
+        if (!baseDir.exists() || !baseDir.isDirectory() || depth >= targetDepth) {
+            return;
+        }
+        let files = baseDir.listFiles();
+        if (files == null) {
+            return;
+        }
+        for (let file of files) {
+            let isDirectory = file.isDirectory();
+            if ((!isIgnoreDir && isDirectory) || !isDirectory) {
+                callback({
+                    name: String(file.getName()),
+                    path: String(file.getPath()),
+                    isDirectory: isDirectory
+                });
+            }
+            if (isDirectory) {
+                forEach(file, targetDepth, isIgnoreDir, callback, depth + 1);
+            }
+        }
+    }
+
+    function getFileTime(path) {
+        let file = new File(path);
+        let lastModified = file.lastModified();
+        let date = new Date(lastModified);
+        return date.getTime();
+    }
+
+    function getName(path) {
+        return new File(path).getName() + "";
+    }
+
+    function getFilePath(path, type, expand) {
+        type = type || "file";
+        if (!["file", "dir"].includes(type)) throw new Error("类型错误");
+        let fileType = type === "file" ? "isFile" : "isDirectory";
+        let file = new File(path);
+        let array = file.listFiles() || [];
+        let pathList = [];
+        for (let i = 0; i < array.length; i++) {
+            if (array[i][fileType]()) {
+                pathList.push({
+                    name: array[i].getName() + "",
+                    path: array[i].getPath() + ""
+                });
+            }
+        }
+        if (expand) {
+            pathList = pathList.filter(it => it.name.endsWith(expand));
+        }
+        return pathList;
+    }
+
+    function renameFile(fromPath, name, isCover) {
+        isCover = isCover || false;
+        let fromFile = new File(fromPath);
+        let toFile = new File(fromFile.getParent() + "/" + name);
+
+        try {
+
+            if (!fromFile.exists()) {
+                return false;
+            }
+            if (String(fromFile.toString()) === String(toFile.toString())) {
+                return false;
+            }
+            if (toFile.exists()) {
+                if (isCover && !deleteFiles(toPath)) {
+                    return false;
+                } else if (!isCover) {
+                    return false;
+                }
+            }
+            Files.move(fromFile.toPath(), toFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            return toFile.toString();
+        } catch (e) {
+            log(e.toString());
+            return false;
+        }
+    }
+
+    function moveFiles(fromPath, toPath) {
+        let fromFile = new File(fromPath);
+        let toFile = new File(toPath);
+        try {
+            if (!fromFile.exists()) {
+                return false;
+            }
+            if (toFile.exists()) {
+                if (!deleteFiles(toPath)) {
+                    return false;
+                }
+            }
+            Files.move(fromFile.toPath(), toFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            return true;
+        } catch (e) {
+            log(e.toString());
+            return false;
+        }
+    }
+
+    function fileWrite(path, content) {
+        writeFile("file://" + path, content)
+    }
+
+    function fileWriteAppend(path, content) {
+        let file = new File(path);
+        let paths = file.toPath();
+        if (file.exists()) {
+            Files.write(paths, new javaString(content).getBytes(), StandardOpenOption.APPEND);
+        } else {
+            writeFile("file://" + path, content);
+        }
+    }
+
+    function getTotalSizeOfFilesInDir(file) {
+        if (file.isFile()) {
+            return file.length();
+        }
+        let children = file.listFiles();
+        let total = 0;
+        if (children != null) {
+            for (let child of children) {
+                total += getTotalSizeOfFilesInDir(child);
+            }
+        }
+        return total;
+    }
+
+    function getFileSize(filePath) {
+        //Byte
+        let size = getTotalSizeOfFilesInDir(new File(filePath));
+        if (size < 0) {
+            return null;
+        }
+        let unitForm = ["Byte", "KB", "MB", "GB", "TB"];
+        for (let i = 0, len = unitForm.length; i < len; i++) {
+            if (size > 1024) {
+                size /= 1024;
+                continue;
+            } else {
+                return Math.ceil(size) + unitForm[i];
+            }
+        }
+        return "ERROR:数值过大";
+    }
+
+    function fileRule(filesInput, fileOut, intercept) {
+        with (javaScope) {
+            const BUFFER_SIZE = 0x300000;
+            let tmpFile = new File(filesInput);
+            if (!(tmpFile.exists() && tmpFile.isFile())) {
+                return false;
+            }
+            let outFile = new File(fileOut);
+
+            let tis = new FileInputStream(tmpFile);
+            let os = new BufferedOutputStream(new FileOutputStream(outFile));
+            let len = 0;
+            let bys = Array.newInstance(Byte.TYPE, BUFFER_SIZE);
+            while ((len = tis.read(bys)) != -1) {
+                let nbys = intercept(new String(bys, 0, len));
+                os.write(nbys, 0, nbys.length);
+            }
+            tmpFile.delete();
+            tis.close();
+            os.close();
+            return true;
+        }
+    }
+
+    function readFile(path) {
+        try {
+            let paths = Paths.get(path);
+            if (!Files.exists(paths)) return "";
+            return String(new javaString(Files.readAllBytes(paths)));
+        } catch {
+            return "";
+        }
+    }
+
+    return {
+        getFileTime: (path) => getFileTime(path),
+        getFilePath: (path, type, expand) => getFilePath(path, type, expand),
+        deleteFiles: (path) => deleteFiles(path),
+        renameFile: (path, name, isCover) => renameFile(path, name, isCover),
+        moveFiles: (fromPath, toPath) => moveFiles(fromPath, toPath),
+        fileWrite: (path, content) => fileWrite(path, content),
+        fileWriteAppend: (path, content) => fileWriteAppend(path, content),
+        getName: (path) => getName(path),
+        getFileSize: (filePath) => getFileSize(filePath),
+        fileRule: (filesInput, fileOut, intercept) => fileRule(filesInput, fileOut, intercept),
+        copyFile: (source, target, isCover) => copyFile(source, target, isCover),
+        copyDirs: (source, target, pattern) => copyDirs(source, target, pattern),
+        forEachs: (options) => forEachs(options),
+        readFile: (path) => readFile(path)
+    }
+})()
+
+//代码出自L佬

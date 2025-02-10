@@ -1,1 +1,115 @@
-evalPrivateJS("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")
+function verify(MY_URL, MY_HOME, http, game, name, ssurl, d, page, sokey, off1) {
+    let curl = MY_HOME + (MY_URL.indexOf("search-pg-1-wd-") > -1 ? "/inc/common/code.php?a=search" : /Auete/.test(name) ? "/include/vdimgck.php?get=" : "/index.php/verify/index.html?");
+
+    let cok = JSON.parse(fetchCookie(curl + Math.random(), {
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'User-Agent': MOBILE_UA
+        },
+        method: 'GET',
+        withHeaders: true
+    })).join(';');
+
+    //log(cok);
+    let yzt = curl + Math.random() + "@User-Agent = " + MOBILE_UA + "@Cookie=" + cok;
+
+    d.push({
+        title: "<br>",
+        col_type: "rich_text",
+        extra: {
+            cls: "cls_k1" + name
+        }
+    }, {
+        img: yzt,
+        url: $('#noLoading#').lazyRule((curl, cok, name) => {
+            let yzt = curl + Math.random() + "@User-Agent = " + MOBILE_UA + "@Cookie=" + cok;
+            updateItem("id_pic" + name, {
+                img: yzt
+            });
+            return "hiker://empty";
+        }, curl, cok, name),
+        col_type: "pic_1_center",
+        extra: {
+            id: "id_pic" + name
+        }
+    }, {
+        title: "<br>",
+        col_type: "rich_text",
+        extra: {
+            cls: "cls_k2" + name
+        }
+    });
+    deleteItemByCls("cls_load");
+
+    let type = getMyVar("影搜") == "1" ? "search" : "show";
+    let yzurl = MY_HOME + (MY_URL.indexOf("search-pg-1-wd-") > -1 ? "/inc/ajax.php?ac=code_check&type=search&code=" : /Auete/.test(name) ? getMyVar("auete") + "?scheckAC=check&page=&searchtype=&order=&tid=&area=&year=&letter=&yuyan=&state=&money=&ver=&jq=" : "/index.php/ajax/verify_check?type=" + type + "&verify=");
+
+    d.push({
+        title: '提交验证',
+        desc: '输入验证码',
+        url: $.toString((http, yz, cok, ssurl, name, game, page, sokey, off1) => {
+            let url = yz + input;
+            //log(url)
+            return $('#noLoading#').lazyRule((http, url, yz, input, cok, ssurl, name, game, page, sokey, off1) => {
+                let curl = /Auete/.test(name) ? yz : url;
+                var surl = fetch(curl, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'User-Agent': MOBILE_UA,
+                        'Cookie': cok
+                    },
+                    body: /Auete/.test(name) ? "validate=" + input + "&searchword=" + sokey : "",
+                    method: 'POST'
+                });
+                let Code = /Auete/.test(name) ? !/验证码不正确/.test(surl) : JSON.parse(surl).code == 1;
+                //log(jsurl)
+                if (Code) {
+                    toast("验证成功！");
+
+                    function TIM(name) {
+                        let time = /Auete/.test(name) ? 10 : 3;
+                        while (time != 0) {
+                            java.lang.Thread.sleep(1000);
+                            time -= 1;
+                            updateItem({
+                                title: "访问间隔，““" + time + "””\t\t秒后继续",
+                                url: "toast://访问间隔需等待" + time + "秒",
+                                desc: "",
+                                col_type: "text_center_1",
+                                extra: {
+                                    id: 'id_lb' + name,
+                                    cls: 'cls_tim' + name,
+                                    lineVisible: false,
+                                }
+                            })
+                        }
+                        ;
+                    };
+                    TIM(name);
+                    if (getItem("s1", "0") == "1" && getMyVar("影搜") == "1") {
+                        let d = [];
+                        MY_URL = ssurl;
+                        require(http + "sdw.js");
+                        search(http, game, name, ssurl, d, page, sokey, off1);
+
+                        deleteItem("id_pic" + name);
+                        deleteItemByCls("cls_k1" + name);
+                        deleteItemByCls("cls_k2" + name);
+                        deleteItemByCls("cls_tim" + name);
+                        setResult(d);
+                        return "toast://加载完成！";
+                    } else {
+                        refreshPage(false);
+                        return "toast://加载完成！"
+                    }
+                } else {
+                    return "toast://验证失败，请重试！"
+                }
+            }, http, url, yz, input, cok, ssurl, name, game, page, sokey, off1)
+        }, http, yzurl, cok, ssurl, name, game, page, sokey, off1),
+        col_type: "input",
+        extra: {
+            id: "id_lb" + name,
+        }
+    });
+};

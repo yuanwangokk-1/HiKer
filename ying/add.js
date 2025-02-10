@@ -1,1 +1,274 @@
-evalPrivateJS("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");
+let d = [];
+addListener("onClose", $.toString(() => {
+    clearMyVar("namejs");
+    clearMyVar("hostjs");
+    clearMyVar("sourljs");
+    clearMyVar("syjs");
+    clearMyVar("fljs");
+    clearMyVar("erjs");
+    clearMyVar("sojs");
+    clearMyVar("gyjs");
+    clearMyVar("pdfg");
+    clearMyVar("gs");
+}));
+
+d.push({
+    desc: "必填*影视名称&&作者",
+    col_type: "input",
+    extra: {
+        titleVisible: false,
+        onChange: "putMyVar('namejs', input)",
+        defaultValue: getMyVar('namejs')
+    }
+}, {
+    desc: "必填*分类链接",
+    col_type: "input",
+    extra: {
+        type: 'textarea',
+        highlight: true,
+        height: 1,
+        onChange: 'putMyVar("hostjs", input)',
+        defaultValue: getMyVar('hostjs')
+    }
+}, {
+    desc: "必填*搜索链接",
+    col_type: "input",
+    extra: {
+        type: 'textarea',
+        highlight: true,
+        height: 1,
+        onChange: "putMyVar('sourljs',input)",
+        defaultValue: getMyVar('sourljs')
+    }
+}, {
+    desc: "选填-首页展示",
+    col_type: "input",
+    extra: {
+        type: 'textarea',
+        highlight: true,
+        height: 1,
+        onChange: "putMyVar('syjs',input)",
+        defaultValue: getMyVar('syjs')
+    }
+}, {
+    desc: "选填-分类页面",
+    col_type: "input",
+    extra: {
+        type: 'textarea',
+        highlight: true,
+        height: 1,
+        onChange: "putMyVar('fljs',input)",
+        defaultValue: getMyVar('fljs')
+    }
+}, {
+    desc: "选填-二级页面",
+    col_type: "input",
+    extra: {
+        type: 'textarea',
+        highlight: true,
+        height: 1,
+        onChange: "putMyVar('erjs',input)",
+        defaultValue: getMyVar('erjs')
+    }
+}, {
+    desc: "选填-搜索页面",
+    col_type: "input",
+    extra: {
+        type: 'textarea',
+        highlight: true,
+        height: 1,
+        onChange: "putMyVar('sojs',input)",
+        defaultValue: getMyVar('sojs')
+    }
+}, {
+    desc: "选填-公用函数",
+    col_type: "input",
+    extra: {
+        type: 'textarea',
+        highlight: true,
+        height: 1,
+        onChange: "putMyVar('gyjs',input)",
+        defaultValue: getMyVar('gyjs', "")
+    }
+}, getMyVar("pdfg") == "1" ? {
+    title: "上次编辑：" + timea.replace("T", " "),
+    url: "hiker://empty",
+    col_type: "text_center_1",
+    extra: {
+        lineVisible: false
+    }
+} : "", {
+    title: getMyVar("gs", gsValue) + " 格式",
+    url: $(["JS", "HOST"], 2, "规则格式").select(() => {
+        putMyVar("gs", input);
+        refreshPage(false);
+        return "toast://已切换 " + input;
+    }),
+    col_type: "text_4"
+}, {
+    title: "测试",
+    url: $(["首页", "分类", "搜索"], 3, "测试").select((syurl, d, sui) => {
+        if (input == "首页") {
+            return getMyVar("namejs") == "" && getMyVar("hostjs") == "" && getMyVar("syjs") == "" ? "toast://正确填写后再测试" : $("hiker://empty##noRecordHistory##noHistory#").rule((syurl, d, sui) => {
+                let syurl;
+                try {
+                    let sy = new Function(syurl);
+                    syurl = sy();
+                } catch (e) {
+                    syurl = syurl;
+                }
+                ;
+                sui = sui.replace(/&&.*/, "");
+
+                if (getMyVar("syjs") != "*") {
+                    require(config.依赖);
+                    xsy(syurl, d, sui);
+                } else {
+                    putMyVar("flurl", syurl);
+                    require(config.依赖);
+                    fenlei()
+                }
+                ;
+            }, syurl, d, sui)
+        } else if (input == "搜索") {
+            return getMyVar("namejs") == "" && getMyVar("sourljs") == "" && getMyVar("sojs") == "" ? "toast://正确填写后再测试" : $(getMyVar("Mysou", "我的")).input(() => {
+                putMyVar("Mysou", input);
+                require(config.依赖);
+                return sourl();
+            });
+        } else if (input == "分类") {
+            return getMyVar("namejs") == "" && getMyVar("hostjs") == "" && getMyVar("fljs") == "" ? "toast://正确填写后再测试" : getMyVar("syjs") == "*" ? "toast://测试首页即为分类！" : $(syurl + "#noLoading#").lazyRule((url) => {
+                let url;
+                try {
+                    let sy = new Function(url);
+                    url = sy(url);
+                } catch (e) {
+                    url = url;
+                }
+                ;
+
+                clearMyVar("Mysou");
+                clearMyVar("Myurl.title");
+                //putMyVar("Myurl.url", url);
+                return $("hiker://empty#" + url + "#noRecordHistory##noHistory##fypage").rule(() => {
+                    require(config.依赖);
+                    fenlei()
+                });
+            }, syurl);
+        }
+    }, getMyVar("hostjs"), d, getMyVar("namejs")),
+    col_type: "text_4"
+}, {
+    title: "助手",
+    url: "hiker://debug?url=",
+    col_type: "text_4"
+}, {
+    title: "保存",
+    url: $("#noLoading#").lazyRule((file, Json) => {
+        let dataArray = Json;
+
+        function time() {
+            const date = new Date();
+            const num = date.getDay(); //num为星期几
+            const [year, month, day, hours, minutes, seconds] = [date.getFullYear(), date.getMonth() + 1, date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()].map(v => v < 10 ? `0${v}` : v);
+            const riqi = year + "-" + month + "-" + day;
+            const shijian = hours + ":" + minutes + ":" + seconds;
+            return riqi + "T" + shijian;
+        };
+
+        // 获取变量值
+        let name = getMyVar('namejs');
+        let sourl = getMyVar('sourljs')
+        let host = getMyVar('hostjs');
+        let sy = getMyVar('syjs');
+        let fl = getMyVar('fljs');
+        let er = getMyVar('erjs');
+        let so = getMyVar('sojs');
+        let gy = getMyVar('gyjs');
+        let time = time();
+
+        // 准备新对象
+        let newItem = {
+            "name": name,
+            "host": host,
+            "sourl": sourl,
+            "sy": sy,
+            "fl": fl,
+            "er": er,
+            "so": so,
+            "time": time,
+            "ttl": "",
+            "fbhost": "",
+            "gy": gy
+        };
+
+        //查找数组中是否有与新对象同名
+        let existingItem = dataArray.find(item => item.name === name);
+        //同名且包含"off"属性的对象
+        let hasOff = existingItem && existingItem.hasOwnProperty("off");
+        //同名且包含"gs"属性的对象
+        let hasGs = existingItem && existingItem.hasOwnProperty("gs");
+
+        if (hasOff) {
+            newItem.off = existingItem.off; // 如果找到同名对象且有"off"属性，则继承其值
+        } else {
+            newItem.off = "1"; // 如果没有找到同名对象或同名对象不含"off"属性，则设置默认值"1"
+        }
+        ;
+        if (hasGs) {
+            newItem.gs = getMyVar("gs", existingItem.gs);
+        } else {
+            newItem.gs = getMyVar("gs", "JS");
+        }
+        ;
+
+        // 将新对象插入数组开头
+        dataArray.unshift(newItem);
+
+        if (name == "") {
+            return "toast://名称不能为空！";
+        } else if (host == "" && sourl == "") {
+            return "toast://链接不能为空！";
+        }
+        ;
+
+        function exname(arr) {
+            const map = new Map(); // 用于储存最大url值对应的名字
+            const maxUrlMap = new Map();
+            arr.forEach(item => {
+                const cleanedName = item.name.replace(/&&.*/g, ""); // 只取"&&"前的部分进行比较
+                // 更新或添加到maxUrlMap，确保储存的是url最大的项
+                if (!maxUrlMap.has(cleanedName) || parseInt(maxUrlMap.get(cleanedName).url) < parseInt(item.url)) {
+                    maxUrlMap.set(cleanedName, item);
+                }
+            }); // 构建结果数组，直接使用maxUrlMap的值，这样可以保证name是原始的（包含"&&"后面的部分）
+            const result = Array.from(maxUrlMap.values());
+            return result;
+        };
+
+        function Names(array) {
+            const names = array.map(item => item.name.replace(/&&.*/g, ""));
+            return new Set(names).size !== names.length;
+        };
+        //log(Names(dataArray)); // 输出: true，因为名字"Alice"重复了
+
+        if (Names(dataArray) && getMyVar("pdfg") != "1") {
+            return $(name.replace(/&&.*/g, "") + " - 名称已重复，建议修改名称，确认覆盖？").confirm((exname, dataArray, file) => {
+                saveFile(file, JSON.stringify(exname(dataArray)));
+                back(true);
+                return "toast://保存成功！";
+            }, exname, dataArray, file)
+        } else {
+            saveFile(file, JSON.stringify(exname(dataArray)));
+            back(true);
+            return "toast://保存成功！";
+        }
+        ;
+        return "hiker://empty";
+    }, file, Json),
+    col_type: "text_4"
+}, {
+    title: "<br>",
+    col_type: "rich_text"
+});
+setResult(d);
