@@ -233,15 +233,15 @@ d.push({
         ;
 
         function exname(arr) {
-            const map = new Map(); // 用于储存最大url值对应的名字
+            const map = new Map(); // 用于储存最大url值对应的名字 
             const maxUrlMap = new Map();
             arr.forEach(item => {
-                const cleanedName = item.name.replace(/&&.*/g, ""); // 只取"&&"前的部分进行比较
-                // 更新或添加到maxUrlMap，确保储存的是url最大的项
+                const cleanedName = item.name.replace(/&&.*/g, ""); // 只取"&&"前的部分进行比较 
+                // 更新或添加到maxUrlMap，确保储存的是url最大的项 
                 if (!maxUrlMap.has(cleanedName) || parseInt(maxUrlMap.get(cleanedName).url) < parseInt(item.url)) {
                     maxUrlMap.set(cleanedName, item);
                 }
-            }); // 构建结果数组，直接使用maxUrlMap的值，这样可以保证name是原始的（包含"&&"后面的部分）
+            }); // 构建结果数组，直接使用maxUrlMap的值，这样可以保证name是原始的（包含"&&"后面的部分） 
             const result = Array.from(maxUrlMap.values());
             return result;
         };

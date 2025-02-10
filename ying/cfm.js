@@ -12,7 +12,8 @@ try {
         require(getItem("git", "https://raw.gitcode.com/Suifen/feng/raw/master/ycl.js"));
         gx();
     }
-    ;let list;
+    ;
+    let list;
     let file = "hiker://files/rules/FYJK/ys.json";
     try {
         list = JSON.parse(readFile(file));
@@ -108,16 +109,20 @@ try {
     for (let i in tit) {
         let li = tit[i];
         d.push({
-            title: "<b>" + li + "</b>", img: pic_[i], url: $("#noLoading#").lazyRule((li, add, up, lis, lio, los) => {
+            title: "<b>" + li + "</b>",
+            img: pic_[i],
+            url: $("#noLoading#").lazyRule((li, add, up, lis, lio, los) => {
                 function Snackbar() {
                     const hikerPop = $.require(getItem("git", "https://raw.gitcode.com/Suifen/feng/raw/master/ycl.js").replace("ycl.js", "hikerPop.js"));
                     hikerPop.chefSnackbarMake({
-                        content: "确认跳转风影？", duration: 5000, //显示时长
+                        content: "确认跳转风影？",
+                        duration: 5000, //显示时长
                         confirm() {
                             return "hiker://home@风影";
                         }
                     });
-                };let file = "hiker://files/rules/FYJK/ys.json";
+                };
+                let file = "hiker://files/rules/FYJK/ys.json";
                 let list = JSON.parse(readFile(file)) || [];
                 let ad = add.length;
                 let Up = up.length;
@@ -159,7 +164,8 @@ try {
                     return "hiker://empty";
                 }
                 ;
-            }, li, addlist, uplist, lists, lios, loss), col_type: "icon_small_3"
+            }, li, addlist, uplist, lists, lios, loss),
+            col_type: "icon_small_3"
         });
     }
     ;

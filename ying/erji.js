@@ -15,7 +15,7 @@ if (getMyVar("URL", "0") != MY_URL) {
         let 换线 = typeof (线名) != "undefined" ? 线名 : typeof (线路名) != "undefined" ? 线路名 : "";
         tabs = [];
         for (let i in arts) {
-            tabs.push(typeof (换线) == "string" ? pdfh(arts[i], 换线).replace(/ࢴ |.*』|：.*|\s|^\s*|\s*$/g, "").replace(/[ ]|[&nbsp;]/g, "") : 换线(arts[i]))
+            tabs.push(typeof (换线) == "string" ? pdfh(arts[i], 换线).replace(/ |.*』|：.*|\s|^\s*|\s*$/g, "").replace(/[ ]|[&nbsp;]/g, "") : 换线(arts[i]))
         }
         ;
     } catch (e) {
