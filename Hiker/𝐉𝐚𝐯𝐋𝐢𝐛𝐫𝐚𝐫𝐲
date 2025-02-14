@@ -1,15 +1,15 @@
 const Apollo = {
     version: 20250202,
     empty: "hiker://empty",
-    url: getItem("link", "https://www.r86m.com"),
+    url: getItem("link","https://www.r86m.com"),
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
         subCate: getMyVar('Apo.subCate', '0'),
     },
-    getRangeColors: function () {
+    getRangeColors: function() {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-            .toString(16))
+                .toString(16))
             .substr(-6);
     }, //随机颜色
     baseParse: () => {
@@ -404,7 +404,6 @@ const Apollo = {
                                         setTimeout(check, 500);
                                     }
                                 }
-
                                 check();
                             }, MY_URL)
                         }
@@ -560,8 +559,7 @@ const Apollo = {
                     }
                 })
             })
-        } catch {
-        }
+        } catch {}
         Apollo.d.push({
             col_type: "blank_block"
         })
@@ -739,41 +737,40 @@ const Apollo = {
                     }]
                 }
             })
-        } catch {
-        }
+        } catch {}
         const id = html.match(/ajaxid = "(.*?)"/)[1];
         const img = pdfh(html, "#rightcolumn&&#video_jacket_img&&src");
         // const preview = pdfh(html, "#pills-preview&&source&&src")
         Apollo.d.push({
             img: img,
             url: "hiker://empty"
-            /* $('').lazyRule((id) => {
-                const Apollo = $.require('hiker://page/Apollo')
-                var result = JSON.parse(post(Apollo.url + "/acnx/acnx_get_play_sample.php", {
-                    headers: {
-                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
-                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
-                    },
-                    body: {
-                        vid: id,
-                        action: "get",
+                /* $('').lazyRule((id) => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    var result = JSON.parse(post(Apollo.url + "/acnx/acnx_get_play_sample.php", {
+                        headers: {
+                            "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
+                            "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                        },
+                        body: {
+                            vid: id,
+                            action: "get",
+                        }
+                    }));
+                    if (result.ERROR == 1) {
+                        var html = result.videourl
+                        var list = pdfa(html, "#samplevideo&&source")
+                        let res = list.map(n => pdfh(n, "source&&res")).reverse()
+                        let src = list.map(n => pdfh(n, "source&&src")).reverse()
+                        let playlist = {
+                            names: res,
+                            urls: src
+                        }
+                        return playlist
+                    } else {
+                        return "toast://没有预览视频哦😑"
                     }
-                }));
-                if (result.ERROR == 1) {
-                    var html = result.videourl
-                    var list = pdfa(html, "#samplevideo&&source")
-                    let res = list.map(n => pdfh(n, "source&&res")).reverse()
-                    let src = list.map(n => pdfh(n, "source&&src")).reverse()
-                    let playlist = {
-                        names: res,
-                        urls: src
-                    }
-                    return playlist
-                } else {
-                    return "toast://没有预览视频哦😑"
-                }
-            }, id)*/
-            ,
+                }, id)*/
+                ,
             col_type: "pic_1_full",
         })
 
@@ -848,8 +845,7 @@ const Apollo = {
                     col_type: "big_blank_block"
                 })
             }
-        } catch {
-        }
+        } catch {}
 
         var subscribed = pdfh(html, "#video_favorite_edit&&#subscribed&&.hidden&&Text")
         var watched = pdfh(html, "#video_favorite_edit&&#watched&&.hidden&&Text")
@@ -1145,8 +1141,7 @@ const Apollo = {
                     }
                 });
             }
-        } catch {
-        }
+        } catch {}
         //片商
         try {
             var maker = pdfh(html, '#rightcolumn&&#video_maker&&a&&Text');
@@ -1189,8 +1184,7 @@ const Apollo = {
                     }
                 })
             }
-        } catch {
-        }
+        } catch {}
         //发行商
         try {
             var label = pdfh(html, '#rightcolumn&&#video_label&&a&&Text');
@@ -1233,8 +1227,7 @@ const Apollo = {
                     }
                 })
             }
-        } catch {
-        }
+        } catch {}
         Apollo.d.push({
             col_type: "blank_block"
         })
@@ -1307,7 +1300,6 @@ const Apollo = {
                     const rand = Math.floor(Math.random() * 99999) + 100000
                     return rand * 1000
                 }
-
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -1335,8 +1327,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                            timeout: 1000
-                        }))
+                                timeout: 1000
+                            }))
                             .language;
                         var result = post(url, {
                             body: {
@@ -1386,7 +1378,6 @@ const Apollo = {
             codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
                 .replace(/d\.push/g, "Apollo.d.push")
         }
-
         if (!codelazy) {
             downcode()
         }
@@ -1411,8 +1402,7 @@ const Apollo = {
                     setItem('link', host);
                     refreshPage()
                 }, host),
-                cancel: $.toString(() => {
-                })
+                cancel: $.toString(() => {})
             })
         } else if (html.includes("Just a moment...") && url.includes("javlibrary.com")) {
             confirm({
@@ -1433,8 +1423,7 @@ const Apollo = {
                     hideLoading();
                     refreshPage()
                 }),
-                cancel: $.toString(() => {
-                })
+                cancel: $.toString(() => {})
             })
         } else if (html.includes("Just a moment...") && !url.includes("javlibrary.com")) {
             var host = "https://www.javlibrary.com";
@@ -1446,8 +1435,7 @@ const Apollo = {
                     setItem('link', host);
                     refreshPage()
                 }, host),
-                cancel: $.toString(() => {
-                })
+                cancel: $.toString(() => {})
             })
         }
     }

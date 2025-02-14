@@ -7,9 +7,9 @@ const Apollo = {
         category: getMyVar('Apo.category', '0'),
         subCate: getMyVar('Apo.subCate', '0'),
     },
-    getRangeColors: function () {
+    getRangeColors: function() {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-            .toString(16))
+                .toString(16))
             .substr(-6);
     }, //随机颜色
     baseParse: () => {
@@ -135,15 +135,13 @@ const Apollo = {
                 url = url
             } else {
                 url = nextPage;
-            }
-            ;
+            };
         } else if (MY_PAGE > 1) {
             if (url.endsWith("/zh/")) {
                 url = url
             } else {
                 url = "没有下一页哦😑"
-            }
-            ;
+            };
         }
 
         var html = fetch(url, {
@@ -249,8 +247,7 @@ const Apollo = {
                         }
                     })
                 })
-            } catch {
-            }
+            } catch {}
         }
     },
 
@@ -266,7 +263,7 @@ const Apollo = {
             col_type: "blank_block"
         });
         try {
-            if (typeof (拼接分类) != 'undefined' && 拼接分类 != '') {
+            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
             } else {
                 var categories = pdfa(html, 大类定位)
@@ -290,10 +287,9 @@ const Apollo = {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
-                    if (typeof (排除) != 'undefined' && 排除 != '') {
+                    if (typeof(排除) != 'undefined' && 排除 != '') {
                         title = title.replace(new RegExp(排除, "g"), "")
-                    }
-                    ;
+                    };
                     Apollo.d.push({
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
@@ -449,8 +445,7 @@ const Apollo = {
                     url: "hiker://empty",
                     col_type: "movie_1_vertical_pic"
                 })
-            } catch {
-            }
+            } catch {}
         }
         Apollo.videoSort(html)
         Apollo.videoType(url, html)
@@ -512,8 +507,7 @@ const Apollo = {
                     col_type: "line",
                 })
             }
-        } catch {
-        }
+        } catch {}
         try {
             var 番号 = pdfh(html, "body&&.text-gray-700:matches(番号:)&&Text").trim()
             if (番号 != "") {
@@ -523,8 +517,7 @@ const Apollo = {
                     col_type: "text_1"
                 })
             }
-        } catch {
-        }
+        } catch {}
         try {
             var 日期 = pdfh(html, "body&&.text-gray-700:matches(日期)&&Text").trim()
             if (日期 != "") {
@@ -534,8 +527,7 @@ const Apollo = {
                     col_type: "text_1"
                 })
             }
-        } catch {
-        }
+        } catch {}
         try {
             var 标题 = pdfh(html, "body&&.text-gray-700:matches(标题:)&&Text").trim()
             if (标题 != "") {
@@ -545,8 +537,7 @@ const Apollo = {
                     col_type: "text_1"
                 })
             }
-        } catch {
-        }
+        } catch {}
         //女优
         try {
             var list = pdfa(html, "body&&.text-gray-700:matches(女优:)&&a");
@@ -572,8 +563,7 @@ const Apollo = {
             Apollo.d.push({
                 col_type: "line_blank",
             })
-        } catch {
-        }
+        } catch {}
         //标签
         try {
             var list = pdfa(html, "body&&.text-gray-700:matches(类型)&&a");
@@ -596,8 +586,7 @@ const Apollo = {
                     }
                 })
             })
-        } catch {
-        }
+        } catch {}
         //相关
         Apollo.d.push({
             title: "相关".fontcolor("#FF00FF").bold(),

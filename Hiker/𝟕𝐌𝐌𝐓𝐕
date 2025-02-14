@@ -7,9 +7,9 @@ const Apollo = {
         category: getMyVar('Apo.category', '0'),
         subCate: getMyVar('Apo.subCate', '0'),
     },
-    getRangeColors: function () {
+    getRangeColors: function() {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-            .toString(16))
+                .toString(16))
             .substr(-6);
     }, //随机颜色
     baseParse: () => {
@@ -579,8 +579,7 @@ const Apollo = {
                     }]
                 }
             })
-        } catch {
-        }
+        } catch {}
 
         try {
             const img = pdfh(html, ".content_main_cover&&img&&src").replace("/b/264938_ADN-308.jpg", "/m_webp/264938_ADN-308.webp");
@@ -590,16 +589,14 @@ const Apollo = {
                 url: prevideo,
                 col_type: "pic_1_full",
             })
-        } catch {
-        }
+        } catch {}
 
         try {
             var fullvideo_showcg = pdfa(html, "#fullvideo_showallcg&&img").map(p => pdfh(p, "img&&data-src"))
             var allcgscript = pdfh(html, "body&&#fullvideo_showallcg+script&&Html").replace("new Array()", "fullvideo_showcg").split("fullvideo_showallcg_x")[0]
             eval(allcgscript)
             // log(fullvideo_showallcg_arr)
-        } catch {
-        }
+        } catch {}
 
         var lazypic = $('#noLoading#').lazyRule((fullvideo_showallcg_arr) => {
             if (fullvideo_showallcg_arr.length > 0) {
@@ -619,8 +616,7 @@ const Apollo = {
                     lineVisible: false
                 }
             })
-        } catch {
-        }
+        } catch {}
 
         Apollo.PlayParse(html)
         /*
@@ -631,8 +627,7 @@ const Apollo = {
         try {
             const 识别码 = pdfh(html, "body&&.fullvideo-details&&.me-3&&Text")
             if (识别码 != "") Apollo.CodeParse(识别码)
-        } catch {
-        }
+        } catch {}
         Apollo.d.push({
             col_type: "big_blank_block"
         })
@@ -658,8 +653,7 @@ const Apollo = {
             }, {
                 col_type: 'blank_block',
             })
-        } catch {
-        }
+        } catch {}
         //导演
         try {
             var director = pdfh(html, 'body&&.fullvideo-details&&.g-1:matches(導演:)&&a&&Text');
@@ -678,8 +672,7 @@ const Apollo = {
                     }
                 });
             }
-        } catch {
-        }
+        } catch {}
         //发行商
         try {
             var label = pdfh(html, 'body&&.fullvideo-details&&.g-1:matches(發行商:)&&a&&Text');
@@ -698,8 +691,7 @@ const Apollo = {
                     }
                 })
             }
-        } catch {
-        }
+        } catch {}
         //片商
         try {
             var maker = pdfh(html, 'body&&.fullvideo-details&&.g-1:matches(製作商:)&&a&&Text');
@@ -718,8 +710,7 @@ const Apollo = {
                     }
                 })
             }
-        } catch {
-        }
+        } catch {}
 
         Apollo.d.push({
             col_type: "blank_block"
@@ -895,7 +886,6 @@ const Apollo = {
                 });
             }
         }
-
         server.forEach(x => {
             jfun_show_mvinnerHTML(x);
         })
@@ -906,7 +896,6 @@ const Apollo = {
                 var match = name.match(/(\d+)/); // 提取降级分辨率
                 return match ? parseInt(match[1], 10) : 0; // 如果没有匹配则返回0
             }
-
             let videoUrl = '';
             var html = fetch(input)
             //log(html)
@@ -943,9 +932,9 @@ const Apollo = {
 
                 // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
                 var sortedData = name_quality.map((name, index) => ({
-                    name,
-                    url: hghest_quality[index]
-                }))
+                        name,
+                        url: hghest_quality[index]
+                    }))
                     .sort((a, b) => getResolution(b.name) - getResolution(a.name));
                 // 分开排序后的 names 和 urls 数组
                 var sortedNames = sortedData.map(item => item.name);
@@ -994,9 +983,9 @@ const Apollo = {
 
                 // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
                 var sortedData = name_quality.map((name, index) => ({
-                    name,
-                    url: hghest_quality[index]
-                }))
+                        name,
+                        url: hghest_quality[index]
+                    }))
                     .sort((a, b) => getResolution(b.name) - getResolution(a.name));
                 // 分开排序后的 names 和 urls 数组
                 var sortedNames = sortedData.map(item => item.name);
@@ -1035,9 +1024,9 @@ const Apollo = {
 
                 function makePlay(token) {
                     for (var a = "",
-                             t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-                             n = t.length,
-                             o = 0; 10 > o; o++)
+                            t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                            n = t.length,
+                            o = 0; 10 > o; o++)
                         a += t.charAt(Math.floor(Math.random() * n));
                     return a + "?token=" + token + "&expiry=" + Date.now();
                 };
@@ -1099,7 +1088,6 @@ const Apollo = {
             codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
                 .replace(/d\.push/g, "Apollo.d.push")
         }
-
         if (!codelazy) {
             downcode()
         }
