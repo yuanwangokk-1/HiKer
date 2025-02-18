@@ -7,9 +7,9 @@ const Apollo = {
         category: getMyVar('Apo.category', '0'),
         subCate: getMyVar('Apo.subCate', '0'),
     },
-    getRangeColors: function () {
+    getRangeColors: function() {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-            .toString(16))
+                .toString(16))
             .substr(-6);
     }, //随机颜色
     baseParse: () => {
@@ -173,15 +173,13 @@ const Apollo = {
                 url = url
             } else {
                 url = nextPage;
-            }
-            ;
+            };
         } else if (MY_PAGE > 1) {
             if (url.endsWith("/zh/")) {
                 url = url
             } else {
                 url = "没有下一页哦😑"
-            }
-            ;
+            };
         }
 
         var html = fetch(url, {
@@ -483,7 +481,6 @@ const Apollo = {
                         return {}
                     }
                 }
-
                 var names = playlist(m3u8).names.concat(playlist(mp4).names)
                 var urls = playlist(m3u8).urls.concat(playlist(mp4).urls)
                 return {
@@ -592,7 +589,6 @@ const Apollo = {
                     const rand = Math.floor(Math.random() * 99999) + 100000
                     return rand * 1000
                 }
-
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -620,8 +616,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                            timeout: 1000
-                        }))
+                                timeout: 1000
+                            }))
                             .language;
                         var result = post(url, {
                             body: {

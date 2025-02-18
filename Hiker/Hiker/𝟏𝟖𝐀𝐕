@@ -7,9 +7,9 @@ const Apollo = {
         category: getMyVar('Apo.category', '0'),
         subCate: getMyVar('Apo.subCate', '0'),
     },
-    getRangeColors: function () {
+    getRangeColors: function() {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-            .toString(16))
+                .toString(16))
             .substr(-6);
     }, //随机颜色
     baseParse: () => {
@@ -313,15 +313,13 @@ const Apollo = {
                 url = url
             } else {
                 url = nextPage;
-            }
-            ;
+            };
         } else if (MY_PAGE > 1) {
             if (url.endsWith("/zh/")) {
                 url = url
             } else {
                 url = "没有下一页哦😑"
-            }
-            ;
+            };
         }
 
         var html = fetch(url, {
@@ -488,7 +486,7 @@ const Apollo = {
         Apollo.d.push({
             col_type: "blank_block",
         })
-        var chtml = fetch(Apollo.url + "/zh/chinese_categorylist/list/index.html")
+        var chtml = fetch(Apollo.url+"/zh/chinese_categorylist/list/index.html")
         const sort = pdfa(chtml, 'body&&.posts&&.post')
         sort.forEach((item, index) => {
             var title = pdfh(item, 'Text');
@@ -626,8 +624,7 @@ const Apollo = {
                     }]
                 }
             })
-        } catch {
-        }
+        } catch {}
 
         const img = pdfh(html, "#dz_video&&img&&src");
         Apollo.d.push({
@@ -645,8 +642,7 @@ const Apollo = {
         try {
             const 识别码 = pdfh(html, "body&&.posts-inner-details-text-top&&li:matches(番號:)+li&&Text")
             if (识别码 != "") Apollo.CodeParse(识别码)
-        } catch {
-        }
+        } catch {}
         Apollo.d.push({
             col_type: "big_blank_block"
         })
@@ -672,8 +668,7 @@ const Apollo = {
             }, {
                 col_type: 'blank_block',
             })
-        } catch {
-        }
+        } catch {}
         //导演
         try {
             var director = pdfh(html, 'body&&.posts-inner-details-text-top&&li:matches(導演:)+li&&Text');
@@ -692,8 +687,7 @@ const Apollo = {
                     }
                 });
             }
-        } catch {
-        }
+        } catch {}
         //片商
         try {
             var maker = pdfh(html, 'body&&.posts-inner-details-text-top&&li:matches(製作商:)+li&&Text');
@@ -712,8 +706,7 @@ const Apollo = {
                     }
                 })
             }
-        } catch {
-        }
+        } catch {}
         //发行商
         try {
             var label = pdfh(html, 'body&&.posts-inner-details-text-top&&li:matches(發行商:)+li&&Text');
@@ -732,8 +725,7 @@ const Apollo = {
                     }
                 })
             }
-        } catch {
-        }
+        } catch {}
         Apollo.d.push({
             col_type: "blank_block"
         })
@@ -906,7 +898,6 @@ const Apollo = {
                 });
             }
         }
-
         server.forEach(x => {
             jfun_show_mvinnerHTML(x);
         })
@@ -938,8 +929,7 @@ const Apollo = {
                         "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
                     }
                 });
-                var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0];
-                log(pass_md5)
+                var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0];log(pass_md5)
                 var token = htmll.match(/cookieIndex.*?\'(.*?)\'/)[1];
                 var data = fetch(pass_md5, {
                     headers: {
@@ -949,9 +939,9 @@ const Apollo = {
 
                 function makePlay(token) {
                     for (var a = "",
-                             t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-                             n = t.length,
-                             o = 0; 10 > o; o++)
+                            t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                            n = t.length,
+                            o = 0; 10 > o; o++)
                         a += t.charAt(Math.floor(Math.random() * n));
                     return a + "?token=" + token + "&expiry=" + Date.now();
                 };
@@ -1010,7 +1000,6 @@ const Apollo = {
             codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
                 .replace(/d\.push/g, "Apollo.d.push")
         }
-
         if (!codelazy) {
             downcode()
         }
