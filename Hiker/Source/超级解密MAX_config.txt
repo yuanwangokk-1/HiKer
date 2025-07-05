@@ -1,5 +1,5 @@
 {
-"enable":"1",
+"enable":"2",
 "enableUpdate":"0",
-"version":"20250630"
+"version":"20250701"
 }
