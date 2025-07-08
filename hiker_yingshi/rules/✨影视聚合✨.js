@@ -1,7 +1,7 @@
 const csdown = {
     d: [],
-    author: '流苏',
-    version: '20250628',
+    author: 'Aries',
+    version: '20250708',
     rely: (data) => {
         return data.match(/\{([\s\S]*)\}/)[0].replace(/\{([\s\S]*)\}/, '$1')
     },
@@ -11,17 +11,116 @@ const csdown = {
             csdown.update()
             setItem('up' + csdown.version, '1')
         }
-        if (MY_PAGE == 1) {
-            d.push({   
+        if (MY_RULE.author == csdown.author || MY_NAME == '嗅觉浏览器') {
+            d.push({
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
-                    return 'hiker://empty?page=fypage@rule=js:$.require("csdown").search()'
+                    return 'hiker://empty?page=fypage@rule=js:$.require("csdown").search_()';
                 }),
-                   desc: "请输入搜索关键词",
-                   col_type: "input",
+                desc: "请输入搜索关键词",
+                col_type: "input",
                 extra: {
+                    onChange: $.toString(() => {
+                        putMyVar('keyword', input)
+                    }),
                     defaultValue: getMyVar('keyword', ''),
+                    pageTitle: "搜索",
+                }
+            })
+            let longclick = [{
+                title: '更新日志',
+                js: $.toString(() => {
+                    $.require("csdown").update()
+                })
+            }]
+            csdown.data.forEach(data => {
+                d.push({
+                    title: data.title,
+                    img: data.img,
+                    url: $('hiker://empty?page=fypage&#noHistory#').rule(() => {
+                        /*
+                        putMyVar('de_key', MY_PARAMS.de_key);
+                        putMyVar('title', MY_PARAMS.title);
+                        putMyVar('init', MY_PARAMS.init == null ? '' : MY_PARAMS.init);
+                        putMyVar('rank_', MY_PARAMS.rank == null ? '' : MY_PARAMS.rank);
+                        if (MY_PARAMS.host != getMyVar('host_1')) {
+                            if (/txt|json/.test(MY_PARAMS.host)) {
+                                putMyVar('host', fetch(MY_PARAMS.host) + '/');
+                            } else {
+                                putMyVar('host', MY_PARAMS.host);
+                            }
+                            putMyVar('host_1', MY_PARAMS.host)
+                        }
+                        */
+                        $.require("csdown").home_();
+                    }),
+                    col_type: 'icon_4_card',
+                    extra: {
+                        de_key: data.de_key,
+                        host: data.host,
+                        title: data.title,
+                        init: data.init,
+                        rank: data.rank,
+                        longClick: longclick,
+                    }
+                })
+            })
+        } else {
+            d.push({
+                title: '请勿修改作者名',
+                url: 'hiker://empty',
+                col_type: 'text_center_1'
+            })
+        }
+        setResult(d)
+    },
+    home_: () => {
+        var d = csdown.d;
+        putMyVar('de_key', MY_PARAMS.de_key);
+        putMyVar('title', MY_PARAMS.title);
+        putMyVar('init', MY_PARAMS.init == null ? '' : MY_PARAMS.init);
+        putMyVar('rank_', MY_PARAMS.rank == null ? '' : MY_PARAMS.rank);
+        if (MY_PARAMS.host != getMyVar('host_1')) {
+            if (/txt|json/.test(MY_PARAMS.host)) {
+                putMyVar('host', fetch(MY_PARAMS.host) + '/');
+            } else {
+                putMyVar('host', MY_PARAMS.host);
+            }
+            putMyVar('host_1', MY_PARAMS.host)
+        }
+        addListener('onClose', $.toString(() => {
+            //clearMyVar('keyword');
+            clearMyVar('de_key');
+            clearMyVar('init');
+        }));
+        if (MY_PAGE == 1) {
+            d.push({
+                title: "搜索 ",
+                url: $.toString((host, de_key, init) => {
+                    putMyVar('keyword', input);
+                    putMyVar('de_key', de_key);
+                    putMyVar('init', init == null ? '' : init);
+                    if (host != getMyVar('host_1')) {
+                        if (/txt|json/.test(host)) {
+                            putMyVar('host', fetch(host) + '/');
+                        } else {
+                            putMyVar('host', host);
+                        }
+                        putMyVar('host_1', host)
+                    }
+                    return 'hiker://empty?page=fypage@rule=js:$.require("csdown").search()';
+                }, MY_PARAMS.host, MY_PARAMS.de_key, MY_PARAMS.init, ),
+                desc: "请输入搜索关键词",
+                col_type: "input",
+                extra: {
+                    onChange: $.toString(() => {
+                        putMyVar('keyword', input)
+                    }),
+                    defaultValue: getMyVar('keyword', ''),
+                    init: MY_PARAMS.init,
+                    de_key: MY_PARAMS.de_key,
+                    host: MY_PARAMS.host,
                 }
             })
         };
@@ -34,13 +133,15 @@ const csdown = {
 
         if (MY_PAGE == 1) {
             eval(csdown.rely(csdown.aes));
+            /*
             let longclick = [{
                 title: '更新日志',
                 js: $.toString(() => {
                     $.require("csdown").update()
                 })
             }]
-            Cate(首页, '首页', d, 'icon_4', longclick);
+            */
+            Cate(首页, '首页' + getMyVar('title'), d, 'icon_4');
             d.push({
                 col_type: 'line',
             }, {
@@ -49,24 +150,19 @@ const csdown = {
                 col_type: 'big_blank_block',
             });
         }
-
-        var 分类 = getMyVar('首页', '1');
-        if (MY_RULE.author == csdown.author || MY_NAME == '嗅觉浏览器') {
-            if (分类 == 1) {
-                csdown.video()
-            } else if (分类 == 2) {
-                csdown.cate()
-            } else if (分类 == 3) {
-                csdown.rank()
-            } else if (分类 == 4) {
-                csdown.week()
+        var 分类 = getMyVar('首页' + getMyVar('title'), '1');
+        if (分类 == 1) {
+            csdown.video()
+        } else if (分类 == 2) {
+            csdown.cate()
+        } else if (分类 == 3) {
+            if (!getMyVar('rank_', '')) {
+                csdown.rank();
+            } else {
+                csdown.rank2();
             }
-        } else {
-            d.push({
-                title: '请勿修改作者名',
-                url: 'hiker://empty',
-                col_type: 'text_center_1'
-            })
+        } else if (分类 == 4) {
+            csdown.week()
         }
         setResult(d)
     },
@@ -80,10 +176,6 @@ const csdown = {
 
         function strong(d, c) {
             return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
-        }
-        if (!getMyVar('host', '')) {
-            let appurl = fetch('https://cdn-tupic-duofun-neimenggu.56uxi.com/2.txt');
-            putMyVar('host', appurl)
         }
 
         function Cate(list, n, d, col, longclick) {
@@ -124,11 +216,10 @@ const csdown = {
             })
             return d;
         }
-        const de_key = 'qwertyuiopqwertt';
         // 解密函数
         function Decrypt(word) {
-            const key = CryptoJS.enc.Utf8.parse(de_key);
-            const iv = CryptoJS.enc.Utf8.parse(de_key);
+            const key = CryptoJS.enc.Utf8.parse(getMyVar('de_key'));
+            const iv = CryptoJS.enc.Utf8.parse(getMyVar('de_key'));
             let encryptedHexStr = CryptoJS.enc.Base64.parse(word);
             let decrypt = CryptoJS.AES.decrypt({
                 ciphertext: encryptedHexStr
@@ -142,8 +233,8 @@ const csdown = {
         }
         // 加密函数
         function Encrypt(plaintext) {
-            const id = CryptoJS.enc.Utf8.parse(de_key);
-            const iv = CryptoJS.enc.Utf8.parse(de_key);
+            const id = CryptoJS.enc.Utf8.parse(getMyVar('de_key'));
+            const iv = CryptoJS.enc.Utf8.parse(getMyVar('de_key'));
             var encrypted = CryptoJS.AES.encrypt(plaintext, id, {
                 iv: iv,
                 mode: CryptoJS.mode.CBC,
@@ -157,6 +248,7 @@ const csdown = {
             if (!body) {
                 var body = '';
             }
+            let t = Math.floor(Date.now() / 1000).toString();
             let html = fetch(getMyVar('host') + url, {
                 headers: {},
                 body: body,
@@ -165,6 +257,7 @@ const csdown = {
             let html1 = Decrypt(JSON.parse(html).data);
             return JSON.parse(html1);
         }
+
 
         function pageAdd(page) {
             if (getMyVar("page")) {
@@ -312,10 +405,10 @@ const csdown = {
                 img: item.vod_pic,
                 desc: desc,
                 title: item.vod_name,
-                url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("csdown").videoerji()',
+                url: item.url,
                 extra: {
                     id: id + 'bar',
-                    vod_id: item.vod_link,
+                    vod_id: item.vod_id,
                     vod_name: item.vod_name,
                 }
             })
@@ -362,7 +455,7 @@ const csdown = {
                             //surl: item.url,
                             //img:item.img,
                             //title: item.title.replace(/<[^>]+>/g, ''),
-                            vod_id: item.vod_link,
+                            vod_id: item.vod_id,
                             vod_name: item.vod_name,
                         }
                     })
@@ -376,85 +469,48 @@ const csdown = {
         }
     }),
     update: () => {
-        if (getMyVar('github_url') == '') {
-            for (let item of storage0.getItem('githubapi')) {
-                let data = JSON.parse(fetch(item, {
-                    withStatusCode: true,
-                    timeout: 5000,
-                }));
-                if (data.statusCode == 200) {
-                    putMyVar('github_url', item + '/');
-                    break;
-                }
-            }
-        }
-        const hikerPop = $.require(getMyVar('github_url') + "https://raw.githubusercontent.com/csdown/hiker_yingshi/refs/heads/main/rules/hikerPop.js");
+        const hikerPop = $.require(getItem('github_url') + "https://raw.githubusercontent.com/csdown/hiker_yingshi/refs/heads/main/rules/hikerPop.js");
         let pop = hikerPop.updateRecordsBottom([{
             title: "声明",
             records: [
-                "““声明””:本小程序完全免费,别被骗了",
-                "““声明””:随时可能跑路",
-                "““声明””:不要相信里面的广告，不要去加里面的群",
+                "““声明””：本小程序完全免费,别被骗了",
+                "““声明””：随时可能跑路",
+                "““声明””：不要相信里面的广告，不要去加里面的群",
+                "““声明””：严禁随意传播",
             ]
         }, {
-            title: "2025/06/28",
+            title: "2025/06/26",
             records: [
-                "““修复””：修复一个bug",
+                "““更新””：增加聚合搜索(可能有BUG)",
             ]
         }, {
-            title: "2025/06/25",
+            title: "2025/06/23",
             records: [
                 "““更新””：更换二级页面线路切换方式，改为刷新元素，而非刷新页面(其实没什么区别)",
                 "““更新””：更换分类折叠方式，改为刷新元素，而非刷新页面",
+                "““修复””：修复榴莲4K",
+            ]
+        }, {
+            title: "2025/06/20",
+            records: [
+                "““修复””：修复蓝鹰影视",
+            ]
+        }, {
+            title: "2025/06/18",
+            records: [
+                "““更新””：增加桃子影视",
             ]
         }, {
             title: "2025/06/15",
             records: [
-                "““更新””:更新APP版本号至最新",
-                "““修复””:修复无法观看问题",
-                "““更新””:去除广告控件，广告防不胜防，不要信广告，不要去加群",
-                '““以后随缘修，不会更的这么勤，主要是没啥动力，更这个不如自己玩””'
+                "““更新””：增加一些APP",
             ]
         }, {
             title: "2025/06/14",
             records: [
-                "““更新””:去广告",
-                "““更新””:分类加个折叠",
+                "““更新””：增加一些APP",
             ]
-        }, {
-            title: "2025/06/13",
-            records: [
-                "““修复””:修bug",
-            ]
-        }, {
-            title: "2025/06/09",
-            records: [
-                "““修复””:修复官方解析线路无法播放问题",
-            ]
-        }, {
-            title: "2025/06/07",
-            records: [
-                "““修复””:修复部分线路无法播放问题",
-            ]
-        }, {
-            title: "2025/06/05",
-            records: [
-                "““更新””:轮播有广告，直接去掉算了",
-            ]
-        }, {
-            title: "2025/06/04",
-            records: [
-                "““修复””:修复历史记录无法查看",
-                "““修复””:修复部分BUG",
-                "““更新””:长按首页查看更新日志",
-            ]
-        }, {
-            title: "2025/06/02",
-            records: [
-                "‘‘更新’’:去除轮播广告",
-                "‘‘修复’’:修复秒播线路播放问题"
-            ]
-        }]);
+        }, ]);
     },
     video: () => {
         var d = csdown.d;
@@ -462,29 +518,25 @@ const csdown = {
         var pg = getParam('page');
         try {
             if (MY_PAGE == 1) {
-                if (!storage0.getMyVar('init_data', '')) {
-                    let init_data = post('api.php/qijiappapi.index/initV120')
-                    storage0.putMyVar('init_data', init_data)
+                if (!storage0.getMyVar('init_data' + getMyVar('title'), '')) {
+                    let init_data;
+                    if (!getMyVar('init', '')) {
+                        init_data = post('api.php/getappapi.index/initV119');
+                    } else {
+                        init_data = post('api.php/qijiappapi.index/initV120')
+                    }
+                    storage0.putMyVar('init_data' + getMyVar('title'), init_data)
                 }
                 /*
-                if (!storage0.getMyVar('lunbo_')) {
-                    let lunbo_ = [];
-                    storage0.getMyVar('init_data').banner_list.forEach(data => {
-                        if (!/QQ.*群/.test(data.vod_name)) {
-                            lunbo_.push(data)
-                        }
-                    })
-                    storage0.putMyVar('lunbo_', lunbo_)
-                }
-                banner(MY_RULE.title, true, d, storage0.getMyVar('lunbo_'), {
+                banner(MY_RULE.title, true, d, storage0.getMyVar('init_data'+getMyVar('title')).banner_list, {
                     time: 5000,
                     col_type: 'card_pic_1',
                     desc: '0'
                 })
                 */
-                if (!storage0.getItem('type_id_')) {
+                if (!storage0.getItem('type_id_' + getMyVar('title'))) {
                     let type_id_ = []
-                    storage0.getMyVar('init_data').type_list.slice(1).forEach(data => {
+                    storage0.getMyVar('init_data' + getMyVar('title')).type_list.slice(1).forEach(data => {
                         type_id_.push({
                             list: data.type_name,
                             id: data.type_id,
@@ -492,9 +544,9 @@ const csdown = {
                             filter_type_list: data.filter_type_list,
                         })
                     })
-                    storage0.setItem('type_id_', type_id_)
+                    storage0.setItem('type_id_' + getMyVar('title'), type_id_)
                 }
-                storage0.getMyVar('init_data').type_list.slice(1).forEach(data => {
+                storage0.getMyVar('init_data' + getMyVar('title')).type_list.slice(1).forEach(data => {
                     if (data.recommend_list.toString() != []) {
                         d.push({
                             title: color(data.type_name),
@@ -512,17 +564,27 @@ const csdown = {
                                     'lang': '全部',
                                     'class': '全部',
                                 };
-                                let data = post('api.php/qijiappapi.index/typeFilterVodList', body);
+                                let data;
+                                if (!getMyVar('init')) {
+                                    data = post('api.php/getappapi.index/typeFilterVodList', body);
+                                } else {
+                                    data = post('api.php/qijiappapi.index/typeFilterVodList', body);
+                                }
                                 data.recommend_list.forEach(data => {
                                     d.push({
                                         title: data.vod_name,
                                         desc: data.vod_remarks,
                                         img: data.vod_pic,
-                                        url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("csdown").videoerji()',
+                                        url: $('hiker://empty?#immersiveTheme#').rule(() => {
+                                            $.require("csdown").videoerji()
+                                        }),
                                         col_type: 'movie_3',
                                         extra: {
                                             vod_id: data.vod_id,
                                             vod_name: data.vod_name,
+                                            de_key: MY_PARAMS.de_key,
+                                            host: MY_PARAMS.host,
+                                            init: MY_PARAMS.init,
                                         }
                                     })
                                 })
@@ -532,6 +594,9 @@ const csdown = {
                             col_type: 'text_icon',
                             extra: {
                                 type_id: data.type_id,
+                                de_key: MY_PARAMS.de_key,
+                                host: MY_PARAMS.host,
+                                init: MY_PARAMS.init,
                             }
                         })
                         data.recommend_list.forEach(data => {
@@ -539,11 +604,16 @@ const csdown = {
                                 title: data.vod_name,
                                 desc: data.vod_remarks,
                                 img: data.vod_pic,
-                                url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("csdown").videoerji()',
+                                url: $('hiker://empty?#immersiveTheme#').rule(() => {
+                                    $.require("csdown").videoerji()
+                                }),
                                 col_type: 'movie_3',
                                 extra: {
                                     vod_id: data.vod_id,
                                     vod_name: data.vod_name,
+                                    de_key: MY_PARAMS.de_key,
+                                    host: MY_PARAMS.host,
+                                    init: MY_PARAMS.init,
                                 }
                             })
                         })
@@ -557,6 +627,16 @@ const csdown = {
     videoerji: () => {
         var d = csdown.d;
         eval(csdown.rely(csdown.aes));
+        if (MY_PARAMS.host != getMyVar('host_1')) {
+            if (/txt|json/.test(MY_PARAMS.host)) {
+                putMyVar('host', fetch(MY_PARAMS.host) + '/');
+            } else {
+                putMyVar('host', MY_PARAMS.host);
+            }
+            putMyVar('host_1', MY_PARAMS.host)
+        }
+        putMyVar('de_key', MY_PARAMS.de_key);
+        putMyVar('init', MY_PARAMS.init == null ? '' : MY_PARAMS.init);
         addListener('onClose', $.toString(() => {
             clearMyVar('vodDetail');
             clearMyVar('info')
@@ -565,7 +645,12 @@ const csdown = {
         setPageTitle(MY_PARAMS.vod_name);
         try {
             if (!storage0.getMyVar('vodDetail', '')) {
-                let data = post('api.php/qijiappapi.index/vodDetail2', 'vod_id=' + id);
+                let data;
+                if (!getMyVar('init')) {
+                    data = post('api.php/getappapi.index/vodDetail', 'vod_id=' + id);
+                } else {
+                    data = post('api.php/qijiappapi.index/vodDetail2', 'vod_id=' + id);
+                }
                 storage0.putMyVar('vodDetail', data);
             }
             let vod = storage0.getMyVar('vodDetail').vod;
@@ -648,7 +733,12 @@ const csdown = {
                                             'url': Encrypt(url),
                                             'token': token,
                                         };
-                                        let data = post('api.php/qijiappapi.index/vodParse', body).json;
+                                        let data;
+                                        if (!getMyVar('init')) {
+                                            data = post('api.php/getappapi.index/vodParse', body).json;
+                                        } else {
+                                            data = post('api.php/qijiappapi.index/vodParse', body).json;
+                                        }
                                         let m3u8 = JSON.parse(data).url;
                                         if (m3u8.includes('nby') && m3u8.includes('mp4')) {
                                             let nby = JSON.parse(fetch(m3u8, {
@@ -739,7 +829,12 @@ const csdown = {
                                                 'url': Encrypt(url),
                                                 'token': token,
                                             };
-                                            let data = post('api.php/qijiappapi.index/vodParse', body).json;
+                                            let data;
+                                            if (!getMyVar('init')) {
+                                                data = post('api.php/getappapi.index/vodParse', body).json;
+                                            } else {
+                                                data = post('api.php/qijiappapi.index/vodParse', body).json;
+                                            }
                                             let m3u8 = JSON.parse(data).url;
                                             if (m3u8.includes('nby') && m3u8.includes('mp4')) {
                                                 let nby = JSON.parse(fetch(m3u8, {
@@ -814,7 +909,12 @@ const csdown = {
                                 'url': Encrypt(url),
                                 'token': token,
                             };
-                            let data = post('api.php/qijiappapi.index/vodParse', body).json;
+                            let data;
+                            if (!getMyVar('init')) {
+                                data = post('api.php/getappapi.index/vodParse', body).json;
+                            } else {
+                                data = post('api.php/qijiappapi.index/vodParse', body).json;
+                            }
                             let m3u8 = JSON.parse(data).url;
                             if (m3u8.includes('nby') && m3u8.includes('mp4')) {
                                 let nby = JSON.parse(fetch(m3u8, {
@@ -875,6 +975,9 @@ const csdown = {
                     extra: {
                         vod_id: data.vod_id,
                         vod_name: data.vod_name,
+                        de_key: MY_PARAMS.de_key,
+                        host: MY_PARAMS.host,
+                        init: MY_PARAMS.init,
                     }
                 })
             })
@@ -889,44 +992,44 @@ const csdown = {
         var pg = getParam('page');
         try {
             if (MY_PAGE == 1) {
-                d.push({   
+                d.push({
                     title: "搜索 ",
                     url: $.toString(() => {
                         putMyVar('keyword', input)
                         refreshPage(false)
                         return "hiker://empty"
                     }),
-                       desc: "请输入搜索关键词",
-                       col_type: "input",
+                    desc: "请输入搜索关键词",
+                    col_type: "input",
                     extra: {
                         defaultValue: getMyVar('keyword', ''),
                         pageTitle: '搜索结果'
                     }
                 })
                 d.push({
-                    title: getMyVar('search', '0') == '0' ? strong('全部', 'FF6699') : '全部',
+                    title: getMyVar('search' + getMyVar('title'), '0') == '0' ? strong('全部', 'FF6699') : '全部',
                     url: $('#noLoading#').lazyRule(() => {
-                        putMyVar('search', '0');
+                        putMyVar('search' + getMyVar('title'), '0');
                         refreshPage(false);
                         return 'hiker://empty';
                     }),
                     col_type: 'scroll_button',
                     extra: {
-                        backgroundColor: getMyVar('search', '0') == '0' ? "#20FA7298" : "",
+                        backgroundColor: getMyVar('search' + getMyVar('title'), '0') == '0' ? "#20FA7298" : "",
                     }
                 })
-                storage0.getItem('type_id_').forEach((data, index) => {
+                storage0.getItem('type_id_' + getMyVar('title')).forEach((data, index) => {
                     if (!/QQ|群/.test(data.list)) {
                         d.push({
-                            title: getMyVar('search', '0') == data.id ? strong(data.list, 'FF6699') : data.list,
+                            title: getMyVar('search' + getMyVar('title'), '0') == data.id ? strong(data.list, 'FF6699') : data.list,
                             url: $('#noLoading#').lazyRule((id) => {
-                                putMyVar('search', id);
+                                putMyVar('search' + getMyVar('title'), id);
                                 refreshPage(false);
                                 return 'hiker://empty';
                             }, data.id),
                             col_type: 'scroll_button',
                             extra: {
-                                backgroundColor: getMyVar('search', '0') == data.id ? "#20FA7298" : "",
+                                backgroundColor: getMyVar('search' + getMyVar('title'), '0') == data.id ? "#20FA7298" : "",
                             }
                         })
                     }
@@ -934,20 +1037,182 @@ const csdown = {
             }
             let body = {
                 'keywords': getMyVar('keyword'),
-                'type_id': +getMyVar('search', '0'),
+                'type_id': +getMyVar('search' + getMyVar('title'), '0'),
                 'page': +pg,
             }
-            let data = post('api.php/qijiappapi.index/searchList', body);
+            let data;
+            if (!getMyVar('init')) {
+                data = post('api.php/getappapi.index/searchList', body);
+            } else {
+                data = post('api.php/qijiappapi.index/searchList', body);
+            }
             data.search_list.forEach(data => {
                 d.push({
                     title: data.vod_name + '\n' + ('‘‘’’演员：' + data.vod_actor + '\n国家：' + data.vod_area).small(),
                     desc: '类型：' + data.vod_class + '\n' + ('‘‘’’更新状态：' + data.vod_remarks),
                     img: data.vod_pic,
-                    url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("csdown").videoerji()',
+                    url: $('hiker://empty?#immersiveTheme#').rule(() => {
+                        $.require("csdown").videoerji()
+                    }),
                     col_type: 'movie_1_vertical_pic',
                     extra: {
                         vod_id: data.vod_id,
                         vod_name: data.vod_name,
+                        de_key: MY_PARAMS.de_key,
+                        host: MY_PARAMS.host,
+                        init: MY_PARAMS.init,
+                    }
+                })
+            })
+        } catch (e) {
+            log(e.message)
+        }
+        setResult(d)
+    },
+    search_: () => {
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
+        var pg = getParam('page');
+        //存在部分BUG
+        try {
+            if (MY_PAGE == 1) {
+                d.push({
+                    title: "搜索 ",
+                    url: $.toString(() => {
+                        putMyVar('keyword', input)
+                        refreshPage(false)
+                        return "hiker://empty"
+                    }),
+                    desc: "请输入搜索关键词",
+                    col_type: "input",
+                    extra: {
+                        defaultValue: getMyVar('keyword', ''),
+                        pageTitle: '搜索结果'
+                    }
+                })
+                if (!getMyVar('search_dekey_index', '')) {
+                    putMyVar('search_dekey_index', $.require('csdown').data[0].de_key);
+                    putMyVar('search_host_index', /txt|json/.test($.require('csdown').data[0].host) ? fetch($.require('csdown').data[0].host) + '/' : $.require('csdown').data[0].host);
+                    putMyVar('search_title_index', $.require('csdown').data[0].title);
+                    putMyVar('search_init_index', $.require('csdown').data[0].init != null ? $.require('csdown').data[0].init : '');
+                }
+                if (!getMyVar('search_first', '')) {
+                    putMyVar('de_key', getMyVar('search_dekey_index'));
+                    putMyVar('host', getMyVar('search_host_index'));
+                    putMyVar('search_title', getMyVar('search_title_index'));
+                    putMyVar('search_init', getMyVar('search_init_index'));
+                    putMyVar('search_first', '1')
+                }
+                $.require("csdown").data.forEach(data => {
+                    d.push({
+                        title: getMyVar('de_key', getMyVar('search_dekey_index')) == data.de_key ? strong(data.title, 'FF6699') : data.title,
+                        img: data.img,
+                        url: $('#noLoading#').lazyRule((title, de_key, host, init) => {
+                            putMyVar('de_key', de_key);
+                            if (host != getMyVar('host_1')) {
+                                if (/txt|json/.test(host)) {
+                                    putMyVar('host', fetch(host) + '/');
+                                } else {
+                                    putMyVar('host', host);
+                                }
+                                putMyVar('host_1', host)
+                            }
+                            //putMyVar('host', /txt|json/.test(host) ? fetch(host) + '/' : host);
+                            putMyVar('search_title', title);
+                            putMyVar('search_init', init != null ? init : '')
+                            refreshPage(false);
+                            return 'hiker://empty';
+                        }, data.title, data.de_key, data.host, data.init),
+                        col_type: 'scroll_button',
+                        extra: {
+                            de_key: data.de_key,
+                            host: data.host,
+                            title: data.title,
+                            init: data.init,
+                            rank: data.rank,
+                            backgroundColor: getMyVar('de_key', getMyVar('search_dekey_index')) == data.de_key ? "#20FA7298" : "",
+                        }
+                    })
+                })
+                d.push({
+                    col_type: 'blank_block'
+                })
+                if (!storage0.getMyVar('init_data' + getMyVar('search_title', getMyVar('search_title_index')), '')) {
+                    let init_data;
+                    if (!getMyVar('search_init', getMyVar('search_init_index'))) {
+                        init_data = post('api.php/getappapi.index/initV119');
+                    } else {
+                        init_data = post('api.php/qijiappapi.index/initV120')
+                    }
+                    storage0.putMyVar('init_data' + getMyVar('search_title', getMyVar('search_title_index')), init_data)
+                }
+                if (!storage0.getItem('type_id_' + getMyVar('title'))) {
+                    let type_id_ = []
+                    storage0.getMyVar('init_data' + getMyVar('search_title', getMyVar('search_title_index'))).type_list.slice(1).forEach(data => {
+                        type_id_.push({
+                            list: data.type_name,
+                            id: data.type_id,
+                            name: 'type',
+                            filter_type_list: data.filter_type_list,
+                        })
+                    })
+                    storage0.setItem('type_id_' + getMyVar('search_title', getMyVar('search_title_index')), type_id_)
+                }
+                d.push({
+                    title: getMyVar('search_' + getMyVar('search_title', getMyVar('search_title_index')), '0') == '0' ? strong('全部', 'FF6699') : '全部',
+                    url: $('#noLoading#').lazyRule(() => {
+                        putMyVar('search_' + getMyVar('search_title', getMyVar('search_title_index')), '0');
+                        refreshPage(false);
+                        return 'hiker://empty';
+                    }),
+                    col_type: 'scroll_button',
+                    extra: {
+                        backgroundColor: getMyVar('search_' + getMyVar('search_title', getMyVar('search_title_index')), '0') == '0' ? "#20FA7298" : "",
+                    }
+                })
+                storage0.getItem('type_id_' + getMyVar('search_title', getMyVar('search_title_index'))).forEach((data, index) => {
+                    if (!/QQ|群/.test(data.list)) {
+                        d.push({
+                            title: getMyVar('search_' + getMyVar('search_title', getMyVar('search_title_index')), '0') == data.id ? strong(data.list, 'FF6699') : data.list,
+                            url: $('#noLoading#').lazyRule((id) => {
+                                putMyVar('search_' + getMyVar('search_title', getMyVar('search_title_index')), id);
+                                refreshPage(false);
+                                return 'hiker://empty';
+                            }, data.id),
+                            col_type: 'scroll_button',
+                            extra: {
+                                backgroundColor: getMyVar('search_' + getMyVar('search_title', getMyVar('search_title_index')), '0') == data.id ? "#20FA7298" : "",
+                            }
+                        })
+                    }
+                })
+            }
+            let body = {
+                'keywords': getMyVar('keyword'),
+                'type_id': +getMyVar('search_' + getMyVar('search_title', getMyVar('search_title_index')), '0'),
+                'page': +pg,
+            }
+            let data;
+            if (!getMyVar('search_init', getMyVar('search_init_index'))) {
+                data = post('api.php/getappapi.index/searchList', body);
+            } else {
+                data = post('api.php/qijiappapi.index/searchList', body);
+            }
+            data.search_list.forEach(data => {
+                d.push({
+                    title: data.vod_name + '\n' + ('‘‘’’演员：' + data.vod_actor + '\n国家：' + data.vod_area).small(),
+                    desc: '类型：' + data.vod_class + '\n' + ('‘‘’’更新状态：' + data.vod_remarks),
+                    img: data.vod_pic,
+                    url: $('hiker://empty?#immersiveTheme#').rule(() => {
+                        $.require('csdown').videoerji()
+                    }),
+                    col_type: 'movie_1_vertical_pic',
+                    extra: {
+                        vod_id: data.vod_id,
+                        vod_name: data.vod_name,
+                        de_key: getMyVar('de_key'),
+                        host: getMyVar('host'),
+                        init: getMyVar('search_init'),
                     }
                 })
             })
@@ -972,20 +1237,20 @@ const csdown = {
                         })
                         if (getMyVar('flod_', '0') == '1') {
                             let flod = [];
-                            storage0.getItem('type_id_')[+getMyVar('type_list_index', '0')].filter_type_list.forEach((data, index) => {
+                            storage0.getItem('type_id_' + getMyVar('title'))[+getMyVar('type_list_index' + getMyVar('title'), '0')].filter_type_list.forEach((data, index) => {
                                 let name = data.name;
-                                putMyVar('cate_index_' + name + getMyVar('type_list_index', '0'), data.list[0])
+                                putMyVar('cate_index_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), data.list[0])
                                 data.list.forEach(data => {
                                     flod.push({
-                                        title: getMyVar('type_list_' + name + getMyVar('type_list_index', '0'), getMyVar('cate_index_' + name + getMyVar('type_list_index', '0'))) == data ? strong(data, 'FF6699') : data,
+                                        title: getMyVar('type_list_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), getMyVar('cate_index_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'))) == data ? strong(data, 'FF6699') : data,
                                         url: $('#noLoading#').lazyRule((n, name, id) => {
                                             putMyVar(n, id);
                                             refreshPage(false);
                                             return 'hiker://empty';
-                                        }, 'type_list_' + name + getMyVar('type_list_index', '0'), name, data),
+                                        }, 'type_list_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), name, data),
                                         col_type: 'scroll_button',
                                         extra: {
-                                            backgroundColor: getMyVar('type_list_' + name + getMyVar('type_list_index', '0'), getMyVar('cate_index_' + name + getMyVar('type_list_index', '0'))) == data ? "#20FA7298" : "",
+                                            backgroundColor: getMyVar('type_list_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), getMyVar('cate_index_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'))) == data ? "#20FA7298" : "",
                                             cls: '分类_',
                                         }
                                     })
@@ -1008,21 +1273,21 @@ const csdown = {
                         id: 'flod_1'
                     }
                 })
-                let cete_index_type = storage0.getItem('type_id_')[0].id;
-                putMyVar('cate_index_type', cete_index_type);
-                storage0.getItem('type_id_').forEach((data, index_1) => {
+                let cete_index_type = storage0.getItem('type_id_' + getMyVar('title'))[0].id;
+                putMyVar('cate_index_type' + getMyVar('title'), cete_index_type);
+                storage0.getItem('type_id_' + getMyVar('title')).forEach((data, index_1) => {
                     if (!/QQ|群/.test(data.list)) {
                         d.push({
-                            title: getMyVar('type_list_type', getMyVar('cate_index_type')) == data.id ? strong(data.list, 'FF6699') : data.list,
+                            title: getMyVar('type_list_type' + getMyVar('title'), getMyVar('cate_index_type' + getMyVar('title'))) == data.id ? strong(data.list, 'FF6699') : data.list,
                             url: $('#noLoading#').lazyRule((id, index_1) => {
-                                putMyVar('type_list_type', id);
-                                putMyVar('type_list_index', index_1)
+                                putMyVar('type_list_type' + getMyVar('title'), id);
+                                putMyVar('type_list_index' + getMyVar('title'), index_1)
                                 refreshPage(false);
                                 return 'hiker://empty';
                             }, data.id, index_1 + ''),
                             col_type: 'scroll_button',
                             extra: {
-                                backgroundColor: getMyVar('type_list_type', getMyVar('cate_index_type')) == data.id ? "#20FA7298" : "",
+                                backgroundColor: getMyVar('type_list_type' + getMyVar('title'), getMyVar('cate_index_type' + getMyVar('title'))) == data.id ? "#20FA7298" : "",
                             }
                         })
                     }
@@ -1034,23 +1299,25 @@ const csdown = {
                     }
                 })
                 if (getMyVar('flod_', '0') == '1') {
-                    storage0.getItem('type_id_')[+getMyVar('type_list_index', '0')].filter_type_list.forEach((data, index) => {
+                    storage0.getItem('type_id_' + getMyVar('title'))[+getMyVar('type_list_index' + getMyVar('title'), '0')].filter_type_list.forEach((data, index) => {
                         let name = data.name;
-                        putMyVar('cate_index_' + name + getMyVar('type_list_index', '0'), data.list[0])
+                        putMyVar('cate_index_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), data.list[0])
                         data.list.forEach(data => {
-                            d.push({
-                                title: getMyVar('type_list_' + name + getMyVar('type_list_index', '0'), getMyVar('cate_index_' + name + getMyVar('type_list_index', '0'))) == data ? strong(data, 'FF6699') : data,
-                                url: $('#noLoading#').lazyRule((n, name, id) => {
-                                    putMyVar(n, id);
-                                    refreshPage(false);
-                                    return 'hiker://empty';
-                                }, 'type_list_' + name + getMyVar('type_list_index', '0'), name, data),
-                                col_type: 'scroll_button',
-                                extra: {
-                                    backgroundColor: getMyVar('type_list_' + name + getMyVar('type_list_index', '0'), getMyVar('cate_index_' + name + getMyVar('type_list_index', '0'))) == data ? "#20FA7298" : "",
-                                    cls: '分类_',
-                                }
-                            })
+                            if (getMyVar('flod_', '0') == '1') {
+                                d.push({
+                                    title: getMyVar('type_list_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), getMyVar('cate_index_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'))) == data ? strong(data, 'FF6699') : data,
+                                    url: $('#noLoading#').lazyRule((n, name, id) => {
+                                        putMyVar(n, id);
+                                        refreshPage(false);
+                                        return 'hiker://empty';
+                                    }, 'type_list_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), name, data),
+                                    col_type: 'scroll_button',
+                                    extra: {
+                                        backgroundColor: getMyVar('type_list_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), getMyVar('cate_index_' + name + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'))) == data ? "#20FA7298" : "",
+                                        cls: '分类_',
+                                    }
+                                })
+                            }
                         })
                         d.push({
                             col_type: 'blank_block',
@@ -1062,25 +1329,35 @@ const csdown = {
                 }
             }
             let body = {
-                'area': getMyVar('type_list_area' + getMyVar('type_list_index', '0'), getMyVar('cate_index_area' + getMyVar('type_list_index', '0'))),
-                'year': getMyVar('type_list_year' + getMyVar('type_list_index', '0'), getMyVar('cate_index_year' + getMyVar('type_list_index', '0'))),
-                'type_id': +getMyVar('type_list_type', getMyVar('cate_index_type')),
+                'area': getMyVar('type_list_area' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), getMyVar('cate_index_area' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'))),
+                'year': getMyVar('type_list_year' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), getMyVar('cate_index_year' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'))),
+                'type_id': +getMyVar('type_list_type' + getMyVar('title'), getMyVar('cate_index_type' + getMyVar('title'))),
                 'page': +pg,
-                'sort': getMyVar('type_list_sort' + getMyVar('type_list_index', '0'), getMyVar('cate_index_sort' + getMyVar('type_list_index', '0'))),
-                'lang': getMyVar('type_list_lang' + getMyVar('type_list_index', '0'), getMyVar('cate_index_lang' + getMyVar('type_list_index', '0'))),
-                'class': getMyVar('type_list_class' + getMyVar('type_list_index', '0'), getMyVar('cate_index_class' + getMyVar('type_list_index', '0'))),
+                'sort': getMyVar('type_list_sort' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), getMyVar('cate_index_sort' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'))),
+                'lang': getMyVar('type_list_lang' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), getMyVar('cate_index_lang' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'))),
+                'class': getMyVar('type_list_class' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'), getMyVar('cate_index_class' + getMyVar('type_list_index' + getMyVar('title'), '0') + getMyVar('title'))),
             };
-            let data = post('api.php/qijiappapi.index/typeFilterVodList', body);
+            let data;
+            if (!getMyVar('init')) {
+                data = post('api.php/getappapi.index/typeFilterVodList', body);
+            } else {
+                data = post('api.php/qijiappapi.index/typeFilterVodList', body);
+            }
             data.recommend_list.forEach(data => {
                 d.push({
                     title: data.vod_name,
                     desc: data.vod_remarks,
                     img: data.vod_pic,
-                    url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("csdown").videoerji()',
+                    url: $('hiker://empty?#immersiveTheme#').rule(() => {
+                        $.require("csdown").videoerji()
+                    }),
                     col_type: 'movie_3',
                     extra: {
                         vod_id: data.vod_id,
                         vod_name: data.vod_name,
+                        de_key: MY_PARAMS.de_key,
+                        host: MY_PARAMS.host,
+                        init: MY_PARAMS.init,
                     }
                 })
             })
@@ -1094,53 +1371,110 @@ const csdown = {
         var pg = getParam('page');
         try {
             if (MY_PAGE == 1) {
+                let rank = [{
+                    title: '日榜&周榜&月榜',
+                    id: '1&2&3'
+                }]
+                Cate(rank, 'rank' + getMyVar('title'), d, 'text_3')
+            }
+            if (!storage0.getMyVar('rank_' + getMyVar('rank' + getMyVar('title'), '1') + pg + getMyVar('title'))) {
+                let body = {
+                    'type_id': +getMyVar('rank' + getMyVar('title'), '1'),
+                    'page': +pg,
+                }
+                let data;
+                if (!getMyVar('init')) {
+                    data = post('api.php/getappapi.index/rankListV134', body);
+                } else {
+                    data = post('api.php/qijiappapi.index/rankListV134', body);
+                }
+                storage0.putMyVar('rank_' + getMyVar('rank' + getMyVar('title'), '1') + pg + getMyVar('title'), data)
+            }
+            storage0.getMyVar('rank_' + getMyVar('rank' + getMyVar('title'), '1') + pg + getMyVar('title')).rank_list.forEach(data => {
                 d.push({
-                    title: getMyVar('rank', '0') == '0' ? strong('全部', 'FF6699') : '全部',
+                    title: data.vod_name + '\n' + ('‘‘’’演员：' + data.vod_actor + '\n国家：' + data.vod_area).small(),
+                    desc: '类型：' + data.vod_class + '\n' + ('‘‘’’更新状态：' + data.vod_remarks),
+                    img: data.vod_pic,
+                    url: $('hiker://empty?#immersiveTheme#').rule(() => {
+                        $.require("csdown").videoerji()
+                    }),
+                    col_type: 'movie_1_vertical_pic',
+                    extra: {
+                        vod_id: data.vod_id,
+                        vod_name: data.vod_name,
+                        de_key: MY_PARAMS.de_key,
+                        host: MY_PARAMS.host,
+                        init: MY_PARAMS.init,
+                    }
+                })
+            })
+        } catch (e) {
+            log(e.message)
+        }
+    },
+    rank2: () => {
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
+        var pg = getParam('page');
+        try {
+            if (MY_PAGE == 1) {
+                d.push({
+                    title: getMyVar('rank' + getMyVar('title'), '0') == '0' ? strong('全部', 'FF6699') : '全部',
                     url: $('#noLoading#').lazyRule(() => {
-                        putMyVar('rank', '0');
+                        putMyVar('rank' + getMyVar('title'), '0');
                         refreshPage(false);
                         return 'hiker://empty';
                     }),
                     col_type: 'scroll_button',
                     extra: {
-                        backgroundColor: getMyVar('rank', '0') == '0' ? "#20FA7298" : "",
+                        backgroundColor: getMyVar('rank' + getMyVar('title'), '0') == '0' ? "#20FA7298" : "",
                     }
                 })
-                storage0.getItem('type_id_').forEach((data, index) => {
+                storage0.getItem('type_id_' + getMyVar('title')).forEach((data, index) => {
                     if (!/QQ|群/.test(data.list)) {
                         d.push({
-                            title: getMyVar('rank', '0') == data.id ? strong(data.list, 'FF6699') : data.list,
+                            title: getMyVar('rank' + getMyVar('title'), '0') == data.id ? strong(data.list, 'FF6699') : data.list,
                             url: $('#noLoading#').lazyRule((id) => {
-                                putMyVar('rank', id);
+                                putMyVar('rank' + getMyVar('title'), id);
                                 refreshPage(false);
                                 return 'hiker://empty';
                             }, data.id),
                             col_type: 'scroll_button',
                             extra: {
-                                backgroundColor: getMyVar('rank', '0') == data.id ? "#20FA7298" : "",
+                                backgroundColor: getMyVar('rank' + getMyVar('title'), '0') == data.id ? "#20FA7298" : "",
                             }
                         })
                     }
                 })
             }
-            if (!storage0.getMyVar('rank_' + getMyVar('rank', '0') + pg)) {
+            if (!storage0.getMyVar('rank_' + getMyVar('rank' + getMyVar('title'), '0') + pg + getMyVar('title'))) {
                 let body = {
-                    'type_id': +getMyVar('rank', '0'),
+                    'type_id': +getMyVar('rank' + getMyVar('title'), '0'),
                     'page': +pg,
                 }
-                let data = post('api.php/qijiappapi.index/rankListV134', body);
-                storage0.putMyVar('rank_' + getMyVar('rank', '0') + pg, data)
+                let data;
+                if (!getMyVar('init')) {
+                    data = post('api.php/getappapi.index/rankListV134', body);
+                } else {
+                    data = post('api.php/qijiappapi.index/rankListV134', body);
+                }
+                storage0.putMyVar('rank_' + getMyVar('rank' + getMyVar('title'), '0') + pg + getMyVar('title'), data)
             }
-            storage0.getMyVar('rank_' + getMyVar('rank', '0') + pg).rank_list.forEach(data => {
+            storage0.getMyVar('rank_' + getMyVar('rank' + getMyVar('title'), '0') + pg + getMyVar('title')).rank_list.forEach(data => {
                 d.push({
                     title: data.vod_name + '\n' + ('‘‘’’演员：' + data.vod_actor + '\n国家：' + data.vod_area).small(),
                     desc: '类型：' + data.vod_class + '\n' + ('‘‘’’更新状态：' + data.vod_remarks),
                     img: data.vod_pic,
-                    url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("csdown").videoerji()',
+                    url: $('hiker://empty?#immersiveTheme#').rule(() => {
+                        $.require("csdown").videoerji()
+                    }),
                     col_type: 'movie_1_vertical_pic',
                     extra: {
                         vod_id: data.vod_id,
                         vod_name: data.vod_name,
+                        de_key: MY_PARAMS.de_key,
+                        host: MY_PARAMS.host,
+                        init: MY_PARAMS.init,
                     }
                 })
             })
@@ -1158,26 +1492,36 @@ const csdown = {
                     title: '周一&周二&周三&周四&周五&周六&周日',
                     id: '1&2&3&4&5&6&7'
                 }]
-                Cate(week, 'week', d)
+                Cate(week, 'week' + getMyVar('title'), d)
             }
-            if (!storage0.getMyVar('week_' + getMyVar('week', '1') + pg)) {
+            if (!storage0.getMyVar('week_' + getMyVar('week' + getMyVar('title'), '1') + pg + getMyVar('title'))) {
                 let body = {
-                    'week': +getMyVar('week', '1'),
+                    'week': +getMyVar('week' + getMyVar('title'), '1'),
                     'page': +pg,
                 }
-                let data = post('api.php/qijiappapi.index/vodWeekList', body);
-                storage0.putMyVar('week_' + getMyVar('week', '1') + pg, data)
+                let data;
+                if (!getMyVar('init')) {
+                    data = post('api.php/getappapi.index/vodWeekList', body);
+                } else {
+                    data = post('api.php/qijiappapi.index/vodWeekList', body);
+                }
+                storage0.putMyVar('week_' + getMyVar('week' + getMyVar('title'), '1') + pg + getMyVar('title'), data)
             }
-            storage0.getMyVar('week_' + getMyVar('week', '1') + pg).week_list.forEach(data => {
+            storage0.getMyVar('week_' + getMyVar('week' + getMyVar('title'), '1') + pg + getMyVar('title')).week_list.forEach(data => {
                 d.push({
                     title: data.vod_name + '\n' + ('‘‘’’演员：' + data.vod_actor + '\n国家：' + data.vod_area).small(),
                     desc: '类型：' + data.vod_class + '\n' + ('‘‘’’更新状态：' + data.vod_remarks),
                     img: data.vod_pic,
-                    url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("csdown").videoerji()',
+                    url: $('hiker://empty?#immersiveTheme#').rule(() => {
+                        $.require("csdown").videoerji()
+                    }),
                     col_type: 'movie_1_vertical_pic',
                     extra: {
                         vod_id: data.vod_id,
                         vod_name: data.vod_name,
+                        de_key: MY_PARAMS.de_key,
+                        host: MY_PARAMS.host,
+                        init: MY_PARAMS.init,
                     }
                 })
             })
@@ -1185,5 +1529,207 @@ const csdown = {
             log(e.message)
         }
     },
+    data: [{
+            title: 'coffee4K',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/02/icon_qw.png',
+            de_key: 'qwertyuiopqwertt',
+            host: 'https://cdn-tupic-duofun-neimenggu.56uxi.com/2.txt',
+            init: 120,
+            rank: 1,
+        }, {
+            title: '云速影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/19/1000184837.png',
+            de_key: '4d83b87c4c5ea111',
+            host: 'http://59.153.167.137:7788/1.json',
+            rank: 1,
+        }, {
+            title: '蓝鹰影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/07/蓝鹰影视.png',
+            de_key: 'ca94b06ca359d80e',
+            host: 'https://lanyinghz.oss-cn-hangzhou.aliyuncs.com/lanyingxmy.txt',
+            init: 120,
+        }, {
+            title: '瓜萌视频',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/瓜萌视频.jpg',
+            de_key: 'f2A7D4B9E8C16531',
+            host: 'https://www.guahd.com/1.txt',
+        }, {
+            title: '橘猫4K',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/15/1000066554.png',
+            de_key: 'pBVmysmGX8TsgrQN',
+            host: 'https://ceshi307386.oss-cn-beijing.aliyuncs.com/jmurl.txt',
+            init: 120,
+        }, {
+            title: '仓鼠4K',
+            img: 'https://www.cs4k.top/app.png',
+            de_key: 'Z98KXaLtO2wC1Pte',
+            host: 'https://qjappcms.cs4k.top/',
+            init: 120,
+        }, {
+            title: '晴天4K',
+            img: 'https://www.sun4k.top/%E6%99%B4%E5%A4%A94Klogo.png',
+            de_key: 'sBxqXVF5pAHbGzrH',
+            host: 'https://qjappcms.sun4k.top/',
+        }, {
+            title: '萝卜视频',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/萝卜影视.png',
+            de_key: 'apiapplbyskey168',
+            host: 'https://apiapplbys.lbys.app:5678/',
+        }, {
+            title: '橘子视频',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/橘子视频.png',
+            de_key: '2015692015692015',
+            host: 'http://t.bffree.cn/1.txt',
+        },
+        /*
+         {
+            title: '斗量视频',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/斗量视频.png',
+            de_key: 'A1akVPQmnnE4Fz9Z',
+            host: 'https://app.ystva.com/',
+        }, 
+        */
+        {
+            title: '次元派对',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/次元派对.png',
+            de_key: 'AmtMYFCJDPoTlK7z',
+            host: 'https://qjappcms.acg.party/',
+        }, {
+            title: '豆丁视频',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/豆丁视频.png',
+            de_key: 'xasdasdqwertyuio',
+            host: 'https://vip.123pan.cn/1848451100/zl/xfdd.txt',
+        },
+        /*
+         {
+            title: 'TrAni',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/TrAni.jpg',
+            de_key: 'kKvLqIfXyIkYyLpL',
+            host: 'https://www.mcydh.com/',
+        }, {
+            title: 'Mnfans',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/20/1000184843.png',
+            de_key: '247D7D65913BF2FF',
+            host: 'http://154.44.24.197:8889/',
+        },
+        */
+        {
+            title: '榴莲4K',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/06/榴莲影视.jpg',
+            de_key: '1yGA85sJ5STtE7uj',
+            host: 'https://qjappcms.ll4k.xyz/',
+            init: 120,
+        }, {
+            title: '白蛇影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/06/白蛇影视.png',
+            de_key: 'f5e2tx53ykp6s2c9',
+            host: 'http://tengxunyunaliyun.oss-cn-shanghai.aliyuncs.com/tengxunyun.txt',
+        }, {
+            title: '小红影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/06/小红影视.jpg',
+            de_key: 'ENonBHeVBoYZhVUV',
+            host: 'https://www.xiaohys.com/',
+        }, {
+            title: '若惜追剧',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/10/1000184749.png',
+            de_key: 'ebad3f1a58b13933',
+            host: 'https://rxysyyds.oss-cn-chengdu.aliyuncs.com/getapp.txt',
+        }, {
+            title: '灵虎影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/10/灵虎影视.png',
+            de_key: '#getapp@TMD@2025',
+            host: 'https://bind.315999.xyz/89.txt',
+        }, {
+            title: '丫丫动漫',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/10/丫丫动漫.png',
+            de_key: 'qkxnwkfjwpcnwycl',
+            host: 'http://tv.yy-fun.cc/',
+        }, {
+            title: '落攻阁影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/10/落攻阁影视.png',
+            de_key: 'asgcxhjkts124573',
+            host: 'http://111.180.198.40:1110/',
+        }, {
+            title: '黑猫动漫',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/10/黑猫动漫.png',
+            de_key: '0fe3b5781782c621',
+            host: 'http://txt.heimaotv.top/hei.txt',
+        }, {
+            title: '海豚视频',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/11/icon.png',
+            de_key: '7CYQQzwchRQpHCOj',
+            host: 'https://appcms.htsp4k.top/appurl.txt',
+        },
+        /*
+         {
+            title: '水滴视频',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/02/水滴视频.png',
+            de_key: 'gKdQKLbwhhLp4Ytv',
+            host: 'http://1.94.105.93/',
+            init: 120,
+        }, 
+        */
+        {
+            title: '冬日动漫',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/13/1000184820.png',
+            de_key: 'qE2nD0rL1lH4uP9r',
+            host: 'http://www.drdm.fun/',
+        }, {
+            title: '掌上追剧',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/13/1000184818.png',
+            de_key: 'jcTz6Jda2aKrH8Tk',
+            host: 'http://tvb.yy-fun.cc/',
+            rank: 1,
+        }, {
+            title: '魔方影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/15/1000066562.png',
+            de_key: '1234567887654321',
+            host: 'https://www.snysw.xyz/mfys.txt',
+        }, {
+            title: '恋鱼影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/15/恋鱼影视.png',
+            de_key: '2234567890123456',
+            host: 'https://173220859-1333208043.cos.ap-shanghai.myqcloud.com/1.txt',
+        }, {
+            title: 'MiFun',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/15/mifun.png',
+            de_key: 'GETMIFUNGEIMIFUN',
+            host: 'http:/getapp.open.mifun.pro/mifun.txt',
+        }, {
+            title: '桃子影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/18/1000184828.png',
+            de_key: 'KL6vlZkw6WL5x90U',
+            host: 'https://appcms.tzys.xyz/appurl.txt',
+        }, {
+            title: '麻花视频',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/20/1000184850.png',
+            de_key: 'q7gj4f9br3fls6nh',
+            host: 'https://apicoss-alimama-com-1307821617.file.myqcloud.com/Uploadsget#txt#',
+        }, {
+            title: '火猫影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/20/1000184852.png',
+            de_key: 'J6AIORKJ3PQOJKM3',
+            host: 'https://cunchu8.obs.cn-north-4.myhuaweicloud.com/01.txt',
+        }, {
+            title: '次元咲',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/26/1000066973.jpg',
+            de_key: '2c4h36abd96se10u',
+            host: 'http://cic.aicg.fun/',
+            rank: 1,
+        }, {
+            title: '稀饭动漫',
+            img: 'https://mogua.co/download/fbe12a11259032f483791157694c4f38-icon.png',
+            de_key: '1yZ2Spn9krnzVKoC',
+            host: 'https://xfapp-1305390065.cos.ap-guangzhou.myqcloud.com/getapp.txt',
+        },
+        /*
+        {
+            title: '晚风影视',
+            img: 'https://seyouapp777.dqntwl.com/i/2025/06/26/1000184893.png',
+            de_key: 'fjhndgbjidfhgjsd',
+            host: 'https://wfys-1329733604.cos.ap-guangzhou.myqcloud.com/wf.txt',
+        },
+        */
+    ],
 }
 $.exports = csdown
