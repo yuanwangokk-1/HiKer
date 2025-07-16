@@ -36,7 +36,7 @@ const csdown = {
         var list = [{
             title: '首页&综合',
             id: '1&2&3&4&5',
-            img: 'https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/127.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/137.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
+            img: 'https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/127.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/137.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
         }];
         if (MY_PAGE == 1) {
             function strong(d, c) {
@@ -2383,7 +2383,7 @@ const csdown = {
         var tv = [{
             title: '首页&频道&标签',
             id: '1&2&3',
-            img: 'https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/111.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/112.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
+            img: 'https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/111.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/112.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
         }];
         if (MY_PAGE == 1) {
             Cate(tv, 'tv', d);
@@ -2939,7 +2939,7 @@ const csdown = {
             var maomiav = [{
                 title: '首页&VIP',
                 id: 'library&vip_section&topic&benefit',
-                img: 'https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/129.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/142.svg'
+                img: 'https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/129.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/142.svg'
             }];
             Cate(maomiav, 'maomiav', d, 'icon_2_round');
             var cate_library = JSON.parse(getItem('maomi_categories')).apps_categories[getMyVar('maomiav', 'library')];
@@ -3102,7 +3102,7 @@ const csdown = {
         var md = [{
             title: '首页&频道&标签',
             id: '1&2&3',
-            img: 'https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/111.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/112.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
+            img: 'https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/111.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/112.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
         }];
         if (MY_PAGE == 1) {
             Cate(md, 'md', d);
