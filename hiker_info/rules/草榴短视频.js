@@ -20,7 +20,8 @@ const csdown = {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+        ;
         var pg = getParam('page');
         var 首页 = [{
             title: '推荐&精选&频道&社区&写真',
@@ -63,6 +64,7 @@ const csdown = {
     aes: $.toString(() => {
         //加载CryptoJS库
         eval(getCryptoJS())
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
@@ -116,7 +118,7 @@ const csdown = {
 
         var image = $('').image(() => {
             const CryptoUtil = $.require("hiker://assets/crypto-java.js");
-            let decode = function(data) {
+            let decode = function (data) {
                 const key = Array.from('2020-zq3-888', c => c.charCodeAt(0));
                 const keyLen = key.length;
                 const binaryArr = [];
@@ -146,9 +148,11 @@ const csdown = {
             let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
             return decryptedStr;
         }
+
         var t = Math.floor(Date.now()).toString();
         var t0 = Math.floor(Date.now() / 1000);
         var s = md5(t.toString().substring(3, 8));
+
         // 随机字符串方法
         function generateRandomHex(length) {
             var result = '';
@@ -262,7 +266,8 @@ const csdown = {
                     col_type: 'movie_3'
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     recommend: () => {
@@ -666,7 +671,8 @@ const csdown = {
                                     toast('已开启禁区')
                                     refreshPage(false)
                                 }),
-                                cancel: $.toString(() => {})
+                                cancel: $.toString(() => {
+                                })
                             })
                         } else {
                             setItem('open', '0');
@@ -871,7 +877,8 @@ const csdown = {
                                             col_type: 'movie_3'
                                         })
                                     })
-                                } catch {}
+                                } catch {
+                                }
                                 if (data.video) {
                                     d.push({
                                         title: '视频长:' + parseInt(data.video.playTime / 60) + ':' + parseInt(data.video.playTime % 60),
@@ -924,7 +931,8 @@ const csdown = {
                             col_type: 'movie_3'
                         })
                     })
-                } catch {}
+                } catch {
+                }
                 if (data.video) {
                     d.push({
                         title: '视频长:' + parseInt(data.video.playTime / 60) + ':' + parseInt(data.video.playTime % 60),
@@ -988,7 +996,8 @@ const csdown = {
                         col_type: 'pic_1_full'
                     })
                 })
-            } catch {}
+            } catch {
+            }
         } catch (e) {
             log(e.message)
         }
@@ -1039,7 +1048,8 @@ const csdown = {
                                 col_type: 'movie_3'
                             })
                         })
-                    } catch {}
+                    } catch {
+                    }
                     if (data.video) {
                         d.push({
                             title: '视频长:' + parseInt(data.video.playTime / 60) + ':' + parseInt(data.video.playTime % 60),

@@ -1,7 +1,7 @@
 const csdown = {
     d: [],
-    author: '流苏',
-    version: '20250504',
+    author: 'Aries',
+    version: '20250701',
     rely: (data) => {
         return data.match(/\{([\s\S]*)\}/)[0].replace(/\{([\s\S]*)\}/, '$1')
     },
@@ -14,7 +14,8 @@ const csdown = {
                 confirm: $.toString((version) => {
                     setItem('up' + version, '1')
                 }, csdown.version),
-                cancel: $.toString(() => {})
+                cancel: $.toString(() => {
+                })
             })
         }
         if (MY_PAGE == 1) {
@@ -30,7 +31,8 @@ const csdown = {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+        ;
         var list = [{
             title: '首页&综合',
             id: '1&2&3&4&5',
@@ -40,6 +42,7 @@ const csdown = {
             function strong(d, c) {
                 return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
             }
+
             var index_n = list[0].id.split('&')[0];
             list.forEach(data => {
                 var title = data.title.split('&');
@@ -341,7 +344,8 @@ const csdown = {
                 var lx = sp(data, "lx(", ")");
                 var qb = qd + '  ' + mc + '  ' + wz + '  ' + ym + '  ' + lx;
                 if (tp != null) {
-                    if ((wz == 'xiangjiao') | (wz == '91dsp') | (wz == 'tiktok18') | (wz == 'ogfap') | (wz == 'tiktok18long') | (wz == 'xiaohuli')) {} else {
+                    if ((wz == 'xiangjiao') | (wz == '91dsp') | (wz == 'tiktok18') | (wz == 'ogfap') | (wz == 'tiktok18long') | (wz == 'xiaohuli')) {
+                    } else {
                         d.push({
                             title: mc,
                             desc: qb,
@@ -690,7 +694,8 @@ const csdown = {
                             desc: (data.created_date == null ? '' : data.created_date) + '  ' + (data.date == null ? '' : data.date),
                             img: data.image + lulazy,
                             url: host + '?id=' + data.id + $('').lazyRule(() => {
-                                eval($.require('csdown').rely($.require('csdown').aes));;
+                                eval($.require('csdown').rely($.require('csdown').aes));
+                                ;
                                 try {
                                     //duration.match(/(\d+)/)[1]>60判断并不准确
                                     var url = JSON.parse(fetch(input + '&type=short')).video;
@@ -919,10 +924,12 @@ const csdown = {
         var t = Math.floor(Date.now());
         //简单匹配
         let sp = (it, s, e) => String(it.split(s)[1]).split(e)[0];
+
         //颜色
         function strong(d, c) {
             return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
         }
+
         //列表,col默认为'scroll_button'
         function Cate(list, n, d, col) {
             if (!col) {
@@ -955,22 +962,27 @@ const csdown = {
             })
             return d;
         }
+
         //生成时间戳
         function getCurrentTimestamp() {
             return new Date().getTime();
         }
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
+
         //sha256加密
         function sha256(str) {
             return CryptoJS.SHA256(str).toString();
         }
+
         //颜色
         function color(txt) {
             return '<b><font color=' + '#FF6699' + '>' + txt + '</font></b>'
         }
+
         //茄子解密函数
         function qzDecrypt(word) {
             const key = CryptoJS.enc.Utf8.parse("yinsu12345abcdef");
@@ -1012,6 +1024,7 @@ const csdown = {
                 return null;
             }
         }
+
         //猫咪视频图片
         var mmlazy = $('').image(() => {
             const CryptoUtil = $.require("hiker://assets/crypto-java.js");
@@ -1225,6 +1238,7 @@ const csdown = {
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
+
             var t0 = Math.floor(Date.now() / 1000) + 1;
             var wsSecret = md5('E9MpC7D5AqWvjmXL3hGkQ2XjZNohAQ' + input.replace(/http(s)?:\/\/.*?\//g, '/') + t0);
             var url = input + '?wsSecret=' + wsSecret + '&wsTime=' + t0;
@@ -1255,14 +1269,14 @@ const csdown = {
 
         //海角图片解密
         var hjlazy = $('').image(() => {
-            var n = function(e) {
+            var n = function (e) {
                 for (o = "", i = 0, a = 0, void 0; i < e.length;) {
                     var t, n, o, i, a;
                     (t = e.charCodeAt(i)) < 128 ? (o += String.fromCharCode(t), i++) : 191 < t && t < 224 ? (a = e.charCodeAt(i + 1), o += String.fromCharCode((31 & t) << 6 | 63 & a), i += 2) : (a = e.charCodeAt(i + 1), n = e.charCodeAt(i + 2), o += String.fromCharCode((15 & t) << 12 | (63 & a) << 6 | 63 & n), i += 3);
                 }
                 return o;
             };
-            var decryptData = function(t) {
+            var decryptData = function (t) {
                 var o, i, a, r, s, c, u = "",
                     d = 0,
                     tt = "ABCD*EFGHIJKLMNOPQRSTUVWX#YZabcdefghijklmnopqrstuvwxyz1234567890"
@@ -1274,7 +1288,7 @@ const csdown = {
             javaImport.importPackage(
                 Packages.com.example.hikerview.utils
             );
-            with(javaImport) {
+            with (javaImport) {
                 let bytes = FileUtil.toBytes(input);
                 bytes = new java.lang.String(bytes, 'UTF-8')
                 let res = decryptData(bytes + "");
@@ -1283,6 +1297,7 @@ const csdown = {
                 return FileUtil.toInputStream(_base64.decode(res, _base64.NO_WRAP));
             }
         })
+
         //时间戳转换
         function timestampToTime(tm, ts) {
             var date = new Date(tm * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
@@ -1336,7 +1351,7 @@ const csdown = {
                     });
                 }),
             }];
-            if (typeof(pages) != 'undefined') {
+            if (typeof (pages) != 'undefined') {
                 var extra1 = {
                     title: "尾页" + pages,
                     js: $.toString((pages) => {
@@ -1388,7 +1403,8 @@ const csdown = {
                         desc: data.date + '   ' + data.duration,
                         img: data.image + lulazy,
                         url: host + '?id=' + data.id + $('').lazyRule(() => {
-                            eval($.require('csdown').rely($.require('csdown').aes));;
+                            eval($.require('csdown').rely($.require('csdown').aes));
+                            ;
                             try {
                                 //duration.match(/(\d+)/)[1]>60判断并不准确
                                 var url = JSON.parse(fetch(input + '&type=short')).video;
@@ -1559,7 +1575,7 @@ const csdown = {
                 })
             }
             var Arr = ['xbk', 'md', 'caoliu', 'heiliaoshequ', 'maomi', 'xcl', 'qisemao']
-            var url_a = `${host}?sort=${getMyVar('视频分类二级'+ getMyVar('视频分类' + wz, getMyVar('key_' + wz)) + wz,getMyVar('id_' + wz))}&page=` + pg;
+            var url_a = `${host}?sort=${getMyVar('视频分类二级' + getMyVar('视频分类' + wz, getMyVar('key_' + wz)) + wz, getMyVar('id_' + wz))}&page=` + pg;
             var url = url_a.split('?')[0];
             var list = JSON.parse(fetch(url_a)).videos;
             // log(list)
@@ -1931,7 +1947,8 @@ const csdown = {
                             })
                         }
                     })
-                } catch {}
+                } catch {
+                }
             } else if (wz == 'kanliao') {
                 var texts = data.picCode.replace(/\<br\>/g, '&&').split('&&');
                 var n = 0;
@@ -1954,7 +1971,8 @@ const csdown = {
                 })
             }
 
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     nvyouerji: () => {
@@ -2170,7 +2188,8 @@ const csdown = {
                     }
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     xiaoshuoerji1: () => {
@@ -2353,10 +2372,12 @@ const csdown = {
     tv_91: () => {
         var d = csdown.d;
         eval(csdown.rely(csdown.aes));
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
+
         var t = Math.floor(Date.now());
         var pg = getParam('page');
         var tv = [{
@@ -2402,7 +2423,8 @@ const csdown = {
             } else if (分类 == 3) {
                 var url = 'https://tvv.zjqfart.cn/video/tags';
             }
-        };
+        }
+        ;
         var html = fetch(url, {
             headers: {
                 'suffix': '173150',
@@ -2470,6 +2492,7 @@ const csdown = {
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
+
             var t = Math.floor(Date.now());
             var t0 = Math.floor(Date.now() / 1000);
             let id = MY_PARAMS.id;
@@ -2513,7 +2536,8 @@ const csdown = {
                     url: data.video_url + tvvod,
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     biaoqian_91tv: () => {
@@ -2524,6 +2548,7 @@ const csdown = {
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
+
             var t = Math.floor(Date.now());
             var t0 = Math.floor(Date.now() / 1000);
             let id = MY_PARAMS.id;
@@ -2568,7 +2593,8 @@ const csdown = {
                     url: data.video_url + tvvod,
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     baike: () => {
@@ -2587,7 +2613,8 @@ const csdown = {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+        ;
         try {
             var host = MY_PARAMS.host;
             var mz = MY_PARAMS.mz;
@@ -2722,7 +2749,8 @@ const csdown = {
                     col_type: 'movie_2'
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     maomiyuanchuang: () => {
@@ -2766,7 +2794,8 @@ const csdown = {
                     }
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     maomimanhua: () => {
@@ -2837,7 +2866,8 @@ const csdown = {
                     col_type: "movie_1_vertical_pic_blur",
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     maomimeitu: () => {
@@ -2883,7 +2913,8 @@ const csdown = {
                     })
                 }
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     maomiav: () => {
@@ -2937,7 +2968,7 @@ const csdown = {
                 })
             })
         }
-        var url = `https://mjson.szaction.cc/data/apps/videos/index-${getMyVar('maomi_cate_library',cate_library_n)}.js`;
+        var url = `https://mjson.szaction.cc/data/apps/videos/index-${getMyVar('maomi_cate_library', cate_library_n)}.js`;
         try {
             var url_post = JSON.parse(request(url))
             var list = JSON.parse(mmDecrypt(url_post.data, url_post.suffix)).apps_categories;
@@ -2962,7 +2993,8 @@ const csdown = {
                     })
                 })
             })
-        } catch (e) {}
+        } catch (e) {
+        }
         setResult(d)
     },
     maomiav_erji: () => {
@@ -2997,7 +3029,8 @@ const csdown = {
                     col_type: 'movie_2',
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     zhibojuheerji: () => {
@@ -3051,16 +3084,19 @@ const csdown = {
                     })
                 }
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     madou: () => {
         var d = csdown.d;
         eval(csdown.rely(csdown.aes));
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
+
         var t = Math.floor(Date.now());
         let pg = getParam('page');
         var md = [{
@@ -3106,7 +3142,8 @@ const csdown = {
             } else if (分类 == 3) {
                 var url = 'https://api.nzp1ve.com/video/tags';
             }
-        };
+        }
+        ;
         var html = fetch(url, {
             headers: {
                 'suffix': '173150',
@@ -3173,6 +3210,7 @@ const csdown = {
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
+
             var t = Math.floor(Date.now());
             var t0 = Math.floor(Date.now() / 1000);
             let id = MY_PARAMS.id;
@@ -3225,7 +3263,8 @@ const csdown = {
                     url: data.video_url,
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     madoubiaoqian: () => {
@@ -3236,6 +3275,7 @@ const csdown = {
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
+
             var t = Math.floor(Date.now());
             var t0 = Math.floor(Date.now() / 1000);
             let id = MY_PARAMS.id;
@@ -3288,7 +3328,8 @@ const csdown = {
                     url: data.video_url,
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
 }

@@ -14,7 +14,8 @@ const csdown = {
                 confirm: $.toString((version) => {
                     setItem('up' + version, '1')
                 }, csdown.version),
-                cancel: $.toString(() => {})
+                cancel: $.toString(() => {
+                })
             })
         }
         if (MY_PAGE == 1) {
@@ -34,7 +35,8 @@ const csdown = {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+        ;
         var pg = getParam('page');
         var 首页 = [{
             title: '首页&分类&每周必看',

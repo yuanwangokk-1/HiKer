@@ -20,7 +20,8 @@ const csdown = {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+        ;
         var pg = getParam('page');
         var c1 = [{
             title: '首页&小视频&社区&微帖&分类',
@@ -84,14 +85,17 @@ const csdown = {
         //加载CryptoJS库
         eval(getCryptoJS());
         var t = Math.floor(Date.now() / 1000);
+
         //生成时间戳
         function getCurrentTimestamp() {
             return new Date().getTime();
         }
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
+
         //sha256加密
         function sha256(str) {
             return CryptoJS.SHA256(str).toString();
@@ -310,7 +314,8 @@ const csdown = {
                                 lineVisible: false,
                             }
                         })
-                    } catch {}
+                    } catch {
+                    }
                     d.push({
                         col_type: 'big_blank_block'
                     }, {
@@ -377,7 +382,8 @@ const csdown = {
                                 }
                             })
                         })
-                    } catch {}
+                    } catch {
+                    }
                 })
             }
         } catch (e) {
@@ -528,7 +534,8 @@ const csdown = {
                                 toast('已开启禁区')
                                 refreshPage(false)
                             }),
-                            cancel: $.toString(() => {})
+                            cancel: $.toString(() => {
+                            })
                         })
                     } else {
                         setItem('open', '0')
@@ -652,7 +659,8 @@ const csdown = {
                             }
                         })
                     })
-                } catch {}
+                } catch {
+                }
             })
         } catch (e) {
             log(e.message)
@@ -759,7 +767,8 @@ const csdown = {
                             }
                         })
                     })
-                } catch {}
+                } catch {
+                }
             })
         } catch (e) {
             log(e.message)
@@ -838,7 +847,8 @@ const csdown = {
                         lineVisible: false,
                     }
                 })
-            } catch {}
+            } catch {
+            }
             d.push({
                 col_type: 'big_blank_block'
             }, {
@@ -884,7 +894,8 @@ const csdown = {
                     url: mv.preview_video.replace(/\/\/.*play\./, '//long.').replace('&seconds=30', ''),
                     col_type: "pic_1_card",
                 })
-            } catch {}
+            } catch {
+            }
             d.push({
                 title: '热心群众',
                 url: 'hiker://empty',
@@ -983,7 +994,8 @@ const csdown = {
                     }
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     jingxuan: () => {

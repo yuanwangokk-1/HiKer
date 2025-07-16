@@ -20,7 +20,8 @@ const csdown = {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+        ;
         var pg = getParam('page');
         var c1 = [{
             title: '吃瓜&片库&社区',
@@ -147,6 +148,7 @@ const csdown = {
             let de = CryptoUtil.Data.parseBase64(encrypted, _base64.NO_WRAP);
             return de.toInputStream();
         })
+
         // 随机字符串方法
         function generateRandomHex(length) {
             var result = '';
@@ -166,6 +168,7 @@ const csdown = {
                 }
                 return result;
             }
+
             let requestId = generateRandomHex(32);
             let t = Math.floor(Date.now());
             let data = Encrypt(body);
@@ -233,7 +236,7 @@ const csdown = {
                     });
                 }),
             }];
-            if (typeof(pages) != 'undefined') {
+            if (typeof (pages) != 'undefined') {
                 var extra1 = {
                     title: "尾页" + pages,
                     js: $.toString((pages) => {

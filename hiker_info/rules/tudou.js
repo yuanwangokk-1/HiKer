@@ -19,7 +19,8 @@ const tudou = {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+        ;
         var pg = MY_URL.replace('hiker://empty##', '');
         var c1 = [{
             title: '首页&总览&短视频&女优&社区',
@@ -135,7 +136,7 @@ const tudou = {
                     });
                 }),
             }];
-            if (typeof(pages) != 'undefined') {
+            if (typeof (pages) != 'undefined') {
                 var extra1 = {
                     title: "尾页" + pages,
                     js: $.toString((pages) => {

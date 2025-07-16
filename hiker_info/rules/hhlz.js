@@ -19,7 +19,8 @@ const hhlz = {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+        ;
 
         var pg = MY_URL.replace('hiker://empty##', '');
         var c1 = [{
@@ -54,14 +55,17 @@ const hhlz = {
         //加载CryptoJS库
         eval(getCryptoJS())
         var t = Math.floor(Date.now() / 1000);
+
         //生成时间戳
         function getCurrentTimestamp() {
             return new Date().getTime();
         }
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
+
         //sha256加密
         function sha256(str) {
             return CryptoJS.SHA256(str).toString();
@@ -106,6 +110,7 @@ const hhlz = {
             })
             return d;
         }
+
         // 解密函数
         function Decrypt(word) {
             const id = CryptoJS.enc.Utf8.parse("D2o4XyQeIFobJ4tS");
@@ -250,7 +255,7 @@ const hhlz = {
                     });
                 }),
             }];
-            if (typeof(pages) != 'undefined') {
+            if (typeof (pages) != 'undefined') {
                 var extra1 = {
                     title: "尾页" + pages,
                     js: $.toString((pages) => {
