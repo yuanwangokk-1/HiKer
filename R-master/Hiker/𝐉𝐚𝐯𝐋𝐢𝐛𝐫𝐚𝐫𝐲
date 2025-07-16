@@ -1,7 +1,7 @@
 const Apollo = {
-    version: 20250202,
+    version: 20250614,
     empty: "hiker://empty",
-    url: getItem("link","https://www.r86m.com"),
+    url: getItem("link", "https://www.w91h.com"),
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
@@ -239,9 +239,9 @@ const Apollo = {
         if (MY_PAGE == 1 && !/genres\.php|search\.php/.test(url)) {
             Apollo.d.push({
                 title: "🔍",
-                url: $.toString(() => {
+                url: $.toString((host) => {
                     putMyVar('keyword', input);
-                    var searchUrl = config.host + "/cn/vl_searchbyid.php?keyword=" + input
+                    var searchUrl = host + "/cn/vl_searchbyid.php?keyword=" + input;
                     try {
                         var url = JSON.parse(fetch(searchUrl, {
                             onlyHeaders: true
@@ -272,7 +272,7 @@ const Apollo = {
                     } catch {
                         return "hiker://empty"
                     }
-                }),
+                }, Apollo.url),
                 desc: '快捷番号搜索...',
                 col_type: "input",
                 extra: {
@@ -1411,11 +1411,11 @@ const Apollo = {
                 confirm: $.toString(() => {
                     showLoading('正在获取域名，请稍候');
                     let host;
-                    var homeLink = "https://javlib.com/";
+                    var homeLink = "https://github.com/javlibcom" //"https://javlib.com/";
                     var hhtml = fetch(homeLink, {
                         dns: 'https://dns.alidns.com/dns-query'
                     })
-                    cnhost = pdfh(hhtml, "body&&p:matches(简体中文)&&a&&href");
+                    cnhost = pdfh(hhtml, ".vcard-details&&a&&href") //pdfh(hhtml, "body&&p:matches(简体中文)&&a&&href");
                     host = cnhost.replace(/\/cn.*/, '')
                     log("免翻地址：" + host);
                     toast("免翻地址：" + host)
