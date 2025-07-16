@@ -1,4 +1,4 @@
-const csdown = {
+const aries = {
     d: [],
     author: 'Aries',
     version: '20250701',
@@ -6,14 +6,14 @@ const csdown = {
         return data.match(/\{([\s\S]*)\}/)[0].replace(/\{([\s\S]*)\}/, '$1')
     },
     home: () => {
-        var d = csdown.d;
-        if (getItem('up' + csdown.version, '') == '') {
+        var d = aries.d;
+        if (getItem('up' + aries.version, '') == '') {
             confirm({
                 title: '更新内容',
-                content: '版本号：' + csdown.version + '\n1.修复一些bug\n2.增加一些bug\n3.增加长按更新茄子服务器数据\n4.增加长按更换线路(没事别换)\n5.搜索界面增加搜索框\n6.增加av百科\n7.首页增加部分模块\n8.综合部分二级页面修改\n9.看不了的是服务器问题，与我无关\n10.修复瓜太郎二级页面空白问题\n11.临时修复部分模块，更新后自行重生或更换线路9\n12.茄子服务器已修复，自行更换为线路1\n13.修改漫画二级页面\n14.修复猫咪系列模块无法打开的问题\n15.百科增加模块，自行长按更新数据\n16.待续',
+                content: '版本号：' + aries.version + '\n1.修复一些bug\n2.增加一些bug\n3.增加长按更新茄子服务器数据\n4.增加长按更换线路(没事别换)\n5.搜索界面增加搜索框\n6.增加av百科\n7.首页增加部分模块\n8.综合部分二级页面修改\n9.看不了的是服务器问题，与我无关\n10.修复瓜太郎二级页面空白问题\n11.临时修复部分模块，更新后自行重生或更换线路9\n12.茄子服务器已修复，自行更换为线路1\n13.修改漫画二级页面\n14.修复猫咪系列模块无法打开的问题\n15.百科增加模块，自行长按更新数据\n16.待续',
                 confirm: $.toString((version) => {
                     setItem('up' + version, '1')
-                }, csdown.version),
+                }, aries.version),
                 cancel: $.toString(() => {
                 })
             })
@@ -23,7 +23,7 @@ const csdown = {
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
-                    return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("csdown").search()'
+                    return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("aries").search()'
                 }),
                 desc: "请输入搜索关键词",
                 col_type: "input",
@@ -62,7 +62,7 @@ const csdown = {
                             longClick: [{
                                 title: '更新数据',
                                 js: $.toString(() => {
-                                    eval($.require('csdown').rely($.require('csdown').aes));
+                                    eval($.require('aries').rely($.require('aries').aes));
                                     let shouye = qzDecrypt(request('http://003.22s.lol/encrypt/api.php?path=qiezi/shouye'));
                                     let data = qzDecrypt(request('http://003.22s.lol/encrypt/api.php?path=qiezi/zonghe'));
                                     let search = fetch('http://003.22s.lol/searchconfig/vipapi/vipconfig.txt');
@@ -121,11 +121,11 @@ const csdown = {
         }
         //setPreResult(d)
         var 分类 = getMyVar('首页', '1');
-        if (MY_RULE.author == csdown.author || MY_NAME == '嗅觉浏览器') {
+        if (MY_RULE.author == aries.author || MY_NAME == '嗅觉浏览器') {
             if (分类 == 1) {
-                csdown.video()
+                aries.video()
             } else if (分类 == 2) {
-                csdown.zonghe()
+                aries.zonghe()
             }
         } else {
             d.push({
@@ -137,9 +137,9 @@ const csdown = {
         setResult(d)
     },
     video: () => {
-        eval(csdown.rely(csdown.aes))
+        eval(aries.rely(aries.aes))
         try {
-            var d = csdown.d;
+            var d = aries.d;
             //log(getItem('shouye'))
             //log(getItem('data'))
             //log(getItem('gonggao'))
@@ -158,7 +158,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").madou()',
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").madou()',
                         col_type: 'icon_4_card'
                     })
                 } else if (qd == '91TV') {
@@ -166,7 +166,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").tv_91()',
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").tv_91()',
                         col_type: 'icon_4_card'
                     })
                 } else if (qd == '猫咪') {
@@ -174,7 +174,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomi()',
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomi()',
                         col_type: 'icon_4_card'
                     })
                 } else if (qd == '猫咪原创') {
@@ -182,7 +182,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiyuanchuang()',
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiyuanchuang()',
                         col_type: 'icon_4_card'
                     })
                 } else {
@@ -190,7 +190,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                        url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -202,7 +202,7 @@ const csdown = {
             d.push({
                     title: '撸先生',
                     img: 'http://api.xka1.top/6img/lusir.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video1/lusir.php`,
@@ -211,7 +211,7 @@ const csdown = {
                 }, {
                     title: '猫咪视频',
                     img: 'http://api.xka1.top/6img/maomisq.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiav()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiav()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}`,
@@ -220,7 +220,7 @@ const csdown = {
                 }, {
                     title: 'JAV日本区',
                     img: 'http://api.xka1.top/6img/javn.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video2/jav123/jav.php`,
@@ -231,7 +231,7 @@ const csdown = {
                  {
                     title: '秘爱',
                     img: 'http://api.xka1.top/6img/miai.jpg',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video2/xinghuafang/miai.php`,
@@ -242,7 +242,7 @@ const csdown = {
                 {
                     title: 'UAA视频',
                     img: 'http://api.xka1.top/6img/uaa.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video2/uaa/uaa.php`,
@@ -253,7 +253,7 @@ const csdown = {
                 {
                     title: 'UU视频',
                     img: 'http://api.xka1.top/6img/uusp.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video1/caoliusp_xilie/uushipin.php`,
@@ -264,7 +264,7 @@ const csdown = {
                 {
                     title: '图宅',
                     img: 'http://api.xka1.top/6img/tuzac.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").picerji()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").picerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/picture/tuzac.php`,
@@ -275,7 +275,7 @@ const csdown = {
                  {
                     title: '嘿嘿连载',
                     img: 'http://api.xka1.top/6img/heiheilz.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").manhuaerji()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").manhuaerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/comic/heiheilz.php`,
@@ -284,7 +284,7 @@ const csdown = {
                 }, {
                     title: '禁漫天堂[新]',
                     img: 'http://api.xka1.top/6img/jinmantt.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").manhuaerji()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").manhuaerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/comic/jinmantt.php`,
@@ -295,7 +295,7 @@ const csdown = {
                 {
                     title: '暗网[每日大赛]',
                     img: 'http://api.xka1.top/6img/meiridasai.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").videoerji()',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").videoerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/erji/meiridasai/aw/mrds.php`,
@@ -304,7 +304,7 @@ const csdown = {
                 }, {
                     title: '帖子[每日大赛]',
                     img: 'http://api.xka1.top/6img/meiridasai.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").blackerji()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").blackerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/erji/meiridasai/daily.php`,
@@ -313,7 +313,7 @@ const csdown = {
                 }, {
                     title: '博天堂',
                     img: 'http://api.xka1.top/6img/f4.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video2/botiantang/btt.php`,
@@ -324,7 +324,7 @@ const csdown = {
                     {
                         title: '小狐狸',
                         img: 'http://api.xka1.top/6img/xiaohuli1.png',
-                        url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                        url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${getItem('host')}/video1/xiaohuli.php`,
@@ -350,7 +350,7 @@ const csdown = {
                             title: mc,
                             desc: qb,
                             img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -367,7 +367,7 @@ const csdown = {
                     title: data.mz,
                     desc: data.ck,
                     img: data.tp,
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").baike()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").baike()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: data.dz,
@@ -409,9 +409,9 @@ const csdown = {
         }
     },
     zonghe: () => {
-        eval(csdown.rely(csdown.aes));
+        eval(aries.rely(aries.aes));
         try {
-            const d = csdown.d;
+            const d = aries.d;
             // var list=getItem('data').split('综合数据开始')[1].split('综合数据结束')[0].split('换行');
             var list = getItem('data').split('综合数据开始')[1].split('AV百科')[0].replace(/https?\:\/\/(api1?\.)?(changfapiaopiao|yilushunfeng|phpjiekou|apijiekou)\.top(\/api)?/g, getItem('host')).replace(/分割线/g, '换行').split('换行');
             list.forEach(data => {
@@ -428,7 +428,7 @@ const csdown = {
                             title: mc,
                             desc: qb,
                             img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").videoerji()',
+                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").videoerji()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${getItem('host')}/erji/caoliu_xilie/${wz}.php`,
@@ -440,7 +440,7 @@ const csdown = {
                             title: mc,
                             desc: qb,
                             img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").videoerji()',
+                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").videoerji()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -453,7 +453,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").blackerji()',
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").blackerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -465,7 +465,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?@rule=js:$.require("csdown").zhiboerji()',
+                        url: 'hiker://empty?@rule=js:$.require("aries").zhiboerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -478,7 +478,7 @@ const csdown = {
                             title: mc,
                             desc: qb,
                             img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
+                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -491,7 +491,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").nvyouerji()',
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").nvyouerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -503,7 +503,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").tieerji()',
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").tieerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -515,7 +515,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty@rule=js:$.require("csdown").zhibojuheerji()',
+                        url: 'hiker://empty@rule=js:$.require("aries").zhibojuheerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             wz: mc,
@@ -527,7 +527,7 @@ const csdown = {
                             title: mc,
                             desc: qb,
                             img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomimanhua()',
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomimanhua()',
                             col_type: 'icon_4_card'
                         })
                     } else {
@@ -535,7 +535,7 @@ const csdown = {
                             title: mc,
                             desc: qb,
                             img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").manhuaerji()',
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").manhuaerji()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -548,7 +548,7 @@ const csdown = {
                         title: mc,
                         desc: qb,
                         img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").xiaoshuoerji()',
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").xiaoshuoerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -561,7 +561,7 @@ const csdown = {
                             title: mc,
                             desc: qb,
                             img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomimeitu()',
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomimeitu()',
                             col_type: 'icon_4_card'
                         })
                     } else if (mc != '美图色图') {
@@ -569,7 +569,7 @@ const csdown = {
                             title: mc,
                             desc: qb,
                             img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").picerji()',
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").picerji()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -583,7 +583,7 @@ const csdown = {
                             title: mc,
                             desc: qb,
                             img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiFM()',
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiFM()',
                             col_type: 'icon_4_card'
                         })
                     }
@@ -594,8 +594,8 @@ const csdown = {
         }
     },
     search: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes))
+        var d = aries.d;
+        eval(aries.rely(aries.aes))
         var pg = getParam('page');
         try {
             if (MY_PAGE == 1) {
@@ -694,7 +694,7 @@ const csdown = {
                             desc: (data.created_date == null ? '' : data.created_date) + '  ' + (data.date == null ? '' : data.date),
                             img: data.image + lulazy,
                             url: host + '?id=' + data.id + $('').lazyRule(() => {
-                                eval($.require('csdown').rely($.require('csdown').aes));
+                                eval($.require('aries').rely($.require('aries').aes));
                                 ;
                                 try {
                                     //duration.match(/(\d+)/)[1]>60判断并不准确
@@ -841,7 +841,7 @@ const csdown = {
                             title: data.title,
                             desc: data.date,
                             img: data.image + hjlazy,
-                            url: 'hiker://empty@rule=js:$.require("csdown").blackerji1()',
+                            url: 'hiker://empty@rule=js:$.require("aries").blackerji1()',
                             col_type: 'pic_1',
                             extra: {
                                 host: `${host}?id=${data.id}`,
@@ -855,7 +855,7 @@ const csdown = {
                             title: data.title,
                             desc: data.date,
                             img: ((wz == '51cg') | (wz == 'hlbdy') | (wz == 'tiktok18')) ? (data.image + lazy) : data.image,
-                            url: 'hiker://empty@rule=js:$.require("csdown").blackerji1()',
+                            url: 'hiker://empty@rule=js:$.require("aries").blackerji1()',
                             col_type: 'pic_1',
                             extra: {
                                 host: `${host}?id=${data.id}`,
@@ -870,7 +870,7 @@ const csdown = {
                 list.forEach(data => {
                     d.push({
                         title: data.title,
-                        url: 'hiker://empty?#readTheme#@rule=js:$.require("csdown").xiaoshuoerji1()',
+                        url: 'hiker://empty?#readTheme#@rule=js:$.require("aries").xiaoshuoerji1()',
                         col_type: 'text_1',
                         extra: {
                             host: `${host}?id=${data.id}`,
@@ -886,7 +886,7 @@ const csdown = {
                         title: data.title,
                         desc: data.date,
                         img: data.image,
-                        url: 'hiker://empty@rule=js:$.require("csdown").manhuaerji1()',
+                        url: 'hiker://empty@rule=js:$.require("aries").manhuaerji1()',
                         col_type: 'movie_3',
                         extra: {
                             host: `${host}?id=${data.id}`,
@@ -902,7 +902,7 @@ const csdown = {
                         title: data.title,
                         desc: data.date,
                         img: wz == 'tiktok18' ? (data.image + lazy) : data.image,
-                        //url:'hiker://empty?page=fypage@rule=js:$.require("csdown").tupianerji()',
+                        //url:'hiker://empty?page=fypage@rule=js:$.require("aries").tupianerji()',
                         url: wz == 'tuzac' ? (host + '?id=' + data.id + tuzpics) : (host + '?id=' + data.id + pics),
                         col_type: 'movie_3',
                         extra: {
@@ -1036,7 +1036,7 @@ const csdown = {
 
         //猫咪视频请求
         var mmvod = $('').lazyRule(() => {
-            eval($.require('csdown').rely($.require('csdown').aes));
+            eval($.require('aries').rely($.require('aries').aes));
             try {
                 var wsTime = Math.floor(Date.now() / 1000);
                 var wsSecret = md5('D7hGKHnWThaECaQ3ji4XyAF3MfYKJ53M' + input + wsTime);
@@ -1125,7 +1125,7 @@ const csdown = {
         })
         //猫咪漫画解析
         var maomimanhuajx = $('').lazyRule(() => {
-            eval($.require('csdown').rely($.require('csdown').aes));
+            eval($.require('aries').rely($.require('aries').aes));
             var sign = Encrypt('{"user_id":1790368,"list_id":' + input + '}');
             var host = 'http://43.154.96.251:8089/api/comic/watch?params=' + sign;
             var body = 'params=' + sign;
@@ -1147,7 +1147,7 @@ const csdown = {
 
         //猫咪FM解析
         var maomifmjx = $('').lazyRule(() => {
-            eval($.require('csdown').rely($.require('csdown').aes));
+            eval($.require('aries').rely($.require('aries').aes));
             var sign = Encrypt('{"id":' + input + '}');
             var host = 'http://43.154.96.251:8089/api/book/detail?params=' + sign;
             var body = 'params=' + sign;
@@ -1164,7 +1164,7 @@ const csdown = {
 
         //猫咪解析
         var maomijx = $('').lazyRule(() => {
-            eval($.require('csdown').rely($.require('csdown').aes));
+            eval($.require('aries').rely($.require('aries').aes));
             var sign = Encrypt('{"id":' + input + '}');
             var host = 'http://43.154.96.251:8089/api/video/detail?params=' + sign;
             var body = 'params=' + sign;
@@ -1366,8 +1366,8 @@ const csdown = {
         } //长按跳页
     }),
     syvideo: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes))
+        var d = aries.d;
+        eval(aries.rely(aries.aes))
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -1403,7 +1403,7 @@ const csdown = {
                         desc: data.date + '   ' + data.duration,
                         img: data.image + lulazy,
                         url: host + '?id=' + data.id + $('').lazyRule(() => {
-                            eval($.require('csdown').rely($.require('csdown').aes));
+                            eval($.require('aries').rely($.require('aries').aes));
                             ;
                             try {
                                 //duration.match(/(\d+)/)[1]>60判断并不准确
@@ -1492,8 +1492,8 @@ const csdown = {
         setResult(d)
     },
     maomiFM: () => {
-        var d = $.require('csdown').d;
-        eval($.require('csdown').rely($.require('csdown').aes));
+        var d = $.require('aries').d;
+        eval($.require('aries').rely($.require('aries').aes));
         //var pg = getParam('page');
         var pg = MY_PAGE
         var 猫咪FM = [{
@@ -1527,8 +1527,8 @@ const csdown = {
         setResult(d)
     },
     videoerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes))
+        var d = aries.d;
+        eval(aries.rely(aries.aes))
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -1617,8 +1617,8 @@ const csdown = {
         setResult(d)
     },
     voderji1: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes))
+        var d = aries.d;
+        eval(aries.rely(aries.aes))
         var pg = getParam('page');
         var host = MY_PARAMS.host + pg;
         var url = host.split('?')[0];
@@ -1666,8 +1666,8 @@ const csdown = {
         setResult(d)
     },
     blackerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             var host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -1697,7 +1697,7 @@ const csdown = {
                         title: data.title,
                         desc: data.date,
                         img: data.image + hjlazy,
-                        url: 'hiker://empty@rule=js:$.require("csdown").blackerji1()',
+                        url: 'hiker://empty@rule=js:$.require("aries").blackerji1()',
                         col_type: 'pic_1_card',
                         extra: {
                             host: `${host}?id=${data.id}`,
@@ -1711,7 +1711,7 @@ const csdown = {
                         title: data.title,
                         desc: data.date,
                         img: wz == 'hlbdy' || wz == 'daily' || wz == '51cg' ? (data.image + lazy) : data.image,
-                        url: 'hiker://empty@rule=js:$.require("csdown").blackerji1()',
+                        url: 'hiker://empty@rule=js:$.require("aries").blackerji1()',
                         col_type: 'pic_1_card',
                         extra: {
                             host: `${host}?id=${data.id}`,
@@ -1726,8 +1726,8 @@ const csdown = {
         setResult(d)
     },
     blackerji1: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes))
+        var d = aries.d;
+        eval(aries.rely(aries.aes))
         var url = MY_PARAMS.host;
         var wz = MY_PARAMS.wz;
         try {
@@ -1976,8 +1976,8 @@ const csdown = {
         setResult(d)
     },
     nvyouerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -1989,7 +1989,7 @@ const csdown = {
                     title: data.title,
                     desc: data.number,
                     img: data.image,
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").nvyouerji1()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").nvyouerji1()',
                     col_type: 'card_pic_3',
                     extra: {
                         host: `${host}?sort=${data.id}&page=`,
@@ -2004,8 +2004,8 @@ const csdown = {
         setResult(d)
     },
     nvyouerji1: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         var pg = getParam('page');
         var host = MY_PARAMS.host + pg;
         var url = host.split('?')[0];
@@ -2029,8 +2029,8 @@ const csdown = {
         setResult(d)
     },
     picerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             let host = MY_PARAMS.host.replace('comic', 'picture');
             var wz = MY_PARAMS.wz;
@@ -2060,7 +2060,7 @@ const csdown = {
                         title: data.title,
                         desc: data.date,
                         img: wz == 'tiktok18' ? (data.image + lazy) : data.image,
-                        //url: 'hiker://empty?@rule=js:$.require("csdown").tupianerji()',
+                        //url: 'hiker://empty?@rule=js:$.require("aries").tupianerji()',
                         url: wz == 'tuzac' ? (host + '?id=' + data.id + tuzpics) : (host + '?id=' + data.id + pics),
                         col_type: 'movie_3',
                         extra: {
@@ -2079,8 +2079,8 @@ const csdown = {
         setResult(d)
     },
     tupianerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         let host = MY_PARAMS.host;
         let url = host.split('?')[0];
         var wz = MY_PARAMS.wz;
@@ -2101,8 +2101,8 @@ const csdown = {
         setResult(d)
     },
     zhiboerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -2113,7 +2113,7 @@ const csdown = {
                     d.push({
                         title: data.title,
                         img: data.image,
-                        url: 'hiker://empty?@rule=js:$.require("csdown").zhiboerji1()',
+                        url: 'hiker://empty?@rule=js:$.require("aries").zhiboerji1()',
                         col_type: 'card_pic_3',
                         extra: {
                             host: `${host}?pingtai=${data.id}`,
@@ -2129,8 +2129,8 @@ const csdown = {
         setResult(d)
     },
     zhiboerji1: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         let host = MY_PARAMS.host;
         let url = host.split('?')[0];
         var wz = MY_PARAMS.wz;
@@ -2152,8 +2152,8 @@ const csdown = {
         setResult(d)
     },
     xiaoshuoerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -2180,7 +2180,7 @@ const csdown = {
             list.forEach(data => {
                 d.push({
                     title: data.title,
-                    url: 'hiker://empty?#readTheme#@rule=js:$.require("csdown").xiaoshuoerji1()',
+                    url: 'hiker://empty?#readTheme#@rule=js:$.require("aries").xiaoshuoerji1()',
                     col_type: 'text_1',
                     extra: {
                         host: `${host}?id=${data.id}`,
@@ -2193,8 +2193,8 @@ const csdown = {
         setResult(d)
     },
     xiaoshuoerji1: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         let host = MY_PARAMS.host;
         let url = host.split('?')[0];
         var wz = MY_PARAMS.wz;
@@ -2215,8 +2215,8 @@ const csdown = {
         setResult(d)
     },
     tieerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -2244,7 +2244,7 @@ const csdown = {
                     desc: data.date,
                     //img: 'https://images.xoowbs.com/upload_01'+data.image.split('upload_01')[1],
                     img: wz == 'haijiao' ? (data.image + hjlazy) : (data.image + lazy),
-                    url: 'hiker://empty?@rule=js:$.require("csdown").blackerji1()',
+                    url: 'hiker://empty?@rule=js:$.require("aries").blackerji1()',
                     col_type: 'pic_1',
                     extra: {
                         host: `${host}?id=${data.id}`,
@@ -2259,8 +2259,8 @@ const csdown = {
         setResult(d)
     },
     manhuaerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -2289,7 +2289,7 @@ const csdown = {
                     title: data.title,
                     desc: data.date,
                     img: data.image,
-                    url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("csdown").manhuaerji1()',
+                    url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("aries").manhuaerji1()',
                     col_type: 'movie_3',
                     extra: {
                         host: `${host}?id=${data.id}`,
@@ -2306,8 +2306,8 @@ const csdown = {
         setResult(d)
     },
     manhuaerji1: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         let host = MY_PARAMS.host;
         let url = host.split('?')[0];
         var wz = MY_PARAMS.wz;
@@ -2370,8 +2370,8 @@ const csdown = {
         setResult(d)
     },
     tv_91: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
 
         //md5加密
         function md5(str) {
@@ -2461,7 +2461,7 @@ const csdown = {
                     desc: data.total + '个片儿',
                     pic_url: data.image,
                     col_type: "icon_3",
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").pindao_91tv()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").pindao_91tv()',
                     extra: {
                         id: data.id,
                     }
@@ -2475,7 +2475,7 @@ const csdown = {
                     title: data.name,
                     //img:data.thumb+mdlazy,
                     col_type: "text_3",
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").biaoqian_91tv()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").biaoqian_91tv()',
                     extra: {
                         id: data.id,
                     }
@@ -2485,8 +2485,8 @@ const csdown = {
         setResult(d)
     },
     pindao_91tv: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             //md5加密
             function md5(str) {
@@ -2541,8 +2541,8 @@ const csdown = {
         setResult(d)
     },
     biaoqian_91tv: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             //md5加密
             function md5(str) {
@@ -2598,14 +2598,14 @@ const csdown = {
         setResult(d)
     },
     baike: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         if (MY_PAGE == 1) {
             d.push({
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
-                    return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("csdown").avbkss()'
+                    return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("aries").avbkss()'
                 }),
                 desc: "请输入搜索关键词",
                 col_type: "input",
@@ -2655,8 +2655,8 @@ const csdown = {
         setResult(d)
     },
     avbkss: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         var pg = getParam('page');
         if (MY_PAGE == 1) {
             d.push({
@@ -2717,8 +2717,8 @@ const csdown = {
         setResult(d)
     },
     maomi: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         var pg = getParam('page');
         var 猫咪 = [{
             title: '猫咪原创&AI制作&不雅视频&亚洲无 码&抖音妹集合&热剧成人版&韩国三级&人气女 优',
@@ -2754,8 +2754,8 @@ const csdown = {
         setResult(d)
     },
     maomiyuanchuang: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         var pg = getParam('page');
         var 猫咪原创 = [{
             title: '最新&热门',
@@ -2799,8 +2799,8 @@ const csdown = {
         setResult(d)
     },
     maomimanhua: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         var pg = getParam('page');
         try {
             var 猫咪漫画 = [{
@@ -2827,7 +2827,7 @@ const csdown = {
                 d.push({
                     title: data.title,
                     img: data.thumb,
-                    url: 'hiker://empty?page=fypage&#immersiveTheme#@rule=js:$.require("csdown").maomimanhuaerji()',
+                    url: 'hiker://empty?page=fypage&#immersiveTheme#@rule=js:$.require("aries").maomimanhuaerji()',
                     //url:data.id+maomimanhuajx,
                     col_type: 'movie_3',
                     extra: {
@@ -2842,8 +2842,8 @@ const csdown = {
         setResult(d)
     },
     maomimanhuaerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         var pg = getParam('page');
         var id = MY_PARAMS.id;
         try {
@@ -2871,8 +2871,8 @@ const csdown = {
         setResult(d)
     },
     maomimeitu: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         var pg = getParam('page');
         try {
             var 猫咪美图 = [{
@@ -2918,8 +2918,8 @@ const csdown = {
         setResult(d)
     },
     maomiav: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         var pg = getParam('page');
         //加载配置
         if (getItem('maomi_tp', '') == '') {
@@ -2960,7 +2960,7 @@ const csdown = {
             child.forEach(data => {
                 d.push({
                     title: data.name,
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiav_erji()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiav_erji()',
                     col_type: 'text_3',
                     extra: {
                         id: data.id,
@@ -2976,7 +2976,7 @@ const csdown = {
                 d.push({
                     title: color(data.name),
                     img: 'hiker://images/icon_right5',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiav_erji()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiav_erji()',
                     col_type: 'text_icon',
                     extra: {
                         id: data.id,
@@ -2998,8 +2998,8 @@ const csdown = {
         setResult(d)
     },
     maomiav_erji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         var pg = getParam('page');
         var id = MY_PARAMS.id;
         var maomisp_erji = [{
@@ -3034,8 +3034,8 @@ const csdown = {
         setResult(d)
     },
     zhibojuheerji: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             let wz = MY_PARAMS.wz;
             if (wz == '直播聚合') {
@@ -3052,7 +3052,7 @@ const csdown = {
                         title: data.title,
                         desc: data.Number,
                         img: data.xinimg,
-                        url: 'hiker://empty@rule=js:$.require("csdown").zhibojuheerji1()',
+                        url: 'hiker://empty@rule=js:$.require("aries").zhibojuheerji1()',
                         col_type: 'card_pic_3',
                         extra: {
                             host: `${host}${data.address}`,
@@ -3068,8 +3068,8 @@ const csdown = {
         setResult(d)
     },
     zhibojuheerji1: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         let host = MY_PARAMS.host;
         try {
             let list = JSON.parse(fetch(host)).zhubo;
@@ -3089,8 +3089,8 @@ const csdown = {
         setResult(d)
     },
     madou: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
 
         //md5加密
         function md5(str) {
@@ -3180,7 +3180,7 @@ const csdown = {
                     desc: data.total + '个片儿',
                     pic_url: data.image,
                     col_type: "icon_3",
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").madoupindao()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").madoupindao()',
                     extra: {
                         id: data.id,
                     }
@@ -3193,7 +3193,7 @@ const csdown = {
                     title: data.name,
                     //pic_url:data.thumb,
                     col_type: "text_3",
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").madoubiaoqian()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").madoubiaoqian()',
                     extra: {
                         id: data.id,
                     }
@@ -3203,8 +3203,8 @@ const csdown = {
         setResult(d)
     },
     madoupindao: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             //md5加密
             function md5(str) {
@@ -3268,8 +3268,8 @@ const csdown = {
         setResult(d)
     },
     madoubiaoqian: () => {
-        var d = csdown.d;
-        eval(csdown.rely(csdown.aes));
+        var d = aries.d;
+        eval(aries.rely(aries.aes));
         try {
             //md5加密
             function md5(str) {
@@ -3333,4 +3333,4 @@ const csdown = {
         setResult(d)
     },
 }
-$.exports = csdown
+$.exports = aries
