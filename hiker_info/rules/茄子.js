@@ -1,150 +1,197 @@
-const aries = {
+const csdown = {
     d: [],
-    author: 'Aries',
-    version: '20250701',
+    author: '流苏',
+    version: '20250520_2',
     rely: (data) => {
         return data.match(/\{([\s\S]*)\}/)[0].replace(/\{([\s\S]*)\}/, '$1')
     },
     home: () => {
-        var d = aries.d;
-        if (getItem('up' + aries.version, '') == '') {
-            confirm({
-                title: '更新内容',
-                content: '版本号：' + aries.version + '\n1.修复一些bug\n2.增加一些bug\n3.增加长按更新茄子服务器数据\n4.增加长按更换线路(没事别换)\n5.搜索界面增加搜索框\n6.增加av百科\n7.首页增加部分模块\n8.综合部分二级页面修改\n9.看不了的是服务器问题，与我无关\n10.修复瓜太郎二级页面空白问题\n11.临时修复部分模块，更新后自行重生或更换线路9\n12.茄子服务器已修复，自行更换为线路1\n13.修改漫画二级页面\n14.修复猫咪系列模块无法打开的问题\n15.百科增加模块，自行长按更新数据\n16.待续',
-                confirm: $.toString((version) => {
-                    setItem('up' + version, '1')
-                }, aries.version),
-                cancel: $.toString(() => {
+        var d = csdown.d;
+            if (getItem('up' + csdown.version, '') == '') {
+                confirm({
+                    title: '更新内容',
+                    content: '版本号：' + csdown.version + '\n1.修复一些bug\n2.增加一些bug\n3.增加长按更新茄子服务器数据\n4.增加长按更换线路(没事别换)\n5.搜索界面增加搜索框\n6.增加av百科\n7.首页增加部分模块\n8.综合部分二级页面修改\n9.看不了的是服务器问题，与我无关\n10.修复瓜太郎二级页面空白问题\n11.临时修复部分模块，更新后自行重生或更换线路9\n12.茄子服务器已修复，自行更换为线路1\n13.修改漫画二级页面\n14.修复猫咪系列模块无法打开的问题\n15.百科增加模块，自行长按更新数据\n16.修复蘑菇视频播放(最好挂代理)\n17.修复搜索中部分模块图片不显示的问题\n18.修复图标及部分线路\n19.替换可用线路\n20.待续',
+                    confirm: $.toString((version) => {
+                        setItem('up' + version, '1')
+                    }, csdown.version),
+                    cancel: $.toString(() => {})
                 })
-            })
-        }
-        if (MY_PAGE == 1) {
-            d.push({
-                title: "搜索 ",
-                url: $.toString(() => {
-                    putMyVar('keyword', input)
-                    return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("aries").search()'
-                }),
-                desc: "请输入搜索关键词",
-                col_type: "input",
-                extra: {
-                    defaultValue: getMyVar('keyword', ''),
-                }
-            })
-        }
-        ;
-        var list = [{
-            title: '首页&综合',
-            id: '1&2&3&4&5',
-            img: 'https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/127.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/137.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
-        }];
-        if (MY_PAGE == 1) {
-            function strong(d, c) {
-                return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
             }
+            if (MY_PAGE == 1) {
+                d.push({   
+                    title: "搜索 ",
+                    url: $.toString(() => {
+                        putMyVar('keyword', input)
+                        return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("csdown").search()'
+                    }),
+                       desc: "请输入搜索关键词",
+                       col_type: "input",
+                    extra: {
+                        defaultValue: getMyVar('keyword', ''),
+                    }
+                });
+            var list = [{
+                title: '首页&综合',
+                id: '1&2&3&4&5',
+                img: 'https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/127.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/137.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
+            }];
+            if (MY_PAGE == 1) {
+                function strong(d, c) {
+                    return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
+                }
+                var index_n = list[0].id.split('&')[0];
+                list.forEach(data => {
+                    var title = data.title.split('&');
+                    var id = data.id.split('&');
+                    var img = data.img.split('&');
+                    title.forEach((title, index) => {
+                        d.push({
+                            title: (getMyVar('首页', index_n) == id[index] ? strong(title, 'FF6699') : title),
+                            img: img[index],
+                            url: $('#noLoading#').lazyRule((title, id) => {
+                                putMyVar('首页', id);
+                                refreshPage(false);
+                                return 'hiker://empty';
+                            }, title, id[index]),
+                            col_type: 'icon_2_round',
+                            extra: {
+                                longClick: [{
+                                    title: '更新数据',
+                                    js: $.toString(() => {
+                                        eval($.require('csdown').rely($.require('csdown').aes));
+                                    var fabu, gonggao, nbym;
 
-            var index_n = list[0].id.split('&')[0];
-            list.forEach(data => {
-                var title = data.title.split('&');
-                var id = data.id.split('&');
-                var img = data.img.split('&');
-                title.forEach((title, index) => {
-                    d.push({
-                        title: (getMyVar('首页', index_n) == id[index] ? strong(title, 'FF6699') : title),
-                        img: img[index],
-                        url: $('#noLoading#').lazyRule((title, id) => {
-                            putMyVar('首页', id);
-                            refreshPage(false);
-                            return 'hiker://empty';
-                        }, title, id[index]),
-                        col_type: 'icon_2_round',
-                        extra: {
-                            longClick: [{
-                                title: '更新数据',
-                                js: $.toString(() => {
-                                    eval($.require('aries').rely($.require('aries').aes));
-                                    let shouye = qzDecrypt(request('http://003.22s.lol/encrypt/api.php?path=qiezi/shouye'));
-                                    let data = qzDecrypt(request('http://003.22s.lol/encrypt/api.php?path=qiezi/zonghe'));
-                                    let search = fetch('http://003.22s.lol/searchconfig/vipapi/vipconfig.txt');
-                                    // var kuozhan=qzDecrypt(request('http://004.22s.lol/encrypt/api.php?path=qiezi/heikeji'));
-                                    // var yuming=qzDecrypt(request('http://01.xka3a.top/encrypt/api.php?path=yuming/yuming'));
-                                    //  var gonggao=qzDecrypt(request('http://003.22s.lol/encrypt/api.php?path=qiezi/qz'));
-                                    let avbk = fetch('https://app.caoppht.com/avbk132.php');
-                                    //茄子数据
-                                    //http://api.xka1.top/qiezi/shouye.txt
-                                    //http://api.xka1.top/qiezi/zonghe.txt
-                                    //小可爱数据
-                                    //http://api.xka1.top/xiaokeai/shouye.txt
-                                    //http://api.xka1.top/xiaokeai/zonghe.txt
-                                    setItem('shouye', shouye);
-                                    setItem('data', data);
-                                    setItem('search', search);
-                                    setItem('avbk', avbk);
-                                    // setItem('yuming',yuming);
-                                    //setItem('kuozhan',kuozhan);
-                                    // setItem('gonggao',gonggao);
-                                    refreshPage(false);
-                                    toast('数据已更新');
-                                    log('数据已更新');
-                                    return 'hiker://empty';
-                                })
-                            }, {
-                                title: '更换线路',
-                                js: $.toString(() => {
-                                    var url = 'https://api1.yilushunfeng.top|https://api.changfapiaopiao.top|http://api1.yilushunfeng.top|http://api.changfapiaopiao.top|http://api1.apijiekou.top/api|http://api.phpjiekou.top|http://004.22s.lol/api|http://003.22s.lol/api|http://007.22s.lol/api'.split('|');
-                                    var option = '线路1&线路2&线路3&线路4&线路5&线路6&线路7&线路8&线路9'.split('&')
-                                    var Line = {
-                                        title: '切换线路',
-                                        options: option,
-                                        col: 2,
-                                        js: $.toString((url) => {
-                                            var index = input.match(/\d+/)[0];
-                                            var host = url[index - 1];
-                                            setItem('host', host);
-                                            refreshPage(false);
-                                            toast('线路已更换');
-                                        }, url)
-                                    }
-                                    return 'select://' + JSON.stringify(Line);
-                                })
-                            }]
-                        }
+function getFabu() {
+    const basePaths = [
+        'http://01.xka3a.top',
+        'http://api.xka1.top',
+        'http://y001.22s.mom'
+    ];
+    const path = '/encrypt/api.php?path=yuming/yuming';
+    for (let base of basePaths) {
+        try {
+            let res = qzDecrypt(request(base + path));
+            let match = res.match(/总域名(.*?)《/);
+            if (match) return match[1];
+        } catch (e) {
+            log(`fabu 请求失败: ${base}`);
+        }
+    }
+    log('所有 fabu 地址均请求失败');
+    return null;
+}
+
+try {
+    fabu = getFabu();
+} catch (e) {
+    log('fabu 获取失败');
+}
+
+try {
+    if (fabu) {
+        gonggao = qzDecrypt(request(fabu + '/encrypt/api.php?path=qiezi/qz'));
+    }
+} catch (e) {
+    log('gonggao 获取失败');
+}
+
+try {
+    if (gonggao) {
+        nbym = gonggao.match(/内部域名(.*?)《/)[1];
+    }
+} catch (e) {
+    log('gonggao 解析失败');
+}
+
+var dizhi = nbym || fabu || 'http://api.xka1.top';
+
+let shouye = qzDecrypt(request(dizhi + '/encrypt/api.php?path=qiezi/shouye'));
+let data = qzDecrypt(request(dizhi + '/encrypt/api.php?path=qiezi/zonghe'));
+let search = fetch(dizhi + '/searchconfig/vipapi/vipconfig.txt');
+                                        // var kuozhan=qzDecrypt(request('http://y001.22s.mom/encrypt/api.php?path=qiezi/heikeji'));
+                                        // var yuming=qzDecrypt(request('http://y001.22s.mom/encrypt/api.php?path=qiezi/yuming'));                                  
+                                        let avbk = fetch('https://app.caoppht.com/avbk132.php');
+                                        //茄子数据
+                                        //http://api.xka1.top/qiezi/shouye.txt
+                                        //http://api.xka1.top/qiezi/zonghe.txt
+                                        //小可爱数据
+                                        //http://api.xka1.top/xiaokeai/shouye.txt
+                                        //http://api.xka1.top/xiaokeai/zonghe.txt
+                                        setItem('shouye', shouye);
+                                        setItem('data', data);
+                                        setItem('search', search);
+                                        setItem('dizhi', dizhi);
+                                        setItem('avbk', avbk);
+                                        // setItem('yuming',yuming);
+                                        //setItem('kuozhan',kuozhan);
+                                        setItem('gonggao',gonggao);
+                                        refreshPage(false);
+                                        toast('数据已更新');
+                                        log('数据已更新');
+                                        return 'hiker://empty';
+                                    })
+                                }, {
+                                    title: '更换线路',
+                                    js: $.toString(() => {
+                                        var raw = getItem('gonggao');
+var url = (raw && raw.match(/线路集合(.*?)《/)) ? raw.match(/线路集合(.*?)《/)[1].trim().split('|') :
+          'http://randomapi06.changfapiaopiao.top|http://api002.feylen6.top|http://randomapi08.changfapiaopiao.top|http://api018.apijiekou.top/api|http://sapi001.22s.lol/api|http://api1.feylen6.top|http://api.changfapiaopiao.top|http://api1.apijiekou.top/api|http://api1.feylen6.top|http://api.changfapiaopiao.top|http://api1.apijiekou.top/api'.split('|');
+
+var option = url.map((_, i) => `线路${i + 1}`);
+                                        var Line = {
+                                            title: '切换线路',
+                                            options: option,
+                                            col: 2,
+                                            js: $.toString((url) => {
+                                                var index = input.match(/\d+/)[0];
+                                                var host = url[index - 1];
+                                                setItem('host', host);
+                                                refreshPage(false);
+                                                toast('线路已更换');
+                                            }, url)
+                                        }
+                                        return 'select://' + JSON.stringify(Line);
+                                    })
+                                }]
+                            }
+                        })
                     })
+                    d.push({
+                        col_type: 'blank_block',
+                    });
                 })
                 d.push({
-                    col_type: 'blank_block',
+                    col_type: 'big_blank_block',
                 });
-            })
-            d.push({
-                col_type: 'big_blank_block',
-            });
-        }
-        //setPreResult(d)
-        var 分类 = getMyVar('首页', '1');
-        if (MY_RULE.author == aries.author || MY_NAME == '嗅觉浏览器') {
-            if (分类 == 1) {
-                aries.video()
-            } else if (分类 == 2) {
-                aries.zonghe()
             }
-        } else {
-            d.push({
-                title: '请勿修改作者名称',
-                url: 'hiker://empty',
-                col_type: 'text_center_1',
-            })
+            //setPreResult(d)
+            var 分类 = getMyVar('首页', '1');
+            if (MY_RULE.author == csdown.author || MY_NAME == '嗅觉浏览器') {
+                if (分类 == 1) {
+                    csdown.video()
+                } else if (分类 == 2) {
+                    csdown.zonghe()
+                }
+            } else {
+                d.push({
+                    title: '请勿修改作者名称',
+                    url: 'hiker://empty',
+                    col_type: 'text_center_1',
+                })
+            }
         }
         setResult(d)
     },
     video: () => {
-        eval(aries.rely(aries.aes))
+        eval(csdown.rely(csdown.aes))
         try {
-            var d = aries.d;
+            var d = csdown.d;
             //log(getItem('shouye'))
             //log(getItem('data'))
             //log(getItem('gonggao'))
             //log(getItem('avbk'))
             var list = getItem('shouye').split('首页数据开始')[1].split('首页数据结束')[0].replace(/https?\:\/\/(api1?\.)?(changfapiaopiao|yilushunfeng|phpjiekou|apijiekou)\.top(\/api)?/g, getItem('host')).split('换行');
+               var imgurl = getItem('dizhi');
             list.forEach(data => {
                 var qd = sp(data, "qd(", ")");
                 var tp = sp(data, "tp(", ")");
@@ -157,40 +204,40 @@ const aries = {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").madou()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").madou()',
                         col_type: 'icon_4_card'
                     })
                 } else if (qd == '91TV') {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").tv_91()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").tv_91()',
                         col_type: 'icon_4_card'
                     })
                 } else if (qd == '猫咪') {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomi()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomi()',
                         col_type: 'icon_4_card'
                     })
                 } else if (qd == '猫咪原创') {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiyuanchuang()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiyuanchuang()',
                         col_type: 'icon_4_card'
                     })
                 } else {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -201,8 +248,8 @@ const aries = {
             })
             d.push({
                     title: '撸先生',
-                    img: 'http://api.xka1.top/6img/lusir.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                    img: imgurl+'/6img/lusir.png',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video1/lusir.php`,
@@ -210,8 +257,8 @@ const aries = {
                     }
                 }, {
                     title: '猫咪视频',
-                    img: 'http://api.xka1.top/6img/maomisq.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiav()',
+                    img: imgurl+'/6img/maomisq.png',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiav()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}`,
@@ -219,8 +266,8 @@ const aries = {
                     }
                 }, {
                     title: 'JAV日本区',
-                    img: 'http://api.xka1.top/6img/javn.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                    img: imgurl+'/6img/javn.png',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video2/jav123/jav.php`,
@@ -230,8 +277,8 @@ const aries = {
                 /*
                  {
                     title: '秘爱',
-                    img: 'http://api.xka1.top/6img/miai.jpg',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                    img: imgurl+'/6img/miai.jpg',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video2/xinghuafang/miai.php`,
@@ -241,8 +288,8 @@ const aries = {
                 */
                 {
                     title: 'UAA视频',
-                    img: 'http://api.xka1.top/6img/uaa.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                    img: imgurl+'/6img/uaa.png',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video2/uaa/uaa.php`,
@@ -252,8 +299,8 @@ const aries = {
                 /*
                 {
                     title: 'UU视频',
-                    img: 'http://api.xka1.top/6img/uusp.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                    img: imgurl+'/6img/uusp.png',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video1/caoliusp_xilie/uushipin.php`,
@@ -263,8 +310,8 @@ const aries = {
                 */
                 {
                     title: '图宅',
-                    img: 'http://api.xka1.top/6img/tuzac.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").picerji()',
+                    img: imgurl+'/6img/tuzac.png',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").picerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/picture/tuzac.php`,
@@ -274,8 +321,8 @@ const aries = {
                 /*
                  {
                     title: '嘿嘿连载',
-                    img: 'http://api.xka1.top/6img/heiheilz.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").manhuaerji()',
+                    img: imgurl+'/6img/heiheilz.png',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").manhuaerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/comic/heiheilz.php`,
@@ -283,8 +330,8 @@ const aries = {
                     }
                 }, {
                     title: '禁漫天堂[新]',
-                    img: 'http://api.xka1.top/6img/jinmantt.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").manhuaerji()',
+                    img: imgurl+'/6img/jinmantt.png',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").manhuaerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/comic/jinmantt.php`,
@@ -294,8 +341,8 @@ const aries = {
                 */
                 {
                     title: '暗网[每日大赛]',
-                    img: 'http://api.xka1.top/6img/meiridasai.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").videoerji()',
+                    img: imgurl+'/6img/meiridasai.png',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").videoerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/erji/meiridasai/aw/mrds.php`,
@@ -303,8 +350,8 @@ const aries = {
                     }
                 }, {
                     title: '帖子[每日大赛]',
-                    img: 'http://api.xka1.top/6img/meiridasai.png',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").blackerji()',
+                    img: imgurl+'/6img/meiridasai.png',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").blackerji()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/erji/meiridasai/daily.php`,
@@ -312,8 +359,8 @@ const aries = {
                     }
                 }, {
                     title: '博天堂',
-                    img: 'http://api.xka1.top/6img/f4.png',
-                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                    img: imgurl+'/6img/f4.png',
+                    url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: `${getItem('host')}/video2/botiantang/btt.php`,
@@ -323,8 +370,8 @@ const aries = {
                 /*
                     {
                         title: '小狐狸',
-                        img: 'http://api.xka1.top/6img/xiaohuli1.png',
-                        url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                        img: imgurl+'/6img/xiaohuli1.png',
+                        url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${getItem('host')}/video1/xiaohuli.php`,
@@ -344,13 +391,12 @@ const aries = {
                 var lx = sp(data, "lx(", ")");
                 var qb = qd + '  ' + mc + '  ' + wz + '  ' + ym + '  ' + lx;
                 if (tp != null) {
-                    if ((wz == 'xiangjiao') | (wz == '91dsp') | (wz == 'tiktok18') | (wz == 'ogfap') | (wz == 'tiktok18long') | (wz == 'xiaohuli')) {
-                    } else {
+                    if ((wz == 'xiangjiao') | (wz == '91dsp') | (wz == 'tiktok18') | (wz == 'ogfap') | (wz == 'tiktok18long') | (wz == 'xiaohuli')) {} else {
                         d.push({
                             title: mc,
                             desc: qb,
-                            img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                            img: imgurl+ tp,
+                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -367,7 +413,7 @@ const aries = {
                     title: data.mz,
                     desc: data.ck,
                     img: data.tp,
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").baike()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").baike()',
                     col_type: 'icon_4_card',
                     extra: {
                         host: data.dz,
@@ -379,41 +425,68 @@ const aries = {
         } catch (e) {
             log(e.message)
             if (getMyVar('a') == '') {
-                const host = 'https://api1.yilushunfeng.top';
-                const shouye = qzDecrypt(request('http://003.22s.lol/encrypt/api.php?path=qiezi/shouye'))
-                const data = qzDecrypt(request('http://003.22s.lol/encrypt/api.php?path=qiezi/zonghe'))
-                const search = fetch('http://003.22s.lol/searchconfig/vipapi/vipconfig.txt')
-                // var kuozhan=qzDecrypt(request('http://004.22s.lol/encrypt/api.php?path=qiezi/heikeji'))
-                // var yuming=qzDecrypt(request('http://01.xka3a.top/encrypt/api.php?path=yuming/yuming'))
-                //  var gonggao=qzDecrypt(request('http://003.22s.lol/encrypt/api.php?path=qiezi/qz'))
+            	var fabu, gonggao, nbym;
+
+try {
+    fabu = qzDecrypt(request('http://01.xka3a.top/encrypt/api.php?path=yuming/yuming')).match(/总域名(.*?)《/)[1];
+} catch (e) {
+    log('fabu 获取失败');
+}
+
+try {
+    if (fabu) {
+        gonggao = qzDecrypt(request(fabu + '/encrypt/api.php?path=qiezi/qz'));
+    }
+} catch (e) {
+    log('gonggao 获取失败');
+}
+
+try {
+    if (gonggao) {
+        nbym = gonggao.match(/内部域名(.*?)《/)[1];
+    }
+} catch (e) {
+    log('nbym 获取失败，使用默认地址');
+    nbym = 'http://c001.22s.lol';
+}
+var dizhi = nbym || fabu || 'http://c001.22s.lol';
+                const host = 'http://randomapi06.changfapiaopiao.top';
+                let shouye = qzDecrypt(request(dizhi + '/encrypt/api.php?path=qiezi/shouye'));
+                                        
+                                        let data   = qzDecrypt(request(dizhi + '/encrypt/api.php?path=qiezi/zonghe'));
+                                        let search = fetch(dizhi + '/searchconfig/vipapi/vipconfig.txt');
+                // var kuozhan=qzDecrypt(request('http://007.22s.lol/encrypt/api.php?path=qiezi/heikeji'))
+                // var yuming=qzDecrypt(request('http://y001.22s.mom/encrypt/api.php?path=qiezi/yuming'))
                 const avbk = fetch('https://app.caoppht.com/avbk132.php');
                 putMyVar('a', '1');
                 setItem('host', host);
+                setItem('dizhi', dizhi);
                 setItem('shouye', shouye);
                 setItem('data', data);
                 setItem('search', search);
                 setItem('avbk', avbk);
                 // setItem('yuming',yuming)
                 //setItem('kuozhan',kuozhan)
-                // setItem('gonggao',gonggao)
+                setItem('gonggao',gonggao)
                 refreshPage(false);
                 toast('数据已更新');
                 log('数据已更新');
                 /*  
-    域名替换匹配表达式https?://(api1?\.)?(changfapiaopiao|yilushunfeng|phpjiekou|apijiekou)\.top(\/api)?《
-线路集合https://api1.yilushunfeng.top|https://api.changfapiaopiao.top|http://api1.yilushunfeng.top|http://api.changfapiaopiao.top|http://api1.apijiekou.top/api|http://api.phpjiekou.top|http://004.22s.lol/api《
-失效域名集合https://api.yilushunfeng.top|http://api.yilushunfeng.top|http://api11.phpjiekou.top《
+    域名替换匹配表达式https?://(api1?\.)?(changfapiaopiao|yilushunfeng|phpjiekou|apijiekou)\.top(/api)?《 
+线路集合http://rfEXkbyp.yilushunfeng.top|http://rfEXkbyp.changfapiaopiao.top|http://api1.apijiekou.top/api|http://api.phpjiekou.top|http://api.22s.lol/api《 
+失效域名集合https://api.yilushunfeng.top|http://api.yilushunfeng.top|http://api11.phpjiekou.top《 
 最新接口域名https://api1.yilushunfeng.top《
 */
             }
         }
     },
     zonghe: () => {
-        eval(aries.rely(aries.aes));
+        eval(csdown.rely(csdown.aes));
         try {
-            const d = aries.d;
+            const d = csdown.d;
             // var list=getItem('data').split('综合数据开始')[1].split('综合数据结束')[0].split('换行');
             var list = getItem('data').split('综合数据开始')[1].split('AV百科')[0].replace(/https?\:\/\/(api1?\.)?(changfapiaopiao|yilushunfeng|phpjiekou|apijiekou)\.top(\/api)?/g, getItem('host')).replace(/分割线/g, '换行').split('换行');
+            var imgurl =  getItem('dizhi');
             list.forEach(data => {
                 var qd = sp(data, "qd(", ")");
                 var tp = sp(data, "tp(", ")");
@@ -427,8 +500,8 @@ const aries = {
                         d.push({
                             title: mc,
                             desc: qb,
-                            img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").videoerji()',
+                            img: imgurl+ tp,
+                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").videoerji()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${getItem('host')}/erji/caoliu_xilie/${wz}.php`,
@@ -439,8 +512,8 @@ const aries = {
                         d.push({
                             title: mc,
                             desc: qb,
-                            img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").videoerji()',
+                            img: imgurl+ tp,
+                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").videoerji()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -452,8 +525,8 @@ const aries = {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").blackerji()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").blackerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -464,8 +537,8 @@ const aries = {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?@rule=js:$.require("aries").zhiboerji()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?@rule=js:$.require("csdown").zhiboerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -477,8 +550,8 @@ const aries = {
                         d.push({
                             title: mc,
                             desc: qb,
-                            img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("aries").syvideo()',
+                            img: imgurl+ tp,
+                            url: 'hiker://empty?page=fypage&#noHistory#@rule=js:$.require("csdown").syvideo()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -490,8 +563,8 @@ const aries = {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").nvyouerji()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").nvyouerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -502,8 +575,8 @@ const aries = {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").tieerji()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").tieerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -514,8 +587,8 @@ const aries = {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty@rule=js:$.require("aries").zhibojuheerji()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty@rule=js:$.require("csdown").zhibojuheerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             wz: mc,
@@ -526,16 +599,16 @@ const aries = {
                         d.push({
                             title: mc,
                             desc: qb,
-                            img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomimanhua()',
+                            img: imgurl+ tp,
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomimanhua()',
                             col_type: 'icon_4_card'
                         })
                     } else {
                         d.push({
                             title: mc,
                             desc: qb,
-                            img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").manhuaerji()',
+                            img: imgurl+ tp,
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").manhuaerji()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -547,8 +620,8 @@ const aries = {
                     d.push({
                         title: mc,
                         desc: qb,
-                        img: 'http://api.xka1.top' + tp,
-                        url: 'hiker://empty?page=fypage@rule=js:$.require("aries").xiaoshuoerji()',
+                        img: imgurl+ tp,
+                        url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").xiaoshuoerji()',
                         col_type: 'icon_4_card',
                         extra: {
                             host: `${ym}/${wz}.php`,
@@ -560,16 +633,16 @@ const aries = {
                         d.push({
                             title: mc,
                             desc: qb,
-                            img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomimeitu()',
+                            img: imgurl+ tp,
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomimeitu()',
                             col_type: 'icon_4_card'
                         })
                     } else if (mc != '美图色图') {
                         d.push({
                             title: mc,
                             desc: qb,
-                            img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").picerji()',
+                            img: imgurl+ tp,
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").picerji()',
                             col_type: 'icon_4_card',
                             extra: {
                                 host: `${ym}/${wz}.php`,
@@ -582,8 +655,8 @@ const aries = {
                         d.push({
                             title: mc,
                             desc: qb,
-                            img: 'http://api.xka1.top' + tp,
-                            url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiFM()',
+                            img: imgurl+ tp,
+                            url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiFM()',
                             col_type: 'icon_4_card'
                         })
                     }
@@ -594,20 +667,20 @@ const aries = {
         }
     },
     search: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes))
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes))
         var pg = getParam('page');
         try {
             if (MY_PAGE == 1) {
-                d.push({
+                d.push({   
                     title: "搜索 ",
                     url: $.toString(() => {
                         putMyVar('keyword', input)
                         refreshPage(false)
                         return "hiker://empty"
                     }),
-                    desc: "请输入搜索关键词",
-                    col_type: "input",
+                       desc: "请输入搜索关键词",
+                       col_type: "input",
                     extra: {
                         defaultValue: getMyVar('keyword', ''),
                         pageTitle: '搜索结果'
@@ -638,7 +711,7 @@ const aries = {
                 d.push({
                     col_type: 'blank_block'
                 })
-                var list = JSON.parse(fetch(getMyVar('搜索分类', 'http://003.22s.lol/searchconfig/video.txt')).replace('yindangmao', 'caoliusp_xilie/yindangmao').replace('erji/missav/missav', 'video1/caoliusp_xilie/zhongkoushe').replace('日本专区', '重口社')).searchapi;
+                var list = JSON.parse(fetch(getMyVar('搜索分类', getItem('search'))).replace('yindangmao', 'caoliusp_xilie/yindangmao').replace('erji/missav/missav', 'video1/caoliusp_xilie/zhongkoushe').replace('日本专区', '重口社')).searchapi;
                 var url_n = getItem('host') + '/' + list[0].platform + '.php';
                 putMyVar('url_n', url_n);
                 list.forEach(data => {
@@ -669,11 +742,11 @@ const aries = {
             //log(search_url)
             var host = search_url.split('?')[0];
             if (getMyVar('搜索分类名', '视频') == '视频') {
-                var Arr = ['lusir', '51lieqi', 'tangtoutiao', '50du', 'tiktok', 'xingba', 'anwangjiemi', 'qiyou', 'caoliushequ', '91paofu', 'meiridasai', 'pornhub', 'douyinmax', '51luoli', '91porn_sfktv', 'shuiguopai', 'sifangktv', 'weimiquan', 'heiliaobdy', '51chigua'];
+                var Arr = ['lusir.php', '51lieqi', 'tangtoutiao', '50du', 'tiktok', 'xingba', 'anwangjiemi', 'qiyou', 'caoliushequ', '91paofu', 'meiridasai', 'pornhub', 'douyinmax', '51luoli', '91porn_sfktv', 'shuiguopai', 'sifangktv', 'weimiquan', 'heiliaobdy', '51chigua'];
                 var Brr = ['lutube'];
                 var Crr = ['ins'];
                 var Drr = ['souavsp'];
-                var platform = host.match(/top|api\/.*\.php/)[0].split('.php')[0].split('/')[2];
+                var platform = host.match(/top\/.*\.php/)[0].split('/')[2];
                 //log(platform)
                 var item = JSON.parse(fetch(search_url)).videos;
                 item.forEach(data => {
@@ -694,8 +767,7 @@ const aries = {
                             desc: (data.created_date == null ? '' : data.created_date) + '  ' + (data.date == null ? '' : data.date),
                             img: data.image + lulazy,
                             url: host + '?id=' + data.id + $('').lazyRule(() => {
-                                eval($.require('aries').rely($.require('aries').aes));
-                                ;
+                                eval($.require('csdown').rely($.require('csdown').aes));;
                                 try {
                                     //duration.match(/(\d+)/)[1]>60判断并不准确
                                     var url = JSON.parse(fetch(input + '&type=short')).video;
@@ -762,7 +834,7 @@ const aries = {
                     }
                 })
             } else if (getMyVar('搜索分类名', '视频') == '全网破解') {
-                var Arr = ['ttt', 'loanword', 'loanword_2', '91short', 'sepone', 'lusir', 'cape', 'degree', 'burma', 'novelty', 'intimate', 'confidential', 'park'];
+                var Arr = ['ttt', 'loanword', 'loanword_2', '91short', 'sepone', 'lusir', 'cape', 'degree', 'burma', 'novelty', 'intimate', 'park'];
                 var platform = host.match(/top\/.*\.php/)[0].split('.php')[0].split('/')[4];
                 var item = JSON.parse(fetch(search_url)).videos;
                 // log(item)
@@ -841,7 +913,7 @@ const aries = {
                             title: data.title,
                             desc: data.date,
                             img: data.image + hjlazy,
-                            url: 'hiker://empty@rule=js:$.require("aries").blackerji1()',
+                            url: 'hiker://empty@rule=js:$.require("csdown").blackerji1()',
                             col_type: 'pic_1',
                             extra: {
                                 host: `${host}?id=${data.id}`,
@@ -855,7 +927,7 @@ const aries = {
                             title: data.title,
                             desc: data.date,
                             img: ((wz == '51cg') | (wz == 'hlbdy') | (wz == 'tiktok18')) ? (data.image + lazy) : data.image,
-                            url: 'hiker://empty@rule=js:$.require("aries").blackerji1()',
+                            url: 'hiker://empty@rule=js:$.require("csdown").blackerji1()',
                             col_type: 'pic_1',
                             extra: {
                                 host: `${host}?id=${data.id}`,
@@ -870,7 +942,7 @@ const aries = {
                 list.forEach(data => {
                     d.push({
                         title: data.title,
-                        url: 'hiker://empty?#readTheme#@rule=js:$.require("aries").xiaoshuoerji1()',
+                        url: 'hiker://empty?#readTheme#@rule=js:$.require("csdown").xiaoshuoerji1()',
                         col_type: 'text_1',
                         extra: {
                             host: `${host}?id=${data.id}`,
@@ -886,7 +958,7 @@ const aries = {
                         title: data.title,
                         desc: data.date,
                         img: data.image,
-                        url: 'hiker://empty@rule=js:$.require("aries").manhuaerji1()',
+                        url: 'hiker://empty@rule=js:$.require("csdown").manhuaerji1()',
                         col_type: 'movie_3',
                         extra: {
                             host: `${host}?id=${data.id}`,
@@ -902,7 +974,7 @@ const aries = {
                         title: data.title,
                         desc: data.date,
                         img: wz == 'tiktok18' ? (data.image + lazy) : data.image,
-                        //url:'hiker://empty?page=fypage@rule=js:$.require("aries").tupianerji()',
+                        //url:'hiker://empty?page=fypage@rule=js:$.require("csdown").tupianerji()',
                         url: wz == 'tuzac' ? (host + '?id=' + data.id + tuzpics) : (host + '?id=' + data.id + pics),
                         col_type: 'movie_3',
                         extra: {
@@ -924,12 +996,10 @@ const aries = {
         var t = Math.floor(Date.now());
         //简单匹配
         let sp = (it, s, e) => String(it.split(s)[1]).split(e)[0];
-
         //颜色
         function strong(d, c) {
             return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
         }
-
         //列表,col默认为'scroll_button'
         function Cate(list, n, d, col) {
             if (!col) {
@@ -962,27 +1032,22 @@ const aries = {
             })
             return d;
         }
-
         //生成时间戳
         function getCurrentTimestamp() {
             return new Date().getTime();
         }
-
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
-
         //sha256加密
         function sha256(str) {
             return CryptoJS.SHA256(str).toString();
         }
-
         //颜色
         function color(txt) {
             return '<b><font color=' + '#FF6699' + '>' + txt + '</font></b>'
         }
-
         //茄子解密函数
         function qzDecrypt(word) {
             const key = CryptoJS.enc.Utf8.parse("yinsu12345abcdef");
@@ -1024,7 +1089,6 @@ const aries = {
                 return null;
             }
         }
-
         //猫咪视频图片
         var mmlazy = $('').image(() => {
             const CryptoUtil = $.require("hiker://assets/crypto-java.js");
@@ -1036,7 +1100,7 @@ const aries = {
 
         //猫咪视频请求
         var mmvod = $('').lazyRule(() => {
-            eval($.require('aries').rely($.require('aries').aes));
+            eval($.require('csdown').rely($.require('csdown').aes));
             try {
                 var wsTime = Math.floor(Date.now() / 1000);
                 var wsSecret = md5('D7hGKHnWThaECaQ3ji4XyAF3MfYKJ53M' + input + wsTime);
@@ -1125,7 +1189,7 @@ const aries = {
         })
         //猫咪漫画解析
         var maomimanhuajx = $('').lazyRule(() => {
-            eval($.require('aries').rely($.require('aries').aes));
+            eval($.require('csdown').rely($.require('csdown').aes));
             var sign = Encrypt('{"user_id":1790368,"list_id":' + input + '}');
             var host = 'http://43.154.96.251:8089/api/comic/watch?params=' + sign;
             var body = 'params=' + sign;
@@ -1147,7 +1211,7 @@ const aries = {
 
         //猫咪FM解析
         var maomifmjx = $('').lazyRule(() => {
-            eval($.require('aries').rely($.require('aries').aes));
+            eval($.require('csdown').rely($.require('csdown').aes));
             var sign = Encrypt('{"id":' + input + '}');
             var host = 'http://43.154.96.251:8089/api/book/detail?params=' + sign;
             var body = 'params=' + sign;
@@ -1164,7 +1228,7 @@ const aries = {
 
         //猫咪解析
         var maomijx = $('').lazyRule(() => {
-            eval($.require('aries').rely($.require('aries').aes));
+            eval($.require('csdown').rely($.require('csdown').aes));
             var sign = Encrypt('{"id":' + input + '}');
             var host = 'http://43.154.96.251:8089/api/video/detail?params=' + sign;
             var body = 'params=' + sign;
@@ -1238,7 +1302,6 @@ const aries = {
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
-
             var t0 = Math.floor(Date.now() / 1000) + 1;
             var wsSecret = md5('E9MpC7D5AqWvjmXL3hGkQ2XjZNohAQ' + input.replace(/http(s)?:\/\/.*?\//g, '/') + t0);
             var url = input + '?wsSecret=' + wsSecret + '&wsTime=' + t0;
@@ -1269,14 +1332,14 @@ const aries = {
 
         //海角图片解密
         var hjlazy = $('').image(() => {
-            var n = function (e) {
+            var n = function(e) {
                 for (o = "", i = 0, a = 0, void 0; i < e.length;) {
                     var t, n, o, i, a;
                     (t = e.charCodeAt(i)) < 128 ? (o += String.fromCharCode(t), i++) : 191 < t && t < 224 ? (a = e.charCodeAt(i + 1), o += String.fromCharCode((31 & t) << 6 | 63 & a), i += 2) : (a = e.charCodeAt(i + 1), n = e.charCodeAt(i + 2), o += String.fromCharCode((15 & t) << 12 | (63 & a) << 6 | 63 & n), i += 3);
                 }
                 return o;
             };
-            var decryptData = function (t) {
+            var decryptData = function(t) {
                 var o, i, a, r, s, c, u = "",
                     d = 0,
                     tt = "ABCD*EFGHIJKLMNOPQRSTUVWX#YZabcdefghijklmnopqrstuvwxyz1234567890"
@@ -1288,7 +1351,7 @@ const aries = {
             javaImport.importPackage(
                 Packages.com.example.hikerview.utils
             );
-            with (javaImport) {
+            with(javaImport) {
                 let bytes = FileUtil.toBytes(input);
                 bytes = new java.lang.String(bytes, 'UTF-8')
                 let res = decryptData(bytes + "");
@@ -1297,7 +1360,6 @@ const aries = {
                 return FileUtil.toInputStream(_base64.decode(res, _base64.NO_WRAP));
             }
         })
-
         //时间戳转换
         function timestampToTime(tm, ts) {
             var date = new Date(tm * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
@@ -1314,6 +1376,14 @@ const aries = {
             if (ts == 1) return Y + M + D + h + m + s;
         }
 
+        //骏马图片解密，反base64
+        var junmaimage = $('').image(() => {
+            const CryptoUtil = $.require("hiker://assets/crypto-java.js");
+            let textData = CryptoUtil.Data.parseInputStream(input);
+            let base64Text = textData.toString().split('').reverse().join('');
+            let encrypted0 = CryptoUtil.Data.parseBase64(base64Text, _base64.NO_WRAP);
+            return encrypted0.toInputStream();
+        })
 
         function pageAdd(page) {
             if (getMyVar("page")) {
@@ -1351,7 +1421,7 @@ const aries = {
                     });
                 }),
             }];
-            if (typeof (pages) != 'undefined') {
+            if (typeof(pages) != 'undefined') {
                 var extra1 = {
                     title: "尾页" + pages,
                     js: $.toString((pages) => {
@@ -1366,8 +1436,8 @@ const aries = {
         } //长按跳页
     }),
     syvideo: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes))
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes))
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -1403,8 +1473,7 @@ const aries = {
                         desc: data.date + '   ' + data.duration,
                         img: data.image + lulazy,
                         url: host + '?id=' + data.id + $('').lazyRule(() => {
-                            eval($.require('aries').rely($.require('aries').aes));
-                            ;
+                            eval($.require('csdown').rely($.require('csdown').aes));;
                             try {
                                 //duration.match(/(\d+)/)[1]>60判断并不准确
                                 var url = JSON.parse(fetch(input + '&type=short')).video;
@@ -1472,6 +1541,41 @@ const aries = {
                         }, host, data.id),
                         col_type: 'movie_2'
                     })
+                } else if (wz == 'mogu') {
+                    if (data.image) {
+                        var img = data.image;
+                        d.push({
+                            title: data.title,
+                            desc: (data.created_date == null ? '' : data.created_date) + '  ' + (data.date == null ? '' : data.date) + '  ' + (data.duration == null ? '' : data.duration),
+                            img: (img.includes('upload') || img.includes('new.')) ? (data.image + lazy) : data.image,
+                            url: $('').lazyRule((host, id) => {
+                                var url = host + '?id=' + id;
+                                try {
+                                    var url0 = JSON.parse(fetch(url)).video;
+                                    if (!url0.includes('plist.m3u8')) {
+                                        let url1 = url0.split('.m3u8')[0].replace('.plist', '.plist.m3u8')
+                                        return url1;
+                                    } else {
+                                        return url0 + `#isVideo=true#`;
+                                    }
+                                } catch (e) {
+                                    log(e.toString())
+                                }
+                            }, host, data.id),
+                            col_type: 'movie_2'
+                        })
+                    }
+                } else if (wz == 'junma') {
+                    if (data.image) {
+                        var img = data.image;
+                        d.push({
+                            title: data.title,
+                            desc: (data.created_date == null ? '' : data.created_date) + '  ' + (data.date == null ? '' : data.date) + '  ' + (data.duration == null ? '' : data.duration),
+                            img: data.image + junmaimage,
+                            url: host + '?id=' + data.id + vod,
+                            col_type: 'movie_2'
+                        })
+                    }
                 } else {
                     if (data.image) {
                         var img = data.image;
@@ -1492,8 +1596,8 @@ const aries = {
         setResult(d)
     },
     maomiFM: () => {
-        var d = $.require('aries').d;
-        eval($.require('aries').rely($.require('aries').aes));
+        var d = $.require('csdown').d;
+        eval($.require('csdown').rely($.require('csdown').aes));
         //var pg = getParam('page');
         var pg = MY_PAGE
         var 猫咪FM = [{
@@ -1527,8 +1631,8 @@ const aries = {
         setResult(d)
     },
     videoerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes))
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes))
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -1575,7 +1679,7 @@ const aries = {
                 })
             }
             var Arr = ['xbk', 'md', 'caoliu', 'heiliaoshequ', 'maomi', 'xcl', 'qisemao']
-            var url_a = `${host}?sort=${getMyVar('视频分类二级' + getMyVar('视频分类' + wz, getMyVar('key_' + wz)) + wz, getMyVar('id_' + wz))}&page=` + pg;
+            var url_a = `${host}?sort=${getMyVar('视频分类二级'+ getMyVar('视频分类' + wz, getMyVar('key_' + wz)) + wz,getMyVar('id_' + wz))}&page=` + pg;
             var url = url_a.split('?')[0];
             var list = JSON.parse(fetch(url_a)).videos;
             // log(list)
@@ -1617,8 +1721,8 @@ const aries = {
         setResult(d)
     },
     voderji1: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes))
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes))
         var pg = getParam('page');
         var host = MY_PARAMS.host + pg;
         var url = host.split('?')[0];
@@ -1666,8 +1770,8 @@ const aries = {
         setResult(d)
     },
     blackerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             var host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -1697,7 +1801,7 @@ const aries = {
                         title: data.title,
                         desc: data.date,
                         img: data.image + hjlazy,
-                        url: 'hiker://empty@rule=js:$.require("aries").blackerji1()',
+                        url: 'hiker://empty@rule=js:$.require("csdown").blackerji1()',
                         col_type: 'pic_1_card',
                         extra: {
                             host: `${host}?id=${data.id}`,
@@ -1711,7 +1815,7 @@ const aries = {
                         title: data.title,
                         desc: data.date,
                         img: wz == 'hlbdy' || wz == 'daily' || wz == '51cg' ? (data.image + lazy) : data.image,
-                        url: 'hiker://empty@rule=js:$.require("aries").blackerji1()',
+                        url: 'hiker://empty@rule=js:$.require("csdown").blackerji1()',
                         col_type: 'pic_1_card',
                         extra: {
                             host: `${host}?id=${data.id}`,
@@ -1726,8 +1830,8 @@ const aries = {
         setResult(d)
     },
     blackerji1: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes))
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes))
         var url = MY_PARAMS.host;
         var wz = MY_PARAMS.wz;
         try {
@@ -1947,8 +2051,7 @@ const aries = {
                             })
                         }
                     })
-                } catch {
-                }
+                } catch {}
             } else if (wz == 'kanliao') {
                 var texts = data.picCode.replace(/\<br\>/g, '&&').split('&&');
                 var n = 0;
@@ -1971,13 +2074,12 @@ const aries = {
                 })
             }
 
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     nvyouerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -1989,8 +2091,8 @@ const aries = {
                     title: data.title,
                     desc: data.number,
                     img: data.image,
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").nvyouerji1()',
-                    col_type: 'card_pic_3',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").nvyouerji1()',
+                    col_type: 'card_pic_3_center',
                     extra: {
                         host: `${host}?sort=${data.id}&page=`,
                         wz: wz,
@@ -2004,8 +2106,8 @@ const aries = {
         setResult(d)
     },
     nvyouerji1: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         var host = MY_PARAMS.host + pg;
         var url = host.split('?')[0];
@@ -2029,8 +2131,8 @@ const aries = {
         setResult(d)
     },
     picerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             let host = MY_PARAMS.host.replace('comic', 'picture');
             var wz = MY_PARAMS.wz;
@@ -2060,7 +2162,7 @@ const aries = {
                         title: data.title,
                         desc: data.date,
                         img: wz == 'tiktok18' ? (data.image + lazy) : data.image,
-                        //url: 'hiker://empty?@rule=js:$.require("aries").tupianerji()',
+                        //url: 'hiker://empty?@rule=js:$.require("csdown").tupianerji()',
                         url: wz == 'tuzac' ? (host + '?id=' + data.id + tuzpics) : (host + '?id=' + data.id + pics),
                         col_type: 'movie_3',
                         extra: {
@@ -2079,8 +2181,8 @@ const aries = {
         setResult(d)
     },
     tupianerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         let host = MY_PARAMS.host;
         let url = host.split('?')[0];
         var wz = MY_PARAMS.wz;
@@ -2101,8 +2203,8 @@ const aries = {
         setResult(d)
     },
     zhiboerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -2113,8 +2215,8 @@ const aries = {
                     d.push({
                         title: data.title,
                         img: data.image,
-                        url: 'hiker://empty?@rule=js:$.require("aries").zhiboerji1()',
-                        col_type: 'card_pic_3',
+                        url: 'hiker://empty?@rule=js:$.require("csdown").zhiboerji1()',
+                        col_type: 'card_pic_3_center',
                         extra: {
                             host: `${host}?pingtai=${data.id}`,
                             wz: wz,
@@ -2129,8 +2231,8 @@ const aries = {
         setResult(d)
     },
     zhiboerji1: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         let host = MY_PARAMS.host;
         let url = host.split('?')[0];
         var wz = MY_PARAMS.wz;
@@ -2152,8 +2254,8 @@ const aries = {
         setResult(d)
     },
     xiaoshuoerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -2180,7 +2282,7 @@ const aries = {
             list.forEach(data => {
                 d.push({
                     title: data.title,
-                    url: 'hiker://empty?#readTheme#@rule=js:$.require("aries").xiaoshuoerji1()',
+                    url: 'hiker://empty?#readTheme#@rule=js:$.require("csdown").xiaoshuoerji1()',
                     col_type: 'text_1',
                     extra: {
                         host: `${host}?id=${data.id}`,
@@ -2188,13 +2290,12 @@ const aries = {
                     }
                 })
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     xiaoshuoerji1: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         let host = MY_PARAMS.host;
         let url = host.split('?')[0];
         var wz = MY_PARAMS.wz;
@@ -2215,8 +2316,8 @@ const aries = {
         setResult(d)
     },
     tieerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -2244,7 +2345,7 @@ const aries = {
                     desc: data.date,
                     //img: 'https://images.xoowbs.com/upload_01'+data.image.split('upload_01')[1],
                     img: wz == 'haijiao' ? (data.image + hjlazy) : (data.image + lazy),
-                    url: 'hiker://empty?@rule=js:$.require("aries").blackerji1()',
+                    url: 'hiker://empty?@rule=js:$.require("csdown").blackerji1()',
                     col_type: 'pic_1',
                     extra: {
                         host: `${host}?id=${data.id}`,
@@ -2259,8 +2360,8 @@ const aries = {
         setResult(d)
     },
     manhuaerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             let host = MY_PARAMS.host;
             var wz = MY_PARAMS.wz;
@@ -2289,7 +2390,7 @@ const aries = {
                     title: data.title,
                     desc: data.date,
                     img: data.image,
-                    url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("aries").manhuaerji1()',
+                    url: 'hiker://empty?#immersiveTheme#@rule=js:$.require("csdown").manhuaerji1()',
                     col_type: 'movie_3',
                     extra: {
                         host: `${host}?id=${data.id}`,
@@ -2306,8 +2407,8 @@ const aries = {
         setResult(d)
     },
     manhuaerji1: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         let host = MY_PARAMS.host;
         let url = host.split('?')[0];
         var wz = MY_PARAMS.wz;
@@ -2370,20 +2471,18 @@ const aries = {
         setResult(d)
     },
     tv_91: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
-
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
-
         var t = Math.floor(Date.now());
         var pg = getParam('page');
         var tv = [{
             title: '首页&频道&标签',
             id: '1&2&3',
-            img: 'https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/111.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/112.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
+            img: 'https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/111.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/112.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
         }];
         if (MY_PAGE == 1) {
             Cate(tv, 'tv', d);
@@ -2423,8 +2522,7 @@ const aries = {
             } else if (分类 == 3) {
                 var url = 'https://tvv.zjqfart.cn/video/tags';
             }
-        }
-        ;
+        };
         var html = fetch(url, {
             headers: {
                 'suffix': '173150',
@@ -2461,7 +2559,7 @@ const aries = {
                     desc: data.total + '个片儿',
                     pic_url: data.image,
                     col_type: "icon_3",
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").pindao_91tv()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").pindao_91tv()',
                     extra: {
                         id: data.id,
                     }
@@ -2475,7 +2573,7 @@ const aries = {
                     title: data.name,
                     //img:data.thumb+mdlazy,
                     col_type: "text_3",
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").biaoqian_91tv()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").biaoqian_91tv()',
                     extra: {
                         id: data.id,
                     }
@@ -2485,14 +2583,13 @@ const aries = {
         setResult(d)
     },
     pindao_91tv: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             //md5加密
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
-
             var t = Math.floor(Date.now());
             var t0 = Math.floor(Date.now() / 1000);
             let id = MY_PARAMS.id;
@@ -2536,19 +2633,17 @@ const aries = {
                     url: data.video_url + tvvod,
                 })
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     biaoqian_91tv: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             //md5加密
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
-
             var t = Math.floor(Date.now());
             var t0 = Math.floor(Date.now() / 1000);
             let id = MY_PARAMS.id;
@@ -2593,28 +2688,26 @@ const aries = {
                     url: data.video_url + tvvod,
                 })
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     baike: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         if (MY_PAGE == 1) {
-            d.push({
+            d.push({   
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
-                    return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("aries").avbkss()'
+                    return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("csdown").avbkss()'
                 }),
-                desc: "请输入搜索关键词",
-                col_type: "input",
+                   desc: "请输入搜索关键词",
+                   col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        }
-        ;
+        };
         try {
             var host = MY_PARAMS.host;
             var mz = MY_PARAMS.mz;
@@ -2655,19 +2748,19 @@ const aries = {
         setResult(d)
     },
     avbkss: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         if (MY_PAGE == 1) {
-            d.push({
+            d.push({   
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     refreshPage(false)
                     return "hiker://empty"
                 }),
-                desc: "请输入搜索关键词",
-                col_type: "input",
+                   desc: "请输入搜索关键词",
+                   col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                     pageTitle: '搜索结果'
@@ -2717,12 +2810,12 @@ const aries = {
         setResult(d)
     },
     maomi: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         var 猫咪 = [{
-            title: '猫咪原创&AI制作&不雅视频&亚洲无 码&抖音妹集合&热剧成人版&韩国三级&人气女 优',
-            id: '10&16&5&9&11&12&13&6'
+            title: '猫咪原创&不雅视频&亚洲无 码&抖音妹集合&热剧成人版&韩国三级&人气女 优&国产专区&中文字幕&欧美精品&成人动漫&精品推荐',
+            id: '10&5&9&11&12&13&6&3&8&7&1&15'
         }];
         if (MY_PAGE == 1) {
             Cate(猫咪, '猫咪', d);
@@ -2749,13 +2842,12 @@ const aries = {
                     col_type: 'movie_2'
                 })
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     maomiyuanchuang: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         var 猫咪原创 = [{
             title: '最新&热门',
@@ -2794,13 +2886,12 @@ const aries = {
                     }
                 })
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     maomimanhua: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         try {
             var 猫咪漫画 = [{
@@ -2827,7 +2918,7 @@ const aries = {
                 d.push({
                     title: data.title,
                     img: data.thumb,
-                    url: 'hiker://empty?page=fypage&#immersiveTheme#@rule=js:$.require("aries").maomimanhuaerji()',
+                    url: 'hiker://empty?page=fypage&#immersiveTheme#@rule=js:$.require("csdown").maomimanhuaerji()',
                     //url:data.id+maomimanhuajx,
                     col_type: 'movie_3',
                     extra: {
@@ -2842,8 +2933,8 @@ const aries = {
         setResult(d)
     },
     maomimanhuaerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         var id = MY_PARAMS.id;
         try {
@@ -2866,13 +2957,12 @@ const aries = {
                     col_type: "movie_1_vertical_pic_blur",
                 })
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     maomimeitu: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         try {
             var 猫咪美图 = [{
@@ -2913,13 +3003,12 @@ const aries = {
                     })
                 }
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     maomiav: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         //加载配置
         if (getItem('maomi_tp', '') == '') {
@@ -2939,7 +3028,7 @@ const aries = {
             var maomiav = [{
                 title: '首页&VIP',
                 id: 'library&vip_section&topic&benefit',
-                img: 'https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/129.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/142.svg'
+                img: 'https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/129.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/142.svg'
             }];
             Cate(maomiav, 'maomiav', d, 'icon_2_round');
             var cate_library = JSON.parse(getItem('maomi_categories')).apps_categories[getMyVar('maomiav', 'library')];
@@ -2960,7 +3049,7 @@ const aries = {
             child.forEach(data => {
                 d.push({
                     title: data.name,
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiav_erji()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiav_erji()',
                     col_type: 'text_3',
                     extra: {
                         id: data.id,
@@ -2968,7 +3057,7 @@ const aries = {
                 })
             })
         }
-        var url = `https://mjson.szaction.cc/data/apps/videos/index-${getMyVar('maomi_cate_library', cate_library_n)}.js`;
+        var url = `https://mjson.szaction.cc/data/apps/videos/index-${getMyVar('maomi_cate_library',cate_library_n)}.js`;
         try {
             var url_post = JSON.parse(request(url))
             var list = JSON.parse(mmDecrypt(url_post.data, url_post.suffix)).apps_categories;
@@ -2976,7 +3065,7 @@ const aries = {
                 d.push({
                     title: color(data.name),
                     img: 'hiker://images/icon_right5',
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").maomiav_erji()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").maomiav_erji()',
                     col_type: 'text_icon',
                     extra: {
                         id: data.id,
@@ -2993,13 +3082,12 @@ const aries = {
                     })
                 })
             })
-        } catch (e) {
-        }
+        } catch (e) {}
         setResult(d)
     },
     maomiav_erji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         var id = MY_PARAMS.id;
         var maomisp_erji = [{
@@ -3029,13 +3117,12 @@ const aries = {
                     col_type: 'movie_2',
                 })
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     zhibojuheerji: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             let wz = MY_PARAMS.wz;
             if (wz == '直播聚合') {
@@ -3052,8 +3139,8 @@ const aries = {
                         title: data.title,
                         desc: data.Number,
                         img: data.xinimg,
-                        url: 'hiker://empty@rule=js:$.require("aries").zhibojuheerji1()',
-                        col_type: 'card_pic_3',
+                        url: 'hiker://empty@rule=js:$.require("csdown").zhibojuheerji1()',
+                        col_type: 'card_pic_3_center',
                         extra: {
                             host: `${host}${data.address}`,
                             wz: wz,
@@ -3068,8 +3155,8 @@ const aries = {
         setResult(d)
     },
     zhibojuheerji1: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         let host = MY_PARAMS.host;
         try {
             let list = JSON.parse(fetch(host)).zhubo;
@@ -3084,25 +3171,22 @@ const aries = {
                     })
                 }
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     madou: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
-
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
-
         var t = Math.floor(Date.now());
         let pg = getParam('page');
         var md = [{
             title: '首页&频道&标签',
             id: '1&2&3',
-            img: 'https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/111.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/112.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
+            img: 'https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/111.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/112.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/113.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/114.svg&https://gh-proxy.com/https://raw.githubusercontent.com/ls125781003/tubiao/main/movie/122.svg'
         }];
         if (MY_PAGE == 1) {
             Cate(md, 'md', d);
@@ -3142,8 +3226,7 @@ const aries = {
             } else if (分类 == 3) {
                 var url = 'https://api.nzp1ve.com/video/tags';
             }
-        }
-        ;
+        };
         var html = fetch(url, {
             headers: {
                 'suffix': '173150',
@@ -3180,7 +3263,7 @@ const aries = {
                     desc: data.total + '个片儿',
                     pic_url: data.image,
                     col_type: "icon_3",
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").madoupindao()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").madoupindao()',
                     extra: {
                         id: data.id,
                     }
@@ -3193,7 +3276,7 @@ const aries = {
                     title: data.name,
                     //pic_url:data.thumb,
                     col_type: "text_3",
-                    url: 'hiker://empty?page=fypage@rule=js:$.require("aries").madoubiaoqian()',
+                    url: 'hiker://empty?page=fypage@rule=js:$.require("csdown").madoubiaoqian()',
                     extra: {
                         id: data.id,
                     }
@@ -3203,14 +3286,13 @@ const aries = {
         setResult(d)
     },
     madoupindao: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             //md5加密
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
-
             var t = Math.floor(Date.now());
             var t0 = Math.floor(Date.now() / 1000);
             let id = MY_PARAMS.id;
@@ -3263,19 +3345,17 @@ const aries = {
                     url: data.video_url,
                 })
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
     madoubiaoqian: () => {
-        var d = aries.d;
-        eval(aries.rely(aries.aes));
+        var d = csdown.d;
+        eval(csdown.rely(csdown.aes));
         try {
             //md5加密
             function md5(str) {
                 return CryptoJS.MD5(str).toString();
             }
-
             var t = Math.floor(Date.now());
             var t0 = Math.floor(Date.now() / 1000);
             let id = MY_PARAMS.id;
@@ -3328,9 +3408,8 @@ const aries = {
                     url: data.video_url,
                 })
             })
-        } catch {
-        }
+        } catch {}
         setResult(d)
     },
 }
-$.exports = aries
+$.exports = csdown
