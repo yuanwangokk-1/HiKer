@@ -8,20 +8,19 @@ const csdown = {
     home: () => {
         var d = csdown.d;
         if (MY_PAGE == 1) {
-            d.push({
+            d.push({   
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     return 'hiker://empty?page=fypage@rule=js:$.require("csdown").search()'
                 }),
-                desc: "请输入搜索关键词",
-                col_type: "input",
+                   desc: "请输入搜索关键词",
+                   col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        }
-        ;
+        };
         var pg = getParam('page');
         var c1 = [{
             title: '吃瓜&片库&社区',
@@ -148,7 +147,6 @@ const csdown = {
             let de = CryptoUtil.Data.parseBase64(encrypted, _base64.NO_WRAP);
             return de.toInputStream();
         })
-
         // 随机字符串方法
         function generateRandomHex(length) {
             var result = '';
@@ -168,7 +166,6 @@ const csdown = {
                 }
                 return result;
             }
-
             let requestId = generateRandomHex(32);
             let t = Math.floor(Date.now());
             let data = Encrypt(body);
@@ -236,7 +233,7 @@ const csdown = {
                     });
                 }),
             }];
-            if (typeof (pages) != 'undefined') {
+            if (typeof(pages) != 'undefined') {
                 var extra1 = {
                     title: "尾页" + pages,
                     js: $.toString((pages) => {
@@ -254,15 +251,15 @@ const csdown = {
         var d = csdown.d;
         eval(csdown.rely(csdown.aes));
         if (MY_PAGE == 1) {
-            d.push({
+            d.push({   
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     refreshPage(false)
                     return "hiker://empty"
                 }),
-                desc: "请输入搜索关键词",
-                col_type: "input",
+                   desc: "请输入搜索关键词",
+                   col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                     pageTitle: '搜索结果'
