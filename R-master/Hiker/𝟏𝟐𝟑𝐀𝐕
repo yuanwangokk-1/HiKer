@@ -1,20 +1,20 @@
 const Apollo = {
-    version: "20250508",
+    version: "20250716",
     empty: 'hiker://empty',
     url: "https://123av.ws/zh/",
     d: [],
-    getRangeColors: function() {
+    getRangeColors: function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+            .toString(16))
             .substr(-6);
     }, //随机颜色
-    pageAdd: function(page) {
+    pageAdd: function (page) {
         if (getMyVar("page")) {
             putMyVar("page", (parseInt(page) + 1) + '');
         }
         return;
     }, //翻页
-    pageMoveto: function(page, pages) {
+    pageMoveto: function (page, pages) {
         var longClick = [{
             title: "首页",
             js: $.toString(() => {
@@ -43,7 +43,7 @@ const Apollo = {
                 });
             }),
         }];
-        if (typeof(pages) != 'undefined') {
+        if (typeof (pages) != 'undefined') {
             var extra1 = {
                 title: "尾页" + pages,
                 js: $.toString((pages) => {
@@ -336,7 +336,8 @@ const Apollo = {
                 if (MY_PAGE == 1 && !/search/.test(url)) {
                     try {
                         Apollo.lunboType(html)
-                    } catch {}
+                    } catch {
+                    }
                     Apollo.homeType(html)
                 }
                 break
@@ -380,7 +381,7 @@ const Apollo = {
             col_type: "blank_block"
         });
         try {
-            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+            if (typeof (拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
             } else {
                 var categories = pdfa(html, 大类定位)
@@ -404,9 +405,10 @@ const Apollo = {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
-                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                    if (typeof (排除) != 'undefined' && 排除 != '') {
                         title = title.replace(new RegExp(排除, "g"), "")
-                    };
+                    }
+                    ;
                     Apollo.d.push({
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
@@ -451,7 +453,7 @@ const Apollo = {
             col_type: "blank_block"
         });
         try {
-            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+            if (typeof (拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
             } else {
                 var categories = pdfa(html, 大类定位)
@@ -471,9 +473,10 @@ const Apollo = {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
-                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                    if (typeof (排除) != 'undefined' && 排除 != '') {
                         title = title.replace(new RegExp(排除, "g"), "")
-                    };
+                    }
+                    ;
                     Apollo.d.push({
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((url, params) => {
@@ -594,7 +597,81 @@ const Apollo = {
                         url: item.url
                     })
                 });
-                var playUrl = bf(javplayer).map(item => pdfh(item, "#player&&v-scope").match(/https?.*?\.m3u8/)[0].replace(/\\\//g, '/'))
+                var playUrl = javplayer.map(item => {
+                    function base64Decode_corrected(str) {
+                        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+                        var output = [];
+                        var buffer = 0,
+                            bits = 0;
+                        for (var i = 0; i < str.length; i++) {
+                            var char = str.charAt(i);
+                            // 如果遇到填充字符'='，则直接结束解码过程
+                            if (char === '=') {
+                                break;
+                            }
+                            var c = chars.indexOf(char);
+                            if (c < 0) continue; // 跳过无效字符
+
+                            buffer = (buffer << 6) | c;
+                            bits += 6;
+
+                            if (bits >= 8) {
+                                bits -= 8;
+                                output.push((buffer >> bits) & 0xFF);
+                            }
+                        }
+                        return output;
+                    }
+
+                    /**
+                     * RC4 变种解密函数 (现在调用修正后的 base64Decode_corrected)
+                     */
+                    function rc4_variant_decrypt(input, keyStr) {
+                        var key = keyStr.split('').map(function (c) {
+                            return c.charCodeAt(0);
+                        });
+                        // 调用修正后的解码函数
+                        var data = base64Decode_corrected(input);
+                        var decrypted = [];
+                        for (var i = 0; i < data.length; i++) {
+                            decrypted.push(data[i] ^ key[i % key.length]);
+                        }
+                        var result = "";
+                        for (var i = 0; i < decrypted.length; i++) {
+                            if (decrypted[i] === 0) break; // 遇到0就停止，避免多余尾巴
+                            result += String.fromCharCode(decrypted[i]);
+                        }
+                        return result;
+                    }
+
+                    var ciphertext = item.url;
+                    var key = "MW4RNiPvelzziJcx";
+
+                    // 执行解密
+                    var plaintext = rc4_variant_decrypt(ciphertext, key);
+
+                    // 打印解密后的明文，现在结果是干净的，不再需要手动处理
+                    // 在浏览器环境中，可以使用 console.log()
+                    console.log(plaintext);
+
+                    // 预期的输出:
+
+                    function getEvalResult(evalStr) {
+                        var code = '';
+                        var evals = evalStr.replace(/^eval/, '').replace('return p', 'return p + code');
+                        var func = new Function('code', 'return ' + evals);
+                        var result = func(code);
+                        return result;
+                    }
+
+                    var html = request(plaintext).match(/<script>([\s\S]*?)<\/script>/)[1]
+                    var data = getEvalResult(html)
+                    //log(data)
+                    const match = data.match(/let\s+arr\s*=\s*new\s+Array\s*\(\s*\);\s*const\s+x\s*=\s*\(.*?\)\s*=>\s*.*?;\s*(x\([^)]*\);\s*)+const\s+media\s*=\s*JSON\.parse\s*\(.*?\);/s);
+
+                    eval(match[0])
+                    return media.stream
+                })
                 let playlist = {
                     urls: playUrl,
                     headers: new Array(playUrl.length).fill({
@@ -865,7 +942,8 @@ const Apollo = {
                 url: "hiker://empty",
                 col_type: "movie_1_vertical_pic"
             })
-        } catch {}
+        } catch {
+        }
         Apollo.DynamicSort(html)
         Apollo.videoType(html, page)
     },
@@ -1053,6 +1131,7 @@ const Apollo = {
 </body>
 </html>
 `;
+
         //轮播函数
         function lunbo(d, image, sui) {
             let Html = getHtml(image);
@@ -1066,7 +1145,7 @@ const Apollo = {
                 extra: {
                     js: $.toString((Html) => {
                         // 监听窗口大小变化
-                        window.addEventListener('resize', function() {
+                        window.addEventListener('resize', function () {
                             // 获取当前窗口的宽度
                             var screenWidth = window.innerWidth;
                             // 计算窗口宽度的49%
@@ -1153,6 +1232,7 @@ const Apollo = {
                             let pat = input.split("#");
                             let title = decodeURIComponent(pat[2]);
                             let url = `hiker://empty##${pat[0]}#noHistory##autoCache${game}`;
+
                             let findRule = "js:" + $$$.toString((url, myurle) => {
                                 url = url.replace("hiker://empty##", "")
                                 eval(fetch('hiker://files/rules/Apollo/' + myurle + '.js'))
@@ -1253,7 +1333,7 @@ const Apollo = {
             }
 
             const mark = 'desc';
-            num = typeof(num) == 'undefined' ? 100 : num
+            num = typeof (num) == 'undefined' ? 100 : num
             desc = desc.startsWith('　　') ? desc : '　　' + desc;
             desc = desc.replace(/'/g, "&#39;");
             desc = desc.replace(/\r\n/g, "<br>");
@@ -1266,7 +1346,7 @@ const Apollo = {
                 hide: "#8A2BE2"
             }
 
-            var lazy = $(`#noLoading#`).lazyRule((dc, sdc, m, cs) => {
+            var lazy = $(`#noLoading #`).lazyRule((dc, sdc, m, cs) => {
                 var show = storage0.getItem(m, '0');
                 var title = findItem('desc').title;
                 var re = /(<\/big><br>.*?>).+/g;
