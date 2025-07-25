@@ -9,14 +9,14 @@ const tudou = {
     home: () => {
         var d = tudou.d;
         if (MY_PAGE == 1) {
-            d.push({   
+            d.push({
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("tudou").search()'
                 }),
-                   desc: "请输入搜索关键词",
-                   col_type: "input",
+                desc: "请输入搜索关键词",
+                col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                 }
@@ -230,9 +230,9 @@ const tudou = {
             log(e.message)
             if (getMyVar('a') == '') {
                 //let host = 'https://apip.skolx.cn';
-                let html = fetch('https://ilitqxipof4.icu/h5')
+                let html = fetch('https://ilitqxipof4.icu/h5/#/')
                 let host_ = pdfa(html, 'body&&script').map(c => pdfh(c, 'script&&src'))[0].split('.')[1];
-                let host = `https://apip.${host_}.cn`
+                let host = `https://apip.${host_}.com`
                 setItem('host', host);
                 let account_url = getItem('host') + '/api/in/autoAccount3';
                 let account_body = 'client_id=&c_code=&p_code=&a_code=&a_ins=';
@@ -692,15 +692,15 @@ const tudou = {
         var pg = getParam('page');
         try {
             if (MY_PAGE == 1) {
-                d.push({   
+                d.push({
                     title: "搜索 ",
                     url: $.toString(() => {
                         putMyVar('keyword', input)
                         refreshPage(false)
                         return "hiker://empty"
                     }),
-                       desc: "请输入搜索关键词",
-                       col_type: "input",
+                    desc: "请输入搜索关键词",
+                    col_type: "input",
                     extra: {
                         defaultValue: getMyVar('keyword', ''),
                         pageTitle: '搜索结果'
