@@ -6,7 +6,7 @@ if (getMyVar("URL", "0") != MY_URL) {
     if (getMyVar("namejs", "null") == "null") {
         putMyVar("URL", MY_URL);
     }
-    ;
+
     require(http + "dwer.js");
 
     let tabs;
@@ -17,12 +17,12 @@ if (getMyVar("URL", "0") != MY_URL) {
         for (let i in arts) {
             tabs.push(typeof (换线) == "string" ? pdfh(arts[i], 换线).replace(/ |.*』|：.*|\s|^\s*|\s*$/g, "").replace(/[ ]|[&nbsp;]/g, "") : 换线(arts[i]))
         }
-        ;
+
     } catch (e) {
         tabs = "";
         log(e.toString());
     }
-    ;
+
 
     let 选名 = typeof (名称) != "undefined" ? 名称 : typeof (选集名) != "undefined" ? 选集名 : "";
     let 选图 = typeof (图片) != "undefined" ? 图片 : typeof (选集图) != "undefined" ? 选集图 : "";
@@ -39,7 +39,7 @@ if (getMyVar("URL", "0") != MY_URL) {
             for (let i in conts) {
                 lits.push(typeof (子表) == "string" ? pdfa(conts[i], 子表) : 子表(conts[i]));
             }
-            ;
+
             var lists = [];
             for (let s in conts) {
                 let td = [];
@@ -48,16 +48,16 @@ if (getMyVar("URL", "0") != MY_URL) {
                 for (let j in lis) {
                     td.push((选名 != "" ? (typeof (选名) == "string" ? pdfh(lis[j], 选名) : 选名(lis[j])) : "") + "$" + (选图 != "" ? (typeof (选图) == "string" ? pd(lis[j], 选图) : 选图(lis[j])) : "") + "$" + (选详 != "" ? (typeof (选详) == "string" ? pdfh(lis[j], 选详) : 选详(lis[j])) : "") + "$" + (typeof (选链) == "string" ? pd(lis[j], 选链) : 选链(lis[j])));
                 }
-                ; //log(td)
+                 //log(td)
                 lists.push(td.join("#-#").replace(/\&/g, "＆＆"));
             }
-            ;
+
         } catch (e) {
             log(e.toString());
         }
-        ;
+
         return lists;
-    };
+    }
 
     if (typeof (分页) == "object") {
 
@@ -73,7 +73,7 @@ if (getMyVar("URL", "0") != MY_URL) {
                 } catch (e) {
                     c = [];
                 }
-                ;
+
                 caches = c;
                 let url = MY_URL;
                 //log(url)
@@ -84,7 +84,7 @@ if (getMyVar("URL", "0") != MY_URL) {
                     } catch (e) {
                         c = [];
                     }
-                    ;
+
                     var che = {
                         url: url,
                         page: 0,
@@ -154,7 +154,7 @@ if (getMyVar("URL", "0") != MY_URL) {
                         htmls.push(code)
                         continue
                     }
-                    ;
+
                     let it = mp[i];
                     urls.push({
                         url: pd(it, 分页.分链),
@@ -178,7 +178,7 @@ if (getMyVar("URL", "0") != MY_URL) {
                     for (let i in conts) {
                         lits.push(typeof (子表) == "string" ? pdfa(conts[i], 子表) : 子表(conts[i]));
                     }
-                    ;
+
                     var tmet = [];
                     for (let s in conts) {
                         let td = [];
@@ -186,35 +186,35 @@ if (getMyVar("URL", "0") != MY_URL) {
                         for (let j in lis) {
                             td.push((选名 != "" ? (typeof (选名) == "string" ? pdfh(lis[j], 选名) : 选名(lis[j])) : "") + "$" + (选图 != "" ? (typeof (选图) == "string" ? pd(lis[j], 选图) : 选图(lis[j])) : "") + "$" + (选详 != "" ? (typeof (选详) == "string" ? pdfh(lis[j], 选详) : 选详(lis[j])) : "") + "$" + (typeof (选链) == "string" ? pd(lis[j], 选链) : 选链(lis[j])));
                         }
-                        ; //log(td)
+                         //log(td)
                         tmet.push(td)
                     }
-                    ;
+
 
                     if (lits.length == 分页.章节数) {
                         //章节齐全的才放本地缓存
                         cache.page = cache.page + 1
                         cache.chapters = cache.chapters.concat(tmet.join("#-#"))
                     }
-                    ;
+
                     d = d.concat(tmet.join("#-#"));
                     var lists = [d.join("#-#")]
                     //putMyVar("list", d.join("#-#"));
                 }
-                ;
+
                 saveCache(cache);
             }
-            ;
+
         } catch (e) {
             log(e.toString());
             var lists = "";
         }
-        ;
+
 
     } else {
         var lists = litss();
     }
-    ;
+
 
     let 名 = MY_PARAMS.title;
     let 类;
@@ -223,7 +223,7 @@ if (getMyVar("URL", "0") != MY_URL) {
     } catch (e) {
         类 = "类型：未知";
     }
-    ;
+
     let 导;
     try {
         let d = (typeof (导演) == "string" ? (/&&/.test(导演) ? pdfh(html, 导演) : 导演) : typeof (导演) == "function" ? 导演(html) : "未知").replace(/\/$|◎/g, "").replace(/\//g, " ");
@@ -231,7 +231,7 @@ if (getMyVar("URL", "0") != MY_URL) {
     } catch (e) {
         导 = "导演：未知";
     }
-    ;
+
 
     let 主;
     try {
@@ -240,7 +240,7 @@ if (getMyVar("URL", "0") != MY_URL) {
     } catch (e) {
         主 = "主演：未知";
     }
-    ;
+
 
     let 更;
     try {
@@ -248,7 +248,7 @@ if (getMyVar("URL", "0") != MY_URL) {
     } catch (e) {
         更 = "状态：未知";
     }
-    ;
+
 
     let 图1;
     try {
@@ -258,11 +258,11 @@ if (getMyVar("URL", "0") != MY_URL) {
         } else {
             图1 = 图0;
         }
-        ;
+
     } catch (e) {
         图1 = typeof (详图) == "function" ? 详图(html)[0] : "hiker://files/cache/FY/image/随风.jpg";
     }
-    ;
+
 
     let 图2 = "hiker://files/cache/FY/image/随风.jpg";
     let 图 = /http|https|pic|jpg|png/.test(图1) ? 图1 : 图2;
@@ -306,9 +306,9 @@ if (getMyVar("URL", "0") != MY_URL) {
     } catch (e) {
         clearMyVar("URL");
     }
-    ;
+
 }
-;
+
 let 名 = erji.名;
 let 导 = erji.导;
 let 主 = erji.主;
@@ -338,14 +338,14 @@ if (MY_PAGE == 1) {
     } catch (e) {
         tits = titles;
     }
-    ;
+
     let jie;
     try {
         jie = 介.fontcolor("#778899");
     } catch (e) {
         jie = ("欢迎使用风影").fontcolor("#778899");
     }
-    ;
+
     d.push({
         title: "‘‘’’<b><small>" + tits + "</small></b>",
         desc: "‘‘’’<b><small>" + "详情：".fontcolor("#708090") + jie + "</small></b>",
@@ -413,7 +413,7 @@ if (MY_PAGE == 1) {
                     yso()
                 });
             }
-            ;
+
         }, 名, getMyVar("bak", "0")),
         img: ertu + "搜索.png",
         col_type: "icon_small_3",
@@ -490,9 +490,9 @@ if (MY_PAGE == 1) {
                                 } else {
                                     return "toast://推送失败，可能是ip地址设置错误或未连接到TVBOX。";
                                 }
-                                ;
+
                             }
-                            ;
+
                             return "toast://此线路无法推送";
                         }, push, tabss, lists, tvip)
                     })
@@ -503,19 +503,19 @@ if (MY_PAGE == 1) {
                         col_type: "scroll_button"
                     })
                 }
-                ;
+
                 try {
                     eval("var wenj = " + readFile("hiker://files/cache/FY/xl.js"), 0);
                     if (wenj != "") {
                         if (wenj.route[MY_URL] != undefined) {
                             putMyVar(MY_URL, wenj.route[MY_URL]);
                         }
-                        ;
+
                     }
-                    ;
+
                 } catch (e) {
                 }
-                ;
+
                 let 缓存 = 50; //线路缓存数量
 
                 for (let i in tabs) {
@@ -560,18 +560,18 @@ if (MY_PAGE == 1) {
                         })
                     }
                 }
-                ;
+
                 d.push({
                     col_type: "line"
                 })
             }
-            ;
+
         }
-        ;
-    };
+
+    }
     setTabs(tabs, MY_URL);
 }
-;
+
 
 function setLists(lists, index) {
     let listt;
@@ -580,7 +580,7 @@ function setLists(lists, index) {
     } catch (e) {
         listt = "";
     }
-    ;
+
 
     let zftu = "https://hikerfans.com/tubiao/messy/";
 
@@ -603,7 +603,7 @@ function setLists(lists, index) {
             col_type: "text_icon"
         });
     }
-    ;
+
     let lisd;
     try {
         let lists1 = listt[0].split("$")[0];
@@ -616,7 +616,7 @@ function setLists(lists, index) {
     } catch (e) {
         lisd = listt;
     }
-    ;
+
     let list;
     try {
         if (getItem("zf", "f") == "z") {
@@ -624,11 +624,11 @@ function setLists(lists, index) {
         } else {
             list = lisd.reverse();
         }
-        ;
+
     } catch (e) {
         list = "";
     }
-    ;
+
 
 
     try {
@@ -652,7 +652,7 @@ function setLists(lists, index) {
                     }
                 });
             }
-            ;
+
         } else {
             let xtan = getItem("嗅探", "off") == "on";
             let 排 = 排除 != undefined ? 排除.toString() : "";
@@ -674,7 +674,7 @@ function setLists(lists, index) {
                 } else {
                     col = jm.length > 5 ? "text_2" : list.length < 97 ? "text_4" : "text_5";
                 }
-                ;
+
 
                 let extra = {
                     id: url,
@@ -682,7 +682,7 @@ function setLists(lists, index) {
                         if (点播 != "undefined" && 点播 != "") {
                             eval(点播.replace(/\'/g, ""));
                         }
-                        ;
+
                     }, 点播),
                     videoExcludeRules: [".html", 排除ex],
                     blockRules: [".gif", ".jpeg", ".jpg", ".ico", ".png", "hm.baidu.com", "/ads/*.js", "cnzz.com"],
@@ -701,7 +701,7 @@ function setLists(lists, index) {
                             require(config.依赖.replace(/[^/]*$/, "public.js"));
                             zuji(get, myurl, jm);
                         }
-                        ;
+
                         require(config.依赖.replace(/[^/]*$/, "lazy.js"));
                         return mx(nad, input, MY_HOME, "", url);
                     }, der, MY_HOME, jm.replace(/.*>(.*?)<\/.*/, "$1"), MY_URL.replace(/(.*?)#immersiveTheme.*/, "$1"), get, url == "" ? MY_URL : url) : /function/.test(正文) ? $(zflb ? (url == "" ? MY_URL : url) + "#readTheme##autoPage#" : (url == "" ? MY_URL : url) + "#readTheme#").rule((nad, MY_HOME) => {
@@ -712,7 +712,7 @@ function setLists(lists, index) {
                             require(config.依赖.replace(/[^/]*$/, "public.js"));
                             zuji(get, myurl, jm);
                         }
-                        ;
+
                         require(config.依赖.replace(/[^/]*$/, "lazy.js"));
                         return xt ? video(url) : lazy(nad, url);
                     }, der, MY_HOME, xtan, jm.replace(/.*>(.*?)<\/.*/, "$1"), MY_URL.replace(/(.*?)#immersiveTheme.*/, "$1"), get, url == "" ? MY_URL : url),
@@ -724,8 +724,8 @@ function setLists(lists, index) {
     } catch (e) {
         log(e.toString());
     }
-    ;
-};
+
+}
 setLists(lists, getMyVar(MY_URL, "0"));
 
 if (翻 !== "on") {
@@ -735,7 +735,7 @@ if (翻 !== "on") {
         col_type: "line"
     })
 }
-;
+
 
 function tuiList(tuii) {
     let no = getMyVar("yn", "no") == "no";
@@ -750,7 +750,7 @@ function tuiList(tuii) {
             } else {
                 putMyVar("yn", "yes");
             }
-            ;
+
             refreshPage(false);
             return "#noHistory#hiker://empty";
         }),
@@ -784,7 +784,7 @@ function tuiList(tuii) {
         } else {
             var tui = tuii
         }
-        ;
+
         for (let t in tui) {
             let title = tui[t].split("$")[0];
             let desc = tui[t].split("$")[1];
@@ -822,7 +822,7 @@ function tuiList(tuii) {
                 extra: extra,
             });
         }
-        ;
+
         d.push({
             title: "‘‘’’<small>－－到\t底\t了－－</small>",
             url: "hiker://empty",
@@ -832,12 +832,12 @@ function tuiList(tuii) {
             }
         });
     }
-    ;
-};
+
+}
 if (翻 !== "on") {
     tuiList(tuii);
 }
-;
+
 setResult(d);
 
 setLastChapterRule("js:" + $.toString((http) => {
@@ -854,7 +854,7 @@ setLastChapterRule("js:" + $.toString((http) => {
         for (let i in conts) {
             lies.push(typeof (子表) == "string" ? pdfa(conts[i], 子表) : 子表(conts[i]));
         }
-        ;
+
         let lists = lies[0].length;
         let sz = 0;
         for (let s in conts) {
@@ -862,9 +862,9 @@ setLastChapterRule("js:" + $.toString((http) => {
                 lists = lies[s].length;
                 sz = s;
             }
-            ;
+
         }
-        ;
+
         let list = lies[sz];
         let title1 = (选名 != "" ? (typeof (选名) == "string" ? pdfh(list[0], 选名) : 选名(list[0])) : "").replace(/.*>(.*?)<\/.*/, "$1");
         let title2 = (选名 != "" ? (typeof (选名) == "string" ? pdfh(list[list.length - 1], 选名) : 选名(list[list.length - 1])) : "").replace(/.*>(.*?)<\/.*/, "$1");
@@ -874,7 +874,7 @@ setLastChapterRule("js:" + $.toString((http) => {
             } else {
                 title = title2;
             }
-            ;
+
         } catch (e) {
             title = title2;
         }

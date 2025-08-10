@@ -47,10 +47,10 @@ function 类型(Json) {
     } else {
         jso = Json.filter(item => reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]/.test(item.name.replace(/&&.*/g, "")));
     }
-    ;
+
     let list = jso.filter(item => new RegExp(getMyVar("gs", "").replace("总", "")).test(item.gs) && new RegExp(getMyVar("input", ""), "i").test(item.name));
     return list;
-};
+}
 let bdy = getItem("dy", "本地") == "本地";
 let fen = $("#noLoading#").lazyRule((类型, bdy) => {
     const hikerPop = $.require(config.依赖.replace(/[^/]*$/, "hikerPop.js"));
@@ -79,9 +79,9 @@ let fen = $("#noLoading#").lazyRule((类型, bdy) => {
                         wek.push(li);
                         count++;
                     }
-                    ;
+
                 }
-                ;
+
                 //log(wek);
                 //log(count);
                 let no = count;
@@ -96,7 +96,7 @@ let fen = $("#noLoading#").lazyRule((类型, bdy) => {
                     writeFile(path, getPass(no, resb64, "c"));
                     return "share://" + path;
                 }
-                ;
+
             }, we, list)
         },
         leftTitle: "全部分享",
@@ -206,7 +206,7 @@ function Sx(s, z, title, 类型, bdy) {
         },
         centerTitle: "取消",
     });
-};
+}
 
 let onf = $("#noLoading#").lazyRule((Sx, 类型, bdy) => {
     const hikerPop = $.require(config.依赖.replace(/[^/]*$/, "hikerPop.js"));
@@ -219,7 +219,7 @@ let onf = $("#noLoading#").lazyRule((Sx, 类型, bdy) => {
                 } else {
                     Sx("1", "0", "停用", 类型);
                 }
-                ;
+
             });
         }
     });
@@ -234,7 +234,7 @@ let dy = $("#noLoading#").lazyRule((http, CT) => {
     } catch (e) {
         teurl = [];
     }
-    ;
+
     let name = teurl.map(item => item.title);
 
     // 为选中的项添加标记
@@ -288,7 +288,7 @@ let dy = $("#noLoading#").lazyRule((http, CT) => {
                                             teurl.splice(-1, 1);
                                             deleteFile("hiker://files/cache/FY/dy/" + teurl[leth - 1].title + ".json");
                                         }
-                                        ;
+
                                         saveFile("hiker://files/rules/FYJK/dy.json", JSON.stringify(teurl));
                                         saveFile("hiker://files/cache/FY/dy/" + title + ".json", "[" + html + "]");
                                         return "toast://添加成功！";
@@ -296,11 +296,11 @@ let dy = $("#noLoading#").lazyRule((http, CT) => {
                                         log(html);
                                         return "toast://添加失败，非风影源！";
                                     }
-                                    ;
+
                                 } else {
                                     return "toast://链接有误！";
                                 }
-                                ;
+
                             })
                         },
                         cancel() {
@@ -324,9 +324,9 @@ let dy = $("#noLoading#").lazyRule((http, CT) => {
                                         wek.push(li);
                                         count++;
                                     }
-                                    ;
+
                                 }
-                                ;
+
                                 //log(wek);
                                 //log(count);
                                 let no = count;
@@ -342,7 +342,7 @@ let dy = $("#noLoading#").lazyRule((http, CT) => {
                                     writeFile(path, getPass(no, resb64, "c"));
                                     return "share://" + path;
                                 }
-                                ;
+
                             }, we, teurl)
                         },
                         leftTitle: "全部分享",
@@ -376,7 +376,7 @@ let dy = $("#noLoading#").lazyRule((http, CT) => {
                             clearItem("m1");
                             clearItem("s0");
                         }
-                        ;
+
                         refreshPage(false);
                         return "toast://已删除！";
                     }, http, t);
@@ -414,14 +414,14 @@ let dy = $("#noLoading#").lazyRule((http, CT) => {
                                     clearItem("m1");
                                     clearItem("s0");
                                 }
-                                ;
+
                                 refreshPage(false);
                                 return "toast://已删除 " + name;
                             }, t, teurl);
                         }
                     });
                 }
-                ;
+
             });
         }
     });
@@ -461,7 +461,7 @@ for (let i in gl) {
         }
     });
 }
-;
+
 
 d.push({
     title: "查找",
@@ -503,7 +503,7 @@ for (let i in lent) {
         col_type: "text_3"
     });
 }
-;
+
 d.push({
     col_type: "big_blank_block"
 });
@@ -512,7 +512,7 @@ let titl = ["全部", "影视", "短剧", "动漫", "网盘", "音乐", "漫画"
 if (getItem("隐藏", "off") == "on") {
     titl.push("私有");
 }
-;
+
 
 for (let i in titl) {
     d.push({
@@ -525,7 +525,7 @@ for (let i in titl) {
         }, titl[i]),
     })
 }
-;
+
 d.push({
     col_type: "blank_block"
 }, {
@@ -565,7 +565,7 @@ if (Jso.length != 0) {
                     list = [];
                     console.error('解析文件内容出错:', e);
                 }
-                ;
+
                 if (input == "编辑") {
                     const result = list.filter(item => {
                         return item.name == name;
@@ -646,7 +646,7 @@ if (Jso.length != 0) {
                                     }
                                     count++;
                                 }
-                                ;
+
                                 // 确保目标索引在合理范围内
                                 if (targetIndex >= 0 && targetIndex <= list.length) {
                                     // 将元素从原位置删除
@@ -656,7 +656,7 @@ if (Jso.length != 0) {
                                 } else {
                                     console.error("找不到目标索引，无法移动元素");
                                 }
-                                ;
+
 
                                 let resultList = [];
                                 // 先将 list 中的所有元素添加到 resultList
@@ -750,11 +750,11 @@ if (Jso.length != 0) {
                     saveFile("hiker://files/_cache/Fy/dy/" + name + ".json", txt);
                     return "hiker://explore?path=hiker://files/_cache/Fy/dy/";
                 }
-                ;
+
             }, li.name, 类型, bdy)
         });
     }
-    ;
+
 } else {
     d.push({
         title: "<br>",

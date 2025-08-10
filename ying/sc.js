@@ -320,7 +320,7 @@
         for (let i = 0, len = unitForm.length; i < len; i++) {
             if (size > 1024) {
                 size /= 1024;
-                continue;
+
             } else {
                 return Math.ceil(size) + unitForm[i];
             }

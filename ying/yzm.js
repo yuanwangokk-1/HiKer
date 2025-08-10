@@ -83,8 +83,8 @@ function verify(MY_URL, MY_HOME, http, game, name, ssurl, d, page, sokey, off1) 
                                 }
                             })
                         }
-                        ;
-                    };
+
+                    }
                     TIM(name);
                     if (getItem("s1", "0") == "1" && getMyVar("影搜") == "1") {
                         let d = [];
@@ -112,4 +112,4 @@ function verify(MY_URL, MY_HOME, http, game, name, ssurl, d, page, sokey, off1) 
             id: "id_lb" + name,
         }
     });
-};
+}

@@ -1,8 +1,3 @@
-js:
-// author@LoyDgIk
-// 该插件仅供娱乐，是作者学习研究代码的副产物，插件可能纯在一些漏洞与不合理的设计，请谨慎用于实际项目。
-// 已知问题，用弹窗播放视频链接，不会有播放记录。进入子页面有历史记录，但没有足迹。
-//引入Java类
 const XPopup = com.lxj.xpopup.XPopup;
 const XPopupCallback = com.lxj.xpopup.interfaces.XPopupCallback;
 const DetailUIHelper = com.example.hikerview.ui.detail.DetailUIHelper;
@@ -66,6 +61,7 @@ if (typeof MY_NAME !== "undefined" && MY_NAME === "嗅觉浏览器") {
 function getContext() {
     return typeof getCurrentActivity === "function" ? getCurrentActivity() : ActivityManager.getInstance().getCurrentActivity();
 }
+
 //获取上下文
 const startActivity = getContext();
 
@@ -94,6 +90,7 @@ function getArticleListFragment(activity) {
         return null;
     }
 }
+
 const currentArticleListFragment = getArticleListFragment(startActivity);
 
 function clickItem(af, position, url) {
@@ -113,15 +110,15 @@ function setUseStartActivity(bool) {
 }
 
 function newSimpleCallback({
-    beforeDismiss,
-    beforeShow,
-    onBackPressed,
-    onCreated,
-    onDismiss,
-    onDrag,
-    onKeyBoardStateChanged,
-    onShow
-}) {
+                               beforeDismiss,
+                               beforeShow,
+                               onBackPressed,
+                               onCreated,
+                               onDismiss,
+                               onDrag,
+                               onKeyBoardStateChanged,
+                               onShow
+                           }) {
     return new XPopupCallback({
         beforeDismiss(basePopupView) {
             tryCallBack(beforeDismiss, [basePopupView], true);
@@ -341,6 +338,7 @@ function runOnUI(func) {
         }
     }));
 }
+
 const showOnUI = cannotTouchUI ? pop => runOnUI(() => pop.show()) : pop => pop.show();
 
 function updateRecordsBottom(records) {
@@ -460,13 +458,13 @@ function loading(title) {
 }
 
 function selectCenterMark({
-    click,
-    title,
-    options,
-    icons,
-    noAutoDismiss,
-    position
-}) {
+                              click,
+                              title,
+                              options,
+                              icons,
+                              noAutoDismiss,
+                              position
+                          }) {
     options = getStringArray(options, []);
     icons = getNumberArray(icons, null);
     let pop = builderXPopup()
@@ -479,13 +477,13 @@ function selectCenterMark({
 }
 
 function selectBottomMark({
-    click,
-    title,
-    options,
-    icons,
-    noAutoDismiss,
-    position
-}) {
+                              click,
+                              title,
+                              options,
+                              icons,
+                              noAutoDismiss,
+                              position
+                          }) {
     options = getStringArray(options, []);
     icons = getNumberArray(icons, null);
     let pop = builderXPopup()
@@ -499,13 +497,13 @@ function selectBottomMark({
 }
 
 function selectCenter({
-    click,
-    longClick,
-    title,
-    options,
-    columns,
-    position
-}) {
+                          click,
+                          longClick,
+                          title,
+                          options,
+                          columns,
+                          position
+                      }) {
     let clickListener = new CustomCenterRecyclerViewPopup.ClickListener({
         onLongClick(value, index) {
             tryCallBack(getDefaultValue(longClick, "function", null), [value, index]);
@@ -528,14 +526,14 @@ function selectCenter({
 }
 
 function selectBottom({
-    click,
-    longClick,
-    title,
-    options,
-    columns,
-    height,
-    noAutoDismiss,
-}) {
+                          click,
+                          longClick,
+                          title,
+                          options,
+                          columns,
+                          height,
+                          noAutoDismiss,
+                      }) {
     let clickListener = new CustomRecyclerViewPopup.ClickListener({
         onLongClick(value, index) {
             tryCallBack(getDefaultValue(longClick, "function", null), [value, index]);
@@ -557,7 +555,7 @@ function selectBottom({
 }
 
 function IconExtraMenu(click) {
-    this.create = function(parentView, args) {
+    this.create = function (parentView, args) {
         const Gravity = android.view.Gravity;
         const ImageView = android.widget.ImageView;
         const LinearLayout = android.widget.LinearLayout;
@@ -584,15 +582,16 @@ function IconExtraMenu(click) {
 }
 
 function selectCenterIcon({
-    click,
-    title,
-    iconList,
-    columns,
-    position,
-    extraMenu
-}) {
+                              click,
+                              title,
+                              iconList,
+                              columns,
+                              position,
+                              extraMenu
+                          }) {
     let clickListener = new BookmarkFolderPopup.ClickListener({
-        onLongClick(value, index) {},
+        onLongClick(value, index) {
+        },
         click(value, index) {
             tryCallBack(getDefaultValue(click, "function", null), [value, index]);
         }
@@ -630,16 +629,16 @@ function selectCenterIcon({
 }
 
 function inputTwoRow({
-    title,
-    titleHint,
-    urlHint,
-    titleDefault,
-    urlDefault,
-    confirm,
-    cancel,
-    hideCancel,
-    noAutoSoft
-}) {
+                         title,
+                         titleHint,
+                         urlHint,
+                         titleDefault,
+                         urlDefault,
+                         confirm,
+                         cancel,
+                         hideCancel,
+                         noAutoSoft
+                     }) {
     let okListener = new InputPopup.OkListener({
         ok(text1, text2) {
             tryCallBack(getDefaultValue(confirm, "function", null), [text1, text2]);
@@ -684,16 +683,16 @@ function inputTwoRow({
 }
 
 function inputAutoRow({
-    title,
-    hint,
-    confirm,
-    cancel,
-    okTitle,
-    cancelTitle,
-    defaultValue,
-    hideCancel,
-    noAutoSoft
-}) {
+                          title,
+                          hint,
+                          confirm,
+                          cancel,
+                          okTitle,
+                          cancelTitle,
+                          defaultValue,
+                          hideCancel,
+                          noAutoSoft
+                      }) {
     let okListener = new ConfirmPopup.OkListener({
         ok(text) {
             tryCallBack(getDefaultValue(confirm, "function", null), [text]);
@@ -737,17 +736,17 @@ function inputAutoRow({
 }
 
 function inputConfirm({
-    title,
-    content,
-    defaultValue,
-    hint,
-    confirm,
-    cancel,
-    textarea,
-    maxTextarea,
-    hideCancel,
-    noAutoSoft
-}) {
+                          title,
+                          content,
+                          defaultValue,
+                          hint,
+                          confirm,
+                          cancel,
+                          textarea,
+                          maxTextarea,
+                          hideCancel,
+                          noAutoSoft
+                      }) {
     let pop = builderXPopup()
         .autoOpenSoftInput(!noAutoSoft)
         .autoFocusEditText(!noAutoSoft);
@@ -775,14 +774,14 @@ function inputConfirm({
 }
 
 function confirm({
-    title,
-    content,
-    confirm,
-    cancel,
-    okTitle,
-    cancelTitle,
-    hideCancel
-}) {
+                     title,
+                     content,
+                     confirm,
+                     cancel,
+                     okTitle,
+                     cancelTitle,
+                     hideCancel
+                 }) {
     let pop = builderXPopup()
         .asConfirm(getDefaultValue(title, "string", null), getDefaultValue(content, "string", ""), getDefaultValue(cancelTitle, "string", "取消"), getDefaultValue(okTitle, "string", "确认"), () => {
             tryCallBack(getDefaultValue(confirm, "function", null));
@@ -802,10 +801,10 @@ function SettingItem(...arr) {
 }
 
 function selectBottomSettingMenu({
-    click,
-    options,
-    onDismiss
-}) {
+                                     click,
+                                     options,
+                                     onDismiss
+                                 }) {
     let onItemClickListener = new SettingMenuPopup.OnItemClickListener({
         onClick(str, officeItem, consumer) {
             tryCallBack(getDefaultValue(click, "function", null), [str, officeItem, () => consumer.accept(officeItem)]);
@@ -827,21 +826,21 @@ function selectBottomSettingMenu({
     showOnUI(pop);
     return pop;
 }
- 
+
 selectBottomSettingMenu.SettingItem = SettingItem;
 
 
 function ResExtraInputBox({
-    hint,
-    click,
-    title,
-    onChange,
-    defaultValue,
-    titleVisible
-}) {
+                              hint,
+                              click,
+                              title,
+                              onChange,
+                              defaultValue,
+                              titleVisible
+                          }) {
     let search;
     let edit;
-    this.create = function(parentView, args) {
+    this.create = function (parentView, args) {
         args = Array.isArray(args) ? args : [];
         let inputItem = android.view.LayoutInflater.from(getActivityContext()).inflate(R.layout.item_input, parentView, false);
         search = inputItem.findViewById(R.id.search);
@@ -875,8 +874,10 @@ function ResExtraInputBox({
 
         if (typeof onChange === "function") {
             edit.addTextChangedListener(new android.text.TextWatcher({
-                onTextChanged() {},
-                beforeTextChanged() {},
+                onTextChanged() {
+                },
+                beforeTextChanged() {
+                },
                 afterTextChanged(s) {
                     let text;
                     if (s) {
@@ -913,21 +914,23 @@ function ResExtraInputBox({
 }
 
 function selectBottomResIcon({
-    click,
-    menuClick,
-    title,
-    iconList,
-    columns,
-    height,
-    noAutoDismiss,
-    extraInputBox,
-    position,
-    toPosition,
-    beforeShow
-}) {
+                                 click,
+                                 menuClick,
+                                 title,
+                                 iconList,
+                                 columns,
+                                 height,
+                                 noAutoDismiss,
+                                 extraInputBox,
+                                 position,
+                                 toPosition,
+                                 beforeShow
+                             }) {
     let clickListener = new CustomCenterRecyclerViewPopup.ClickListener({
-        onLongClick(value, index) {},
-        click(value, index) {}
+        onLongClick(value, index) {
+        },
+        click(value, index) {
+        }
     });
     iconList = getDefaultValue(iconList, "array", []);
     let booksList = getBookList(iconList);
@@ -944,7 +947,7 @@ function selectBottomResIcon({
         }
     };
     let setTitle = title => {
-        if (tv) tv.setText(String(title)); 
+        if (tv) tv.setText(String(title));
     }
     let custom = new CustomBottomRecyclerViewPopup(getActivityContext())
         .withTitle(getDefaultValue(title, "string", "请选择"))
@@ -1031,19 +1034,19 @@ function selectBottomResIcon({
 }
 
 function selectBottomRes({
-    click,
-    longClick,
-    menuClick,
-    title,
-    options,
-    columns,
-    height,
-    noAutoDismiss,
-    extraInputBox,
-    toPosition,
-    beforeShow,
-    onDismiss
-}) {
+                             click,
+                             longClick,
+                             menuClick,
+                             title,
+                             options,
+                             columns,
+                             height,
+                             noAutoDismiss,
+                             extraInputBox,
+                             toPosition,
+                             beforeShow,
+                             onDismiss
+                         }) {
     let clickListener = new CustomCenterRecyclerViewPopup.ClickListener({
         onLongClick(value, index) {
             tryCallBack(getDefaultValue(longClick, "function", null), [value, index, resOptionsManage]);
@@ -1126,11 +1129,11 @@ function selectBottomRes({
 }
 
 function infoBottom({
-    title,
-    options,
-    click,
-    longClick
-}) {
+                        title,
+                        options,
+                        click,
+                        longClick
+                    }) {
     let clickListener = new com.example.hikerview.ui.setting.file.FileDetailAdapter.OnClickListener({
         click(value) {
             tryCallBack(getDefaultValue(click, "function", null), [value]);
@@ -1141,10 +1144,10 @@ function infoBottom({
     });
 
     let custom = new FileDetailPopup(
-            getActivityContext(),
-            getDefaultValue(title, "string", null),
-            getStringArray(options, [])
-        )
+        getActivityContext(),
+        getDefaultValue(title, "string", null),
+        getStringArray(options, [])
+    )
         .withClickListener(clickListener);
     let pop = builderXPopup()
         .moveUpToKeyboard(false)
@@ -1199,21 +1202,21 @@ function selectCenterColor(colors, callBack) {
 }
 
 function chefSnackbarMake({
-    content,
-    duration,
-    confirm,
-    cancel,
-    okTitle,
-    cancelTitle
-}) {
+                              content,
+                              duration,
+                              confirm,
+                              cancel,
+                              okTitle,
+                              cancelTitle
+                          }) {
     let decorView = getContext().getWindow().getDecorView();
     ChefSnackbar.Companion.make(decorView)
         .setText(getDefaultValue(content, "string", ""))
         .setDuration(getDefaultValue(okTitle, "number", 0))
-        .setAction(getDefaultValue(okTitle, "string", "确认"), function() {
+        .setAction(getDefaultValue(okTitle, "string", "确认"), function () {
             tryCallBack(getDefaultValue(confirm, "function", null));
         })
-        .setCancelButton(getDefaultValue(cancelTitle, "string", "取消"), function() {
+        .setCancelButton(getDefaultValue(cancelTitle, "string", "取消"), function () {
             tryCallBack(getDefaultValue(cancel, "function", null));
         })
         .show();
@@ -1236,6 +1239,7 @@ function toastMeg(text, type) {
             break;
     }
 }
+
 toastMeg.LC = 1;
 toastMeg.SC = 2;
 toastMeg.LB = 3;
@@ -1261,75 +1265,75 @@ function getClipTopData() {
 }
 
 function confirmSync({
-    title,
-    content,
-    okTitle,
-    cancelTitle,
-    hideCancel,
-    noDismissOnBack,
-    noDismissOnBlank
-}) {
+                         title,
+                         content,
+                         okTitle,
+                         cancelTitle,
+                         hideCancel,
+                         noDismissOnBack,
+                         noDismissOnBlank
+                     }) {
     let countDownLatch = new java.util.concurrent.CountDownLatch(1);
     let result = false;
     showOnUI(
         builderXPopup()
-        .dismissOnTouchOutside(!noDismissOnBlank)
-        .dismissOnBackPressed(!noDismissOnBack)
-        .setPopupCallback(newSimpleCallback({
-            onDismiss(basePopupView) {
-                countDownLatch.countDown();
-            }
-        }))
-        .asConfirm(getDefaultValue(title, "string", null), getDefaultValue(content, "string", ""), getDefaultValue(cancelTitle, "string", "取消"), getDefaultValue(okTitle, "string", "确认"), () => {
-            result = true;
-        }, () => {
-            result = false;
-        }, !!hideCancel)
+            .dismissOnTouchOutside(!noDismissOnBlank)
+            .dismissOnBackPressed(!noDismissOnBack)
+            .setPopupCallback(newSimpleCallback({
+                onDismiss(basePopupView) {
+                    countDownLatch.countDown();
+                }
+            }))
+            .asConfirm(getDefaultValue(title, "string", null), getDefaultValue(content, "string", ""), getDefaultValue(cancelTitle, "string", "取消"), getDefaultValue(okTitle, "string", "确认"), () => {
+                result = true;
+            }, () => {
+                result = false;
+            }, !!hideCancel)
     );
     countDownLatch.await();
     return result;
 }
 
 function inputConfirmSync({
-    title,
-    content,
-    defaultValue,
-    hint,
-    textarea,
-    maxTextarea,
-    hideCancel,
-    noAutoSoft,
-    noDismissOnBack,
-    noDismissOnBlank
-}) {
+                              title,
+                              content,
+                              defaultValue,
+                              hint,
+                              textarea,
+                              maxTextarea,
+                              hideCancel,
+                              noAutoSoft,
+                              noDismissOnBack,
+                              noDismissOnBlank
+                          }) {
     let countDownLatch = new java.util.concurrent.CountDownLatch(1);
     let result = "";
     showOnUI(
         builderXPopup()
-        .autoOpenSoftInput(!noAutoSoft)
-        .autoFocusEditText(!noAutoSoft)
-        .dismissOnTouchOutside(!noDismissOnBlank)
-        .dismissOnBackPressed(!noDismissOnBack)
-        .setPopupCallback(newSimpleCallback({
-            onCreated(basePopupView) {
-                if (hideCancel) {
-                    let cancelTextView = basePopupView.findViewById(R.id.tv_cancel);
-                    if (cancelTextView) {
-                        cancelTextView.setVisibility(8);
+            .autoOpenSoftInput(!noAutoSoft)
+            .autoFocusEditText(!noAutoSoft)
+            .dismissOnTouchOutside(!noDismissOnBlank)
+            .dismissOnBackPressed(!noDismissOnBack)
+            .setPopupCallback(newSimpleCallback({
+                onCreated(basePopupView) {
+                    if (hideCancel) {
+                        let cancelTextView = basePopupView.findViewById(R.id.tv_cancel);
+                        if (cancelTextView) {
+                            cancelTextView.setVisibility(8);
+                        }
+                        let dividerView = basePopupView.findViewById(R.id.xpopup_divider2);
+                        if (dividerView) {
+                            dividerView.setVisibility(8);
+                        }
                     }
-                    let dividerView = basePopupView.findViewById(R.id.xpopup_divider2);
-                    if (dividerView) {
-                        dividerView.setVisibility(8);
-                    }
+                },
+                onDismiss(basePopupView) {
+                    countDownLatch.countDown();
                 }
-            },
-            onDismiss(basePopupView) {
-                countDownLatch.countDown();
-            }
-        }))
-        .asInputConfirm(getDefaultValue(title, "string", null), getDefaultValue(content, "string", null), getDefaultValue(defaultValue, "string", null), getDefaultValue(hint, "string", null), (text) => {
-            result = text;
-        }, null, maxTextarea ? R.layout.xpopup_confirm_input_max : (textarea ? R.layout.xpopup_confirm_input : 0))
+            }))
+            .asInputConfirm(getDefaultValue(title, "string", null), getDefaultValue(content, "string", null), getDefaultValue(defaultValue, "string", null), getDefaultValue(hint, "string", null), (text) => {
+                result = text;
+            }, null, maxTextarea ? R.layout.xpopup_confirm_input_max : (textarea ? R.layout.xpopup_confirm_input : 0))
     );
     countDownLatch.await();
     return result;
@@ -1347,13 +1351,13 @@ function dialogShowOnUI(dialogBuilder, callBack) {
 }
 
 function setAlertDialogButton({
-    rightTitle,
-    rightClick,
-    leftTitle,
-    leftClick,
-    centerTitle,
-    centerClick
-}, dialogBuilder, getParam) {
+                                  rightTitle,
+                                  rightClick,
+                                  leftTitle,
+                                  leftClick,
+                                  centerTitle,
+                                  centerClick
+                              }, dialogBuilder, getParam) {
     if (rightTitle || rightClick) {
         rightClick = getDefaultValue(rightClick, "function", null);
         dialogBuilder.setPositiveButton(getDefaultValue(rightTitle, "string", "确认"), (dialog) => {
@@ -1375,13 +1379,13 @@ function setAlertDialogButton({
 }
 
 function setAlertDialogButtonTitle({
-    rightTitle,
-    rightClick,
-    leftTitle,
-    leftClick,
-    centerTitle,
-    centerClick
-}, dialogBuilder) {
+                                       rightTitle,
+                                       rightClick,
+                                       leftTitle,
+                                       leftClick,
+                                       centerTitle,
+                                       centerClick
+                                   }, dialogBuilder) {
     if (rightTitle || rightClick) {
         dialogBuilder.setPositiveButton(getDefaultValue(rightTitle, "string", "确认"), null);
     }
@@ -1394,13 +1398,13 @@ function setAlertDialogButtonTitle({
 }
 
 function setAlertDialogButtonFunc({
-    rightTitle,
-    rightClick,
-    leftTitle,
-    leftClick,
-    centerTitle,
-    centerClick
-}, dialog, getParam) {
+                                      rightTitle,
+                                      rightClick,
+                                      leftTitle,
+                                      leftClick,
+                                      centerTitle,
+                                      centerClick
+                                  }, dialog, getParam) {
     const DialogInterface = android.content.DialogInterface;
     if (rightTitle || rightClick) {
         rightClick = getDefaultValue(rightClick, "function", null);
@@ -1423,12 +1427,12 @@ function setAlertDialogButtonFunc({
 }
 
 function multiChoice({
-    title,
-    options,
-    checkedIndexs,
-    noAutoDismiss,
-    onChoice,
-}) {
+                         title,
+                         options,
+                         checkedIndexs,
+                         noAutoDismiss,
+                         onChoice,
+                     }) {
     options = getStringArray(options, []);
     checkedIndexs = getDefaultValue(checkedIndexs, "array", []);
     let checkedItems = new Array(options.length).fill(false);
@@ -1554,18 +1558,20 @@ function getSeekAndLayout(max, pos, onChange) {
                 titleStart.setText(res);
             }
         },
-        onStartTrackingTouch(seekBar) {},
-        onStopTrackingTouch(seekBar) {}
+        onStartTrackingTouch(seekBar) {
+        },
+        onStopTrackingTouch(seekBar) {
+        }
     }));
     return [seekBar, linearLayout];
 }
 
 function seekCenter({
-    title,
-    max,
-    pos,
-    onChange,
-}) {
+                        title,
+                        max,
+                        pos,
+                        onChange,
+                    }) {
     max = parseInt(max), pos = parseInt(pos) || 0;
     if (!max || max < pos || pos < 0) {
         throw Error("max和pos必须为整数，且max>0,max>=pos>=0");
@@ -1609,7 +1615,8 @@ function decodeQRCode(path) {
         let binaryBitmap = new com.google.zxing.BinaryBitmap(new com.google.zxing.common.HybridBinarizer(source));
         let decodedResult = new com.google.zxing.MultiFormatReader().decode(binaryBitmap, hints);
         result = String(decodedResult.getText());
-    } catch (e) {}
+    } catch (e) {
+    }
     return result;
 }
 

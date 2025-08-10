@@ -19,7 +19,7 @@ function sul(page, sokey, off1, Json, selected, file) {
         if (names) {
             function rep(text, page, sokey, SURL, Time) {
                 return text.replace("GBK**", encodeStr(sokey, 'GBK')).replace("fypage", page).replace("**", sokey).replace("SURL", SURL).replace("Time", Time);
-            };
+            }
             try {
                 let syurl;
                 if (names.fbhost == "" || getMyVar("namejs", "null") != "null") {
@@ -39,11 +39,11 @@ function sul(page, sokey, off1, Json, selected, file) {
                         });
                         saveFile(file, JSON.stringify(dList));
                     }
-                    ;
+
                 } else {
                     syurl = names.fbhost;
                 }
-                ;
+
                 var SURL = getHome(syurl);
                 ssurl = getMyVar("sourljs", "null") != "null" ? rep(getMyVar("sourljs"), page, sokey, SURL, new Date().getTime()) : rep(names.sourl, page, sokey, SURL, new Date().getTime());
             } catch (e) {
@@ -51,18 +51,18 @@ function sul(page, sokey, off1, Json, selected, file) {
                 var SURL = getHome(s);
                 ssurl = getMyVar("sourljs", "null") != "null" ? rep(getMyVar("sourljs"), page, sokey, SURL, new Date().getTime()) : rep(names.sourl, page, sokey, SURL, new Date().getTime());
             }
-            ;
+
         } else {
             ssurl = "http://fenying";
         }
-        ;
+
     } catch (e) {
         clearItem("s0");
         refreshPage(false);
     }
-    ;
+
     return ssurl;
-};
+}
 ssurl = sul(page, sokey, off1, Json, selected, file);
 
 let jusou = getItem("s1", "0") == "1";
@@ -89,7 +89,7 @@ if (page == 1) {
                 } else {
                     setItem("s1", "1");
                 }
-                ;
+
                 refreshPage(false);
                 return "hiker://empty";
             }),
@@ -108,7 +108,7 @@ if (page == 1) {
                             if (list.length == 0) {
                                 return "hiker://empty";
                             }
-                            ;
+
 
                             if (!/movie\_1\_vertical\_pic|movie\_2|movie\_3/.test(list[0].type)) return "toast://此排列不支持切换";
 
@@ -122,7 +122,7 @@ if (page == 1) {
                                 str = str.replace(/<[^>]*>/g, "");
                                 str = str.replace(/‘|’/g, "");
                                 return str;
-                            };
+                            }
                             let col = h1 == "竖列" ? "movie_1_vertical_pic" : h1 == "双列" ? "movie_2" : "movie_3";
                             for (let li of list) {
                                 let id = li.extra.id;
@@ -131,7 +131,7 @@ if (page == 1) {
                                     col_type: col
                                 })
                             }
-                            ;
+
                         });
                     }
                 });
@@ -151,12 +151,12 @@ if (page == 1) {
     if (getItem("隐藏", "off") == "on") {
         私 = "私有";
     }
-    ;
+
     let titl = ["全部", "影视", "短剧", "动漫", "网盘", "音乐", "漫画", "小说", "听书", "其它"];
     if (私) {
         titl.push(私);
     }
-    ;
+
     let bia = titl.map((tit) => {
         return tit == getItem("lx1", "全部") ? '““<b>' + tit + '</b>””' : tit;
     });
@@ -201,7 +201,7 @@ if (page == 1) {
                                 list = [];
                                 console.error('解析文件内容出错:', e);
                             }
-                            ;
+
                             const result = list.filter(item => {
                                 return !(item.name.replace(/&&.*/g, "") == name);
                             });
@@ -215,7 +215,7 @@ if (page == 1) {
             }
         });
     }
-    ;
+
 
     s.push({
         title: "搜索",
@@ -230,7 +230,7 @@ if (page == 1) {
             } else {
                 return "hiker://empty";
             }
-            ;
+
         }),
         col_type: "input",
         extra: {
@@ -298,9 +298,9 @@ if (page == 1) {
                 col_type: "big_blank_block"
             })
         }
-        ;
+
     }
-    ;
+
     s.push({
         img: sotu + "Loading.gif",
         url: "hiker://empty",
@@ -310,7 +310,7 @@ if (page == 1) {
         }
     })
 }
-;
+
 setPreResult(s);
 
 if (getMyVar("Mysou")) {
@@ -362,7 +362,7 @@ if (getMyVar("Mysou")) {
                         }
                     });
                 }
-                ;
+
                 batchExecute(tasks, {
                     func: function (param, id, error, result) {
                         //log("listener: " + (result || []).length);
@@ -403,7 +403,7 @@ if (getMyVar("Mysou")) {
                             }
                             addItemBefore(pageid, d);
                         }
-                        ;
+
                         if (param.i >= param.all) {
                             deleteItem(pageid)
                         } else {
@@ -426,14 +426,14 @@ if (getMyVar("Mysou")) {
                     }
                 });
             }
-            ;
+
         }
-        ;
+
     } catch (e) {
         log(e.toString());
         setResult(d);
     }
-    ;
+
 } else {
     if (page == 1) {
         let flie = ["电影", "剧集", "动漫", "综艺"];
@@ -464,7 +464,7 @@ if (getMyVar("Mysou")) {
         } catch (e) {
             LT = "0";
         }
-        ;
+
 
         if (!fileExist("hiker://files/cache/FY/reso.js") || CT > (LT + 2 * 24 * 60 * 60 * 1000) || getItem("jcbh", "0") != flei) {
             setItem("jcbh", flei);
@@ -501,14 +501,14 @@ if (getMyVar("Mysou")) {
                 list.push(
                     tit + "$" + des + "$$" + pdfh(li, "f_src&&Text") + "$$$" + title)
             }
-            ;
+
             var reso = {
                 "lt": CT,
                 "list": list
             };
             saveFile("hiker://files/cache/FY/reso.js", JSON.stringify(reso), 0);
         }
-        ;
+
         let list = typeof (reso) != "undefined" ? reso.list : res.list;
         for (let r of list) {
             d.push({
@@ -522,12 +522,12 @@ if (getMyVar("Mysou")) {
                 col_type: "movie_1_vertical_pic"
             })
         }
-        ;
+
         deleteItemByCls("cls_load");
         setResult(d);
     }
-    ;
+
 }
-;
+
 //by随风
 //聚搜模板

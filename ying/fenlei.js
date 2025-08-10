@@ -42,7 +42,7 @@ if (parseInt(page) == 1) {
 
         url = [电影u, 剧集u, 动漫u, 综艺u, 短剧u];
     }
-    ;
+
     let img = ["电影", "剧集", "综艺", "动漫", "其它"];
     let 链 = url.filter(item => item !== "");
     let len = 链.length;
@@ -70,7 +70,7 @@ if (parseInt(page) == 1) {
             }, title[i])
         });
     }
-    ;
+
 
     if (len < 5) {
         (cesy != "*" ? (v ? s : d) : d).push({
@@ -82,13 +82,13 @@ if (parseInt(page) == 1) {
                 } else {
                     setItem("fl0", "双列");
                 }
-                ;
+
 
                 let list = findItemsByCls("cls_flys") || [];
                 if (list.length == 0) {
                     return "hiker://empty";
                 }
-                ;
+
 
                 if (!/movie\_2|movie\_3\_marquee/.test(list[0].type)) return "toast://此排列不支持切换";
 
@@ -103,7 +103,7 @@ if (parseInt(page) == 1) {
                         col_type: col
                     })
                 }
-                ;
+
                 return "hiker://empty";
             }, len, cesy !== "*" ? true : false),
             img: pic1 + "分类排列.png",
@@ -113,7 +113,7 @@ if (parseInt(page) == 1) {
             }
         });
     }
-    ;
+
     d.push({
         col_type: "big_blank_block"
     });
@@ -133,7 +133,7 @@ if (parseInt(page) == 1) {
             }
         })
     }
-    ;
+
     cesy != "*" ? (v ? setPreResult(s) : null) : null;
 
     //分类定位
@@ -156,7 +156,7 @@ if (parseInt(page) == 1) {
             categories = "";
         }
     }
-    ;
+
     //log(categories);
     const Color = "#19B89D";
     /*let init_cate = [];
@@ -188,7 +188,7 @@ if (parseInt(page) == 1) {
                 } else {
                     deleteItemByCls("cls_fy" + MY_RULE.title);
                 }
-                ;
+
                 return "hiker://empty";
             }),
             col_type: "scroll_button",
@@ -215,7 +215,7 @@ if (parseInt(page) == 1) {
                                 } else {
                                     putMyVar("Myurl.url", input);
                                 }
-                                ;
+
                                 refreshPage(false);
                                 return "hiker://empty";
                             }, {
@@ -246,7 +246,7 @@ if (parseInt(page) == 1) {
                                 } else {
                                     putMyVar("Myurl.url", input);
                                 }
-                                ;
+
                                 refreshPage(false);
                                 return "hiker://empty";
                             }, {
@@ -268,7 +268,7 @@ if (parseInt(page) == 1) {
                         }
                     });
                 }
-                ;
+
             });
             storage0.putMyVar('flxz1', xl);
             if (fold === '1') {
@@ -283,9 +283,9 @@ if (parseInt(page) == 1) {
                         extra: u.extra
                     });
                 }
-                ;
+
             }
-            ;
+
             d.push({
                 col_type: "line"
             }, {
@@ -297,13 +297,13 @@ if (parseInt(page) == 1) {
                 toast("没有分类或匹配有误");
                 log(e.toString());
             }
-            ;
+
         }
-        ;
+
     }
-    ;
+
 }
-;
+
 
 let list;
 let 显列 = typeof (列表) != "undefined" ? 列表 : typeof (显示列表) != "undefined" ? 显示列表 : "";
@@ -312,13 +312,13 @@ try {
 } catch (e) {
     list = "";
 }
-;
+
 if (list == "") {
     if (page == 1 && !/验证码|安全验证/.test(Js ? html : ht)) {
         toast("没有列表或匹配有误");
         log(html);
     }
-    ;
+
 } else {
     try {
         let 排 = typeof (ex) != "undefined" ? ex.toString() : "";
@@ -331,7 +331,7 @@ if (list == "") {
                     if (点播 != "undefined" && 点播 != "") {
                         eval(点播.replace(/\'/g, ""));
                     }
-                    ;
+
                 }, db),
                 videoExcludeRules: [".html", 排除ex],
                 blockRules: [".gif", ".jpeg", ".jpg", ".ico", ".png", "hm.baidu.com", "/ads/*.js", "cnzz.com"],
@@ -340,7 +340,7 @@ if (list == "") {
                 cacheM3u8: m3u8
             };
         }
-        ;
+
 
         let lxn = getItem("lx1", "全部");
         let lxna = /影视|动漫|短剧|网盘/.test(lxn) ? "影视" : /听书|音乐/.test(lxn) ? "听书" : /全部|其它/.test(lxn) ? "其它" : lxn;
@@ -469,7 +469,7 @@ if (list == "") {
                 })
             });
         }
-        ;
+
         //log(list)
         deleteItemByCls("cls_load");
     } catch (e) {
@@ -483,10 +483,10 @@ if (list == "") {
             }
         })
     }
-    ;
+
     putMyVar("sd_zh", "1");
 }
-;
+
 setResult(d);
 //动态分类来自模板Q
 //by随风  优化样式及匹配模板😜😜😜

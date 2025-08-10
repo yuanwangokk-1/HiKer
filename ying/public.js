@@ -8,9 +8,9 @@ function pat() {
         zso = {};
         log(e.toString());
     }
-    ;
+
     return zso;
-};
+}
 
 let week = ["日", "一", "二", "三", "四", "五", "六"];
 
@@ -18,7 +18,7 @@ let week = ["日", "一", "二", "三", "四", "五", "六"];
 function WeekDay(week) {
     const weekDays = week;
     return weekDays[new Date().getDay()];
-};
+}
 
 //链接相同去重
 function addObj(array, newObj) {
@@ -30,7 +30,7 @@ function addObj(array, newObj) {
         // 如果链接已存在，覆盖旧对象
         array[exIndex] = newObj;
     }
-};
+}
 
 //日期时间
 function ymdhm() {
@@ -40,7 +40,7 @@ function ymdhm() {
     const riqi = year + "-" + month + "-" + day;
     const shijian = hours + ":" + minutes;
     return riqi + "#" + shijian + "#" + num;
-};
+}
 
 //按周推后日期
 function NextSaturday(zhou) {
@@ -67,7 +67,7 @@ function NextSaturday(zhou) {
     const month = String(specificDay.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1
     const day = String(specificDay.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
-};
+}
 
 //时间差
 function Time(startDate, endDate, updateType) {
@@ -89,7 +89,7 @@ function Time(startDate, endDate, updateType) {
     let days = parseInt(diff / (1000 * 60 * 60 * 24 * (updateType === "周更" ? 7 : 1)));
     console.log(updateType === "周更" ? `周更-距上次更新隔了 ${days} 周` : `日更-距上次更新隔了 ${days} 天`);
     return days;
-};
+}
 
 //更新集数
 function Update(ymday, qday, gen, get) {
@@ -125,10 +125,10 @@ function Update(ymday, qday, gen, get) {
             arr[i].riqi = ymday;
         }
     }
-    ;
+
     data[get] = arr;
     saveFile(file, JSON.stringify(data));
-};
+}
 
 //更新追更
 function UPzg(get, gen) {
@@ -136,14 +136,14 @@ function UPzg(get, gen) {
 
     function getDates(lizso, week) {
         return lizso ? lizso.filter(li => li.week === week).map(li => li.riqi) : ["null"];
-    };
+    }
 
     function update(currentDate, targetDate, updateType) {
         if (currentDate > targetDate) {
             Update(currentDate, targetDate, updateType, get);
         }
-        ;
-    };
+
+    }
     let Day = WeekDay(week);
     let zqi = getDates(lizso, getMyVar("li", Day));
     let rqi = getDates(lizso, "0");
@@ -154,8 +154,8 @@ function UPzg(get, gen) {
     } else if (gen == "日更") {
         update(ymdhm().split("#")[0], rqi[0], "日更");
     }
-    ;
-};
+
+}
 
 //汉字转数字
 let chnNumChar = {
@@ -209,7 +209,7 @@ function ChineseToNumber(chnStr) {
             if (i === str.length - 1) {
                 section += number;
             }
-            ;
+
         } else {
             var unit = chnNameValue[str[i]].value;
             secUnit = chnNameValue[str[i]].secUnit;
@@ -223,16 +223,16 @@ function ChineseToNumber(chnStr) {
                     rtn += section;
                     section = 0;
                 }
-                ;
+
             }
-            ;
+
             number = 0;
         }
-        ;
+
     }
-    ;
+
     return rtn + section;
-};
+}
 
 //匹配数字
 function extractNumber(desc, p) {
@@ -241,7 +241,7 @@ function extractNumber(desc, p) {
     if (matchArabic) {
         return matchArabic[1];
     }
-    ;
+
 
     // 如果没有匹配到阿拉伯数字，尝试匹配中文数字
     const matchChinese = p == "x" ? desc.match(/([零一二三四五六七八九十百千]+)(?:集|话|回|期|卷|章).*/) : desc.match(/([零一二三四五六七八九十百千]+)/);
@@ -251,7 +251,7 @@ function extractNumber(desc, p) {
     // 如果都没有匹配到，返回其他默认值
 
     return p == "x" ? "请手动输入" : desc.substring(0, 15);
-};
+}
 
 //修改
 let Xg = (name, title, desc, img, url, Title, zuji, gen, wek, gj, gs, desz) => {
@@ -271,7 +271,7 @@ let Xg = (name, title, desc, img, url, Title, zuji, gen, wek, gj, gs, desz) => {
             } else if (gen == "日更") {
                 time = ymdhm().split("#")[0];
             }
-            ;
+
             let obj = {
                 title: 名称,
                 desc: 更新,
@@ -293,11 +293,11 @@ let Xg = (name, title, desc, img, url, Title, zuji, gen, wek, gj, gs, desz) => {
                 refreshPage(false);
                 return "toast://修改成功"
             } else {
-                ;
+
                 return "toast://已添加 " + gen;
             }
-            ;
-        };
+
+        }
 
         function generate(wek, gj, gs) {
             if (gen === "周更") {
@@ -307,7 +307,7 @@ let Xg = (name, title, desc, img, url, Title, zuji, gen, wek, gj, gs, desz) => {
             } else {
                 return `${name}`;
             }
-        };
+        }
         let Default = getMyVar("fys", "") == "0" ? generate(wek, gj, gs) : generate(WeekDay(week), "1", "10");
 
         const hikerPop = $.require(config.依赖.replace(/[^/]*$/, "hikerPop.js"));
@@ -359,14 +359,14 @@ let Xg = (name, title, desc, img, url, Title, zuji, gen, wek, gj, gs, desz) => {
                         更时 = "";
                         类型 = s2;
                     }
-                    ;
+
                     hikerPop.runOnNewThread(() => {
                         return add(名称, 更新, 总集, 周, 更集, 更时, 类型);
                     })
                 } catch (e) {
                     return "toast://输入有误";
                 }
-                ;
+
             },
             cancel() {
                 return "toast://取消";
@@ -397,7 +397,7 @@ let jrzg = (name, title, desc, img, url, Title, zuji, gen, wek, gj, gs, desz) =>
     } else {
         return Xg(name, title, desc, img, url, Title, zuji, gen, wek, gj, gs, desz);
     }
-    ;
+
 };
 
 //记录足迹
@@ -416,8 +416,8 @@ function zuji(get, url, tit) {
     } catch (e) {
         log(e.toString());
     }
-    ;
-};
+
+}
 
 //历史记录
 function History(url, get) {
@@ -431,7 +431,7 @@ function History(url, get) {
             ur = par.url.replace(/.*ty##/, "").replace(/#imm.*/, "");
         } catch (e) {
         }
-        ;
+
 
         if (base64Encode(ur) == base64Encode(base64Decode(url).match(/.*ty##(.*?)#imm.*/)[1])) {
 
@@ -440,13 +440,13 @@ function History(url, get) {
             } else {
                 zu.push("无记录");
             }
-            ;
+
         } else {
             zu.push("无记录");
         }
-        ;
+
     }
-    ;
+
     let zuji = extractNumber(zu[0], "z");
     let list = JSON.parse(readFile(file));
     const Arr = list[get].map(function (item) {
@@ -454,15 +454,15 @@ function History(url, get) {
             if (item['zuji'] != zuji && zuji != "无记录" || item['zuji'] == "无记录" && zuji != "无记录") {
                 item['zuji'] = zuji;
             }
-            ;
+
         }
-        ;
+
         return item;
     });
     list[get] = Arr;
     saveFile(file, JSON.stringify(list));
     return zuji;
-};
+}
 
 //删除
 let ex = (get, tit, url) => {
@@ -500,7 +500,7 @@ let Yd = (get, url, wek) => {
                 }
             }
             return -1;
-        };
+        }
 
         const list = JSON.parse(readFile(file));
         if (!list) return "hiker://empty";
@@ -566,7 +566,7 @@ let Fm = (get, i, tit, url) => {
                 if (item['url'] == url) {
                     item['img'] = input;
                 }
-                ;
+
                 return item;
             });
             arr[get] = Arr;
@@ -596,7 +596,7 @@ let Fm = (get, i, tit, url) => {
                     if (item['url'] == url) {
                         item['img'] = pic;
                     }
-                    ;
+
                     return item;
                 });
                 arr[get] = Arr;
@@ -610,7 +610,7 @@ let Fm = (get, i, tit, url) => {
             }
         });
     }
-    ;
+
     List.push({
         title: "点击上方图片更换封面",
         col_type: "text_center_1",
@@ -643,7 +643,7 @@ let Fx = (get, tit, url) => {
             writeFile(path, getPass(tit, resb64, "3"));
             return "share://" + path;
         }
-        ;
+
     }, get, file, tit, url)
 };
 
@@ -660,7 +660,7 @@ let Fxq = (get) => {
             result = list;
             len = Object.values(list).reduce((sum, array) => sum + array.length, 0);
         }
-        ;
+
 
         let resb64 = base64Encode(JSON.stringify(result));
         let getPass = (len, rule, type) => "海阔视界，「风影追更 - 共" + len + "条」风影追更分享，复制整条口令自动导入$" + rule + "$" + type + "$" + get + "@import=js:$.require('import?rule='+" + JSON.stringify(MY_RULE.title) + ")(input)";
@@ -673,7 +673,7 @@ let Fxq = (get) => {
             writeFile(path, getPass(len, resb64, "1"));
             return "share://" + path;
         }
-        ;
+
     }, get, file)
 };
 
@@ -689,6 +689,6 @@ let Tz = (names, title, desc, img, url, Title, zuji, gen, wek, gj, gs, desz) => 
         } else if (input == "调至完更") {
             return jrzg(names, title, desc, img, url, Title, zuji, "完更", "1", gj, gs, desz);
         }
-        ;
+
     }, names, title, desc, img, url, Title, zuji, gen, wek, gj == "" ? "1" : gj, gs == "" ? "10" : gs, desz);
 };

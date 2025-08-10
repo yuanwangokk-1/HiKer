@@ -771,7 +771,7 @@ const csdown = {
                             img: data.image + lulazy,
                             url: host + '?id=' + data.id + $('').lazyRule(() => {
                                 eval($.require('csdown').rely($.require('csdown').aes));
-                                ;
+
                                 try {
                                     //duration.match(/(\d+)/)[1]>60判断并不准确
                                     var url = JSON.parse(fetch(input + '&type=short')).video;
@@ -1403,7 +1403,7 @@ const csdown = {
             if (getMyVar("page")) {
                 putMyVar("page", (parseInt(page) + 1) + '');
             }
-            return;
+
         } //翻页
 
         function pageMoveto(page, pages) {
@@ -1488,7 +1488,7 @@ const csdown = {
                         img: data.image + lulazy,
                         url: host + '?id=' + data.id + $('').lazyRule(() => {
                             eval($.require('csdown').rely($.require('csdown').aes));
-                            ;
+
                             try {
                                 //duration.match(/(\d+)/)[1]>60判断并不准确
                                 var url = JSON.parse(fetch(input + '&type=short')).video;
@@ -2543,7 +2543,7 @@ const csdown = {
                 var url = 'https://tvv.zjqfart.cn/video/tags';
             }
         }
-        ;
+
         var html = fetch(url, {
             headers: {
                 'suffix': '173150',
@@ -2733,7 +2733,7 @@ const csdown = {
                 }
             })
         }
-        ;
+
         try {
             var host = MY_PARAMS.host;
             var mz = MY_PARAMS.mz;
@@ -3262,7 +3262,7 @@ const csdown = {
                 var url = 'https://api.nzp1ve.com/video/tags';
             }
         }
-        ;
+
         var html = fetch(url, {
             headers: {
                 'suffix': '173150',

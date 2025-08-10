@@ -110,7 +110,7 @@ const csdown = {
                         putMyVar('host_1', host)
                     }
                     return 'hiker://empty?page=fypage@rule=js:$.require("csdown").search()';
-                }, MY_PARAMS.host, MY_PARAMS.de_key, MY_PARAMS.init, ),
+                }, MY_PARAMS.host, MY_PARAMS.de_key, MY_PARAMS.init,),
                 desc: "请输入搜索关键词",
                 col_type: "input",
                 extra: {
@@ -123,7 +123,8 @@ const csdown = {
                     host: MY_PARAMS.host,
                 }
             })
-        };
+        }
+
         var pg = getParam('page');
         let 首页 = [{
             title: '首页&分类&排行榜&排期表',
@@ -216,6 +217,7 @@ const csdown = {
             })
             return d;
         }
+
         // 解密函数
         function Decrypt(word) {
             const key = CryptoJS.enc.Utf8.parse(getMyVar('de_key'));
@@ -231,6 +233,7 @@ const csdown = {
             let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
             return decryptedStr;
         }
+
         // 加密函数
         function Encrypt(plaintext) {
             const id = CryptoJS.enc.Utf8.parse(getMyVar('de_key'));
@@ -263,7 +266,7 @@ const csdown = {
             if (getMyVar("page")) {
                 putMyVar("page", (parseInt(page) + 1) + '');
             }
-            return;
+
         } //翻页
 
         function pageMoveto(page, pages) {
@@ -295,7 +298,7 @@ const csdown = {
                     });
                 }),
             }];
-            if (typeof(pages) != 'undefined') {
+            if (typeof (pages) != 'undefined') {
                 var extra1 = {
                     title: "尾页" + pages,
                     js: $.toString((pages) => {
@@ -319,7 +322,7 @@ const csdown = {
                 return;
             }
             const mark = 'desc';
-            num = typeof(num) == 'undefined' ? 45 : num
+            num = typeof (num) == 'undefined' ? 45 : num
             desc = desc.startsWith('　　') ? desc : '　　' + desc;
             desc = desc.replace(/'/g, "&#39;");
             desc = desc.replace(/\r\n/g, "<br>");
@@ -340,6 +343,7 @@ const csdown = {
                 }
                 return str;
             }
+
             let sdesc = substr(desc, num);
             var colors = {
                 show: "black",
@@ -510,7 +514,7 @@ const csdown = {
             records: [
                 "““更新””：增加一些APP",
             ]
-        }, ]);
+        },]);
     },
     video: () => {
         var d = csdown.d;
@@ -685,7 +689,7 @@ const csdown = {
                     }, {
                         title: '简介：' + blurb,
                         col_type: 'rich_text',
-                    }, )
+                    },)
                     setResult(d)
                 }, vod.vod_pic, vod.vod_name, vod.vod_actor, vod.vod_class, vod.vod_remarks, vod.vod_area, vod.vod_blurb, vod.vod_year),
                 col_type: 'movie_1_vertical_pic_blur',
@@ -953,9 +957,7 @@ const csdown = {
                     return 'hiker://empty'
                 }),
                 col_type: 'text_icon',
-                extra: {
-
-                }
+                extra: {}
             })
             let same_list = storage0.getMyVar('vodDetail').same_list;
             same_list.forEach(data => {
@@ -1530,57 +1532,57 @@ const csdown = {
         }
     },
     data: [{
-            title: 'coffee4K',
-            img: 'https://seyouapp777.dqntwl.com/i/2025/06/02/icon_qw.png',
-            de_key: 'qwertyuiopqwertt',
-            host: 'https://cdn-tupic-duofun-neimenggu.56uxi.com/2.txt',
-            init: 120,
-            rank: 1,
-        }, {
-            title: '云速影视',
-            img: 'https://seyouapp777.dqntwl.com/i/2025/06/19/1000184837.png',
-            de_key: '4d83b87c4c5ea111',
-            host: 'http://59.153.167.137:7788/1.json',
-            rank: 1,
-        }, {
-            title: '蓝鹰影视',
-            img: 'https://seyouapp777.dqntwl.com/i/2025/06/07/蓝鹰影视.png',
-            de_key: 'ca94b06ca359d80e',
-            host: 'https://lanyinghz.oss-cn-hangzhou.aliyuncs.com/lanyingxmy.txt',
-            init: 120,
-        }, {
-            title: '瓜萌视频',
-            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/瓜萌视频.jpg',
-            de_key: 'f2A7D4B9E8C16531',
-            host: 'https://www.guahd.com/1.txt',
-        }, {
-            title: '橘猫4K',
-            img: 'https://seyouapp777.dqntwl.com/i/2025/06/15/1000066554.png',
-            de_key: 'pBVmysmGX8TsgrQN',
-            host: 'https://ceshi307386.oss-cn-beijing.aliyuncs.com/jmurl.txt',
-            init: 120,
-        }, {
-            title: '仓鼠4K',
-            img: 'https://www.cs4k.top/app.png',
-            de_key: 'Z98KXaLtO2wC1Pte',
-            host: 'https://qjappcms.cs4k.top/',
-            init: 120,
-        }, {
-            title: '晴天4K',
-            img: 'https://www.sun4k.top/%E6%99%B4%E5%A4%A94Klogo.png',
-            de_key: 'sBxqXVF5pAHbGzrH',
-            host: 'https://qjappcms.sun4k.top/',
-        }, {
-            title: '萝卜视频',
-            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/萝卜影视.png',
-            de_key: 'apiapplbyskey168',
-            host: 'https://apiapplbys.lbys.app:5678/',
-        }, {
-            title: '橘子视频',
-            img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/橘子视频.png',
-            de_key: '2015692015692015',
-            host: 'http://t.bffree.cn/1.txt',
-        },
+        title: 'coffee4K',
+        img: 'https://seyouapp777.dqntwl.com/i/2025/06/02/icon_qw.png',
+        de_key: 'qwertyuiopqwertt',
+        host: 'https://cdn-tupic-duofun-neimenggu.56uxi.com/2.txt',
+        init: 120,
+        rank: 1,
+    }, {
+        title: '云速影视',
+        img: 'https://seyouapp777.dqntwl.com/i/2025/06/19/1000184837.png',
+        de_key: '4d83b87c4c5ea111',
+        host: 'http://59.153.167.137:7788/1.json',
+        rank: 1,
+    }, {
+        title: '蓝鹰影视',
+        img: 'https://seyouapp777.dqntwl.com/i/2025/06/07/蓝鹰影视.png',
+        de_key: 'ca94b06ca359d80e',
+        host: 'https://lanyinghz.oss-cn-hangzhou.aliyuncs.com/lanyingxmy.txt',
+        init: 120,
+    }, {
+        title: '瓜萌视频',
+        img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/瓜萌视频.jpg',
+        de_key: 'f2A7D4B9E8C16531',
+        host: 'https://www.guahd.com/1.txt',
+    }, {
+        title: '橘猫4K',
+        img: 'https://seyouapp777.dqntwl.com/i/2025/06/15/1000066554.png',
+        de_key: 'pBVmysmGX8TsgrQN',
+        host: 'https://ceshi307386.oss-cn-beijing.aliyuncs.com/jmurl.txt',
+        init: 120,
+    }, {
+        title: '仓鼠4K',
+        img: 'https://www.cs4k.top/app.png',
+        de_key: 'Z98KXaLtO2wC1Pte',
+        host: 'https://qjappcms.cs4k.top/',
+        init: 120,
+    }, {
+        title: '晴天4K',
+        img: 'https://www.sun4k.top/%E6%99%B4%E5%A4%A94Klogo.png',
+        de_key: 'sBxqXVF5pAHbGzrH',
+        host: 'https://qjappcms.sun4k.top/',
+    }, {
+        title: '萝卜视频',
+        img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/萝卜影视.png',
+        de_key: 'apiapplbyskey168',
+        host: 'https://apiapplbys.lbys.app:5678/',
+    }, {
+        title: '橘子视频',
+        img: 'https://seyouapp777.dqntwl.com/i/2025/06/04/橘子视频.png',
+        de_key: '2015692015692015',
+        host: 'http://t.bffree.cn/1.txt',
+    },
         /*
          {
             title: '斗量视频',

@@ -16,7 +16,8 @@ const mls = {
                 confirm: $.toString((version) => {
                     setItem('up' + version, '1')
                 }, mls.version),
-                cancel: $.toString(() => {})
+                cancel: $.toString(() => {
+                })
             })
         }
         try {
@@ -79,7 +80,8 @@ const mls = {
                             })
                             //  }
                         })
-                    } catch {}
+                    } catch {
+                    }
                     if (data.stationName == '排行榜') {
                         try {
                             var hotRank = data.hotRank;
@@ -149,7 +151,8 @@ const mls = {
                                 col_type: 'movie_2'
                             })
                         })
-                    } catch {}
+                    } catch {
+                    }
                 })
             }
         } catch (e) {
@@ -187,6 +190,7 @@ const mls = {
     aes: $.toString(() => {
         //加载CryptoJS库
         eval(getCryptoJS())
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
@@ -231,6 +235,7 @@ const mls = {
             })
             return d;
         }
+
         // 解密函数
         function Decrypt(word) {
             const key = CryptoJS.enc.Utf8.parse("JhbGciOiJIUzI1Ni");
@@ -246,9 +251,11 @@ const mls = {
             let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
             return decryptedStr;
         }
+
         var t = Math.floor(Date.now()).toString();
         var t0 = Math.floor(Date.now() / 1000);
         var s = md5(t.toString().substring(3, 8));
+
         // 随机字符串方法
         function generateRandomHex(length) {
             var result = '';

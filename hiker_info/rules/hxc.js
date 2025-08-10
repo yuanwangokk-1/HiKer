@@ -14,23 +14,25 @@ const hxc = {
                 confirm: $.toString((version) => {
                     setItem('up' + version, '1')
                 }, hxc.version),
-                cancel: $.toString(() => {})
+                cancel: $.toString(() => {
+                })
             })
         }
         if (MY_PAGE == 1) {
-            d.push({   
+            d.push({
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("hxc").search()'
                 }),
-                   desc: "请输入搜索关键词",
-                   col_type: "input",
+                desc: "请输入搜索关键词",
+                col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+
         var c1 = [{
             title: '视频&专题&合集&短视频&女优',
             id: '1&2&3&4&5',
@@ -104,14 +106,17 @@ const hxc = {
     aes: $.toString(() => {
         //加载CryptoJS库
         eval(getCryptoJS())
+
         //生成时间戳
         function getCurrentTimestamp() {
             return new Date().getTime();
         }
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
+
         //sha256加密
         function sha256(str) {
             return CryptoJS.SHA256(str).toString();
@@ -156,6 +161,7 @@ const hxc = {
             })
             return d;
         }
+
         // 解密函数
         function Decrypt(word) {
             const key = CryptoJS.enc.Utf8.parse("B77A9FF7F323B5404902102257503C2F");
@@ -184,6 +190,7 @@ const hxc = {
             var ciphertext = encrypted.ciphertext.toString(CryptoJS.enc.Base64);
             return ciphertext;
         }
+
         var lazy = $('').image(() => {
             const CryptoUtil = $.require("hiker://assets/crypto-java.js");
             let key = CryptoUtil.Data.parseUTF8("46cc793c53dc451b");
@@ -209,6 +216,7 @@ const hxc = {
             });
             return JSON.parse(html);
         }
+
         var vod = $('').lazyRule(() => {
             eval($.require('hxc').rely($.require('hxc').aes));
             let data0 = '{"videoId":' + input + '}';
@@ -232,15 +240,15 @@ const hxc = {
                     title: '视频&合集&短视频',
                     id: '1&2&3'
                 }]
-                d.push({   
+                d.push({
                     title: "搜索 ",
                     url: $.toString(() => {
                         putMyVar('keyword', input)
                         refreshPage(false)
                         return "hiker://empty"
                     }),
-                       desc: "请输入搜索关键词",
-                       col_type: "input",
+                    desc: "请输入搜索关键词",
+                    col_type: "input",
                     extra: {
                         defaultValue: getMyVar('keyword', ''),
                         pageTitle: '搜索结果'
@@ -433,6 +441,7 @@ const hxc = {
                 max = Math.floor(max);
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             }
+
             var num = getRandomInt(10, 25);
             let getlist_url = getItem('host') + '/videos/getList';
             let getlist_body = '{"footId":2,"length":' + num + ',"page":' + pg + ',"type":7}';

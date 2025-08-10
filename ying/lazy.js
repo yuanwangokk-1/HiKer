@@ -7,7 +7,7 @@ function lazy(nad, input) {
         Json = [];
         console.error('解析文件内容出错:', e);
     }
-    ;
+
     let gy = Json.find(item => item.name.replace(/&&.*/, "") === nad);
     let 公用
     try {
@@ -16,7 +16,7 @@ function lazy(nad, input) {
         公用 = null;
         log(e.toString());
     }
-    ;
+
     let 点击 = 公用 && typeof 公用.点播 == "string" ? 公用.点播 : "";
     let 排除 = 公用 && typeof 公用.排除 == "object" ? 公用.排除.toString() : "";
     let 包含 = 公用 && typeof 公用.包含 == "object" ? 公用.包含.toString() : "";
@@ -124,7 +124,7 @@ function lazy(nad, input) {
     if (广告 !== "") {
         adm3u8.push(广告);
     }
-    ;
+
 
     function hsdc(url) {
         let input = url;
@@ -143,7 +143,7 @@ function lazy(nad, input) {
             hideLoading();
             return 'toast://没找到断插配置文件';
         }
-    };
+    }
 
     try {
         var purl = JSON.parse(fetch(input).match(/var player_.*?=(.*?)</)[1]);
@@ -161,7 +161,7 @@ function lazy(nad, input) {
     } else {
         url = p_url;
     }
-    ;
+
 
     let host = getHome(input);
     if (/sstv/.test(input)) {
@@ -174,7 +174,7 @@ function lazy(nad, input) {
         }
         input = jx + url;
     }
-    ;
+
     if (/quark\.cn|\.uc\.cn/.test(url)) {
         return "hiker://page/quarkList?rule=Quark.简&realurl=" + encodeURIComponent(url) + "&sharePwd=";
     } else if (/ali(pan|yun|yundrive)/.test(url)) {
@@ -189,7 +189,7 @@ function lazy(nad, input) {
         } else {
             Ad = url + ";{Referer@" + host + "}";
         }
-        ;
+
         return Ad;
     } else if (getItem("断插") == "on" && /1905|fun.tv|le.com|pptv|mgtv|ixigua|sohu|miguvideo|bilibili|youku|qq.com|iqiyi/.test(url)) {
         showLoading("断插解析中，请稍候··");
@@ -210,10 +210,10 @@ function lazy(nad, input) {
                 if (typeof (request) == 'undefined' || !request) {
                     eval(fba.getInternalJs());
                 }
-                ;
+
                 window.c = 0;
             }
-            ;
+
             window.c++;
             if (window.c * 250 >= 10 * 1000) {
                 fba.log("嗅探超时，超过10秒未获取到");
@@ -225,15 +225,15 @@ function lazy(nad, input) {
                         hideLoading();
                         return "toast://解析超时，建议切换线路";
                     }
-                    ;
+
                 }, durl, hsdc));
             }
-            ;
+
 
             if (点击 != ("undefined" && "")) {
                 eval(点击.replace(/\'/g, ""));
             }
-            ;
+
             //document.querySelectorAll('button')[1].click();
             //document.querySelector("#playleft iframe").contentWindow.document.querySelector("#start").click()
 
@@ -243,14 +243,14 @@ function lazy(nad, input) {
             if (排除 != ("undefined" && "")) {
                 exclude = new RegExp(exclude.source + '|' + 排除);
             }
-            ;
+
 
             let contain = /sf16-sg|pd1\.123pan\.cn|cn-beijing-data\.ali(pan|yundrive)|hls\/play.*\.m3u8|s1\.czspp|netease\.com|dycdn-tos\.pstatp|\.mp4\?http|\.mp4\?|\.mp4&|fext\=mp4|\.m3u8\?http|\.mp4|\.MP4|\.m3u8|\.flv|\.avi|\.3gp|\.mpeg|\.wmv|\.mov|\.MOV|\.rmvb|\.dat|\.mkv|qqBFdownload|mime\=video%2F|\=video_mp4|\/video\/tos\/|pt\=m3u8|type\=m3u8|bdyun|\.m3u8\?\w*|\/ipfs\/|\.m4a|\.mp3|\.flac|\.wav|\.wma|\.ogg|\.aac|\.ape/;
 
             if (包含 != ("undefined" && "")) {
                 contain = new RegExp(contain.source + '|' + 包含);
             }
-            ;
+
 
             for (var i in urls) {
                 //fba.log("全部: " + urls[i]);
@@ -277,7 +277,7 @@ function lazy(nad, input) {
                                 Ad = play.split(";{")[0];
                                 aiurl = play.split(";{")[0] + "#ignoreImg=true##isVideo=true#;{" + play.split(";{")[1];
                             }
-                            ;
+
                             var bfurl = /\.m4a|\.mp3|\.flac|\.wav|\.wma|\.ogg|\.aac|\.ape/.test(Ad) ? Ad + "#ignoreImg=true##isMusic=true#;{" + play.split(";{")[1] : Ad + "#ignoreImg=true##isVideo=true#;{" + play.split(";{")[1];
 
                             if (/\.html\}/.test(play)) {
@@ -293,7 +293,7 @@ function lazy(nad, input) {
                                 } else {
                                     return bfurl;
                                 }
-                                ;
+
                             } else if (/\.mp4/.test(aiurl) && AI && AID) {
                                 var header = JSON.parse(fetch(aiurl, {
                                     onlyHeaders: true,
@@ -305,11 +305,11 @@ function lazy(nad, input) {
                                 } else {
                                     return Ad;
                                 }
-                                ;
+
                             } else {
                                 return bfurl;
                             }
-                            ;
+
 
                             if (/1905|fun.tv|le.com|pptv|mgtv|ixigua|sohu|miguvideo|bilibili|youku|qq.com|iqiyi/.test(url)) {
                                 showLoading("解析失效，已启用断插");
@@ -318,13 +318,13 @@ function lazy(nad, input) {
                                 hideLoading();
                                 return "toast://播放失败，建议切换线路";
                             }
-                            ;
+
                         }, fy_bridge_app.base64Encode(fy_bridge_app.getHeaderUrl(jurl)), durl, AI, AID, hsdc, adm3u8));
                 }
             }
         }, url, input, AI, AID, hsdc, 点击, 排除ex, 包含bh, adm3u8)
     }
-};
+}
 
 function zw(nad, input, MY_HOME, game) {
     let Json;
@@ -335,7 +335,7 @@ function zw(nad, input, MY_HOME, game) {
         Json = [];
         console.error('解析文件内容出错:', e);
     }
-    ;
+
     let gy = getMyVar("namejs", "null") == "null" ? Json.find(item => item.name.replace(/&&.*/, "") === nad).gy : getMyVar("gyjs", "");
     let 公用 = eval("(" + gy + ")");
 
@@ -350,12 +350,12 @@ function zw(nad, input, MY_HOME, game) {
             } else {
                 return zw;
             }
-            ;
+
         } catch (e) {
             toast("解析正文失败，可能规则失效！");
             log(e.toString());
         }
-        ;
+
     } else {
         let czw = 公用.正文(input);
         if (czw == "二级") {
@@ -366,10 +366,10 @@ function zw(nad, input, MY_HOME, game) {
         } else {
             return czw;
         }
-        ;
+
     }
-    ;
-};
+
+}
 
 function mx(nad, input, MY_HOME, game, input) {
     let Json;
@@ -380,7 +380,7 @@ function mx(nad, input, MY_HOME, game, input) {
         Json = [];
         console.error('解析文件内容出错:', e);
     }
-    ;
+
     let gy = getMyVar("namejs", "null") == "null" ? Json.find(item => item.name.replace(/&&.*/, "") === nad).gy : getMyVar("gyjs", "");
     let 公用 = eval("(" + gy + ")");
     let xt = getItem("嗅探", "off") == "on";
@@ -401,13 +401,13 @@ function mx(nad, input, MY_HOME, game, input) {
             } else {
                 return mx;
             }
-            ;
+
         } catch (e) {
             toast("免嗅解析失败，自动转为嗅探！");
             log(e.toString());
             return xt ? video() : lazy(nad);
         }
-        ;
+
     } else {
         let cmx = 公用.免嗅(input);
         if (cmx == "嗅探") {
@@ -424,10 +424,10 @@ function mx(nad, input, MY_HOME, game, input) {
         } else {
             return cmx;
         }
-        ;
+
     }
-    ;
-};
+
+}
 
 function video(input) {
     try {
@@ -436,7 +436,7 @@ function video(input) {
     } catch (e) {
         var purl = [];
     }
-    ;
+
     if (purl == []) {
         return "video://" + input;
     } else if (purl.encrypt == "1") {
@@ -446,7 +446,7 @@ function video(input) {
     } else {
         var url = p_url
     }
-    ;
+
 
     let host = getHome(input);
     if (/xy1080/.test(input)) {
@@ -457,7 +457,7 @@ function video(input) {
         }
         input = jx + url;
     }
-    ;
+
     if (/quark\.cn|\.uc\.cn/.test(url)) {
         return url;
     } else if (/\.mp4|\.m3u8|\.flv/.test(url)) {

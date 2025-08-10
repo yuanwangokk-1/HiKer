@@ -21,7 +21,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                         clearItem("s0");
                         toast(name + " 失效超过5次，已归至失效类");
                     }
-                    ;
+
                     const newItem = Object.assign({}, item, {
                         ttl: ttlValue + 1,
                         sxtit: sxtit
@@ -32,7 +32,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
             });
             saveFile(file, JSON.stringify(ttlList));
         }
-    };
+    }
 
     function fby(nam, name, Json, file, text, sxtit) {
         if (nam.fbhost != "" && nam.fbhost != undefined || getMyVar("namejs", "null") != "null") {
@@ -44,7 +44,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
             } catch (e) {
                 toast(name + " - 没有发布页");
             }
-            ;
+
             if (getMyVar("namejs", "null") == "null") {
                 const datedList = Json.map(item => {
                     if (item.name.replace(/&&.*/, "") === name) {
@@ -63,16 +63,16 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                     toast("链接有误或查看网站是否正常访问！");
                     return "hiker://empty";
                 }
-                ;
+
             }
-            ;
+
             if (getItem("s1", "0") == "1") {
                 return "toast://" + name + " - 已获取到域名，请刷新！";
             } else {
                 refreshPage(false);
                 return "toast://" + name + " - 已获取到域名，正在加载！";
             }
-            ;
+
         } else {
             ttlo(name, Json, file, sxtit);
             if (getItem("s1", "0") !== "1") {
@@ -88,10 +88,10 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                     }
                 });
             }
-            ;
+
         }
-        ;
-    };
+
+    }
 
     function htmlyz(MY_URL, MY_HOME, http, game, name, ssurl, d, page, sokey, nam, off1, Json) {
         let headers = {
@@ -121,14 +121,14 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
             })); //log(htm)
             ht = htm.body; //log(ht)
         }
-        ;
+
 
         if (/检测中/.test(ht)) {
             ht = fetch(MY_HOME + "?btwaf" + ht.match(/btwaf(.*?)\"/)[1], {
                 headers: headers
             });
         }
-        ;
+
 
         if (/人机验证/.test(ht)) {
             let Cokie = fetchCookie(ssurl, {
@@ -142,7 +142,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                 headers: headers
             })
         }
-        ;
+
 
         if (/验证码|系统安全验证|验证后|提交验证/.test(ht) && !/弹出验证码/.test(ht)) {
             if (page == 1) {
@@ -153,9 +153,9 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                     //自动HOME后面有ht
                     return verify(MY_URL, MY_HOME, http, game, name, ssurl, d, page, sokey, off1);
                 }
-                ;
+
             }
-            ;
+
         } else if (/ajax\/suggest/.test(ssurl)) {
             html = ht;
         } else if (ht == "" || !/电影|剧集|连续剧|电视剧|综艺|动漫|短剧|纪录|记录|番剧|搜索|视频|視頻|搜尋|電影|劇集|續集|電視劇|綜藝|動畫|短劇|紀錄|番劇/.test(ht)) {
@@ -181,19 +181,19 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                             }
                         });
                     }
-                    ;
+
                 }
             }
-            ;
+
             deleteItemByCls("cls_load");
             return
         } else {
             html = ht;
         }
-        ;
+
         //log(html)
         return html;
-    };
+    }
 
     function dwlist(html, name) {
         let 列表;
@@ -210,9 +210,9 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
         } else if (/img-list|videoul|hl-one-list|bt_img/.test(html)) {
             列表 = '.img-list||.videoul||.hl-one-list||.bt_img&&li'
         }
-        ;
+
         return 列表;
-    };
+    }
 
     function lists(html, ssurl, 列表) {
         let list;
@@ -222,9 +222,9 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
         } catch (e) {
             list = "";
         }
-        ;
+
         return list;
-    };
+    }
 
     function dws(name, list) {
         let 更新;
@@ -266,7 +266,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
             链接 = 'a&&href'
         }
         return 更新 + "$" + 图片 + "$" + 片名 + "$" + 链接;
-    };
+    }
     let html;
     let list;
     let 列表
@@ -296,7 +296,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
             so = nam.so;
             g = nam.gy;
         }
-        ;
+
 
         if (typeof g != 'undefined') {
             try {
@@ -305,9 +305,9 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                 公用 = null;
                 log(e.toString());
             }
-            ;
+
         }
-        ;
+
         let headers = {
             "User-Agent": MOBILE_UA,
             "Referer": MY_URL,
@@ -322,40 +322,40 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
             try {
                 db = 公用 && typeof 公用.点播 == "string" ? 公用.点播 : "";
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
             try {
                 ex = 公用 && typeof 公用.排除 == "object" ? 公用.排除 : "";
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
             try {
                 bh = 公用 && typeof 公用.包含 == "object" ? 公用.包含 : "";
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
             try {
                 gg = 公用 && typeof 公用.广告 == "object" ? 公用.广告 : "";
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
         } else if (typeof 正文 == "string" ? 正文 == "on" : false) {
             try {
                 zw = 公用 && typeof 公用.正文 == "function" ? 公用.正文.toString() : "";
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
         }
-        ;
+
 
         htm = status ? html.body : html;
         let ison;
@@ -365,21 +365,21 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
         } catch (e) {
             ison = "off";
         }
-        ;
+
 
         if (公用 && (typeof 公用.数字 == "function" ? 公用.数字(htm) : false) && typeof 数字 == "undefined") {
             if (page == 1) {
                 require(http + "yzm.js");
                 verify(MY_URL, MY_HOME, http, game, name, ssurl, d, page, sokey, off1);
             }
-            ;
+
         } else if (公用 && typeof 公用.验证 == "function" && (typeof 验证 == "function" ? 验证(htm) : false)) {
             try {
                 公用.验证(htm, ssurl);
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
             deleteItemByCls("cls_load");
         } else if (htm == "" || !/电影|剧集|连续剧|电视剧|综艺|动漫|短剧|纪录|记录|音乐|歌|DJ|MV|番剧|漫画|说|相声|书|小品|搜索|视频|視頻|搜尋|電影|劇集|續集|電視劇|綜藝|動畫|短劇|紀錄|音樂|歌|番劇|漫畫|說|相聲|書|小藝/.test(htm) && ison != "on" || ison == "on" && (typeof (ht) == "string" ? ht.code != 200 : "")) {
             if (page == 1) {
@@ -393,7 +393,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                         text = "无法访问，数据错误或验证失败";
                         sxtit = "无法访问或规则失效";
                     }
-                    ;
+
                     html = [];
                     deleteItemByCls("cls_load");
                     return fby(nam, name, Json, file, text, sxtit);
@@ -415,16 +415,16 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                         });
                         clearItem("fystag");
                     }
-                    ;
+
                 }
             }
-            ;
+
             deleteItemByCls("cls_load");
             return
         } else {
             html = htm;
         }
-        ;
+
         list = typeof (列表) != "undefined" ? 列表(html) : 搜索列表(html);
     } else if (HOst) {
         html = htmlyz(MY_URL, MY_HOME, http, game, name, ssurl, d, page, sokey, nam, off1, Json);
@@ -436,7 +436,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
         片名 = dw1.split("$")[2];
         链接 = dw1.split("$")[3];
     }
-    ;
+
 
     try {
         //单搜列表
@@ -469,7 +469,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                     var 排除ex = 排.replace(/\\/g, "").replace(/^\//, "").replace(/\/$/, "");
                 } catch (e) {
                 }
-                ;
+
                 let m3u8 = getItem("缓存") == "on" ? true : false;
                 let extr;
                 if (/function/.test(mx) && (typeof 免嗅 == "string" ? 免嗅 == "on" : false)) {
@@ -478,7 +478,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                             if (点播 != "undefined" && 点播 != "") {
                                 eval(点播.replace(/\'/g, ""));
                             }
-                            ;
+
                         }, db),
                         videoExcludeRules: [".html", 排除ex],
                         blockRules: [".gif", ".jpeg", ".jpg", ".ico", ".png", "hm.baidu.com", "/ads/*.js", "cnzz.com"],
@@ -487,7 +487,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                         cacheM3u8: m3u8
                     };
                 }
-                ;
+
                 let lxn = getItem("lx1", "全部");
                 let lxna = /影视|动漫|短剧|网盘/.test(lxn) ? "影视" : /听书|音乐/.test(lxn) ? "听书" : /全部|其它/.test(lxn) ? "其它" : lxn;
                 List = list.map((li, index) => {
@@ -526,7 +526,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                             })
                         }, "hiker://empty##" + surl + '#immersiveTheme##autoCache##noHistory' + game);
                     }
-                    ;
+
 
                     let url = /@lazyRule=|@rule=/.test(surl) ? surl : surl == "hiker://empty" ? surl : (/function/.test(mx) && 免嗅 == "on") ? $().lazyRule((nad, game, MY_HOME, url) => {
                         require(config.依赖.replace(/[^/]*$/, "lazy.js"));
@@ -599,7 +599,7 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                                 extra: ls.extra
                             });
                         }
-                        ;
+
                     } else {
                         addItemAfter("id_lb" + name, ls);
                         deleteItem("sc" + name);
@@ -612,9 +612,9 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                             extra: ls.extra
                         });
                     }
-                    ;
+
                 }
-                ;
+
             } catch (e) {
                 ttlo(name, Json, file, "规则失效");
                 log(e.toString());
@@ -632,14 +632,14 @@ function search(http, game, name, ssurl, d, page, sokey, off1, Json) {
                     })
                     clearItem("fystag");
                 }
-                ;
+
             }
-            ;
+
             deleteItemByCls("cls_load");
         }
-        ;
+
     } catch (e) {
         log(e.toString());
     }
-    ;
-};
+
+}

@@ -8,19 +8,20 @@ const csdown = {
     home: () => {
         var d = csdown.d;
         if (MY_PAGE == 1) {
-            d.push({   
+            d.push({
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("csdown").search()'
                 }),
-                   desc: "请输入搜索关键词",
-                   col_type: "input",
+                desc: "请输入搜索关键词",
+                col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+
         eval(csdown.rely(csdown.aes))
         let pg = getParam('page');
         try {
@@ -50,7 +51,8 @@ const csdown = {
                                     toast('已开启禁区')
                                     refreshPage(false)
                                 }),
-                                cancel: $.toString(() => {})
+                                cancel: $.toString(() => {
+                                })
                             })
                         } else {
                             setItem('open', '0');
@@ -109,7 +111,8 @@ const csdown = {
 
                             })
                         })
-                    } catch {}
+                    } catch {
+                    }
                 })
             } else if (getMyVar('classify', getMyVar('index_classify')) == 2 || getMyVar('classify', getMyVar('index_classify')) == 9 || getMyVar('classify', getMyVar('index_classify')) == 6) {
                 if (MY_PAGE == 1) {
@@ -233,6 +236,7 @@ const csdown = {
     aes: $.toString(() => {
         //加载CryptoJS库
         eval(getCryptoJS())
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
@@ -299,9 +303,11 @@ const csdown = {
             let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
             return decryptedStr;
         }
+
         var t = Math.floor(Date.now()).toString();
         var t0 = Math.floor(Date.now() / 1000);
         var s = md5(t.toString().substring(3, 8));
+
         // 随机字符串方法
         function generateRandomHex(length) {
             var result = '';
@@ -314,7 +320,7 @@ const csdown = {
 
         var image = $('').image(() => {
             const CryptoUtil = $.require("hiker://assets/crypto-java.js");
-            let decode = function(data) {
+            let decode = function (data) {
                 const key = Array.from('2020-zq3-888', c => c.charCodeAt(0));
                 const keyLen = key.length;
                 const binaryArr = [];
@@ -389,15 +395,15 @@ const csdown = {
             id: '1&2'
         }];
         if (MY_PAGE == 1) {
-            d.push({   
+            d.push({
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     refreshPage(false)
                     return "hiker://empty"
                 }),
-                   desc: "请输入搜索关键词",
-                   col_type: "input",
+                desc: "请输入搜索关键词",
+                col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                     pageTitle: '搜索结果'
@@ -419,7 +425,8 @@ const csdown = {
                         col_type: 'movie_2'
                     })
                 })
-            } catch {}
+            } catch {
+            }
         } else if (getMyVar('搜索', '1') == 2) {
             try {
                 var list = JSON.parse(html2).comicsList;
@@ -434,7 +441,8 @@ const csdown = {
                         }
                     })
                 })
-            } catch {}
+            } catch {
+            }
         }
         setResult(d)
     },

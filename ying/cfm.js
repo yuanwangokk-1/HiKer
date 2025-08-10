@@ -1,5 +1,4 @@
-js:
-    let d = [];
+let d = [];
 addListener("onClose", $.toString(() => {
     clearVar("fenyinrule");
     clearVar("fy手动fy");
@@ -12,7 +11,7 @@ try {
         require(getItem("git", "https://raw.gitcode.com/Suifen/feng/raw/master/ycl.js"));
         gx();
     }
-    ;
+
     let list;
     let file = "hiker://files/rules/FYJK/ys.json";
     try {
@@ -22,15 +21,15 @@ try {
         saveFile(file, JSON.stringify(list));
         console.error('解析文件内容出错:', e);
     }
-    ;
+
 
     function Name(name) {
         return name.replace(/&&.*/g, "");
-    };
+    }
 
     function times(time) {
         return new Date(time.replace(/\s+/g, "T"));
-    };
+    }
 
     function adds(list, rules, Name) {
         let add = [];
@@ -39,9 +38,9 @@ try {
                 add.push(rule);
             }
         }
-        ;
+
         return add;
-    };
+    }
 
     function ups(list, rules, Name, times) {
         let up = [];
@@ -51,9 +50,9 @@ try {
                 up.push(rule);
             }
         }
-        ;
+
         return up;
-    };
+    }
 
     function lis(list, rules, Name, times) {
         let lis = [];
@@ -62,9 +61,9 @@ try {
                 lis.push(item);
             }
         }
-        ;
+
         return lis;
-    };
+    }
 
     function los(list, rules, Name) {
         let liss = [];
@@ -73,9 +72,9 @@ try {
                 liss.push(item);
             }
         }
-        ;
+
         return liss;
-    };
+    }
 
     function lio(rules, list, Name, times) {
         let lio = [];
@@ -84,9 +83,9 @@ try {
                 lio.push(item);
             }
         }
-        ;
+
         return lio;
-    };
+    }
 
     let addlist = adds(list, rules, Name);
     let uplist = ups(list, rules, Name, times)
@@ -121,7 +120,7 @@ try {
                             return "hiker://home@风影";
                         }
                     });
-                };
+                }
                 let file = "hiker://files/rules/FYJK/ys.json";
                 let list = JSON.parse(readFile(file)) || [];
                 let ad = add.length;
@@ -139,7 +138,7 @@ try {
                         toast("风影源 - 新增 " + ad + " 条，跳过" + (Up + Lo) + "条");
                         return "hiker://empty";
                     }
-                    ;
+
                 } else if (li == "覆盖更新") {
                     if (ad == 0 && Up == 0) {
                         return "toast://没有新增、更新的源！"
@@ -153,7 +152,7 @@ try {
                         Snackbar();
                         return "hiker://empty";
                     }
-                    ;
+
                 } else if (li == "覆盖全部") {
                     let lioList = [];
                     lioList = add.concat(up).concat(lio).concat(los);
@@ -163,12 +162,12 @@ try {
                     toast("风影源 - 新增 " + ad + " 条，更新 " + Up + " 条，覆盖" + Lo + "条");
                     return "hiker://empty";
                 }
-                ;
+
             }, li, addlist, uplist, lists, lios, loss),
             col_type: "icon_small_3"
         });
     }
-    ;
+
 
     function leng(adtxt, uptxt, lotxt, adlen, uplen, lolen) {
         d.push({
@@ -176,7 +175,7 @@ try {
             url: "hiker://empty",
             col_type: "text_center_1"
         })
-    };
+    }
 
     function List(list, deco) {
         let syd = new Set();
@@ -208,8 +207,8 @@ try {
                 col_type: "avatar"
             })
         }
-        ;
-    };
+
+    }
 
     leng("新增", "更新", "较旧", addlist.length, uplist.length, lios.length);
     let new_ = "<small><small>" + ("NEW").fontcolor("#ff6600") + "</small></small>";

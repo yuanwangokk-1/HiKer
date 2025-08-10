@@ -20,7 +20,7 @@ for (let i in bt) {
         col_type: "icon_5"
     });
 }
-;
+
 
 require(config.依赖.replace(/[^/]*$/, "public.js"));
 
@@ -37,7 +37,7 @@ s.push({
         } else if (input == "单行") {
             setItem("zglie", "avatar");
         }
-        ;
+
         refreshPage(false);
         return "hiker://empty";
     }),
@@ -58,7 +58,7 @@ s.push({
                 refreshPage(false);
                 return "toast://已删除";
             }, get, file)
-        };
+        }
         let list = pat();
         if (input == "分享全部") {
             return Fxq("qb");
@@ -89,7 +89,7 @@ s.push({
         } else if (input == "删除其它") {
             return ex("qt");
         }
-        ;
+
     }),
     col_type: "icon_small_3"
 });
@@ -110,12 +110,12 @@ for (let z in zgzl) {
                 refreshPage(false);
                 return "hiker://empty";
             }
-            ;
+
         }, li),
         col_type: "text_5"
     });
 }
-;
+
 
 //周历表
 let Day = WeekDay(week);
@@ -135,9 +135,9 @@ if (fyzg == "周更") {
             col_type: "scroll_button",
         });
     }
-    ;
+
 }
-;
+
 
 s.push({
     col_type: "rich_text",
@@ -171,7 +171,7 @@ if (!RegExp(getMyVar("zgli", Day)).test(JSON.stringify(lizso)) && fyzg == "周�
         }
     });
 }
-;
+
 
 let col = getItem("zglie", "movie_1_vertical_pic");
 for (let l in lizso) {
@@ -188,7 +188,7 @@ for (let l in lizso) {
         if (btget == "小说") {
             xzu = History(li.url, get);
         }
-        ;
+
         let zu = /^\d+$/.test(li.zuji) ? `第${parseInt(xzu) > parseInt(li.zuji) ? xzu : li.zuji}${wei}` : li.zuji;
         let z = zu != "undefined" ? zu.replace(/[^0-9]/g, "") : "";
 
@@ -205,7 +205,7 @@ for (let l in lizso) {
             title = `${li.title}`;
             desc = `${fyzg == "完更" ? (li.desc == "" ? "无更新" : li.desc) : `第${des1.replace(/.*>(.*?)<\/.*/, "$1")}${wei}${zjs}`} · ${zu} · ${li.pageTitle}`;
         }
-        ;
+
 
         d.push({
             title: title,
@@ -260,7 +260,7 @@ for (let l in lizso) {
                             require(config.依赖.replace(/[^/]*$/, "public.js"));
                             return Fm(get, i, tit, url);
                         }
-                        ;
+
                     }, get, l, li.title, li.url, li.img)
                 }, {
                     title: "分享",
@@ -278,8 +278,8 @@ for (let l in lizso) {
             }
         })
     }
-    ;
+
 }
-;
+
 deleteItemByCls("cls_load");
 setResult(d);

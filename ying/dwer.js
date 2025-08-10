@@ -7,7 +7,7 @@ try {
     Jso = [];
     log(e.toString());
 }
-;
+
 
 let off = Jso.filter(item => item.off === "1");
 let names = getMyVar("namejs", "null") != "null" ? getMyVar("namejs").replace(/&&.*/, "") : off.find(item => item.name.replace(/&&.*/, "") === der);
@@ -21,10 +21,10 @@ try {
     } else {
         gsValue = "JS";
     }
-    ;
+
 } catch (e) {
 }
-;
+
 
 function html2(der, http, MY_URL, off) {
     let headers = {
@@ -46,20 +46,20 @@ function html2(der, http, MY_URL, off) {
                         fba.writeFile('hiker://files/cache/FY/cookie/' + der + '.txt', cok);
                         return document.querySelector('.stui-vodlist li');
                     }
-                    ;
+
                 }, der)
             }); //log(ht)
         } else {
             var ht = h;
         }
-        ;
+
     } else {
         ht = request(MY_URL, {
             timeout: 5000,
             headers: headers
         });
     }
-    ;
+
     let html;
     if (/验证码|系统安全验证|验证后|提交验证/.test(ht) && !/弹出验证码/.test(ht)) {
         require(http + "yzm.js");
@@ -74,9 +74,9 @@ function html2(der, http, MY_URL, off) {
     } else {
         html = ht;
     }
-    ;
+
     return html
-};
+}
 
 function bqian(der, html) {
     let 类型;
@@ -161,7 +161,7 @@ function bqian(der, html) {
         简介 = '.m-intro&&Text'
     }
     return 类型 + "$" + 导演 + "$" + 主演 + "$" + 简介
-};
+}
 
 //线路
 function tabs1(der, html) {
@@ -205,7 +205,7 @@ function tabs1(der, html) {
         线路名 = 'Text'
     }
     return 线路 + "$" + 线路名
-};
+}
 
 //列表
 function lists0(html) {
@@ -220,7 +220,7 @@ function lists0(html) {
         列表 = 'body&&.play-list||.play-ji-ul||.stui-play__list||.sort-item||.stui-content__playlist||.paly_list_btn||#player_list||.play_list||.sort-list||.anthology-list-play||.anthology-list-dow||.pagination'
     }
     return 列表
-};
+}
 
 function lists00() {
     let 子列表 = 'body&&a:not(.hl-show-list):not(.download-bnt):not(:matches(全部|排序|复制))'
@@ -245,14 +245,14 @@ function tuilist(der, html) {
     } else {
         推荐列表 = 'null'
     }
-    ;
+
     return 推荐列表
-};
+}
 
 function tuili(html, 推荐列表) {
     let tuli = pdfa(html, 推荐列表);
     return tuli
-};
+}
 
 function dw2(tuli, der) {
     let 推荐更;
@@ -276,7 +276,7 @@ function dw2(tuli, der) {
     } else {
         推荐图 = 'img&&src'
     }
-    ;
+
 
     //推荐名
     let 推荐名;
@@ -290,7 +290,7 @@ function dw2(tuli, der) {
 
     let 推荐链 = /zmovo-team-title/.test(tuli) ? '.zmovo-team-title&&a&&href' : "a&&href";
     return 推荐名 + "$" + 推荐更 + "$" + 推荐图 + "$" + 推荐链
-};
+}
 
 var html;
 let 线路;
@@ -324,7 +324,7 @@ if (Js) {
         s = names.er;
         g = names.gy;
     }
-    ;
+
 
     var 公用;
     if (typeof g != 'undefined') {
@@ -334,9 +334,9 @@ if (Js) {
             公用 = null;
             log(e.toString());
         }
-        ;
+
     }
-    ;
+
 
     if (公用 && typeof 公用.免嗅 == "function") {
         try {
@@ -344,39 +344,39 @@ if (Js) {
         } catch (e) {
             log(e.toString());
         }
-        ;
+
     }
-    ;
+
     if (公用 && typeof 公用.正文 == "function") {
         try {
             var zw = 公用.正文.toString();
         } catch (e) {
             log(e.toString());
         }
-        ;
+
     }
-    ;
+
     if (公用 && typeof 公用.点播 == "string") {
         var db = 公用.点播;
     }
-    ;
+
     if (公用 && typeof 公用.排除 == "object") {
         var ex = 公用.排除;
     }
-    ;
+
     if (公用 && typeof 公用.包含 == "object") {
         var bh = 公用.包含;
     }
-    ;
+
     if (公用 && typeof 公用.广告 == "object") {
         try {
             var gg = 公用.广告;
         } catch (e) {
             log(e.toString());
         }
-        ;
+
     }
-    ;
+
 
     let headers = {
         "User-Agent": MOBILE_UA,
@@ -393,7 +393,7 @@ if (Js) {
     } catch (e) {
         ison = "off";
     }
-    ;
+
     if (公用 && (typeof 公用.数字 == "function" ? 公用.数字(html) : false) && typeof 数字 == "undefined") {
         require(http + "yzm.js");
         verify(MY_URL, MY_HOME, http, game, der, MY_URL, d, "", "", off);
@@ -403,7 +403,7 @@ if (Js) {
         } catch (e) {
             log(e.toString());
         }
-        ;
+
         deleteItemByCls("cls_load");
     } else if (html == "" || !/电影|剧集|连续剧|电视剧|综艺|动漫|短剧|纪录|记录|音乐|歌|DJ|MV|番剧|漫画|说|相声|书|小品|视频|視頻|電影|劇集|續集|電視劇|綜藝|動畫|短劇|紀錄|音樂|歌|番劇|漫畫|說|相聲|書|小藝|集|话|章|期|回|卷|話/.test(html) && ison != "on" || ison == "on" && (typeof (ht) == "string" ? ht.code != 200 : "")) {
         toast("没有数据可用，请切换其它源");
@@ -411,10 +411,10 @@ if (Js) {
     } else {
         html = html;
     }
-    ;
+
     tuli = typeof 推荐 !== "undefined" ? 推荐(html) : "";
 }
-;
+
 if (HOst) {
     html = html2(der, http, MY_URL, off);
     let tab = tabs1(der, html);
@@ -437,7 +437,7 @@ if (HOst) {
     推荐图 = dwt.split("$")[2];
     推荐链 = dwt.split("$")[3];
 }
-;
+
 
 try {
     var tuii = [];
@@ -452,9 +452,8 @@ try {
         let col_ = Js ? (typeof (li.col_type) != "undefined" ? li.col_type : col) : col;
         tuii.push(title + "$" + desc + "$" + img + "$" + url + "$" + col_)
     }
-    ;
+
 } catch (e) {
     log(e.toString());
     var tuii = "";
 }
-;

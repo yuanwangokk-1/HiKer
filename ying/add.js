@@ -117,7 +117,7 @@ d.push({
                 } catch (e) {
                     syurl = syurl;
                 }
-                ;
+
                 sui = sui.replace(/&&.*/, "");
 
                 if (getMyVar("syjs") != "*") {
@@ -128,7 +128,7 @@ d.push({
                     require(config.依赖);
                     fenlei()
                 }
-                ;
+
             }, syurl, d, sui)
         } else if (input == "搜索") {
             return getMyVar("namejs") == "" && getMyVar("sourljs") == "" && getMyVar("sojs") == "" ? "toast://正确填写后再测试" : $(getMyVar("Mysou", "我的")).input(() => {
@@ -145,7 +145,7 @@ d.push({
                 } catch (e) {
                     url = url;
                 }
-                ;
+
 
                 clearMyVar("Mysou");
                 clearMyVar("Myurl.title");
@@ -174,7 +174,7 @@ d.push({
             const riqi = year + "-" + month + "-" + day;
             const shijian = hours + ":" + minutes + ":" + seconds;
             return riqi + "T" + shijian;
-        };
+        }
 
         // 获取变量值
         let name = getMyVar('namejs');
@@ -214,13 +214,13 @@ d.push({
         } else {
             newItem.off = "1"; // 如果没有找到同名对象或同名对象不含"off"属性，则设置默认值"1"
         }
-        ;
+
         if (hasGs) {
             newItem.gs = getMyVar("gs", existingItem.gs);
         } else {
             newItem.gs = getMyVar("gs", "JS");
         }
-        ;
+
 
         // 将新对象插入数组开头
         dataArray.unshift(newItem);
@@ -230,7 +230,7 @@ d.push({
         } else if (host == "" && sourl == "") {
             return "toast://链接不能为空！";
         }
-        ;
+
 
         function exname(arr) {
             const map = new Map(); // 用于储存最大url值对应的名字 
@@ -244,12 +244,12 @@ d.push({
             }); // 构建结果数组，直接使用maxUrlMap的值，这样可以保证name是原始的（包含"&&"后面的部分） 
             const result = Array.from(maxUrlMap.values());
             return result;
-        };
+        }
 
         function Names(array) {
             const names = array.map(item => item.name.replace(/&&.*/g, ""));
             return new Set(names).size !== names.length;
-        };
+        }
         //log(Names(dataArray)); // 输出: true，因为名字"Alice"重复了
 
         if (Names(dataArray) && getMyVar("pdfg") != "1") {
@@ -263,7 +263,7 @@ d.push({
             back(true);
             return "toast://保存成功！";
         }
-        ;
+
         return "hiker://empty";
     }, file, Json),
     col_type: "text_4"

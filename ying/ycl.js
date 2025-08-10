@@ -4,7 +4,7 @@ try {
 } catch (e) {
     http = getItem("git", "https://raw.gitcode.com/Suifen/feng/raw/master/ycl.js").replace(/[^/]*$/, "");
 }
-;
+
 
 require(config.依赖.replace(/[^/]*$/, "public.js"));
 let btget = getItem("zgb", "影视");
@@ -24,10 +24,10 @@ if (!fileExist("hiker://files/cache/FY/image/影视.png")) {
         let apis = /tu\//.test(li) ? http : api;
         saveImage(apis + li, "hiker://files/cache/FY/image/" + name[i]);
     }
-    ;
+
     saveImage("http://123.56.105.145/weisyr/img/Loading1.gif", "hiker://files/cache/FY/image/Loading.gif");
 }
-;
+
 
 function isBase64(str) {
     try {
@@ -37,8 +37,8 @@ function isBase64(str) {
     } catch (e) {
         return false;
     }
-    ;
-};
+
+}
 
 let CT = Date.now();
 let Json;
@@ -50,7 +50,7 @@ try {
     //saveFile(file, JSON.stringify(Json));
     log(e.toString());
 }
-;
+
 
 let lx0 = getItem("lx1", "全部");
 let lx2 = "\\[私\\]|\\[优\\]|\\[免\\]|\\[盘\\]|\\[听\\]|\\[阅\\]|\\[漫\\]|\\[画\\]|\\[短\\]|\\[音\\]|\\[影\\]|盘|短剧|影|剧|视|漫|番|次元|音|歌|曲|DJ|MV|有声|听书|说|阅|读|书|漫画|盤|短劇|劇|視|有聲|聽書|說|閱|讀|書|漫畫";
@@ -62,7 +62,7 @@ let reg2 = new RegExp(lx2);
 
 function ttls(ttl) {
     return typeof ttl === 'string' && ttl === '';
-};
+}
 
 let off1 = lx0 == "音乐" ? Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]|\[盘\]/.test(item.name.replace(/&&.*/g, ""))) : lx0 == "动漫" ? Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]|\[盘\]|盘|漫画|漫畫|\[画\]/.test(item.name.replace(/&&.*/g, ""))) : lx0 == "影视" ? Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]|\[盘\]|盘|盤|短剧|短劇/.test(item.name.replace(/&&.*/g, ""))) : lx0 == "漫画" ? Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]/.test(item.name.replace(/&&.*/g, ""))) : lx0 == "小说" ? Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]|有声|听书|有聲|聽書/.test(item.name.replace(/&&.*/g, ""))) : lx0 == "听书" ? Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]/.test(item.name.replace(/&&.*/g, ""))) : lx0 == "网盘" ? Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]/.test(item.name.replace(/&&.*/g, ""))) : lx0 == "私有" ? Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5)) : lx0 == "短剧" ? Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]/.test(item.name.replace(/&&.*/g, ""))) : lx0 === "其它" ? Json.filter(item => item.off === "1" && !reg2.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5)) : Json.filter(item => item.off === "1" && reg1.test(item.name.replace(/&&.*/g, "")) && !(item.ttl && item.ttl >= 5) && !/\[私\]|\[优\]|\[免\]/.test(item.name.replace(/&&.*/g, "")));
 
@@ -78,7 +78,7 @@ if (result) {
     gsValue = "JS";
     //console.log("没有找到匹配的项");
 }
-;
+
 
 function sourl() {
     try {
@@ -86,7 +86,7 @@ function sourl() {
     } catch (e) {
         var sojl = [];
     }
-    ;
+
     sojl.unshift(input); //新增在最前面
 
     //利用 includes() 去重
@@ -102,7 +102,7 @@ function sourl() {
     if (sojl.length > 25) {
         sojl.splice(-1, 1);
     }
-    ;
+
     saveFile("hiker://files/cache/FY/sojl.js", JSON.stringify(sojl));
     putMyVar("Mysou", input);
     if (getMyVar('影搜') != '1') {
@@ -114,7 +114,7 @@ function sourl() {
         refreshPage();
         return "hiker://empty";
     }
-};
+}
 
 //分隔
 let piin = getItem("全屏", "off") == "on";
@@ -136,12 +136,12 @@ function gx() {
                     html = {};
                     log(e.toString());
                 }
-                ;
+
                 if (/^(\{\s*"(?:name|host|sourl|sy|fl|er|so|time|ttl|fbhost|sxtit|gs|off)"\s*:\s*").*("\s*\}|\d+\s*\})$/.test(html)) {
                     if (dyt) {
                         dyt.time = CT;
                     }
-                    ;
+
                     saveFile("hiker://files/rules/FYJK/dy.json", JSON.stringify(dy));
                     saveFile("hiker://files/cache/FY/dy/" + getItem("dy") + ".json", "[" + html + "]");
                     refreshPage(false);
@@ -150,15 +150,15 @@ function gx() {
                     log(html);
                     return "toast://订阅更新失败！";
                 }
-                ;
+
             }
-            ;
+
         } catch (e) {
             log(e.toString());
         }
-        ;
+
     }
-    ;
+
 
     let SC = parseInt(getItem("清除", "0").replace("SC", ""));
     let SY = parseInt(getItem("sy清", "0").replace("SY", ""));
@@ -179,7 +179,7 @@ function gx() {
             } else {
                 toast("没有缓存可清除");
             }
-            ;
+
 
         } else if (sysc) {
             setItem("sy清", CT + "SY");
@@ -189,7 +189,7 @@ function gx() {
             } else {
                 toast("没有缓存可清除");
             }
-            ;
+
 
         } else if (get1) {
             clearMyVar("MY_URL");
@@ -202,11 +202,11 @@ function gx() {
                 toast("无需清除");
                 clearMyVar("清除");
             }
-            ;
+
         }
-        ;
+
     }
-    ;
+
 
     let LT = parseInt(getItem("上次", "0").replace("CT", ""));
     let 更新up = (CT > (LT + 2 * 24 * 60 * 60 * 1000)) && getItem("自动", "on") == "on";
@@ -246,7 +246,7 @@ function gx() {
                 } catch (e) {
                     nowb = "1.0";
                 }
-                ;
+
                 let lsh = getMyVar("临时", "1.0");
                 putMyVar("更新", newb);
                 let ych = getMyVar("更新");
@@ -283,11 +283,11 @@ function gx() {
                     toast("已是最新版");
                 }
             }
-        };
+        }
         if (更新up) {
             setItem("上次", CT + "CT");
         }
-        ;
+
         let bbh;
         let lisb;
         let newb;
@@ -305,7 +305,7 @@ function gx() {
             bbh = "报错";
             log(e.toString());
         }
-        ;
+
         if (bbh == "报错") {
             let gitcode = "https://raw.gitcode.com/Suifen/feng/raw/master/";
             let codeberg = "https://codeberg.org/suifeng/yin/raw/branch/master/";
@@ -324,7 +324,7 @@ function gx() {
                 bbh = "报错";
                 log(e.toString())
             }
-            ;
+
 
             if (bbh == "报错") {
                 clearMyVar("强制");
@@ -342,11 +342,11 @@ function gx() {
                 back(true);
             }
         }
-        ;
+
         up();
     }
-    ;
-};
+
+}
 
 //首页
 function sy() {
@@ -375,12 +375,12 @@ function sy() {
             clearMyVar("sd_zh");
             clearMyVar("flxz1");
         }
-        ;
+
     } else {
         deleteItemByCls("so_id");
         clearMyVar("dxz");
     }
-    ;
+
 
     let sui = getItem("m1", "选源");
 
@@ -407,14 +407,14 @@ function sy() {
                         });
                         saveFile(file, JSON.stringify(dList));
                     }
-                    ;
+
                 } else {
                     syurl = yu.fbhost;
                 }
             } catch (e) {
                 syurl = getMyVar("namejs", "") != "" ? getMyVar("hostjs") : yu.host;
             }
-            ;
+
             cesy = getMyVar("namejs", "") != "" ? getMyVar("syjs") : yu.sy;
         } else {
             syurl = "http://fenying";
@@ -422,19 +422,19 @@ function sy() {
             clearItem("m1");
             clearItem("Mysye");
         }
-        ;
+
     } catch (e) {
         clearItem("m1");
         refreshPage(false);
     }
-    ;
+
 
     if (cesy == "*") {
         MYURL = syurl;
     } else {
         MY_URL = getHome(syurl);
     }
-    ;
+
     log(sui + " - " + getHome(syurl));
 
     let bia = rn.map((tit) => {
@@ -450,7 +450,7 @@ function sy() {
             Json = [];
             console.error('解析文件内容出错:', e);
         }
-        ;
+
 
         function bia(Json, sui) {
             let fr = Json.filter(item => (item.fl != "" || item.sy != "") && item.gs != "HOST" && !(item.ttl && item.ttl >= 5) && item.off == 1 || item.gs == "HOST" && !(item.ttl && item.ttl >= 5) && item.off == 1).map(item => item.name.replace(/&&.*/, ""));
@@ -459,7 +459,7 @@ function sy() {
                 return tit == sui ? `‘‘’’<b>${tit.fontcolor('#FA7298')}</b>` : tit;
             });
             return bia;
-        };
+        }
 
         const hikerPop = $.require(config.依赖.replace(/[^/]*$/, "hikerPop.js"));
         //hikerPop.setUseStartActivity(false);
@@ -520,12 +520,12 @@ function sy() {
                     if (getItem("隐藏", "off") == "on") {
                         私 = "私有";
                     }
-                    ;
+
                     let titl = ["全部", "影视", "短剧", "动漫", "网盘", "音乐", "漫画", "小说", "听书", "其它"];
                     if (私) {
                         titl.push(私);
                     }
-                    ;
+
                     let lei = titl.map((tit) => {
                         return tit == getItem("lx1", "全部") ? `““<b>${tit}</b>””` : tit;
                     });
@@ -596,7 +596,7 @@ function sy() {
                         //titleVisible: true
                     });
                 }
-                ;
+
             },
             menuClick(manage) {
                 let teurl;
@@ -605,7 +605,7 @@ function sy() {
                 } catch (e) {
                     teurl = [];
                 }
-                ;
+
                 let name = ["改变排列", "滑到顶部", "滑到底部", "本地"].concat(teurl.map(item => item.title)).map((tit) => {
                     return tit == getItem("dy", "本地") ? `““<b>${tit}</b>””` : tit;
                 });
@@ -700,7 +700,7 @@ function sy() {
                                 list = [];
                                 console.error('解析文件内容出错:', e);
                             }
-                            ;
+
                             const result = list.filter(item => {
                                 return !(item.name.replace(/&&.*/g, "") == name);
                             });
@@ -725,7 +725,7 @@ function sy() {
                     if (getItem("s1", "0") != "1" && myurl != "http://fenying") {
                         setItem("s0", sui);
                     }
-                    ;
+
                     return input + $("#noLoading#").lazyRule(() => {
                         require(config.依赖);
                         return sourl()
@@ -741,7 +741,7 @@ function sy() {
             }
         });
     }
-    ;
+
 
     if (getItem("记录", "off") == "on") {
         let name = ["观影记录", "我的收藏"];
@@ -795,11 +795,11 @@ function sy() {
                             }
                         }]
                     }
-                    ;
+
                     addItemAfter("sojl_id", titls);
                     putMyVar("dxz", "on");
                 }
-                ;
+
                 return "hiker://empty"
             }, sui),
             col_type: "icon_small_3",
@@ -817,7 +817,7 @@ function sy() {
             }
         })
     }
-    ;
+
 
     z.push({
         col_type: "big_blank_block"
@@ -834,7 +834,7 @@ function sy() {
             col_type: "card_pic_1"
         });
     }
-    ;
+
     if (MY_URL != "http://fenying") {
         z.push({
             img: 图 + "Loading.gif",
@@ -845,7 +845,7 @@ function sy() {
             }
         })
     }
-    ;
+
     setPreResult(z);
 
     if (syurl != "http://fenying") {
@@ -854,17 +854,17 @@ function sy() {
                 require(config.依赖);
                 xsy(MY_URL, d, sui);
             }
-            ;
+
         } else {
             putMyVar("flurl", syurl);
             require(config.依赖);
             fenlei();
             deleteItemByCls("cls_load");
         }
-        ;
+
     }
-    ;
-};
+
+}
 
 //轮播Html
 let getHtml = (image) => `
@@ -1120,7 +1120,7 @@ function dpush(d, image, sui) {
             //imgLongClick: false
         }
     });
-};
+}
 
 
 //首页列表
@@ -1132,15 +1132,15 @@ function xsy(syurl, d, sui) {
         } else {
             报错;
         }
-        ;
+
     } catch (e) {
         if (MY_URL != "http://fenying") {
             putMyVar("待", "1");
             require(config.依赖.replace(/[^/]*$/, "dw.js"));
         }
-        ;
+
     }
-    ;
+
     let 标 = sy.标;
     let 列 = sy.列;
     let 样 = eval(sy.样);
@@ -1158,7 +1158,7 @@ function xsy(syurl, d, sui) {
         var 排除ex = 排e.replace(/\\/g, "").replace(/^\//, "").replace(/\/$/, "");
     } catch (e) {
     }
-    ;
+
 
     let pic = ["热播", "电影", "剧集", "综艺", "动漫", "其它"];
     let m3u8 = getItem("缓存") == "on" ? true : false;
@@ -1169,7 +1169,7 @@ function xsy(syurl, d, sui) {
                 if (点播 != "undefined" && 点播 != "") {
                     eval(点播.replace(/\'/g, ""));
                 }
-                ;
+
             }, 点),
             videoExcludeRules: [".html", 排除ex],
             /*videoRules: ['.mp3'],*/
@@ -1179,7 +1179,7 @@ function xsy(syurl, d, sui) {
             cacheM3u8: m3u8
         };
     }
-    ;
+
 
     let lb列 = 列[0].length != 0 ? 列[0] : 列[1].length != 0 ? 列[1] : 列[2].length != 0 ? 列[2] : 列[3].length != 0 ? 列[3] : 列[4].length != 0 ? 列[4] : 列[5].length != 0 ? 列[5] : 列[6];
     if (lb列 && 标[0] != "禁用" && getItem("轮播", "on") == "on") {
@@ -1201,7 +1201,7 @@ function xsy(syurl, d, sui) {
             col_type: "big_blank_block"
         })
     }
-    ;
+
 
     let Colors = 变 == "on" ? function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
@@ -1298,10 +1298,10 @@ function xsy(syurl, d, sui) {
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
         }
     }
-    ;
+
     d.push({
         title: "‘‘’’<small>－－到\t底\t了－－</small>",
         url: "hiker://empty",
@@ -1316,23 +1316,23 @@ function xsy(syurl, d, sui) {
         putMyVar("换", sui);
         require(config.依赖.replace(/[^/]*$/, "dw.js"));
     }
-    ;
-};
+
+}
 
 //分类
 function fenlei() {
     require(http + "fenlei.js");
-};
+}
 
 //影搜
 function yso() {
     require(http + "yso.js");
-};
+}
 
 //二级
 function erji() {
     require(http + "erji.js");
-};
+}
 
 //设置
 function she() {
@@ -1367,7 +1367,7 @@ function she() {
                 } else {
                     setItem(储存, "on");
                 }
-                ;
+
                 refreshPage(false);
                 return 储存 == "全屏" ? "toast://返回首页刷新生效" : "hiker://empty";
             }, 储存[i], 取),
@@ -1384,7 +1384,7 @@ function she() {
             }
         });
     }
-    ;
+
 
     d.push({
         col_type: "line_blank"
@@ -1430,7 +1430,7 @@ function she() {
             }
         });
     }
-    ;
+
     /*
         let ai = "开启后，(嗅探时长会增加2-3秒)大厂线路无法播放时，会自动调用断插、魔断的解析。";
         if (getItem("断插", "off") == "off" && getItem("嗅探", "off") == "off") {
@@ -1502,7 +1502,7 @@ function she() {
                     back(false);
                     toast("未找到配置助手");
                 }
-                ;
+
             }),
             col_type: coll,
             extra: {
@@ -1529,7 +1529,7 @@ function she() {
                 }
             })
         }
-        ;
+
     }
 
     let ips = "TVBOX推送IP设置，频道查看设置教程";
@@ -1555,7 +1555,7 @@ function she() {
     } else {
         clearItem("ip");
     }
-    ;
+
     d.push({
         col_type: "line_blank"
     }, {
@@ -1578,7 +1578,7 @@ function she() {
         日期 = "2022-08-06";
         内容 = "1. 风影初始版本。"
     }
-    ;
+
 
     function about(CT, 当前) {
         let d = [];
@@ -1596,7 +1596,7 @@ function she() {
                         } else {
                             setItem("隐藏", "on");
                         }
-                        ;
+
                         refreshPage(false);
                         return 隐 == "off" ? "toast://已开启" : "toast://已关闭";
                     })
@@ -1620,7 +1620,7 @@ function she() {
                 } else {
                     clearItem("自动");
                 }
-                ;
+
                 refreshPage(false);
                 return "hiker://empty";
             }),
@@ -1647,7 +1647,7 @@ function she() {
                 } else {
                     toa = "toast://强制更新为备用，已禁用";
                 }
-                ;
+
                 return toa;
             }, items, CT + "CT"),
             img: gtu + "强更.svg",
@@ -1669,7 +1669,7 @@ function she() {
             }
         });
         setResult(d);
-    };
+    }
 
     let tile = ["检测更新", "风影反馈", "关于风影", "清除数据"];
 
@@ -1686,7 +1686,7 @@ function she() {
         } else {
             toa = "toast://检测更新过于频繁，已禁止检测";
         }
-        ;
+
         return toa;
     }, CT + "CT", item);
 
@@ -1731,7 +1731,7 @@ function she() {
             refreshPage(false);
             return "toast://清除完成";
         }
-        ;
+
     }, itemi, CT + "CT");
     let urlg = [更新, 反馈, 关于, 清除];
     let png = ["跳转.png", "清除.png"];
@@ -1763,7 +1763,7 @@ function she() {
             extra: extra
         });
     }
-    ;
+
 
     d.push({
         col_type: "line_blank"
@@ -1790,7 +1790,7 @@ function she() {
         col_type: "rich_text"
     });
     setResult(d);
-};
+}
 
 //更新日志
 function change() {
@@ -1810,33 +1810,33 @@ function change() {
                 } else {
                     records.push(`${li.replace(/\d+\.\s+/g, "优化：")}`);
                 }
-                ;
+
             }
-            ;
+
             return {
                 title: ` V ${item.版本}    ${item.日期}`,
                 records: records
             };
         });
-    };
+    }
     const formData = transformData(rlog);
     let pop = hikerPop.updateRecordsBottom(formData);
-};
+}
 
 //追更
 function Wp() {
     require(http + "Wp.js");
-};
+}
 
 //影源
 function Yygl() {
     require(http + "yygl.js");
-};
+}
 
 //新增源
 function Add() {
     require(http + "add.js");
-};
+}
 
 //搜索
 function sou() {
@@ -1855,4 +1855,4 @@ function sou() {
         }
     });
     setResult(d);
-};
+}

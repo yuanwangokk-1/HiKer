@@ -8,9 +8,9 @@ function error(tit1, tit2) {
     } else if (MY_URL != "http://fenying") {
         toast(tit2);
     }
-    ;
-    return
-};
+
+
+}
 
 let dw = getMyVar("namejs", "") != "" ? getMyVar("namejs") : getItem("m1");
 
@@ -27,7 +27,7 @@ function ttlo(name, Json, file, sxtit) {
                     clearItem("m1");
                     toast(name + " 失效超过5次，已归至失效类");
                 }
-                ;
+
                 const newItem = Object.assign({}, item, {
                     ttl: ttlValue + 1,
                     sxtit: sxtit
@@ -38,7 +38,7 @@ function ttlo(name, Json, file, sxtit) {
         });
         saveFile(file, JSON.stringify(ttlList));
     }
-};
+}
 
 function fby(yu, dw, Json, file, tit1, tit2, sxtit) {
     if (yu.fbhost != "" && yu.fbhost != undefined || getMyVar("namejs", "") != "") {
@@ -50,7 +50,7 @@ function fby(yu, dw, Json, file, tit1, tit2, sxtit) {
         } catch (e) {
             toast(dw + " - 没有发布页");
         }
-        ;
+
         if (getMyVar("namejs", "") == "") {
             const datedList = Json.map(item => {
                 if (item.name.replace(/&&.*/, "") === dw) {
@@ -69,17 +69,17 @@ function fby(yu, dw, Json, file, tit1, tit2, sxtit) {
                 toast("链接有误或查看网站是否正常访问！");
                 return "hiker://empty";
             }
-            ;
+
         }
-        ;
+
         refreshPage(false);
         return "hiker://empty";
     } else {
         ttlo(dw, Json, file, sxtit);
         error(tit1, tit2);
     }
-    ;
-};
+
+}
 
 function shtml(MY_URL, dw, error) {
     let headers = {
@@ -101,13 +101,13 @@ function shtml(MY_URL, dw, error) {
                         fba.writeFile('hiker://files/cache/FY/cookie/' + dw + '.txt', cok);
                         return document.querySelector('.stui-vodlist li');
                     }
-                    ;
+
                 }, dw)
             }); //log(ht)
         } else {
             var ht = h;
         }
-        ;
+
     } else {
         /*ht = request(MY_URL, {
             timeout: 5000,
@@ -133,13 +133,13 @@ function shtml(MY_URL, dw, error) {
                 var code = str.charCodeAt();
                 val += parseInt(code) + 1
             }
-            ;
+
             return val
-        };
+        }
 
         function md5encode(word) {
             return md5(word).toString()
-        };
+        }
         let jsp = pd(ht, 'script&&src');
         let jsf = request(jsp);
         eval(jsf.match(/key="[^\"]+",value="[^\"]+"/)[0]);
@@ -160,15 +160,15 @@ function shtml(MY_URL, dw, error) {
             let tit2 = "数据错误，请切换首页";
             error(tit1, tit2);
         }
-        ;
+
     } else {
         html = ht;
     }
-    ;
+
     //:gt(1):lt(你想留到第几个);
     //log(html);
     return html;
-};
+}
 
 function sdw(dw, html, error) {
     let biao = (dw, bt1, bt2, bt3, bt4, bt5, bt6) => {
@@ -391,9 +391,9 @@ function sdw(dw, html, error) {
         let tit2 = "模板匹配失败，请联系作者";
         error(tit1, tit2);
     }
-    ;
+
     return 标题1 + "$" + 标题2 + "$" + 标题3 + "$" + 标题4 + "$" + 标题5 + "$" + 标题6 + "$$" + 列表1 + "$$" + 列表2 + "$$" + 列表3 + "$$" + 列表4 + "$$" + 列表5 + "$$" + 列表6;
-};
+}
 
 let html;
 let 标题1;
@@ -431,7 +431,7 @@ if (Js) {
         so = yu.sy;
         g = yu.gy;
     }
-    ;
+
 
     var 公用;
     if (typeof g != 'undefined') {
@@ -441,9 +441,9 @@ if (Js) {
             公用 = null;
             log(e.toString());
         }
-        ;
+
     }
-    ;
+
     let headers = {
         "User-Agent": MOBILE_UA,
         "Referer": MY_URL,
@@ -459,30 +459,30 @@ if (Js) {
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
         }
-        ;
+
         if (公用 && typeof 公用.点播 == "string") {
             var db = 公用.点播;
         }
-        ;
+
         if (公用 && typeof 公用.排除 == "object") {
             var ex = 公用.排除;
         }
-        ;
+
         if (公用 && typeof 公用.包含 == "object") {
             var bh = 公用.包含;
         }
-        ;
+
         if (公用 && typeof 公用.广告 == "object") {
             try {
                 var gg = 公用.广告;
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
         }
-        ;
+
     } else if (typeof 正文 == "string" ? 正文 == "on" : false) {
         if (公用 && typeof 公用.正文 == "function") {
             try {
@@ -490,11 +490,11 @@ if (Js) {
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
         }
-        ;
+
     }
-    ;
+
 
     htm = status ? html.body : html;
     let ison;
@@ -504,7 +504,7 @@ if (Js) {
     } catch (e) {
         ison = "off";
     }
-    ;
+
 
     if (公用 && typeof 公用.验证 == "function" && (typeof 验证 == "function" ? 验证(htm) : false)) {
         try {
@@ -512,7 +512,7 @@ if (Js) {
         } catch (e) {
             log(e.toString());
         }
-        ;
+
         deleteItemByCls("cls_load");
     } else if (htm == "" || !/电影|剧集|连续剧|电视剧|综艺|动漫|短剧|纪录|记录|音乐|歌|DJ|MV|番剧|漫画|说|相声|书|小品|视频|視頻|電影|劇集|續集|電視劇|綜藝|動畫|短劇|紀錄|音樂|歌|番劇|漫畫|說|相聲|書|小藝/.test(htm) && ison != "on" || ison == "on" && (typeof (ht) == "string" ? ht.code != 200 : "")) {
         if (MY_PAGE == 1) {
@@ -529,7 +529,7 @@ if (Js) {
                     tit2 = "无法访问或数据错误，请切换首页";
                     sxtit = "无法访问或规则失效"
                 }
-                ;
+
                 fby(yu, dw, Json, file, tit1, tit2, sxtit);
             } else {
                 log(html);
@@ -540,13 +540,13 @@ if (Js) {
                 error(tit1, tit2);
             }
         }
-        ;
+
     } else {
         html = htm;
     }
-    ;
+
 }
-;
+
 if (HOst) {
     html = shtml(MY_URL, dw, error);
     let bt = sdw(dw, html, error);
@@ -564,7 +564,7 @@ if (HOst) {
     列表5 = bt.split("$$")[5];
     列表6 = bt.split("$$")[6];
 }
-;
+
 
 try {
     let 轮列;
@@ -573,49 +573,49 @@ try {
     } catch (e) {
         轮列 = null;
     }
-    ;
+
     let 精列;
     try {
         精列 = typeof (列表1) == "object" ? 列表1 : typeof (列表1) == "function" ? 列表1(html) : /&&/.test(列表1) ? pdfa(html, 列表1) : null;
     } catch (e) {
         精列 = null;
     }
-    ;
+
     let 电列;
     try {
         电列 = typeof (列表2) == "object" ? 列表2 : typeof (列表2) == "function" ? 列表2(html) : /&&/.test(列表2) ? pdfa(html, 列表2) : null;
     } catch (e) {
         电列 = null;
     }
-    ;
+
     let 剧列;
     try {
         剧列 = typeof (列表3) == "object" ? 列表3 : typeof (列表3) == "function" ? 列表3(html) : /&&/.test(列表3) ? pdfa(html, 列表3) : null;
     } catch (e) {
         剧列 = null;
     }
-    ;
+
     let 综列;
     try {
         综列 = typeof (列表4) == "object" ? 列表4 : typeof (列表4) == "function" ? 列表4(html) : /&&/.test(列表4) ? pdfa(html, 列表4) : null;
     } catch (e) {
         综列 = null;
     }
-    ;
+
     let 动列;
     try {
         动列 = typeof (列表5) == "object" ? 列表5 : typeof (列表5) == "function" ? 列表5(html) : /&&/.test(列表5) ? pdfa(html, 列表5) : null;
     } catch (e) {
         动列 = null;
     }
-    ;
+
     let 其列;
     try {
         其列 = typeof (列表6) == "object" ? 列表6 : typeof (列表6) == "function" ? 列表6(html) : /&&/.test(列表6) ? pdfa(html, 列表6) : null;
     } catch (e) {
         其列 = null;
     }
-    ;
+
 
     let 轮标 = typeof (轮播) == "string" ? (!/&&/.test(轮播) ? "禁用" : "轮播") : null;
     let 推荐 = 精列 != null && 精列.length != 0 ? (!/&&/.test(标题1) ? 标题1 : pdfh(html, 标题1)) : null;
@@ -634,7 +634,7 @@ try {
     let tit2 = "列表有误，请联系作者";
     error(tit1, tit2);
 }
-;
+
 
 
 function ldw(dw, 待列) {
@@ -675,9 +675,9 @@ function ldw(dw, 待列) {
     } else {
         图片 = 'img&&data-original||data-src||src'
     }
-    ;
+
     return 片名 + "$" + 更新 + "$" + 图片 + "$" + 链接;
-};
+}
 
 if (HOst) {
     let dw1 = ldw(dw, 待列);
@@ -686,7 +686,7 @@ if (HOst) {
     图片 = dw1.split("$")[2];
     链接 = dw1.split("$")[3];
 }
-;
+
 
 try {
     let 列;
@@ -707,9 +707,9 @@ try {
             }
             列.push(lists);
         }
-        ;
+
     }
-    ;
+
     var sy = {
         "标": 待标,
         "列": 列,
@@ -726,7 +726,7 @@ try {
     if (getMyVar("namejs", "null") == "null") {
         saveFile("hiker://files/cache/FY/sy/" + base64Encode(dw) + ".js", JSON.stringify(sy), 0);
     }
-    ;
+
 } catch (e) {
     log(e.toString());
     ttlo(dw, Json, file, "规则失效");
@@ -734,4 +734,3 @@ try {
     let tit2 = "内容有误，请联系作者";
     error(tit1, tit2);
 }
-;

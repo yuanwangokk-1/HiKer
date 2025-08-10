@@ -8,19 +8,20 @@ const csdown = {
     home: () => {
         var d = csdown.d;
         if (MY_PAGE == 1) {
-            d.push({   
+            d.push({
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     return "hiker://empty?page=fypage&kw=" + input + '@rule=js:$.require("csdown").search()'
                 }),
-                   desc: "请输入搜索关键词",
-                   col_type: "input",
+                desc: "请输入搜索关键词",
+                col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+
         var pg = getParam('page');
         var c1 = [{
             title: '首页&小视频&社区&微帖&分类',
@@ -60,17 +61,17 @@ const csdown = {
         }
         */
         if (MY_RULE.author == csdown.author || MY_NAME == '嗅觉浏览器') {
-        if (分类 == 1) {
-            csdown.video()
-        } else if (分类 == 2) {
-            csdown.mini()
-        } else if (分类 == 3) {
-            csdown.news()
-        } else if (分类 == 4) {
-            csdown.wei()
-        } else if (分类 == 5) {
-            csdown.vodlei()
-        }
+            if (分类 == 1) {
+                csdown.video()
+            } else if (分类 == 2) {
+                csdown.mini()
+            } else if (分类 == 3) {
+                csdown.news()
+            } else if (分类 == 4) {
+                csdown.wei()
+            } else if (分类 == 5) {
+                csdown.vodlei()
+            }
         } else {
             d.push({
                 title: '请勿修改作者名称',
@@ -84,14 +85,17 @@ const csdown = {
         //加载CryptoJS库
         eval(getCryptoJS());
         var t = Math.floor(Date.now() / 1000);
+
         //生成时间戳
         function getCurrentTimestamp() {
             return new Date().getTime();
         }
+
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
         }
+
         //sha256加密
         function sha256(str) {
             return CryptoJS.SHA256(str).toString();
@@ -219,15 +223,15 @@ const csdown = {
         let pg = getParam('page');
         try {
             if (MY_PAGE == 1) {
-                d.push({   
+                d.push({
                     title: "搜索 ",
                     url: $.toString(() => {
                         putMyVar('keyword', input)
                         refreshPage(false)
                         return "hiker://empty"
                     }),
-                       desc: "请输入搜索关键词",
-                       col_type: "input",
+                    desc: "请输入搜索关键词",
+                    col_type: "input",
                     extra: {
                         defaultValue: getMyVar('keyword', ''),
                         pageTitle: '搜索结果'
@@ -310,7 +314,8 @@ const csdown = {
                                 lineVisible: false,
                             }
                         })
-                    } catch {}
+                    } catch {
+                    }
                     d.push({
                         col_type: 'big_blank_block'
                     }, {
@@ -377,7 +382,8 @@ const csdown = {
                                 }
                             })
                         })
-                    } catch {}
+                    } catch {
+                    }
                 })
             }
         } catch (e) {
@@ -528,7 +534,8 @@ const csdown = {
                                 toast('已开启禁区')
                                 refreshPage(false)
                             }),
-                            cancel: $.toString(() => {})
+                            cancel: $.toString(() => {
+                            })
                         })
                     } else {
                         setItem('open', '0')
@@ -652,7 +659,8 @@ const csdown = {
                             }
                         })
                     })
-                } catch {}
+                } catch {
+                }
             })
         } catch (e) {
             log(e.message)
@@ -759,7 +767,8 @@ const csdown = {
                             }
                         })
                     })
-                } catch {}
+                } catch {
+                }
             })
         } catch (e) {
             log(e.message)
@@ -838,7 +847,8 @@ const csdown = {
                         lineVisible: false,
                     }
                 })
-            } catch {}
+            } catch {
+            }
             d.push({
                 col_type: 'big_blank_block'
             }, {
@@ -884,7 +894,8 @@ const csdown = {
                     url: mv.preview_video.replace(/\/\/.*play\./, '//long.').replace('&seconds=30', ''),
                     col_type: "pic_1_card",
                 })
-            } catch {}
+            } catch {
+            }
             d.push({
                 title: '热心群众',
                 url: 'hiker://empty',
@@ -983,7 +994,8 @@ const csdown = {
                     }
                 })
             })
-        } catch {}
+        } catch {
+        }
         setResult(d)
     },
     jingxuan: () => {

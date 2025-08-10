@@ -12,19 +12,20 @@ const csdown = {
             setItem('up' + csdown.version, '1')
         }
         if (MY_PAGE == 1) {
-            d.push({   
+            d.push({
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     return 'hiker://empty?page=fypage@rule=js:$.require("csdown").search()'
                 }),
-                   desc: "请输入搜索关键词",
-                   col_type: "input",
+                desc: "请输入搜索关键词",
+                col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        };
+        }
+
         var pg = getParam('page');
         let 首页 = [{
             title: '首页&分类&排行榜&排期表',
@@ -81,6 +82,7 @@ const csdown = {
         function strong(d, c) {
             return '‘‘’’<strong><font color=#' + (c || '000000') + '>' + d + '</font></strong>';
         }
+
         if (!getMyVar('host', '')) {
             let appurl = fetch('https://cdn-tupic-duofun-neimenggu.56uxi.com/2.txt');
             putMyVar('host', appurl)
@@ -124,7 +126,9 @@ const csdown = {
             })
             return d;
         }
+
         const de_key = 'qwertyuiopqwertt';
+
         // 解密函数
         function Decrypt(word) {
             const key = CryptoJS.enc.Utf8.parse(de_key);
@@ -140,6 +144,7 @@ const csdown = {
             let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
             return decryptedStr;
         }
+
         // 加密函数
         function Encrypt(plaintext) {
             const id = CryptoJS.enc.Utf8.parse(de_key);
@@ -170,7 +175,7 @@ const csdown = {
             if (getMyVar("page")) {
                 putMyVar("page", (parseInt(page) + 1) + '');
             }
-            return;
+
         } //翻页
 
         function pageMoveto(page, pages) {
@@ -202,7 +207,7 @@ const csdown = {
                     });
                 }),
             }];
-            if (typeof(pages) != 'undefined') {
+            if (typeof (pages) != 'undefined') {
                 var extra1 = {
                     title: "尾页" + pages,
                     js: $.toString((pages) => {
@@ -226,7 +231,7 @@ const csdown = {
                 return;
             }
             const mark = 'desc';
-            num = typeof(num) == 'undefined' ? 45 : num
+            num = typeof (num) == 'undefined' ? 45 : num
             desc = desc.startsWith('　　') ? desc : '　　' + desc;
             desc = desc.replace(/'/g, "&#39;");
             desc = desc.replace(/\r\n/g, "<br>");
@@ -247,6 +252,7 @@ const csdown = {
                 }
                 return str;
             }
+
             let sdesc = substr(desc, num);
             var colors = {
                 show: "black",
@@ -600,7 +606,7 @@ const csdown = {
                     }, {
                         title: '简介：' + blurb,
                         col_type: 'rich_text',
-                    }, )
+                    },)
                     setResult(d)
                 }, vod.vod_pic, vod.vod_name, vod.vod_actor, vod.vod_class, vod.vod_remarks, vod.vod_area, vod.vod_blurb, vod.vod_year),
                 col_type: 'movie_1_vertical_pic_blur',
@@ -853,9 +859,7 @@ const csdown = {
                     return 'hiker://empty'
                 }),
                 col_type: 'text_icon',
-                extra: {
-
-                }
+                extra: {}
             })
             let same_list = storage0.getMyVar('vodDetail').same_list;
             same_list.forEach(data => {
@@ -889,15 +893,15 @@ const csdown = {
         var pg = getParam('page');
         try {
             if (MY_PAGE == 1) {
-                d.push({   
+                d.push({
                     title: "搜索 ",
                     url: $.toString(() => {
                         putMyVar('keyword', input)
                         refreshPage(false)
                         return "hiker://empty"
                     }),
-                       desc: "请输入搜索关键词",
-                       col_type: "input",
+                    desc: "请输入搜索关键词",
+                    col_type: "input",
                     extra: {
                         defaultValue: getMyVar('keyword', ''),
                         pageTitle: '搜索结果'

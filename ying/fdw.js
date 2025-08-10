@@ -12,7 +12,7 @@ function tb_url(dwfl, MY_URL) {
     } else {
         剧集_url = 电影_url.replace(/id-movie/, "id-tvplay").replace(/dyy/, 'dianshiju').replace(/guochandy/, 'guochanju').replace(/vodtype\/20/, 'vodtype/26');
     }
-    ;
+
 
     if (/id\/(\d+)|id-(\d+)/.test(电影_url)) {
         动漫_url = 电影_url.replace(/id\/28/, 'id/20').replace(/id\/20/, 'id/23').replace(/id\/1/, 'id\/4').replace(/id-20/, 'id-23').replace(/id-1/, 'id-4');
@@ -25,7 +25,7 @@ function tb_url(dwfl, MY_URL) {
     } else {
         动漫_url = 电影_url.replace(/id-movie/, "id-dongman").replace(/dyy/, 'dohua').replace(/guochandy/, 'dongmanju').replace(/vodtype\/20/, 'vodtype/25');
     }
-    ;
+
 
     if (/id\/(\d+)|id-(\d+)/.test(电影_url)) {
         综艺_url = 电影_url.replace(/id\/28/, 'id/31').replace(/id\/20/, 'id/22').replace(/id\/1/, 'id\/3').replace(/id-20/, 'id-21').replace(/id-1/, 'id-3');
@@ -38,9 +38,9 @@ function tb_url(dwfl, MY_URL) {
     } else {
         综艺_url = 电影_url.replace(/id-movie/, "id-zongyi").replace(/dyy/, 'mj').replace(/guochandy/, 'zongyi').replace(/vodtype\/20/, 'vodtype/28');
     }
-    ;
+
     return 电影_url + "$" + 剧集_url + "$" + 动漫_url + "$" + 综艺_url;
-};
+}
 
 function _turl(dwfl, MY_URL) {
     let tr_url = getMyVar("Myurl.url", MY_URL);
@@ -62,9 +62,9 @@ function _turl(dwfl, MY_URL) {
     } else if (/vod-show-id|vodtype\//.test(MY_URL)) {
         true_url = tr_url.replace(/vodtype\/(\d+)\.html/, 'vodtype/$1/page/' + page + '.html').replace(/\-id\-(\d+)/, "-id-$1-page-" + page);
     }
-    ;
+
     return true_url;
-};
+}
 
 function htmlf(MY_URL, MY_HOME, http, game, dwfl, true_url, d, page, off1) {
     let headers = {
@@ -85,13 +85,13 @@ function htmlf(MY_URL, MY_HOME, http, game, dwfl, true_url, d, page, off1) {
                         fba.writeFile('hiker://files/cache/FY/cookie/' + dwfl + '.txt', cok);
                         return document.querySelector('.stui-vodlist li');
                     }
-                    ;
+
                 }, dwfl)
             }); //log(ht)
         } else {
             ht = h;
         }
-        ;
+
     } else {
         ht = request(true_url, {
             timeout: 5000,
@@ -104,7 +104,7 @@ function htmlf(MY_URL, MY_HOME, http, game, dwfl, true_url, d, page, off1) {
             headers: headers
         });
     }
-    ;
+
 
     if (/验证码|安全验证/.test(ht) && !/弹出验证码|验证通过/.test(ht)) {
 
@@ -112,19 +112,19 @@ function htmlf(MY_URL, MY_HOME, http, game, dwfl, true_url, d, page, off1) {
             require(http + "yzm.js");
             return verify(MY_URL, MY_HOME, http, game, dwfl, true_url, d, page, "", off1);
         }
-        ;
+
     } else if (ht == "" || !/电影|剧集|连续剧|电视剧|综艺|动漫|短剧|纪录|记录|番剧|视频|視頻|電影|劇集|續集|電視劇|綜藝|動畫|短劇|紀錄|番劇/.test(ht)) {
         if (page == 1) {
             toast("未获取到数据，请切换首页");
         }
-        ;
+
         log(ht);
     } else {
         html = ht;
     }
-    ;
+
     return html
-};
+}
 
 function lei(dwfl, html) {
     if (/Auete/.test(dwfl)) {
@@ -176,14 +176,14 @@ function lei(dwfl, html) {
         拼接小类 = ''
         分类子 = 'body&&a:not(:matches(重置|首页|留言|最新|排行|专题|app|APP|会员|今日|更新|热榜|求片|反馈|发布|周表|地址|回家|午夜|明星|搜|榜))'
     }
-    ;
+
 
     大类名 = 'a||option&&Text';
     大类链 = 'a||option&&value||cat-url||href';
     小类名 = 'a||option&&Text';
     小类链 = 'a||option&&value||cat-url||href';
     return 大类 + "$" + 拼接小类 + "$" + 分类子 + "$" + 大类名 + "$" + 大类链 + "$" + 小类名 + "$" + 小类链
-};
+}
 
 function lieli(html) {
     if (/hl-vod-list/.test(html)) {
@@ -195,9 +195,9 @@ function lieli(html) {
     } else {
         列表 = '.img-list||.fed-list-info||.bt_img||.stui-vodlist||.myui-vodlist||.list-a||.threadlist||.videoul&&li'
     }
-    ;
+
     return 列表
-};
+}
 
 function des(html) {
     if (/zmovo-teams|public-list-box|m-pic-l/.test(html)) {
@@ -205,9 +205,9 @@ function des(html) {
     } else if (/text-right|fed-list-remarks|hdtag|hl-pic-text|list-remarks|module-item-text|module-item-note|pic-text|jidi|hdinfo|videoul-tips/.test(html)) {
         更新 = '.fed-list-remarks||.hdtag||.hl-pic-text||.list-remarks||.module-item-text||.module-item-note||.pic-text||.jidi||.hdinfo||.videoul-tips||.text-right&&Text'
     }
-    ;
+
     return 更新
-};
+}
 
 function tu(dwfl, html) {
     if (/03影院/.test(dwfl)) {
@@ -218,7 +218,7 @@ function tu(dwfl, html) {
         图片 = '.videoul-img||.fed-lazy||.lazy||.lazyload&&data-original||data-src||lay-src||src'
     }
     return 图片;
-};
+}
 
 function tir(dwfl, html) {
     if (/Nike/.test(dwfl)) {
@@ -238,7 +238,7 @@ function tir(dwfl, html) {
         链接 = 'a&&href'
     }
     return 片名 + "$" + 链接
-};
+}
 let names = getMyVar("namejs", "null") != "null" ? getMyVar("namejs") : off1.find(item => item.name.replace(/&&.*/, "") === dwfl);
 let 电影_url;
 let 剧集_url;
@@ -273,7 +273,7 @@ if (Js) {
         s = names.fl;
         g = names.gy;
     }
-    ;
+
 
     let 公用;
     if (typeof g != 'undefined') {
@@ -283,9 +283,9 @@ if (Js) {
             公用 = null;
             log(e.toString());
         }
-        ;
+
     }
-    ;
+
 
     let headers = {
         "User-Agent": MOBILE_UA,
@@ -300,39 +300,39 @@ if (Js) {
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
         }
-        ;
+
         if (公用 && typeof 公用.点播 == "string") {
             var db = 公用.点播;
         }
-        ;
+
         if (公用 && typeof 公用.排除 == "object") {
             var ex = 公用.排除;
         }
-        ;
+
         if (公用 && typeof 公用.包含 == "object") {
             var bh = 公用.包含;
         }
-        ;
+
         if (公用 && typeof 公用.广告 == "object") {
             try {
                 var gg = 公用.广告;
             } catch (e) {
                 log(e.toString());
             }
-            ;
+
         }
-        ;
+
     } else if (公用 && typeof 正文 == "string" ? 正文 == "on" : false) {
         try {
             var zw = typeof 公用.正文 == "function" ? 公用.正文.toString() : "";
         } catch (e) {
             log(e.toString());
         }
-        ;
+
     }
-    ;
+
     let ison;
     try {
         var ht = JSON.parse(html);
@@ -340,33 +340,33 @@ if (Js) {
     } catch (e) {
         ison = "off";
     }
-    ;
+
     if (公用 && (typeof 公用.数字 == "function" ? 公用.数字(html) : false) && typeof 数字 == "undefined") {
         if (page == 1) {
             require(http + "yzm.js");
             verify(MY_URL, MY_HOME, http, game, dwfl, true_url, d, page, "", off1);
         }
-        ;
+
     } else if (公用 && typeof 公用.验证 == "function" && (typeof 验证 == "function" ? 验证(html) : false)) {
         try {
             公用.验证(html, MY_URL);
         } catch (e) {
             log(e.toString());
         }
-        ;
+
         deleteItemByCls("cls_load");
     } else if (html == "" || !/电影|剧集|连续剧|电视剧|综艺|动漫|短剧|纪录|记录|音乐|歌|DJ|MV|番剧|漫画|说|相声|书|小品|视频|視頻|電影|劇集|續集|電視劇|綜藝|動畫|短劇|紀錄|音樂|歌|番劇|漫畫|說|相聲|書|小藝/.test(html) && ison != "on" || ison == "on" && (typeof (ht) == "string" ? ht.code != 200 : "")) {
         if (page == 1) {
             log(html);
             toast("验证未通过或未获取到数据");
         }
-        ;
+
     } else {
         html = html;
     }
-    ;
+
 }
-;
+
 if (HOst) {
     let tb = tb_url(dwfl, MY_URL);
     电影_url = tb.split("$")[0];
@@ -408,4 +408,3 @@ if (HOst) {
     片名 = tirl.split("$")[0];
     链接 = tirl.split("$")[1];
 }
-;
