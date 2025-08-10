@@ -7,9 +7,9 @@ const Apollo = {
         category: getMyVar('Apo.category', '0'),
         subCate: getMyVar('Apo.subCate', '0'),
     },
-    getRangeColors: function() {
+    getRangeColors: function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+            .toString(16))
             .substr(-6);
     }, //随机颜色
     baseParse: () => {
@@ -313,13 +313,15 @@ const Apollo = {
                 url = url
             } else {
                 url = nextPage;
-            };
+            }
+            ;
         } else if (MY_PAGE > 1) {
             if (url.endsWith("/zh/")) {
                 url = url
             } else {
                 url = "没有下一页哦😑"
-            };
+            }
+            ;
         }
 
         var html = fetch(url, {
@@ -624,7 +626,8 @@ const Apollo = {
                     }]
                 }
             })
-        } catch {}
+        } catch {
+        }
 
         const img = pdfh(html, "#dz_video&&img&&src").replace("fbhost1", "fchost1");
         Apollo.d.push({
@@ -642,7 +645,8 @@ const Apollo = {
         try {
             const 识别码 = pdfh(html, "body&&.posts-inner-details-text-top&&li:matches(番號:)+li&&Text")
             if (识别码 != "") Apollo.CodeParse(识别码)
-        } catch {}
+        } catch {
+        }
         Apollo.d.push({
             col_type: "big_blank_block"
         })
@@ -668,7 +672,8 @@ const Apollo = {
             }, {
                 col_type: 'blank_block',
             })
-        } catch {}
+        } catch {
+        }
         //导演
         try {
             var director = pdfh(html, 'body&&.posts-inner-details-text-top&&li:matches(導演:)+li&&Text');
@@ -687,7 +692,8 @@ const Apollo = {
                     }
                 });
             }
-        } catch {}
+        } catch {
+        }
         //片商
         try {
             var maker = pdfh(html, 'body&&.posts-inner-details-text-top&&li:matches(製作商:)+li&&Text');
@@ -706,7 +712,8 @@ const Apollo = {
                     }
                 })
             }
-        } catch {}
+        } catch {
+        }
         //发行商
         try {
             var label = pdfh(html, 'body&&.posts-inner-details-text-top&&li:matches(發行商:)+li&&Text');
@@ -725,7 +732,8 @@ const Apollo = {
                     }
                 })
             }
-        } catch {}
+        } catch {
+        }
         Apollo.d.push({
             col_type: "blank_block"
         })
@@ -898,6 +906,7 @@ const Apollo = {
                 });
             }
         }
+
         server.forEach(x => {
             jfun_show_mvinnerHTML(x);
         })
@@ -944,9 +953,9 @@ const Apollo = {
 
                 function makePlay(token) {
                     for (var a = "",
-                            t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-                            n = t.length,
-                            o = 0; 10 > o; o++)
+                             t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                             n = t.length,
+                             o = 0; 10 > o; o++)
                         a += t.charAt(Math.floor(Math.random() * n));
                     return a + "?token=" + token + "&expiry=" + Date.now();
                 };
@@ -1008,6 +1017,7 @@ const Apollo = {
             codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
                 .replace(/d\.push/g, "Apollo.d.push")
         }
+
         if (!codelazy) {
             downcode()
         }

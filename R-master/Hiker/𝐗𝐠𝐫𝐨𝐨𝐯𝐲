@@ -3,18 +3,18 @@ const Apollo = {
     empty: 'hiker://empty',
     url: 'https://cn.xgroovy.com',
     d: [],
-    getRangeColors: function() {
+    getRangeColors: function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+            .toString(16))
             .substr(-6);
     }, //随机颜色
-    pageAdd: function(page) {
+    pageAdd: function (page) {
         if (getMyVar("page")) {
             putMyVar("page", (parseInt(page) + 1) + '');
         }
         return;
     }, //翻页
-    pageMoveto: function(page, pages) {
+    pageMoveto: function (page, pages) {
         var longClick = [{
             title: "首页",
             js: $.toString(() => {
@@ -43,7 +43,7 @@ const Apollo = {
                 });
             }),
         }];
-        if (typeof(pages) != 'undefined') {
+        if (typeof (pages) != 'undefined') {
             var extra1 = {
                 title: "尾页" + pages,
                 js: $.toString((pages) => {
@@ -499,7 +499,8 @@ const Apollo = {
                         }
                     })
                 })
-            } catch {}
+            } catch {
+            }
         }
     },
     //动态分类
@@ -514,7 +515,7 @@ const Apollo = {
             col_type: "blank_block"
         });
         try {
-            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+            if (typeof (拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
             } else {
                 var categories = pdfa(html, 大类定位)
@@ -538,9 +539,10 @@ const Apollo = {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
-                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                    if (typeof (排除) != 'undefined' && 排除 != '') {
                         title = title.replace(new RegExp(排除, "g"), "")
-                    };
+                    }
+                    ;
                     Apollo.d.push({
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
@@ -673,7 +675,8 @@ const Apollo = {
                     }
                 })
             })
-        } catch {}
+        } catch {
+        }
         //相关
         Apollo.d.push({
             title: "相关视频".fontcolor("#D2691E").bold(),
@@ -743,7 +746,8 @@ const Apollo = {
                     url: "hiker://empty",
                     col_type: "movie_1_vertical_pic"
                 })
-            } catch {}
+            } catch {
+            }
         }
         Apollo.videoSort(html)
         Apollo.videoType(html, page)
@@ -825,7 +829,7 @@ const Apollo = {
             }
 
             const mark = 'desc';
-            num = typeof(num) == 'undefined' ? 100 : num
+            num = typeof (num) == 'undefined' ? 100 : num
             desc = desc.startsWith('　　') ? desc : '　　' + desc;
             desc = desc.replace(/'/g, "&#39;");
             desc = desc.replace(/\r\n/g, "<br>");
@@ -838,7 +842,7 @@ const Apollo = {
                 hide: "#8A2BE2"
             }
 
-            var lazy = $(`#noLoading#`).lazyRule((dc, sdc, m, cs) => {
+            var lazy = $(`#noLoading #`).lazyRule((dc, sdc, m, cs) => {
                 var show = storage0.getItem(m, '0');
                 var title = findItem('desc').title;
                 var re = /(<\/big><br>.*?>).+/g;
@@ -878,6 +882,7 @@ const Apollo = {
                 }
             })
         }
+
         setDesc(Apollo.d, desc, 90);
     },
 

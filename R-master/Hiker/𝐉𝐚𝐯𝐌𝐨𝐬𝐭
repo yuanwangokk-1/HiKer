@@ -3,18 +3,18 @@ const Apollo = {
     empty: 'hiker://empty',
     url: "https://www5.javmost.com",
     d: [],
-    getRangeColors: function() {
+    getRangeColors: function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+            .toString(16))
             .substr(-6);
     }, //随机颜色
-    pageAdd: function(page) {
+    pageAdd: function (page) {
         if (getMyVar("page")) {
             putMyVar("page", (parseInt(page) + 1) + '');
         }
         return;
     }, //翻页
-    pageMoveto: function(page, pages) {
+    pageMoveto: function (page, pages) {
         var longClick = [{
             title: "首页",
             js: $.toString(() => {
@@ -43,7 +43,7 @@ const Apollo = {
                 });
             }),
         }];
-        if (typeof(pages) != 'undefined') {
+        if (typeof (pages) != 'undefined') {
             var extra1 = {
                 title: "尾页" + pages,
                 js: $.toString((pages) => {
@@ -273,7 +273,7 @@ const Apollo = {
             col_type: "blank_block"
         });
         try {
-            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+            if (typeof (拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
             } else {
                 var categories = pdfa(html, 大类定位)
@@ -297,9 +297,10 @@ const Apollo = {
                 let sub_categories = pdfa(category, 小类定位).reverse();
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
-                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                    if (typeof (排除) != 'undefined' && 排除 != '') {
                         title = title.replace(new RegExp(排除, "g"), "")
-                    };
+                    }
+                    ;
                     Apollo.d.push({
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
@@ -674,7 +675,8 @@ const Apollo = {
     avatarType: (html, page) => {
         try {
             html = JSON.parse(html).data
-        } catch {}
+        } catch {
+        }
         list = pdfa(html, "body&&.col-md-4").length > 0 ? pdfa(html, "body&&.col-md-4") : pdfa(html, "body&&.card")
         list.forEach(item => {
             var img = pdfh(item, 'img&&data-src') ? pdfh(item, 'img&&data-src') : pdfh(item, 'img&&src');
@@ -722,6 +724,7 @@ const Apollo = {
                     const rand = Math.floor(Math.random() * 99999) + 100000
                     return rand * 1000
                 }
+
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -749,8 +752,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                                timeout: 1000
-                            }))
+                            timeout: 1000
+                        }))
                             .language;
                         var result = post(url, {
                             body: {

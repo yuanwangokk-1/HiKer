@@ -3,18 +3,18 @@ const Apollo = {
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
-    getRangeColors: function() {
+    getRangeColors: function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+            .toString(16))
             .substr(-6);
     }, //随机颜色
-    pageAdd: function(page) {
+    pageAdd: function (page) {
         if (getMyVar("page")) {
             putMyVar("page", (parseInt(page) + 1) + '');
         }
         return;
     }, //翻页
-    pageMoveto: function(page, pages) {
+    pageMoveto: function (page, pages) {
         var longClick = [{
             title: "首页",
             js: $.toString(() => {
@@ -43,7 +43,7 @@ const Apollo = {
                 });
             }),
         }];
-        if (typeof(pages) != 'undefined') {
+        if (typeof (pages) != 'undefined') {
             var extra1 = {
                 title: "尾页" + pages,
                 js: $.toString((pages) => {
@@ -222,7 +222,8 @@ const Apollo = {
                 if (MY_PAGE == 1 && !/search/.test(url)) {
                     try {
                         Apollo.homeType(html)
-                    } catch {}
+                    } catch {
+                    }
                 }
                 break
             case 'video':
@@ -288,7 +289,8 @@ const Apollo = {
                         }
                     })
                 })
-            } catch {}
+            } catch {
+            }
         }
     },
     //动态分类
@@ -303,7 +305,7 @@ const Apollo = {
             col_type: "blank_block"
         });
         try {
-            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+            if (typeof (拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
             } else {
                 var categories = pdfa(html, 大类定位)
@@ -327,9 +329,10 @@ const Apollo = {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
-                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                    if (typeof (排除) != 'undefined' && 排除 != '') {
                         title = title.replace(new RegExp(排除, "g"), "")
-                    };
+                    }
+                    ;
                     Apollo.d.push({
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
@@ -526,6 +529,7 @@ const Apollo = {
                     }
                     return window0.atob(_0x2dae66);
                 }
+
                 var mpu = pdfh(request(input), '#video-player&&data-mpu')
                 var id = pdfh(request(input), '#video-player-area&&video-id')
                 var ver = pdfh(request(input), '#video-player-area&&video_ver')
@@ -550,7 +554,8 @@ const Apollo = {
                     var source = video[0].file
                     source = source.startsWith("http") ? source : "https:" + source
                     log(source)
-                } catch {}
+                } catch {
+                }
                 try {
                     var group_quality = fetch(source)
                     hghest_quality = group_quality.match(/^[^#\n]+/gm).map(v => source.replace(/master\.m3u8.*/, v) + "#isVideo=true#").reverse()
@@ -642,7 +647,8 @@ const Apollo = {
                     pageTitle: studio
                 }
             })
-        } catch {}
+        } catch {
+        }
         Apollo.d.push({
             col_type: 'blank_block'
         })
@@ -797,7 +803,7 @@ const Apollo = {
         var lazy
         pdfa(html, 线路).forEach(data => {
             data = pdfh(data, 线路名)
-            if (typeof(排除) != 'undefined' && 排除 != '') {
+            if (typeof (排除) != 'undefined' && 排除 != '') {
                 data = data.replace(new RegExp(排除, "g"), "")
             }
             tabs.push(data)
@@ -928,6 +934,7 @@ const Apollo = {
                     const rand = Math.floor(Math.random() * 99999) + 100000
                     return rand * 1000
                 }
+
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -955,8 +962,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                                timeout: 1000
-                            }))
+                            timeout: 1000
+                        }))
                             .language;
                         var result = post(url, {
                             body: {

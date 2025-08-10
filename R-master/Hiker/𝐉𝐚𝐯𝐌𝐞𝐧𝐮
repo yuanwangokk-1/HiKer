@@ -226,6 +226,7 @@ const Apollo = {
                 .join('&');
             return queryString ? '?' + queryString : '';
         }
+
         Apollo.d.push({
             col_type: "blank_block",
         })
@@ -279,6 +280,7 @@ const Apollo = {
                 .join('&');
             return queryString ? '?' + queryString : '';
         }
+
         Apollo.d.push({
             col_type: "blank_block",
         })
@@ -373,6 +375,7 @@ const Apollo = {
                                     }
                                     return urlsc
                                 }
+
                                 if (key == 0) {
                                     putMyVar("url", input)
                                 } else {
@@ -406,7 +409,8 @@ const Apollo = {
             var currpagenum = pdfh(html, ".pagination&&li[aria-current]&&Text")
                 .replace(/.*?(\d+)/, "$1")
             var lurl = pdfh(html, "html&&link[hreflang=zh]&&href")
-        } catch {}
+        } catch {
+        }
         var list = pdfa(html, "body&&.video-list-item:not(:has(a[target]))");
         list.forEach(item => {
             Apollo.d.push({
@@ -474,9 +478,9 @@ const Apollo = {
     //一级系列
     seriesType: (html) => {
         //随机颜色
-        var getRangeColors = function() {
+        var getRangeColors = function () {
             return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                    .toString(16))
+                .toString(16))
                 .substr(-6);
         }
         var list = pdfa(html, '.card-deck&&.col-lg-2')
@@ -638,7 +642,9 @@ const Apollo = {
                     col_type: names.length === 1 ? 'text_2' : (names.length > 5 ? 'flex_button' : 'text_' + names.length),
                 })
             }
-        } catch (err) {};
+        } catch (err) {
+        }
+        ;
         Apollo.d.push({
             col_type: "big_blank_block"
         })
@@ -704,7 +710,8 @@ const Apollo = {
                     }
                 })
             }
-        } catch {}
+        } catch {
+        }
 
         Apollo.d.push({
             title: '““””' + "番号".fontcolor("#FFD000"),
@@ -759,7 +766,8 @@ const Apollo = {
                     }
                 })
             }
-        } catch {}
+        } catch {
+        }
 
         //演员
         var arts = parseDomForArray(html, 'body&&.card-body&&.d-flex:contains(女优:)&&a');
@@ -824,7 +832,8 @@ const Apollo = {
                     }
                 });
             }
-        } catch {}
+        } catch {
+        }
 
         //类别
         var arts = parseDomForArray(html, 'body&&.card-body&&.d-flex:contains(类别:)&&a');
@@ -966,6 +975,7 @@ const Apollo = {
                     const rand = Math.floor(Math.random() * 99999) + 100000
                     return rand * 1000
                 }
+
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -993,8 +1003,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                                timeout: 1000
-                            }))
+                            timeout: 1000
+                        }))
                             .language;
                         var result = post(url, {
                             body: {
@@ -1044,6 +1054,7 @@ const Apollo = {
             codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
                 .replace(/d\.push/g, "Apollo.d.push")
         }
+
         if (!codelazy) {
             downcode()
         }

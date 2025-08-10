@@ -194,7 +194,8 @@ const javguru = {
                     onChange: "putMyVar('key', input)"
                 }
             })
-        };
+        }
+        ;
 
         switch (type) {
             case 'video':
@@ -329,8 +330,10 @@ const javguru = {
                     });
                 }
             }
+
             playLists()
         }
+
         setTabs(tabs, url);
         setLists(lists, getMyVar('tab', '0'));
     },
@@ -338,9 +341,9 @@ const javguru = {
     //一级tags
     tagsType: (html) => {
         //随机颜色
-        var getRangeColors = function() {
+        var getRangeColors = function () {
             return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                    .toString(16))
+                .toString(16))
                 .substr(-6);
         }
         if (MY_PAGE === 1) {
@@ -366,7 +369,7 @@ const javguru = {
         list.forEach(item => {
             javguru.d.push({
                 title: (pdfh(item, '.actress-details&&span[style]:not(:has(.video))&&Text') ? pdfh(item, '.actress-details&&span[style]:not(:has(.video))&&Text')
-                        .slice(0, 8) : pdfh(item, '.actress-details&&span&&Text')) + "\n" + pdfh(item, '.actress-details&&span:matches(videos)&&Text')
+                    .slice(0, 8) : pdfh(item, '.actress-details&&span&&Text')) + "\n" + pdfh(item, '.actress-details&&span:matches(videos)&&Text')
                     .replace("videos", "部") + "\t\t" + pdfh(item, '.actress-details&&span:matches(old)&&Text')
                     .replace("years old", "岁"),
                 desc: "",
@@ -518,11 +521,11 @@ const javguru = {
                     .join('');
                 var url = `${src}${id}`;
                 var location = JSON.parse(fetch(url, {
-                        headers: {
-                            "Referer": input,
-                        },
-                        onlyHeaders: true
-                    }))
+                    headers: {
+                        "Referer": input,
+                    },
+                    onlyHeaders: true
+                }))
                     .url
                 log(location)
                 if (location.includes("emturbovid.com")) {
@@ -543,10 +546,11 @@ const javguru = {
                         var match = name.match(/(\d+)/); // 提取降级分辨率
                         return match ? parseInt(match[1], 10) : 0; // 如果没有匹配则返回0
                     }
+
                     var sortedData = name_quality.map((name, index) => ({
-                            name,
-                            url: hghest_quality[index]
-                        }))
+                        name,
+                        url: hghest_quality[index]
+                    }))
                         .sort((a, b) => getResolution(b.name) - getResolution(a.name));
                     // 分开排序后的 names 和 urls 数组
                     var sortedNames = sortedData.map(item => item.name);
@@ -571,11 +575,11 @@ const javguru = {
                     eval(src)
                     var link = "https:" + srclink + "&stream=1"
                     var urlPlay = JSON.parse(fetch(link, {
-                            headers: {
-                                "Referer": location,
-                            },
-                            onlyHeaders: true
-                        }))
+                        headers: {
+                            "Referer": location,
+                        },
+                        onlyHeaders: true
+                    }))
                         .url
                     return urlPlay + ";{Referer@" + location + "}"
                 } else if (/d0000d|dood|ds2play/.test(location)) {
@@ -595,9 +599,9 @@ const javguru = {
 
                     function makePlay(token) {
                         for (var a = "",
-                                t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-                                n = t.length,
-                                o = 0; 10 > o; o++)
+                                 t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                                 n = t.length,
+                                 o = 0; 10 > o; o++)
                             a += t.charAt(Math.floor(Math.random() * n));
                         return a + "?token=" + token + "&expiry=" + Date.now();
                     };
@@ -674,7 +678,8 @@ const javguru = {
         try {
             var code = html.match(/iframe_url":"[^"]+/g)
                 .map(m => m.match(/iframe_url":"(.*)/)[1])
-        } catch {}
+        } catch {
+        }
         list.forEach((item, index) => {
             var title = pdfh(item, 'Text')
             var url = base64Decode(code[index])
@@ -844,6 +849,7 @@ const javguru = {
                     const rand = Math.floor(Math.random() * 99999) + 100000
                     return rand * 1000
                 }
+
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -871,8 +877,8 @@ const javguru = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                                timeout: 1000
-                            }))
+                            timeout: 1000
+                        }))
                             .language;
                         var result = post(url, {
                             body: {

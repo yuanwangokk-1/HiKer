@@ -600,7 +600,8 @@ const Apollo = {
             var lastpagenum = pdfh(html, "#page&&a:matches(最大页)&&Text") == "" ? pdfh(html, "#page&&a,-1&&Text")
                 .replace(/.*?(\d+)/, "$1") : pdfh(html, "#page&&a:matches(最大页)&&Text")
                 .replace(/.*?(\d+)/, "$1");
-        } catch {}
+        } catch {
+        }
         var list = pdfa(html, "#posts&&.post");
         list.forEach(item => {
             var title = pdfh(item, ".time,1&&Text")
@@ -679,6 +680,7 @@ const Apollo = {
                             }
                             return base64Decode(base64Decode(result));
                         }
+
                         var result = decodeBinaryString(binaryStr)
                         return pdfh(result, "source&&src")
                     }),
@@ -693,7 +695,8 @@ const Apollo = {
             var lastpagenum = pdfh(html, "#page&&a:matches(最大页)&&Text") == "" ? pdfh(html, "#page&&a,-1&&Text")
                 .replace(/.*?(\d+)/, "$1") : pdfh(html, "#page&&a:matches(最大页)&&Text")
                 .replace(/.*?(\d+)/, "$1");
-        } catch {}
+        } catch {
+        }
         var list = pdfa(html, '.content.tagslist&&li')
         list.forEach(item => {
             Apollo.d.push({
@@ -839,6 +842,7 @@ const Apollo = {
                     const rand = Math.floor(Math.random() * 99999) + 100000
                     return rand * 1000
                 }
+
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -866,8 +870,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                                timeout: 1000
-                            }))
+                            timeout: 1000
+                        }))
                             .language;
                         var result = post(url, {
                             body: {
@@ -938,7 +942,7 @@ const Apollo = {
         }
         var story = pdfh(html, "body&&h2:matches(故事)+table&&Text")
         var content = Apollo.translate(story)
-        var lazy = $(`#noLoading#`)
+        var lazy = $(`#noLoading #`)
             .lazyRule((content) => {
                 if (content !== "") {
                     var title = findItem('content_decid')
@@ -1114,7 +1118,8 @@ const Apollo = {
                     })
                 }
             }
-        } catch {}
+        } catch {
+        }
 
         Apollo.d.push({
             title: '““””' + "番号：".fontcolor("#FFD000") + 识别码.toUpperCase()
@@ -1135,7 +1140,8 @@ const Apollo = {
                     }
                 })
             }
-        } catch {}
+        } catch {
+        }
         //导演
         try {
             var director = pdfh(html, 'body&&#td-Series&&a&&Text');
@@ -1149,7 +1155,8 @@ const Apollo = {
                     }
                 });
             }
-        } catch {}
+        } catch {
+        }
 
         Apollo.d.push({
             col_type: "blank_block",
@@ -1177,7 +1184,8 @@ const Apollo = {
                     }
                 })
             }
-        } catch {}
+        } catch {
+        }
 
         //演员
         var arts = parseDomForArray(html, 'body&&#th-Genre:contains(演員)&&a');
@@ -1264,7 +1272,8 @@ const Apollo = {
                     }
                 })
             }
-        } catch {}
+        } catch {
+        }
         Apollo.d.push({
             col_type: "blank_block"
         })
@@ -1291,6 +1300,7 @@ const Apollo = {
             let decodedString = window0.atob(encodedString);
             return decodedString
         }
+
         const magnet = pdfa(html, '#Magnet-cont&&tr,1:');
         magnet.forEach(item => {
             var url = magnetDecode(pdfh(item, "a&&id"));
@@ -1376,6 +1386,7 @@ const Apollo = {
             codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
                 .replace(/d\.push/g, "Apollo.d.push")
         }
+
         if (!codelazy) {
             downcode()
         }

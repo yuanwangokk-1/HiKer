@@ -634,8 +634,8 @@ js: //所在行   ThissAV①16
             title: '‘‘’’<b><middle><font color="#FF8C00">𝐌𝐨𝐫𝐞</font></middle>',
             pic_url: 'https://img.vinua.cn/images/IQkS8.png',
             url: $(["𝐀𝐯𝟎𝟏", "𝐖𝐚𝐧𝐭𝐚𝐯",
-                    "𝐉𝐚𝐛𝐥𝐞", "𝐉𝐚𝐯𝐅𝐢𝐧𝐝𝐞𝐫"
-                ], 3)
+                "𝐉𝐚𝐛𝐥𝐞", "𝐉𝐚𝐯𝐅𝐢𝐧𝐝𝐞𝐫"
+            ], 3)
                 .select((识别码) => {
                     if (input == "𝐖𝐚𝐧𝐭𝐚𝐯") {
                         var av = "https://www.wantav.com/videos/index/id/" + 识别码;
@@ -736,9 +736,9 @@ js: //所在行   ThissAV①16
                         })
                         if (JavFinder.length == 0) {
                             var redirect = JSON.parse(fetch(search, {
-                                    onlyHeaders: true,
-                                    timeout: 4923
-                                }))
+                                onlyHeaders: true,
+                                timeout: 4923
+                            }))
                                 .url
                             if (/\.ai\/\d+/.test(redirect)) {
                                 JavFinder = [{

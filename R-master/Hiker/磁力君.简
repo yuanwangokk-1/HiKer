@@ -82,7 +82,7 @@ var rrules = [
     {
         name: "老王磁力",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             // 工具函数laowangso.com
             function isEmpty(x) {
                 if (x == null || x == undefined || x == '') {
@@ -229,12 +229,13 @@ var rrules = [
                 }
                 return lwRes
             }
+
             return clRuleTest(s, page)
         }
     }, {
         name: "BTSOW",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://btsow.pics";
             let api = "/search/" + encodeURIComponent(s) + "/page/" + page;
             let html = request(basicUrl + api);
@@ -257,7 +258,7 @@ var rrules = [
     }, {
         name: "BTDigg",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://www.btdig.com";
             let api = "/search?q=" + encodeURIComponent(s) + "&p=" + (page - 1) + "&order=0";
             let html = request(basicUrl + api);
@@ -276,7 +277,7 @@ var rrules = [
     }, {
         name: "BtFox",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             //发布网址  https://btfox.xyz
             let basicUrl = "http://btfox19.top";
             /* if (page == 1) {
@@ -309,7 +310,7 @@ var rrules = [
     }, {
         name: "SOBT",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             //发布网址  http://sobt.me/
             let basicUrl = "https://sobt18.cfd";
             let api = "/q/" + base64Encode(s) + "?sort=rel&page=" + page;
@@ -328,7 +329,7 @@ var rrules = [
     }, {
         name: "东京图书馆",
         page: false,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://www.tokyotosho.info";
             let api = "/search.php?terms=" + encodeURIComponent(s) + "&type=0&searchName=true&searchComment=true&size_min=&size_max=&username=";
             let html = request(basicUrl + api);
@@ -347,7 +348,7 @@ var rrules = [
     }, {
         name: "BT4G",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://bt4gprx.com";
             let api = "/search?q=" + encodeURIComponent(s) + "&p=" + page;
             let html = request(basicUrl + api)
@@ -370,7 +371,7 @@ var rrules = [
     }, {
         name: "BT目录",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://btmulu.cyou";
             let api = "/search/" + encodeURIComponent(s) + "/page-" + page + ".html";
             let html = request(basicUrl + api);
@@ -388,7 +389,7 @@ var rrules = [
     }, {
         name: "种子吧",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             //发布网址  http://zhongziba.cc/
             let basicUrl = "https://zzb10.top";
             let api = "/search?wd=" + base64Encode(s) + "&sort=rel&page=" + page;
@@ -411,7 +412,7 @@ var rrules = [
     }, {
         name: "小草磁力",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://xcbt5.xyz";
             let api = "/search/kw-" + encodeURIComponent(s) + "-" + page + ".html";
             let html = request(basicUrl + api);
@@ -429,7 +430,7 @@ var rrules = [
     }, {
         name: "磁力蜘蛛",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://btmovi.cyou";
             let api = "/so/" + encodeURIComponent(s) + "_rel_" + page + ".html";
             let html = request(basicUrl + api);
@@ -452,7 +453,7 @@ var rrules = [
         //永久地址：https://sofan.club/
         name: "搜番",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://cdn.sofan.one:65533";
             let api = "/s?word=" + encodeURIComponent(s) + "&page=" + page;
             let html = request(basicUrl + api, {
@@ -483,7 +484,7 @@ var rrules = [
     }, {
         name: "CiLiGeGe",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             //发布网址  https://www.ciligege.com
 
             let basicUrl = "https://www.ciligege2.com";
@@ -504,7 +505,7 @@ var rrules = [
         //永久地址：https://btfox.one/
         name: "磁力狐",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://cache.foxs.top";
             let api = "/search?word=" + encodeURIComponent(s) + "&page=" + page;
             let html = request(basicUrl + api, {
@@ -536,7 +537,7 @@ var rrules = [
         //永久地址：https://ciliduo.org/
         name: "磁力多",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://doc2.htmcdn.com:39988";
             let api = "/search?word=" + encodeURIComponent(s) + "&sort=&page=" + page;
             let html = request(basicUrl + api, {
@@ -559,7 +560,7 @@ var rrules = [
         //https://www.sokankan.top/
         name: "BT吃力",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://www.sokk48.buzz";
             let api = "/search/" + encodeURIComponent(s) + "/page-" + page + ".html";
             let html = request(basicUrl + api, {
@@ -585,7 +586,7 @@ var rrules = [
     }, {
         name: "0Magnet",
         page: false,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://wuji.me";
             let api = "/search?q=" + encodeURIComponent(s);
             let html = request(basicUrl + api);
@@ -607,7 +608,7 @@ var rrules = [
     }, {
         name: "磁力搜索",
         page: false,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://cilisousuo.com";
             let api = "/search?q=" + encodeURIComponent(s);
             let html = request(basicUrl + api);
@@ -630,7 +631,7 @@ var rrules = [
         //永久地址：cihu.xyz
         name: "磁狐搜索",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://www.maddening5.xyz";
             let api = "/search/" + encodeURIComponent(s) + "_ctime_" + page + ".html";
             let html = request(basicUrl + api);
@@ -652,7 +653,7 @@ var rrules = [
     }, {
         name: "磁力发", //cilifa.com
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://www.cilifa666.shop/api/ssbc";
             let html = JSON.parse(post(basicUrl, {
                 body: {
@@ -676,7 +677,7 @@ var rrules = [
         //永久地址：https://www.zhaocili.xyz/
         name: "找磁力",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://100mag.vip";
             let api = "/s.php?q=" + encodeURIComponent(s);
             let url = JSON.parse(request(basicUrl + api, {
@@ -703,7 +704,7 @@ var rrules = [
         //永久地址：https://soucili.info/
         name: "磁力宅",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://0j2yoali.alipaycloud.world";
             let api = "/request/?request_type=esearch_v11&keywords=" + encodeURIComponent(s) + "&device_id=305202be-3cec-51df-d436-cd0dd7e500cb&page=" + (page - 1);
             let html = JSON.parse(fetch(basicUrl + api));
@@ -744,6 +745,7 @@ var rrules = [
                 var i = Math.floor(Math.log(size) / Math.log(1024));
                 return `${(size / Math.pow(1024, i)).toFixed(2)} ${units[i]}`;
             }
+
             for (let it of list) {
                 var date = new Date(it.timestamp);
                 var year = date.getFullYear();
@@ -761,7 +763,7 @@ var rrules = [
     }, {
         name: "磁力地球",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             //发布网址  https://www.cilidiqiu.top/
 
             function str2hex(str) {
@@ -813,7 +815,7 @@ var rrules = [
         //永久地址：https://clgou.cyou/ https://魔法猫咪.lol/
         name: "磁力狗猫",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://clgclg.com";
             let api = "/search-" + encodeURIComponent(s) + "-0-0-" + page + ".html";
             let html = request(basicUrl + api);
@@ -832,7 +834,7 @@ var rrules = [
         //发布地址：http://fb.ciligoufabuye1.xyz:1234/
         name: "磁力猫狗",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             var word111 = s
             var encodebefore = base64Encode(word111);
             encodebefore = 'VjdwwW29' + encodebefore + 'NjdwwW24';
@@ -863,7 +865,7 @@ var rrules = [
     }, {
         name: "磁搜.com", //https://磁搜.com
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://q5m备用网址-icisou点com.cilihttp.com";
             let api = "/search.php?key=" + encodeURIComponent(s) + "&p=" + page;
             let html = request(basicUrl + api);
@@ -885,7 +887,7 @@ var rrules = [
     }, {
         name: "U3C3",
         page: true,
-        find: function(s, page) {
+        find: function (s, page) {
             let basicUrl = "https://m0m0m1m.mnmnmnmnmn.com";
             let api = "/?p=" + page + "&search2=eelja3lfe1a1&search=" + encodeURIComponent(s);
             let html = request(basicUrl + api);

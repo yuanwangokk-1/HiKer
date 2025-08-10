@@ -3,7 +3,7 @@ const Apollo = {
     empty: "hiker://empty",
     url: "https://www.redtube.com",
     d: [],
-    MovePageTo: function(url, currentPage, lastPage) {
+    MovePageTo: function (url, currentPage, lastPage) {
         if (!currentPage) {
             currentPage = getMyVar("page") ? Number(getMyVar("page")) + Number(MY_PAGE) - 1 : MY_PAGE
         }
@@ -46,9 +46,9 @@ const Apollo = {
         category: getMyVar('Apo.category', '0'),
         subCate: getMyVar('Apo.subCate', '0'),
     },
-    getRangeColors: function() {
+    getRangeColors: function () {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+            .toString(16))
             .substr(-6);
     }, //随机颜色
     baseParse: () => {
@@ -149,7 +149,8 @@ const Apollo = {
                 url = url
             } else {
                 url = nextPage;
-            };
+            }
+            ;
         } else if (MY_PAGE > 1) {
             url = "没有下一页哦😑"
         }
@@ -299,7 +300,8 @@ const Apollo = {
                         }, tabname, taburl, i)
                     })
                 }
-            } catch {}
+            } catch {
+            }
             Apollo.d.push({
                 col_type: "blank_block"
             })
@@ -341,8 +343,10 @@ const Apollo = {
                             col_type: col,
                         });
                     }
-                } catch {}
+                } catch {
+                }
             }
+
             playLists()
         }
 
@@ -367,7 +371,7 @@ const Apollo = {
             var lastPage = currentPage
         }
         var list = pdfa(html, "body&&.videoblock_list");
-        list.forEach((item,index) => {
+        list.forEach((item, index) => {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/.*(http.*)/, "$1");
             var title = pdfh(item, ".video-title-wrapper&&a&&title");
@@ -385,6 +389,7 @@ const Apollo = {
                     try {
                         var playervars = html.match(/playervars:(.*)\,/)[1];
                         var hls = "https://embed.redtube.com" + JSON.parse(playervars).mediaDefinitions.shift().videoUrl;
+
                         //var mp4 = "https://embed.redtube.com" + JSON.parse(playervars).mediaDefinitions.pop().videoUrl
 
                         function playlist(url) {
@@ -402,6 +407,7 @@ const Apollo = {
                                 return {}
                             }
                         }
+
                         /*var names = playlist(hls).names.concat(playlist(mp4).names)
                         var urls = playlist(hls).urls.concat(playlist(mp4).urls)*/
                         return playlist(hls)
@@ -544,7 +550,8 @@ const Apollo = {
                 url = url
             } else {
                 url = nextPage;
-            };
+            }
+            ;
         } else if (MY_PAGE > 1) {
             url = "没有下一页哦😑"
         }
@@ -614,6 +621,7 @@ const Apollo = {
                     const rand = Math.floor(Math.random() * 99999) + 100000
                     return rand * 1000
                 }
+
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -641,8 +649,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                                timeout: 1000
-                            }))
+                            timeout: 1000
+                        }))
                             .language;
                         var result = post(url, {
                             body: {
