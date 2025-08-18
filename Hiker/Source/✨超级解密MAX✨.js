@@ -8,7 +8,7 @@ const Aquarius = {
     home: () => {
         var d = Aquarius.d;
         if (!storage0.getItem('githubapi')) {
-            let github_url = 'https://github-mirror.xiaoxuan6.me/api/urls';
+            let github_url = 'https://api.github.com';
             let github_data = JSON.parse(fetch(github_url)).data;
             storage0.setItem('githubapi', github_data)
         }
