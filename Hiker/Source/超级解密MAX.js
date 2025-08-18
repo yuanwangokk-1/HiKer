@@ -1,7 +1,7 @@
 const Aquarius = {
     d: [],
     author: "Aries",
-    version: "20250701",
+    version: "20250529",
     rely: (data) => {
         return data.match(/\{([\s\S]*)\}/)[0].replace(/\{([\s\S]*)\}/, '$1')
     },
@@ -47,7 +47,6 @@ const Aquarius = {
             toast('更新完成！');
             refreshPage();
         }
-
         //获取剪贴板内容 代码来自：云盘君.简
         function getClipboardText() {
             try {
@@ -69,7 +68,6 @@ const Aquarius = {
                 return null;
             }
         }
-
         let text = getClipboardText() || "";
         let url = (text.includes("￥base64") || text.includes("￥home_rule") || text.trim().startsWith("云")) ? text : "";
         if (url) {
@@ -198,11 +196,11 @@ const Aquarius = {
                     encode = jiexi(code);
                     encode = updateRule(encode);
                     //优化显示效果 返回string证明未解析
-                    if (typeof (encode) == "string") {
+                    if (typeof(encode) == "string") {
                         encode = "海阔视界￥home_rule￥" + encode;
                     }
                     //返回object类型证明解析过了是json 需要转为字符串
-                    if (typeof (encode) == "object") {
+                    if (typeof(encode) == "object") {
                         encode = "海阔视界￥home_rule￥" + JSON.stringify(encode);
                     }
                     //返回解析后的数据
@@ -384,7 +382,7 @@ const Aquarius = {
                 handleException(e);
                 return null;
             }
-        }
+        };
 
         function decrypt(secretKey, base64Data) {
             try {
@@ -402,11 +400,11 @@ const Aquarius = {
                 handleException(e);
                 return null;
             }
-        }
+        };
 
         function getSecretKey(secretKey) {
             return CryptoJS.enc.Utf8.parse(toMakeKey(secretKey, SECRET_KEY_LENGTH, DEFAULT_VALUE));
-        }
+        };
 
         function toMakeKey(secretKey, length, text) {
             if (secretKey.length >= length) {
@@ -417,19 +415,19 @@ const Aquarius = {
                 paddedKey += text;
             }
             return paddedKey;
-        }
+        };
 
         function base64Decode(data) {
             return CryptoJS.enc.Base64.parse(data);
-        }
+        };
 
         function base64Encode(data) {
             return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Hex.parse(data.toString()));
-        }
+        };
 
         function handleException(e) {
             console.error("Error: ", e);
-        }
+        };
     }),
     ruleJiexi: $.toString(() => {
         //解析小程序规则
