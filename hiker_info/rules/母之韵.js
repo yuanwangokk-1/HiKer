@@ -11,20 +11,19 @@ const csdown = {
         //备用uid=6299614
         var d = csdown.d;
         if (MY_PAGE == 1) {
-            d.push({
+            d.push({   
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     return 'hiker://empty?page=fypage@rule=js:$.require("csdown").search()'
                 }),
-                desc: "请输入搜索关键词",
-                col_type: "input",
+                   desc: "请输入搜索关键词",
+                   col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                 }
             })
-        }
-
+        };
         var pg = getParam('page');
         let 首页 = [{
             title: '视频&抖音',
@@ -62,16 +61,14 @@ const csdown = {
         //加载CryptoJS库
         eval(getCryptoJS())
         var t = Math.floor(Date.now());
-
         //生成随机uuid
         function generateUUID() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                 var r = Math.random() * 16 | 0;
                 var v = c === 'x' ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
             });
         }
-
         //md5加密
         function md5(str) {
             return CryptoJS.MD5(str).toString();
@@ -141,7 +138,7 @@ const csdown = {
 
         var image = $('').image(() => {
             const CryptoUtil = $.require("hiker://assets/crypto-java.js");
-            let decode = function (data) {
+            let decode = function(data) {
                 let key = 88;
                 const binaryArr = [];
                 let bytes = data;
@@ -377,15 +374,15 @@ const csdown = {
         eval(csdown.rely(csdown.aes));
         var pg = getParam('page');
         if (MY_PAGE == 1) {
-            d.push({
+            d.push({   
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     refreshPage(false)
                     return "hiker://empty"
                 }),
-                desc: "请输入搜索关键词",
-                col_type: "input",
+                   desc: "请输入搜索关键词",
+                   col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                     pageTitle: '搜索结果'
