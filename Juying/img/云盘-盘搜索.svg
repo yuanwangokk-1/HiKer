@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 200 200">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        opacity: .9;
+      }
+
+      .cls-1, .cls-3 {
+        fill: #587bff;
+      }
+
+      .cls-1, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-4 {
+        fill: #707070;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="59.4" y="45.5" width="9.6" height="11.9"/>
+  <rect class="cls-1" x="40.3" y="45.5" width="9.6" height="11.9"/>
+  <path class="cls-4" d="M33.1,84.1h133.8v14.8h14.3v-62.4c0-9.8-6.4-17.8-14.3-17.8H33.1c-7.9,0-14.3,8-14.3,17.8v124.7c0,9.8,6.4,17.8,14.3,17.8h81.2v-17.8H33.1v-29.7h81.2v-17.8H33.1v-29.7h0ZM33.1,36.6h133.8v29.7H33.1v-29.7Z"/>
+  <rect class="cls-4" x="40.3" y="93" width="9.6" height="11.9"/>
+  <rect class="cls-4" x="59.4" y="93" width="9.6" height="11.9"/>
+  <rect class="cls-4" x="40.3" y="140.5" width="9.6" height="11.9"/>
+  <rect class="cls-4" x="59.4" y="140.5" width="9.6" height="11.9"/>
+  <g id="_图层_2" data-name=" 图层 2" class="cls-2">
+    <path class="cls-3" d="M187.9,136.9c0-17.5-14.7-31.7-32.7-31.7s-11.6,1.5-16.7,4.5c-15.5,9-20.6,28.3-11.4,43.4,9.3,15,29.3,19.9,44.8,11l19.5,18.9,11.5-11.2-19.6-19c2.9-4.9,4.5-10.3,4.5-15.9h.1ZM155.2,148.8h0c-6.8,0-12.2-5.3-12.2-11.8s5.5-11.8,12.2-11.8,12.2,5.3,12.2,11.8-5.5,11.8-12.2,11.8Z"/>
+  </g>
+</svg>

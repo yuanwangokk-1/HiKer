@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<title>解析</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta name="viewport" content="width=device-width">
+</head>
+<body>
+<script>
+var apiArray=[];
+var origin=document.location.href.split("url=")[1];
+var iframeHtml="";
+for(var i=0;i<apiArray.length;i++){
+var URL=apiArray[i]+origin;
+iframeHtml=iframeHtml+"<iframe sandbox='allow-scripts allow-same-origin allow-forms' frameborder='0' allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' src="+URL+"></iframe>";
+}
+document.write(iframeHtml);
+</script>
+</body>
+</html>
