@@ -143,7 +143,7 @@ const csdown = {
             let 首页 = [{
                 title: '首页&分类&排行榜&排期表',
                 id: '1&2&3&4&5',
-                img: 'https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/more/47.png&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/more/175.png&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/more/78.png&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/more/48.png&https://ghproxy.net/https://raw.githubusercontent.com/ls125781003/tubiao/main/more/109.png'
+                img: 'https://raw.githubusercontent.com/ls125781003/tubiao/main/more/47.png&https://raw.githubusercontent.com/ls125781003/tubiao/main/more/175.png&https://raw.githubusercontent.com/ls125781003/tubiao/main/more/78.png&https://raw.githubusercontent.com/ls125781003/tubiao/main/more/48.png&https://raw.githubusercontent.com/ls125781003/tubiao/main/more/109.png'
             }];
             /*
             let longclick = [{
@@ -430,7 +430,7 @@ const csdown = {
         }, obj, id, MY_PARAMS))
     },
     update: function() {
-        const hikerPop = $.require("https://raw.githubusercontent.com/csdown/hiker_yingshi/refs/heads/main/rules/hikerPop.js");
+        const hikerPop = $.require("https://raw.githubusercontent.com/yuanwangokk-1/HiKer/refs/heads/main/hiker_yingshi/rules/✨hikerPop✨.js");
         let pop = hikerPop.updateRecordsBottom([{
             title: "声明",
             records: [
