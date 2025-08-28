@@ -12,14 +12,14 @@ const csdown = {
             setItem('up' + csdown.version, '1')
         }
         if (MY_PAGE == 1) {
-            d.push({   
+            d.push({
                 title: "搜索 ",
                 url: $.toString(() => {
                     putMyVar('keyword', input)
                     return 'hiker://empty?page=fypage@rule=js:$.require("csdown").search()'
                 }),
-                   desc: "请输入搜索关键词",
-                   col_type: "input",
+                desc: "请输入搜索关键词",
+                col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', ''),
                 }
@@ -375,7 +375,7 @@ const csdown = {
         }
     }),
     update: () => {
-        const hikerPop = $.require(getItem('github_url') + "https://raw.githubusercontent.com/yuanwangokk-1/HiKer/refs/heads/main/hiker_yingshi/rules/✨hikerPop✨.js");
+        const hikerPop = $.require("https://raw.githubusercontent.com/yuanwangokk-1/HiKer/main/hiker_yingshi/rules/✨hikerPop✨.js");
         let pop = hikerPop.updateRecordsBottom([{
             title: "声明",
             records: [
@@ -640,15 +640,15 @@ const csdown = {
         var pg = getParam('page');
         try {
             if (MY_PAGE == 1) {
-                d.push({   
+                d.push({
                     title: "搜索 ",
                     url: $.toString(() => {
                         putMyVar('keyword', input)
                         refreshPage(false)
                         return "hiker://empty"
                     }),
-                       desc: "请输入搜索关键词",
-                       col_type: "input",
+                    desc: "请输入搜索关键词",
+                    col_type: "input",
                     extra: {
                         defaultValue: getMyVar('keyword', ''),
                         pageTitle: '搜索结果'
