@@ -83,23 +83,23 @@ const Aquarius = {
         }
 
         // 检查剪贴板内容
-        let text = getClipboardText() || "";
-        let url = (text.includes("￥base64") || text.includes("￥home_rule") || text.trim().startsWith("云")) ? text : "";
-        if (url) {
-            d.push({
-                title: "检测到剪贴板含有小程序是否导入?\n" + url,
-                img: "hiker://images/icon_cloud6",
-                url: $("#noLoading#").lazyRule((input) => {
-                    updateItem("code", {
-                        extra: Object.assign(findItem("code").extra, {
-                            defaultValue: input.toString()
-                        })
-                    })
-                    return "hiker://empty";
-                }, url),
-                col_type: "text_icon"
-            });
-        }
+        // let text = getClipboardText() || "";
+        // let url = (text.includes("￥base64") || text.includes("￥home_rule") || text.trim().startsWith("云")) ? text : "";
+        // if (url) {
+            // d.push({
+                // title: "检测到剪贴板含有小程序是否导入?\n" + url,
+                // img: "hiker://images/icon_cloud6",
+                // url: $("#noLoading#").lazyRule((input) => {
+                    // updateItem("code", {
+                        // extra: Object.assign(findItem("code").extra, {
+                            // defaultValue: input.toString()
+                        // })
+                    // })
+                    // return "hiker://empty";
+                // }, url),
+                // col_type: "text_icon"
+            // });
+        // }
 
         // 添加类型和模式选择按钮
         d.push({
