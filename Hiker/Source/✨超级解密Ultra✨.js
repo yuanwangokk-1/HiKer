@@ -103,16 +103,16 @@ const Aquarius = {
 
         // 添加类型和模式选择按钮
         d.push({
-            title: "类型：" + getItem("typeName", "默认"),
-            url: $().lazyRule(() => {
-                return "toast://暂不可用";
-            }),
-            col_type: "icon_2_round",
-            pic_url: "hiker://images/icon_menu6",
-            extra: {
-                id: "yunType"
-            }
-        }, {
+            // title: "类型：" + getItem("typeName", "默认"),
+            // url: $().lazyRule(() => {
+            // return "toast://暂不可用";
+            // }),
+            // col_type: "icon_2_round",
+            // pic_url: "hiker://images/icon_menu6",
+            // extra: {
+            // id: "yunType"
+            // }
+            // }, {
             title: "模式：" + getItem("filterName", "解密"),
             url: "select://" + JSON.stringify({
                 title: "过滤模式设置",
