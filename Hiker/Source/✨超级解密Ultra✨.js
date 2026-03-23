@@ -134,9 +134,9 @@ const Aquarius = {
             }),
             col_type: "icon_2_round",
             pic_url: "hiker://images/icon_setting6",
-            extra: {
-                id: "filterType"
-            }
+            // extra: {
+                // id: "filterType"
+            // }
         });
 
         // 本地文件选择器
