@@ -83,36 +83,36 @@ const Aquarius = {
         }
 
         // 检查剪贴板内容
-        // let text = getClipboardText() || "";
-        // let url = (text.includes("￥base64") || text.includes("￥home_rule") || text.trim().startsWith("云")) ? text : "";
-        // if (url) {
-            // d.push({
-                // title: "检测到剪贴板含有小程序是否导入?\n" + url,
-                // img: "hiker://images/icon_cloud6",
-                // url: $("#noLoading#").lazyRule((input) => {
-                    // updateItem("code", {
-                        // extra: Object.assign(findItem("code").extra, {
-                            // defaultValue: input.toString()
-                        // })
-                    // })
-                    // return "hiker://empty";
-                // }, url),
-                // col_type: "text_icon"
-            // });
-        // }
+        let text = getClipboardText() || "";
+        let url = (text.includes("￥base64") || text.includes("￥home_rule") || text.trim().startsWith("云")) ? text : "";
+        if (url) {
+            d.push({
+                title: "检测到剪贴板含有小程序是否导入?\n" + url,
+                img: "hiker://images/icon_cloud6",
+                url: $("#noLoading#").lazyRule((input) => {
+                    updateItem("code", {
+                        extra: Object.assign(findItem("code").extra, {
+                            defaultValue: input.toString()
+                        })
+                    })
+                    return "hiker://empty";
+                }, url),
+                col_type: "text_icon"
+            });
+        }
 
         // 添加类型和模式选择按钮
         d.push({
-            // title: "类型：" + getItem("typeName", "默认"),
-            // url: $().lazyRule(() => {
-            // return "toast://暂不可用";
-            // }),
-            // col_type: "icon_2_round",
-            // pic_url: "hiker://images/icon_menu6",
-            // extra: {
-            // id: "yunType"
-            // }
-            // }, {
+            title: "类型：" + getItem("typeName", "默认"),
+            url: $().lazyRule(() => {
+                return "toast://暂不可用";
+            }),
+            col_type: "icon_2_round",
+            pic_url: "hiker://images/icon_menu6",
+            extra: {
+                id: "yunType"
+            }
+        }, {
             title: "模式：" + getItem("filterName", "解密"),
             url: "select://" + JSON.stringify({
                 title: "过滤模式设置",
@@ -134,29 +134,29 @@ const Aquarius = {
             }),
             col_type: "icon_2_round",
             pic_url: "hiker://images/icon_setting6",
-            // extra: {
-                // id: "filterType"
-            // }
+            extra: {
+                id: "filterType"
+            }
         });
 
         // 本地文件选择器
-        // d.push({
-        // title: "选择文件",
-        // url: $.toString(() => {
-        // eval($.require("Aquarius").rely($.require("Aquarius").fileSelect));
-        // return "fileSelect://" + fileSelect(input);
-        // }),
-        // col_type: "input",
-        // desc: "请选择文件",
-        // extra: {
-        // id: "fileSelect",
-        // onChange: $.toString(() => {
-        // putMyVar("fileSelect", input);
-        // }),
-        // defaultValue: getMyVar("fileSelect", "/storage/emulated/0/"),
-        // backgroundColor: "#666666"
-        // }
-        // });
+        d.push({
+            title: "选择文件",
+            url: $.toString(() => {
+                eval($.require("Aquarius").rely($.require("Aquarius").fileSelect));
+                return "fileSelect://" + fileSelect(input);
+            }),
+            col_type: "input",
+            desc: "请选择文件",
+            extra: {
+                id: "fileSelect",
+                onChange: $.toString(() => {
+                    putMyVar("fileSelect", input);
+                }),
+                defaultValue: getMyVar("fileSelect", "/storage/emulated/0/"),
+                backgroundColor: "#666666"
+            }
+        });
 
         // 代码输入和输出区域
         d.push({
@@ -266,33 +266,33 @@ const Aquarius = {
 
         // 上传到云剪贴板
         d.push({
-            // title: "上传到云剪贴板",
-            // url: "select://" + JSON.stringify({
-            // title: "云剪贴板列表",
-            // options: getPastes(),
-            // col: 2,
-            // js: $.toString(() => {
-            // var encode = getMyVar("encode");
-            // if (encode) {
-            // var encode = encode.replace("海阔视界￥home_rule￥", "");
-            // var title = JSON.parse(encode).title;
-            // // 优化显示内容
-            // encode = "海阔视界规则分享，当前分享的是：小程序￥home_rule_v2￥base64://@" + title + "@" + base64Encode(encode);
-            // if (input == "云剪贴板2" && encode.length >= 200000) {
-            // return "toast://云剪贴2不支持超过20万字符"
-            // }
-            // var url = sharePaste(encode, input);
-            // return "copy://" + url + "\n\n小程序：" + title;
-            // } else {
-            // return "toast://内容为空"
-            // }
-            // })
-            // }),
-            // col_type: "text_2",
-            // extra: {
-            // id: "copy"
-            // }
-            // },{
+            title: "上传到云剪贴板",
+            url: "select://" + JSON.stringify({
+                title: "云剪贴板列表",
+                options: getPastes(),
+                col: 2,
+                js: $.toString(() => {
+                    var encode = getMyVar("encode");
+                    if (encode) {
+                        var encode = encode.replace("海阔视界￥home_rule￥", "");
+                        var title = JSON.parse(encode).title;
+                        // 优化显示内容
+                        encode = "海阔视界规则分享，当前分享的是：小程序￥home_rule_v2￥base64://@" + title + "@" + base64Encode(encode);
+                        if (input == "云剪贴板2" && encode.length >= 200000) {
+                            return "toast://云剪贴2不支持超过20万字符"
+                        }
+                        var url = sharePaste(encode, input);
+                        return "copy://" + url + "\n\n小程序：" + title;
+                    } else {
+                        return "toast://内容为空"
+                    }
+                })
+            }),
+            col_type: "text_2",
+            extra: {
+                id: "copy"
+            }
+        }, {
             title: "清空",
             url: $("#noLoading#").lazyRule(() => {
                 updateItem("code", {
