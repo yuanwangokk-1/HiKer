@@ -1,7 +1,7 @@
 const Apollo = {
     version: "20260810",
     empty: 'hiker://empty',
-    url: "https://missav.ws/",
+    url: "https://missav.live/dm247/cn",
     d: [],
     taskList: [],
     getRangeColors: function() {
