@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20251004",
+    version: "20260810",
     empty: 'hiker://empty',
     url: "https://missav.ws/",
     d: [],
