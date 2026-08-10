@@ -1,7 +1,7 @@
 const Apollo = {
     version: "20260810",
     empty: 'hiker://empty',
-    url: "https://missav.live/dm247/cn",
+    url: "https://missav.live/cn/",
     d: [],
     taskList: [],
     getRangeColors: function() {
@@ -295,10 +295,8 @@ const Apollo = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         });
-        //动态分类
         Apollo.DynamicSort(html)
         Apollo.ActorSort(url, html)
-        //搜索
         if (page == 1) {
             Apollo.d.push({
                 title: "🔍",
@@ -366,8 +364,6 @@ const Apollo = {
         }
         setResult(Apollo.d)
     },
-
-    //动态分类
     DynamicSort: (html) => {
         const 分类颜色 = Apollo.getRangeColors()
         const 大类定位 = ".mb-6:has(.relative)&&.relative"
@@ -438,7 +434,6 @@ const Apollo = {
             })
         }
     },
-    //女优sort
     ActorSort: (url, html) => {
         const 分类颜色 = Apollo.getRangeColors()
         const 大类定位 = "body&&.grid.mb-3&&select"
@@ -516,7 +511,6 @@ const Apollo = {
             })
         }
     },
-    //搜索
     searchParse: () => {
         log(MY_URL)
         if (MY_PAGE == 1) {
@@ -541,8 +535,6 @@ const Apollo = {
         }
         setResult(Apollo.d)
     },
-
-    //二级
     videoParse: (url) => {
         var html = fetch(url, {
             headers: {
@@ -551,7 +543,6 @@ const Apollo = {
         });
         const title = pdfh(html, 'h1&&Text')
         log(url)
-        //setPageTitle(title)
 
         Apollo.d.push({
             title: '““””' + title.fontcolor("#D2691E").small(),
@@ -566,16 +557,13 @@ const Apollo = {
             pic_url: pdfh(html, 'meta[property=og:image]&&content') + '@Referer=' + Apollo.url,
             url: $(Apollo.empty + '#noHistory#').lazyRule((html, url) => {
                 eval(html.match(/eval.*?source.*\n/)[0])
-                // 获取画质列表，并去最高画质
                 let group_quality = "RESOLUTION=640x360\n360p/video.m3u8\nRESOLUTION=854x480\n480p/video.m3u8\nRESOLUTION=1280x720\n720p/video.m3u8\nRESOLUTION=1920x1080\n1080p/video.m3u8"
                 hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm).map(v => source.replace("playlist.m3u8", v))
                 name_quality = group_quality.match(/RESOLUTION=.*$/gm).map(n => n.replace("RESOLUTION=", ""))
-                // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
                 var sortedData = name_quality.map((name, index) => ({
                     name,
                     url: hghest_quality[index]
                 })).sort((a, b) => b.name.match(/(\d+)/)[1] - a.name.match(/(\d+)/)[1]);
-                // 分开排序后的 names 和 urls 数组
                 var sortedNames = sortedData.map(item => item.name);
                 var sortedUrls = sortedData.map(item => item.url);
                 let playlist = JSON.stringify({
@@ -834,9 +822,7 @@ const Apollo = {
                     lineVisible: false
                 },
             })
-        } else {
-            //Apollo.BTshowParse(num);
-        }
+        } else {}
         CiliList.forEach((item, index) => {
             Apollo.d.push({
                 title: pdfh(item, 'a&&Text'),
@@ -849,7 +835,6 @@ const Apollo = {
 
         /*var path = url.match(/\/(?!.*\/)(.*$)/) ? url.match(/\/(?!.*\/)(.*$)/)[1] : num;
         var userId = pdfh(html, ".items-center.space-x-6&&a&&href").match(/\/(?!.*\/).*userId=(.*$)/)[1]
-        // 获取当前的 10 位 Unix 时间戳
         let timestamp = Math.floor(Date.now() / 1000);
         var sign;
         var URL = `https://client-rapi-missav.recombee.com/missav-default/batch/?frontend_timestamp=${timestamp}&frontend_sign=${sign}`;
@@ -919,18 +904,14 @@ const Apollo = {
         setResult(Apollo.d)
     },
     formatNumber: function(input) {
-        // 分离整数、小数和单位
         var regex = /(\d+)(\.\d+)?([a-zA-Z]+)/;
         var match = input.match(regex);
         if (match) {
             var integerPart = match[1].toString(); // 获取整数部分
             var decimalPart = match[2] ? match[2].slice(1).toString() : '0'; // 如果没小数部分，默认为 '0'
             var unitPart = match[3]; // 获取单位部分              
-            // 对整数部分进行补零
             integerPart = integerPart.padStart(2, '0');
-            // 对小数部分进行补零  
             decimalPart = decimalPart.padEnd(2, '0');
-            // 合并结果
             return integerPart + '.' + decimalPart + unitPart;
         } else {
             return input
@@ -966,7 +947,6 @@ const Apollo = {
             })
         } catch {}
     },
-    //一级.简
     yijiParse: (url) => {
         putMyVar("MY_TYPE", "一级")
         var page = getMyVar("page", MY_PAGE + "")
@@ -1091,7 +1071,6 @@ const Apollo = {
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
                 }),
-                //desc: 
                 pic_url: pdfh(item, 'img&&src') ? (pdfh(item, 'img&&src') + '@Referer=' + Apollo.url) : "https://thumbsnap.com/i/sySMQ7Mg.jpg",
                 col_type: 'card_pic_3',
                 extra: page ? {
@@ -1134,7 +1113,6 @@ const Apollo = {
         })
         updateItem({
             pic_url: pdfh(actressesHtml, '.object-cover.object-top.w-full.h-full&&src'),
-            //col_type: 'card_pic_3',
             extra: {
                 id: param.index
             }
@@ -1158,7 +1136,6 @@ const Apollo = {
         }
 
         function setDesc(arr, desc, num) {
-            //log(desc)
             if (desc == undefined) {
                 return;
             }
